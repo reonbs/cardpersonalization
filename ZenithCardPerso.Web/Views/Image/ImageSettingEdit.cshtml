@@ -1,0 +1,100 @@
+﻿@model ZenithCardRepo.Data.Models.ImageValidationSetting
+@{
+    ViewBag.Title = "AddSetting";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Image Settings</h4>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+                <div class="row">
+                    @if (ViewData?.ModelState[""]?.Errors?.Any() == true) //@ViewBag.Error != null
+                    {
+                        <div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"
+                                    aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <i class="mdi mdi-block-helper"></i>
+                            @Html.ValidationSummary()
+                        </div>
+
+                    }
+                    @if (TempData["Message"] as string == "Success")
+                    {
+                        <div class="alert alert-icon alert-success alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"
+                                    aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <i class="mdi mdi-check-all"></i>
+                            <span>Setting was successfully submitted</span>
+                        </div>
+                    }
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Width, new { @class = "col-md-1 control-label" })
+                        <div class="col-md-4">
+                            @Html.HiddenFor(m => m.ID)
+                            @Html.EditorFor(m => m.Width, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Height, new { @class = "col-md-1 control-label" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(m => m.Height, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.HeadTilt, new { @class = "col-md-1 control-label" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(m => m.HeadTilt, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ImageSize, new { @class = "col-md-1 control-label" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(m => m.ImageSize, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ImageFormat, new { @class = "col-md-1 control-label" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(m => m.ImageFormat, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <button id="individualSubmitBTN" type="submit" class="btn btn-purple waves-effect waves-light pull-right">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

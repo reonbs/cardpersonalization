@@ -1,0 +1,109 @@
+﻿@model ZenithCardRepo.Data.ViewModel.CardAppViewModel
+@{
+    /**/
+
+    ViewBag.Title = "CardApplications";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="page-title-box">
+            <h4 class="page-title">Card Applicaton</h4>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<br />
+@using (Html.BeginForm("CardApplications", "CardApplication", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="row card-box">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.FromDate)
+                    <div class="input-group">
+                        @Html.EditorFor(m => m.FromDate, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-addon bg-custom b-0"><i class="mdi mdi-calendar text-white"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.ToDate)
+                    <div class="input-group">
+                        @Html.EditorFor(m => m.ToDate, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-addon bg-custom b-0"><i class="mdi mdi-calendar text-white"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.Processed)
+                    @Html.DropDownListFor(m => m.Processed, ViewData["IsProcessed"] as SelectList, "----Select----", new { @class = "form-control" })
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.BatchNo)
+                    @Html.EditorFor(m => m.BatchNo, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.Institution)
+                    @Html.DropDownListFor(m => m.Institution, ViewData["Institution"] as SelectList, "----Select----", new { @class = "form-control select2" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.Department)
+                    <select id="Department" name="Department" class="form-control select2">
+                        <option>--Select--</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <span><input type="submit" name="response" formaction=@Url.Action("ExportToExcel") formmethod="post" value="ExportToExcel" class="btn btn-primary pull-right" /></span>
+
+        <span><input type="submit" class="btn btn-primary pull-right" value="Search" /></span>
+
+        @if (Convert.ToBoolean(ViewData["IsDownloadRequired"]))
+        {
+            <span>@Html.ActionLink("Request Approval", "CardDownloadApproval", "CardApplication", new { batchNo = (Model == null) ? "" : Model.BatchNo }, new { @class = "btn btn-primary pull-right" })</span>
+        }
+        else
+        {
+            <span>@Html.ActionLink("Process Card", "ProcessCard", "CardApplication", null, new { @class = "btn btn-primary pull-right" })</span>
+        }
+
+    </div>
+    <br />
+    var cardApplications = ViewBag.CardApplications as List<ZenithCardRepo.Data.DTOs.CardApplicationsDTO>;
+
+    @Html.Partial("SearchResult", cardApplications)
+    @section Scripts{
+        <script>
+            $(function () {
+                $('#FromDate, #ToDate').datepicker({
+                    format: "dd/mm/yyyy",
+                    autoclose: true,
+                    todayHighlight: true
+                });
+
+                $('#Department, #Institution').select2();
+
+                $('#Institution').on('change', function () {
+                    var instID = $(this).val();
+                    $.get('/CardApplication/GetDepartment/?instID=' + instID, function (data) {
+                        $('#Department').empty();
+                        $('#Department').append('<option>--Select--</option>');
+
+                        $.each(data, function (i, v) {
+                            $('#Department').append('<option value=' + v.Code + '>' + v.Name + '</option>');
+                        });
+                    });
+                })
+            });
+        </script>
+    }
+
+}

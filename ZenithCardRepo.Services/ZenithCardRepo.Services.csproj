@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{144A5BEB-66D6-4EFD-85EF-BF294EAC3311}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ZenithCardRepo.Services</RootNamespace>
+    <AssemblyName>ZenithCardRepo.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.1.1.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.1.1\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\Command\CardApplicationCmdBLL.cs" />
+    <Compile Include="BLL\Command\FilterCMDBLL.cs" />
+    <Compile Include="BLL\Command\ICardApplicationCmdBLL.cs" />
+    <Compile Include="BLL\Command\IFilterCMDBLL.cs" />
+    <Compile Include="BLL\Command\IImageSettingCmdBLL.cs" />
+    <Compile Include="BLL\Command\ImageSettingCmdBLL.cs" />
+    <Compile Include="BLL\Command\IManageUserCMDBLL.cs" />
+    <Compile Include="BLL\Command\IOrganisationCmdBLL.cs" />
+    <Compile Include="BLL\Command\ManageUserCMDBLL.cs" />
+    <Compile Include="BLL\Command\OrganisationCmdBLL.cs" />
+    <Compile Include="BLL\Infrastructure\ExcelExportHelper.cs" />
+    <Compile Include="BLL\Infrastructure\IdentityExtensions.cs" />
+    <Compile Include="BLL\Infrastructure\IImageService.cs" />
+    <Compile Include="BLL\Infrastructure\ImageService.cs" />
+    <Compile Include="BLL\Infrastructure\Utilities.cs" />
+    <Compile Include="BLL\Query\CardApplicationQueryBLL.cs" />
+    <Compile Include="BLL\Query\GetApplicationLegends.cs" />
+    <Compile Include="BLL\Query\ICardApplicationQueryBLL.cs" />
+    <Compile Include="BLL\Query\IGetApplicationLegends.cs" />
+    <Compile Include="BLL\Query\IImageSettingQueryBLL.cs" />
+    <Compile Include="BLL\Query\ImageSettingQueryBLL.cs" />
+    <Compile Include="BLL\Query\IManageUserQueryBLL.cs" />
+    <Compile Include="BLL\Query\IOrganisationQueryBLL.cs" />
+    <Compile Include="BLL\Query\IReportQueryBLL.cs" />
+    <Compile Include="BLL\Query\ManageUserQueryBLL.cs" />
+    <Compile Include="BLL\Query\OrganisationQueryBLL.cs" />
+    <Compile Include="BLL\Query\ReportQueryBLL.cs" />
+    <Compile Include="BLL\UnitofWork\UnitOfWork.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ZenithCardPerso.Infrastructure\ZenithCardPerso.Infrastructure.csproj">
+      <Project>{7AEC7048-697D-423E-87DE-3911D8D684F5}</Project>
+      <Name>ZenithCardPerso.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZenithCardPerso.Repository\ZenithCardPerso.Repository.csproj">
+      <Project>{92576A78-9A3A-4A51-A60E-2C28070BCB26}</Project>
+      <Name>ZenithCardPerso.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZenithCardRepo.Data\ZenithCardRepo.Data.csproj">
+      <Project>{0189D102-DAA3-4575-B9A3-D4F3836A0AB6}</Project>
+      <Name>ZenithCardRepo.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

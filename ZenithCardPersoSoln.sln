@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZenithCardPerso.Web", "ZenithCardPerso.Web\ZenithCardPerso.Web.csproj", "{071E2EDB-7B02-4C7D-AAC7-45DB9DDD74B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZenithCardPerso.Web.Tests", "ZenithCardPerso.Web.Tests\ZenithCardPerso.Web.Tests.csproj", "{FFC416FE-52EE-46D8-9E95-1028D9780CE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZenithCardPerso.Repository", "ZenithCardPerso.Repository\ZenithCardPerso.Repository.csproj", "{92576A78-9A3A-4A51-A60E-2C28070BCB26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZenithCardRepo.Data", "ZenithCardRepo.Data\ZenithCardRepo.Data.csproj", "{0189D102-DAA3-4575-B9A3-D4F3836A0AB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZenithCardRepo.Services", "ZenithCardRepo.Services\ZenithCardRepo.Services.csproj", "{144A5BEB-66D6-4EFD-85EF-BF294EAC3311}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZenithCardPerso.Infrastructure", "ZenithCardPerso.Infrastructure\ZenithCardPerso.Infrastructure.csproj", "{7AEC7048-697D-423E-87DE-3911D8D684F5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{071E2EDB-7B02-4C7D-AAC7-45DB9DDD74B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{071E2EDB-7B02-4C7D-AAC7-45DB9DDD74B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{071E2EDB-7B02-4C7D-AAC7-45DB9DDD74B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{071E2EDB-7B02-4C7D-AAC7-45DB9DDD74B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFC416FE-52EE-46D8-9E95-1028D9780CE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFC416FE-52EE-46D8-9E95-1028D9780CE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFC416FE-52EE-46D8-9E95-1028D9780CE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFC416FE-52EE-46D8-9E95-1028D9780CE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92576A78-9A3A-4A51-A60E-2C28070BCB26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92576A78-9A3A-4A51-A60E-2C28070BCB26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92576A78-9A3A-4A51-A60E-2C28070BCB26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92576A78-9A3A-4A51-A60E-2C28070BCB26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0189D102-DAA3-4575-B9A3-D4F3836A0AB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0189D102-DAA3-4575-B9A3-D4F3836A0AB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0189D102-DAA3-4575-B9A3-D4F3836A0AB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0189D102-DAA3-4575-B9A3-D4F3836A0AB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{144A5BEB-66D6-4EFD-85EF-BF294EAC3311}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{144A5BEB-66D6-4EFD-85EF-BF294EAC3311}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{144A5BEB-66D6-4EFD-85EF-BF294EAC3311}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{144A5BEB-66D6-4EFD-85EF-BF294EAC3311}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AEC7048-697D-423E-87DE-3911D8D684F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AEC7048-697D-423E-87DE-3911D8D684F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AEC7048-697D-423E-87DE-3911D8D684F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AEC7048-697D-423E-87DE-3911D8D684F5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EE8ACBF6-5060-457A-9C4F-190926FCC187}
+	EndGlobalSection
+EndGlobal

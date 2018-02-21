@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+    <meta name="author" content="Coderthemes">
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <!-- App title -->
+    <title>Card Perso</title>
+
+    <!-- Custom box css -->
+    <link href="/plugins/custombox/css/custombox.min.css" rel="stylesheet">
+
+    <!-- Notification css (Toastr) -->
+    <link href="/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+
+    <!--Date Picker -->
+    <link href="/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+    <link href="/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+    <link href="/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="/plugins/clockpicker/css/bootstrap-clockpicker.min.css" rel="stylesheet">
+    <link href="/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- App css -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/core.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/components.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/icons.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/pages.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/menu.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/responsive.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/plugins/switchery/switchery.min.css">
+
+
+
+    <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="/assets/js/modernizr.min.js"></script>
+    <link href="/Content/Site.css" rel="stylesheet" />
+</head>
+<body class="bg-transparent">
+    <section>
+
+        <div class="container-alt">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="wrapper-page">
+                        <div class="m-t-40 account-pages">
+                            @RenderBody()
+                        </div>
+
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        var resizefunc = [];
+    </script>
+
+    <!-- jQuery  -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/detect.js"></script>
+    <script src="/assets/js/fastclick.js"></script>
+    <script src="/assets/js/jquery.blockUI.js"></script>
+    <script src="/assets/js/waves.js"></script>
+    <script src="/assets/js/jquery.slimscroll.js"></script>
+    <script src="/assets/js/jquery.scrollTo.min.js"></script>
+    <script src="/plugins/switchery/switchery.min.js"></script>
+
+    <!--Date Picker-->
+    <script src="/plugins/moment/moment.js"></script>
+    <script src="/plugins/timepicker/bootstrap-timepicker.js"></script>
+    <script src="/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+    <script src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="/plugins/clockpicker/js/bootstrap-clockpicker.min.js"></script>
+    <script src="/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <!-- Toastr js -->
+    <script src="/plugins/toastr/toastr.min.js"></script>
+    <!-- Toastr init js (Demo)-->
+    <script src="/assets/pages/jquery.toastr.js"></script>
+
+    <!-- Modal-Effect -->
+    <script src="/plugins/custombox/js/custombox.min.js"></script>
+    <script src="/plugins/custombox/js/legacy.min.js"></script>
+
+
+    <!-- App js -->
+    <script src="/assets/js/jquery.core.js"></script>
+    <script src="/assets/js/jquery.app.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

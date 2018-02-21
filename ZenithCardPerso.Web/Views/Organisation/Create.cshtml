@@ -1,0 +1,82 @@
+﻿@model ZenithCardRepo.Data.Models.OrganizationProfile
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+
+
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Create Organisation</h4>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+                <div class="row">
+                    @if (ViewData?.ModelState[""]?.Errors?.Any() == true) //@ViewBag.Error != null
+                    {
+                        <div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"
+                                    aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <i class="mdi mdi-block-helper"></i>
+                            @Html.ValidationSummary()
+                        </div>
+
+                    }
+                    @if (ViewData["Message"] as string == "Success")
+                    {
+                        <div class="alert alert-icon alert-success alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"
+                                    aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <i class="mdi mdi-check-all"></i>
+                            <span>Organisation has been Successful created</span>
+                        </div>
+                    }
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Name, new { @class = "col-md-1 control-label" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Code, new { @class = "col-md-1 control-label" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(m => m.Code, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Description, new { @class = "col-md-1 control-label" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(m => m.Description, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <button id="individualSubmitBTN" type="submit" class="btn btn-purple waves-effect waves-light pull-right">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

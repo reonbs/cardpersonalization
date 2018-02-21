@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ZenithCardRepo.Data.Models.ImageValidationSetting>
+@{
+    ViewBag.Title = "ImageSettings";
+}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="page-title-box">
+            <h4 class="page-title">Image Settings</h4>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-box table-responsive">
+            @if (TempData["Message"] as string == "Success")
+            {
+                <div class="alert alert-icon alert-success alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <i class="mdi mdi-check-all"></i>
+                    <span>Card Application Download was successful <a href="file:///c:\pc">Click to view downloads</a></span>
+                </div>
+            }
+            <table id="tblRegistrations" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Width</th>
+                        <th>Height</th>
+                        <th>Head Tilt</th>
+                        <th>Image Size</th>
+                        <th>Image Format</th>
+                        <td></td>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model?.ToList().Count > 0)
+                    {
+                        foreach (var item in Model)
+                        {
+                    <tr>
+                        <td>@Html.DisplayFor(m => item.Width)</td>
+                        <td>@Html.DisplayFor(m => item.Height)</td>
+                        <td>@Html.DisplayFor(m => item.HeadTilt)</td>
+                        <td>@Html.DisplayFor(m => item.ImageSize)</td>
+                        <td>@Html.DisplayFor(m => item.ImageFormat)</td>
+                        <td>@Html.ActionLink("Edit", "ImageSettingEdit", "Image", null, null)</td>
+                    </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4" style="text-align:center;">No Cards to be processed</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

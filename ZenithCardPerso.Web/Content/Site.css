@@ -1,0 +1,63 @@
+﻿.notToShow{
+    visibility:hidden;
+}
+#topNavBar {
+    background-color: #e3000f;
+    border-radius: 0;
+    border: none;
+    margin-bottom: 0;
+    padding: 0 20px;
+    color: #fff;
+}
+
+.side-menu {
+    width: 225px;
+    padding-top: 10px;
+    z-index: 10;
+    background: #e3000f;
+    bottom: 50px;
+    margin-top: 0;
+    padding-bottom: 70px;
+    position: fixed;
+    top: 0;
+    box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.06), 0 1px 0 0 rgba(0, 0, 0, 0.02);
+}
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+    margin: 10px;
+}
+#sidebar-menu ul ul li a {
+    color: #fff;
+}
+.topbar .topbar-left {
+    background: #fff;
+}
+.account-logo-box {
+    background-color: red;
+}
+.content-page .content {
+    background: #f9f5f5;
+}
+
+.success{
+    color:green;
+}
+.text-center img {
+    width: 100px;
+    padding: 10px;
+}
+
+#sidebar-menu > ul > li > a.active {
+    color: #ffffff !important;
+    background-color: #868786;
+}
+
+#sidebar-menu > ul > li > a:hover {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #868786;
+}
+
+#tblRegistrations input{
+    border:0px;
+}

@@ -1,0 +1,75 @@
+﻿@model ZenithCardRepo.Data.IdentityModels.ApplicationRole
+
+@{
+    ViewBag.Title = "Register";
+    //Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+
+@using (Html.BeginForm("AddRole", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Create Role</h4>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!---Validation msg start-->
+    <div class="row">
+        @if (ViewData?.ModelState[""]?.Errors?.Any() == true) //@ViewBag.Error != null
+        {
+            <div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <i class="mdi mdi-block-helper"></i>
+                @Html.ValidationSummary()
+            </div>
+
+        }
+        @if (TempData["Message"] as string == "Success")
+        {
+            <div class="alert alert-icon alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <i class="mdi mdi-check-all"></i>
+                <span>Role was successfully created</span>
+            </div>
+        }
+    </div>
+    <!---Validation msg end-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Role Name" })
+                    </div>
+                </div>
+                <div class="form-group account-btn text-center m-t-10">
+                    <div class="col-xs-6">
+                        <button class="btn w-md btn-danger btn-bordered waves-effect waves-light" type="submit">Create</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(function () {
+           
+        });
+    </script>
+}
