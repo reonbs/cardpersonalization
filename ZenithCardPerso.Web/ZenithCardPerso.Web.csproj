@@ -80,6 +80,9 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -146,9 +149,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -228,10 +228,16 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CardApplicationController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
+    <Compile Include="Controllers\LegendController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrganisationController.cs" />
+    <Compile Include="Controllers\PermissionController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Extentions\ActionExtensions.cs" />
+    <Compile Include="Extentions\Helpers.cs" />
+    <Compile Include="Extentions\LinkExtensions.cs" />
     <Compile Include="Filters\AuditAttribute.cs" />
+    <Compile Include="Filters\ValidateUserPermission.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -254,6 +260,7 @@
     <Content Include="assets\css\responsive.css" />
     <Content Include="assets\css\typicons.css" />
     <Content Include="assets\css\variables.css" />
+    <Content Include="assets\EmailTemplate\CardApplicationEmail.html" />
     <Content Include="assets\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="assets\fonts\ionicons.svg" />
@@ -1405,7 +1412,18 @@
     <Content Include="Scripts\Loading\waitMe.js" />
     <Content Include="Scripts\Loading\waitMe.min.css" />
     <Content Include="Scripts\Loading\waitMe.min.js" />
+    <Content Include="Scripts\Tracking\assets\faces.jpg" />
+    <Content Include="Scripts\Tracking\data\eye-min.js" />
+    <Content Include="Scripts\Tracking\data\eye.js" />
+    <Content Include="Scripts\Tracking\data\face-min.js" />
+    <Content Include="Scripts\Tracking\data\face.js" />
+    <Content Include="Scripts\Tracking\data\mouth-min.js" />
+    <Content Include="Scripts\Tracking\data\mouth.js" />
+    <Content Include="Scripts\Tracking\tracking-min.js" />
+    <Content Include="Scripts\Tracking\tracking.js" />
+    <Content Include="webcamjs\webcam.js" />
     <Content Include="webcamjs\webcam.min.js" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1477,6 +1495,41 @@
     <Content Include="Views\Account\AddRole.cshtml" />
     <Content Include="Views\Account\Roles.cshtml" />
     <Content Include="Views\Account\EditRole.cshtml" />
+    <Content Include="Views\Legend\Title.cshtml" />
+    <Content Include="Views\Legend\Titles.cshtml" />
+    <Content Include="Views\Legend\TitleEdit.cshtml" />
+    <Content Include="Views\Permission\Create.cshtml" />
+    <Content Include="Views\Permission\Permissions.cshtml" />
+    <Content Include="Views\Permission\PermissionEdit.cshtml" />
+    <Content Include="Views\Permission\EditRolePermission.cshtml" />
+    <Content Include="Views\Permission\AssignRolePermissions.cshtml" />
+    <Content Include="Views\CardApplication\CardDownloadApproval.cshtml" />
+    <Content Include="Views\CardApplication\CardRequestApprovals.cshtml" />
+    <Content Include="Views\CardApplication\CardsForApproval.cshtml" />
+    <Content Include="Views\CardApplication\ImageTracking.cshtml" />
+    <Content Include="Views\Legend\Sexes.cshtml" />
+    <Content Include="Views\Legend\SexEdit.cshtml" />
+    <Content Include="Views\Legend\AddMaritalStatus.cshtml" />
+    <Content Include="Views\Legend\MaritalStatusEdit.cshtml" />
+    <Content Include="Views\Legend\MaritalStatusList.cshtml" />
+    <Content Include="Views\Legend\AddCity.cshtml" />
+    <Content Include="Views\Legend\CityEdit.cshtml" />
+    <Content Include="Views\Legend\Cities.cshtml" />
+    <Content Include="Views\Legend\AddState.cshtml" />
+    <Content Include="Views\Legend\StateEdit.cshtml" />
+    <Content Include="Views\Legend\States.cshtml" />
+    <Content Include="Views\Legend\AddIDCardType.cshtml" />
+    <Content Include="Views\Legend\IDCardTypeEdit.cshtml" />
+    <Content Include="Views\Legend\IDCardTypes.cshtml" />
+    <Content Include="Views\Legend\AddSocioProfCode.cshtml" />
+    <Content Include="Views\Legend\SocioProfCodeEdit.cshtml" />
+    <Content Include="Views\Legend\SocioProfCodes.cshtml" />
+    <Content Include="Views\Legend\AddProductCode.cshtml" />
+    <Content Include="Views\Legend\ProductCodeEdit.cshtml" />
+    <Content Include="Views\Legend\ProductCodes.cshtml" />
+    <Content Include="Views\Legend\AddNationalityCode.cshtml" />
+    <Content Include="Views\Legend\NationalityCodeEdit.cshtml" />
+    <Content Include="Views\Legend\NationalityCodes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1497,7 +1550,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ZenithCardPerso.Repository\ZenithCardPerso.Repository.csproj">
-      <Project>{92576A78-9A3A-4A51-A60E-2C28070BCB26}</Project>
+      <Project>{92576a78-9a3a-4a51-a60e-2c28070bcb26}</Project>
       <Name>ZenithCardPerso.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\ZenithCardRepo.Data\ZenithCardRepo.Data.csproj">

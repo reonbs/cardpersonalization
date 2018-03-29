@@ -78,14 +78,21 @@ namespace ZenithCardPerso.Web.App_Start
             builder.RegisterType<ReportQueryBLL>().As<IReportQueryBLL>();
             builder.RegisterType<ManageUserQueryBLL>().As<IManageUserQueryBLL>();
             builder.RegisterType<ManageUserCMDBLL>().As<IManageUserCMDBLL>();
+            builder.RegisterType<LegendCMDBLL>().As<ILegendCMDBLL>();
+            builder.RegisterType<LegendQueryBLL>().As<ILegendQueryBLL>();
+            builder.RegisterType<PermissionCMDBLL>().As<IPermissionCMDBLL>();
+            builder.RegisterType<PermissionQueryBLL>().As<IPermissionQueryBLL>();
+            builder.RegisterType<ApprovalCMDBLL>().As<IApprovalCMDBLL>();
+            builder.RegisterType<ApprovalQueryBLL>().As<IApprovalQueryBLL>();
 
+            //builder.RegisterAssemblyTypes(typeof(IAutoDependencyRegister).Assembly)
+            //   .AssignableTo<IAutoDependencyRegister>()
+            //   .As<IAutoDependencyRegister>()
+            //   .AsImplementedInterfaces().InstancePerRequest();
 
             builder.RegisterModule(new LoggerModule());
-
             // OPTIONAL: Enable property injection into action filters
             builder.RegisterFilterProvider();
-            builder.RegisterType<AuditAttribute>().PropertiesAutowired();
-
             // BUILD THE CONTAINER
             var container = builder.Build();
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -21,7 +22,8 @@ namespace ZenithCardPerso.Repository.Query
 
         IQueryable<TEntity> GetAllIncluding(params Expression<Func<TEntity, object>>[] includeProperties);
 
-        
+        DbRawSqlQuery<T> StoreprocedureQuery<T>(string storeprocedureName);
+        DbRawSqlQuery<T> StoreprocedureQueryFor<T>(string storeprocedureName, params object[] parameters);
 
     }
 }

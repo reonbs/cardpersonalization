@@ -13,5 +13,7 @@ namespace ZenithCardPerso.Repository.Command
         void Delete(TEntity entity);
         int Save();
         Task<int> SaveAync();
+        void AttachEntity(TEntity entity);
+        void DeleteRange(List<TEntity> entity);
     }
 }

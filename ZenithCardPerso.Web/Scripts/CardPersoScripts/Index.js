@@ -14,7 +14,7 @@
         };
         if ($('#Department').val() === "") {
             toastr.error('Select Department');
-        }else if ($('#TitleCode').val() === "") {
+        } else if ($('#TitleCode').val() === "") {
             toastr.error('Enter Title');
         } else if ($('#FirstName').val() === "") {
             toastr.error('Enter FirstName');
@@ -34,8 +34,14 @@
         //}
         else if ($('#NameonCard').val() === "") {
             toastr.error('Enter Name on Card');
-        } else if ($('#IDCardType').val() === "") {
-            toastr.error('Enter Name on Card');
+        }
+        else if (!IsSpacialXter($('#NameonCard').val())) {
+            toastr.error('Special character not allowed for Name of Card');
+        } else if ($.trim($('#NameonCard').val()).length >= 21) {
+            toastr.error('Card name cannot be more that 21 characters');
+        }
+        else if ($('#IDCardType').val() === "") {
+            toastr.error('Enter  ID Card Type');
         } else if ($('#IDNo').val() === "") {
             toastr.error('Enter ID No');
         } else if ($('#IDIssueDate').val() === "") {
@@ -72,5 +78,11 @@
     function isEmail(email) {
         var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         return regex.test(email);
+    }
+
+    function IsSpacialXter(str) {
+        console.log($.trim(str).length);
+        return /^[a-zA-Z\s]+$/.test(str)
+        //  /^[a-zA-Z0-9]*$/
     }
 });

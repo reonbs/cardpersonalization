@@ -17,6 +17,16 @@
     <!-- Notification css (Toastr) -->
     <link href="/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
 
+    <!-- DataTables -->
+    <link href="/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/datatables/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/datatables/fixedColumns.dataTables.min.css" rel="stylesheet" type="text/css" />
+
     <!--Date Picker -->
     <link href="/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
     <link href="/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
@@ -54,6 +64,7 @@
     <script src="/assets/js/modernizr.min.js"></script>
     <link href="/Content/Site.css" rel="stylesheet" />
 </head>
+
 <body class="fixed-left">
     <div id="wrapper">
         <!-- Top Bar Start -->
@@ -134,61 +145,104 @@
                     <ul>
                         @*<li class="menu-title">Navigation</li>*@
 
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect">
-                                <i class="mdi mdi-view-dashboard"></i>
-                                <span class="menu-arrow"></span>
-                                <span> Cards </span>
-                            </a>
-                            <ul class="list-unstyled">
-                                <li>
-                                    <a href="@Url.Action("CardApplicationCreate","CardApplication")">Application</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("MyCardApplications","CardApplication")">My Application</a>
-                                </li>
-                            </ul>
-                        </li>
+                        @if (User.IsInRole("InstitutionAdmin"))
+                        {
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="mdi mdi-view-dashboard"></i>
+                                    <span class="menu-arrow"></span>
+                                    <span> Cards </span>
+                                </a>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="@Url.Action("CardApplicationCreate","CardApplication")">Application</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("MyCardApplications","CardApplication")">My Application</a>
+                                    </li>
 
-                        <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect">
-                                <i class="mdi mdi-settings"></i>
-                                <span> Admin </span>
-                                <span class="menu-arrow"></span>
-                            </a>
-                            <ul class="list-unstyled">
-                                <li>
-                                    <a href="@Url.Action("CardApplications","CardApplication")">Card Applications</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Create","Organisation")">Create Organisation</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Institutions","Organisation")">Institutions</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Departments","Organisation")">Departments</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Users","Account")">Users</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Roles","Account")">Roles</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("AddSetting","Image")">Image Settings</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("ImageSettingEdit","Image")">Edit Image Settings</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("AuditTrail","Report")">Audit Trail</a>
-                                </li>
-                            </ul>
-                        </li>
+                                </ul>
+                            </li>
 
+                        }
 
-
+                        @if (true)
+                        {
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect">
+                                    <i class="mdi mdi-settings"></i>
+                                    <span> Admin </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="@Url.Action("CardApplications","CardApplication")">Card Applications</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("CardRequestApprovals","CardApplication")">Card Application approvals</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Institutions","Organisation")">Institutions</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Departments","Organisation")">Departments</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Users","Account")">Users</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Roles","Account")">Roles</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("AddSetting","Image")">Image Settings</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("ImageSettingEdit","Image")">Edit Image Settings</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("AuditTrail","Report")">Audit Trail</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Permissions","Permission")">Permissions</a>
+                                    </li>
+                                    <li class="has_sub">
+                                        <a href="javascript:void(0);" class="waves-effect">
+                                            <span> Legends </span>
+                                            <span class="menu-arrow"></span>
+                                        </a>
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <a href="@Url.Action("Titles","Legend")">Title</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("Sexes","Legend")">Sexes</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("MaritalStatusList","Legend")">Marital Status</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("Cities","Legend")">City</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("States","Legend")">States</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("IDCardTypes","Legend")">ID Card Types</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("SocioProfCodes","Legend")">Socio Prof Codes</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("ProductCodes","Legend")">Product Codes</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("NationalityCodes","Legend")">Nationality Codes</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
 
                     </ul>
                 </div>
@@ -315,6 +369,28 @@
     <script src="/assets/js/jquery.slimscroll.js"></script>
     <script src="/assets/js/jquery.scrollTo.min.js"></script>
     <script src="/plugins/switchery/switchery.min.js"></script>
+
+    <!--DataTables-->
+    <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/plugins/datatables/dataTables.bootstrap.js"></script>
+
+    <script src="/plugins/datatables/dataTables.buttons.min.js"></script>
+    <script src="/plugins/datatables/buttons.bootstrap.min.js"></script>
+    <script src="/plugins/datatables/jszip.min.js"></script>
+    <script src="/plugins/datatables/pdfmake.min.js"></script>
+    <script src="/plugins/datatables/vfs_fonts.js"></script>
+    <script src="/plugins/datatables/buttons.html5.min.js"></script>
+    <script src="/plugins/datatables/buttons.print.min.js"></script>
+    <script src="/plugins/datatables/dataTables.fixedHeader.min.js"></script>
+    <script src="/plugins/datatables/dataTables.keyTable.min.js"></script>
+    <script src="/plugins/datatables/dataTables.responsive.min.js"></script>
+    <script src="/plugins/datatables/responsive.bootstrap.min.js"></script>
+    <script src="/plugins/datatables/dataTables.scroller.min.js"></script>
+    <script src="/plugins/datatables/dataTables.colVis.js"></script>
+    <script src="/plugins/datatables/dataTables.fixedColumns.min.js"></script>
+
+    <!-- init -->
+    <script src="/assets/pages/jquery.datatables.init.js"></script>
 
     <!--Date Picker-->
     <script src="/plugins/moment/moment.js"></script>

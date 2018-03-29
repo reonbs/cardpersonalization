@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ZenithCardRepo.Data.Models.Approval>
+@{
+    ViewBag.Title = "Search Result";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Pending Approvals</h4>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-md-12">
+                @Html.ActionLink("Create", "Create", "Permission", null, null)
+            </div>
+            <div class="card-box table-responsive">
+                @if (TempData["Message"] as string == "Success")
+                {
+                    <div class="alert alert-icon alert-success alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <i class="mdi mdi-check-all"></i>
+                        <span>Card(s) was successfully approved</span>
+                    </div>
+                }
+                @{
+                    int i = 0;
+                }
+
+                <table id="tblRequestApproval" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>S/N..</th>
+                            <th>User</th>
+                            <th>Comment</th>
+                            <th>Date Requested</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (Model.ToList()?.Count > 0)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@(i = i + 1)</td>
+                                    <td>@Html.DisplayFor(m => item.Approver)</td>
+                                    <td>@Html.DisplayFor(m => item.Comment)</td>
+                                    <td>@Html.DisplayFor(m => item.DateCreated)</td>
+                                    <td>@Html.ActionLink("View Card Application", "ViewApplicationsForApproval", "CardApplication", new { approvalID = item.ID }, null)</td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="5" style="text-align:center;">No pending approval</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+}
+@section Scripts{
+    <script>
+        $(function () {
+            $("#tblRequestApproval").dataTable();
+        });
+    </script>
+}

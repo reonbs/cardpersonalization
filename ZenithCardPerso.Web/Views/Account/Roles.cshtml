@@ -41,6 +41,7 @@
                             <th>S/N..</th>
                             <th>Name</th>
                             <th></th>
+                            <th></th>
 
                         </tr>
                     </thead>
@@ -54,14 +55,14 @@
                                     <td>@(i = i + 1)</td>
                                     <td>@Html.DisplayFor(m => item.Name)</td>
                                     <td>@Html.ActionLink("Edit", "EditRole", "Account", new { ID = item.Id }, null)</td>
-
+                                    <td>@Html.ActionLink("Edit Permission", "EditRolePermission", "Permission", new { roleID = item.Id }, null)</td>
                                 </tr>
                             }
                         }
                         else
                         {
                             <tr>
-                                <td colspan="3" style="text-align:center;">No Departments available</td>
+                                <td colspan="4" style="text-align:center;">No Departments available</td>
                             </tr>
                         }
                     </tbody>

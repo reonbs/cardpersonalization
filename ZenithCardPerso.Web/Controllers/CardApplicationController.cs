@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ZenithCardPerso.Web.Filters;
@@ -26,13 +27,17 @@ namespace ZenithCardPerso.Web.Controllers
         private ICardApplicationQueryBLL _cardAppQueryBLL;
         private IOrganisationQueryBLL _orgQueryBLL;
         private ILog _log;
+        private IApprovalCMDBLL _approvalCMDBLL;
+        private IApprovalQueryBLL _approvalQueryBLL;
         private string _institution;
         public CardApplicationController(
             ICardApplicationCmdBLL cardAPPCmdBLL,
             IGetApplicationLegends applicationLegends,
             ICardApplicationQueryBLL cardAppQueryBLL,
             IOrganisationQueryBLL orgQueryBLL,
-            ILog log
+            ILog log,
+            IApprovalCMDBLL approvalCMDBLL,
+            IApprovalQueryBLL approvalQueryBLL
             )
         {
             _cardAPPCmdBLL = cardAPPCmdBLL;
@@ -40,9 +45,12 @@ namespace ZenithCardPerso.Web.Controllers
             _cardAppQueryBLL = cardAppQueryBLL;
             _orgQueryBLL = orgQueryBLL;
             _log = log;
+            _approvalCMDBLL = approvalCMDBLL;
+            _approvalQueryBLL = approvalQueryBLL;
         }
 
         [Audit]
+        [ValidateUserPermission(Permissions = "can_create_cardapplication")]
         public ActionResult CardApplicationCreate()
         {
             var institution = User.Identity.GetInstitutionID();
@@ -67,11 +75,14 @@ namespace ZenithCardPerso.Web.Controllers
 
         [Audit(AuditingLevel = 2)]
         [HttpPost]
-        public ActionResult CardApplicationCreate(CardApplicationsDTO cardApplication, string HDImageByte, string IDIssueDate, string IDExpiryDate, string DateofBirth)
+        [ValidateUserPermission(Permissions = "can_create_cardapplication")]
+        public async Task<ActionResult> CardApplicationCreate(CardApplicationsDTO cardApplication, string HDImageByte, string IDIssueDate, string IDExpiryDate, string DateofBirth)
         {
             string instID = string.Empty;
             try
             {
+                
+                await Utilities.Execute();
 
                 instID = User.Identity.GetInstitutionID();
                 if (instID == "" || instID == "0  ")
@@ -100,7 +111,7 @@ namespace ZenithCardPerso.Web.Controllers
 
                     TempData[Utilities.Activity_Log_Details] = "Card Application has been captured Successfully";
 
-                    ViewData["Message"] = "Success";
+                    TempData["Message"] = "Success";
                     ModelState.Clear();
 
 
@@ -171,6 +182,7 @@ namespace ZenithCardPerso.Web.Controllers
         }
 
         [Audit]
+        [ValidateUserPermission(Permissions = "can_view_cardapplications")]
         public ActionResult CardApplications()
         {
             try
@@ -189,15 +201,17 @@ namespace ZenithCardPerso.Web.Controllers
             }
             catch (Exception ex)
             {
-                ex.Message.ToList();
-                throw;
+                _log.Error(ex);
             }
 
+
+            return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Audit]
+        [ValidateUserPermission(Permissions = "can_create_cardapplications")]
         public ActionResult CardApplications(CardAppViewModel cardAppVM)
         {
             try
@@ -241,6 +255,7 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Audit]
+        [ValidateUserPermission(Permissions = "can_delete_cardapplication")]
         public ActionResult DeleteCardApplications(List<CardApplicationsDTO> cardApps)
         {
             try
@@ -259,6 +274,7 @@ namespace ZenithCardPerso.Web.Controllers
         }
 
         [Audit]
+        [ValidateUserPermission(Permissions = "can_view_mycardapplications")]
         public ActionResult MyCardApplications()
         {
             try
@@ -279,6 +295,7 @@ namespace ZenithCardPerso.Web.Controllers
         }
 
         [Audit]
+        [ValidateUserPermission(Permissions = "can_edit_cardapplication")]
         public ActionResult CardApplicationEdit(int ID)
         {
             try
@@ -306,6 +323,7 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Audit]
+        [ValidateUserPermission(Permissions = "can_edit_cardapplication")]
         public ActionResult CardApplicationEdit(CardApplicationsDTO cardApplicationsDTO, string HDImageByte)
         {
             try
@@ -373,14 +391,133 @@ namespace ZenithCardPerso.Web.Controllers
                 throw;
             }
         }
-        public ActionResult CardDownloadApproval(string batchNo)
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CardDownloadApproval(List<CardApplicationsDTO> cardApps,string HDComment)
         {
+            try
+            {
+                var selectedCardapp = cardApps.Where(x => x.IsSelected == true);
+                if (selectedCardapp.Count() > 0)
+                {
+                    var requestBy = User.Identity.Name;
+
+                    _approvalCMDBLL.AddApproval(cardApps, requestBy, HDComment);
+
+                    TempData["Message"] = "Successonapproval";
+
+                    return RedirectToAction("CardApplications");
+                }
+                else
+                {
+                    ModelState.AddModelError("","Select a cardapplication for your request");
+                    return View();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                _log.Error(ex);
+            }
             return View();
+        }
+
+        public ActionResult CardRequestApprovals()
+        {
+            try
+            {
+                var approvals = _approvalQueryBLL.GetApprovals();
+
+                return View(approvals);
+
+            }
+            catch (Exception ex)
+            {
+                _log.Error(ex);
+            }
+            return View();
+        }
+        
+
+        public ActionResult ViewApplicationsForApproval(int approvalID)
+        {
+            try
+            {
+                List<int> cardAppID =_approvalQueryBLL.GetCardsToApprove(approvalID);
+                var cardApps = _cardAppQueryBLL.GetCardApplicationsByIDs(cardAppID);
+
+                ViewData["ApprovalID"] = approvalID;
+
+                return View("CardsForApproval", cardApps);
+            }
+            catch (Exception ex)
+            {
+                _log.Error(ex);
+            }
+
+            return View();
+        }
+        /// <summary>
+        /// Approve Selected Card applications
+        /// </summary>
+        /// <param name="approvalID"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ViewApplicationsForApproval(List<CardApplicationsDTO> cardApps, string Comment,string HDApprovalID)
+        {
+            try
+            {
+                var cards = cardApps.Where(x => x.IsSelected == true);
+                if (cards.Count() > 0 )
+                {
+                    _cardAPPCmdBLL.CardApplicationApprovalUpdate(cardApps,Comment);
+                    var approvalID = Convert.ToInt32(HDApprovalID);
+
+                    _approvalCMDBLL.UpdateApproval(approvalID, Utilities.Approve);
+
+                    TempData["Message"] = "Success";
+
+                    return RedirectToAction("CardRequestApprovals");
+                }
+            }
+            catch (Exception ex)
+            {
+                _log.Error(ex);
+            }
+
+            ModelState.AddModelError("","No Card Application was selected");
+            return View();
+        }
+
+        
+        public ActionResult CardApplicationDecline(int approvalID)
+        {
+            try
+            {
+                _approvalCMDBLL.UpdateApproval(approvalID, Utilities.Decline);
+
+                TempData["Message"] = "Decline";
+
+                return RedirectToAction("CardRequestApprovals");
+            }
+            catch (Exception ex)
+            {
+                _log.Error(ex);
+            }
+            return View();
+        }
+
+        public ActionResult CardsForApproval()
+        {
+            return PartialView();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Audit]
+        [ValidateUserPermission(Permissions = "can_download_cardapplicationreport")]
         public ActionResult ExportToExcel(CardAppViewModel cardAppVM)
         {
             try
@@ -412,15 +549,17 @@ namespace ZenithCardPerso.Web.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         [Audit]
-        public ActionResult ProcessCard()
+        [ValidateUserPermission(Permissions = "can_process_cardapplications")]
+        public async Task<ActionResult> ProcessCard(List<CardApplicationsDTO> cardApps)
         {
             try
             {
                 var saveLocation = Server.MapPath("~/images/CardApplication/");
 
-                var cardApplToExport = _cardAppQueryBLL.CardApplicationToExport().ToList();
+                var cardApplToExport = _cardAppQueryBLL.CardApplicationToExport(cardApps).ToList();
 
                 string[] columns = {
                     "FirstName", "MiddleName", "LastName","Sex","MaritalStatus", "OfficePhoneNo",
@@ -432,7 +571,7 @@ namespace ZenithCardPerso.Web.Controllers
 
                 string[] filePaths = Directory.GetFiles(saveLocation, "*.jpeg");
 
-                _cardAPPCmdBLL.UpdateBatchNo(cardApplToExport);
+                await _cardAPPCmdBLL.UpdateBatchNo(cardApplToExport);
 
                 CreateFiles(filePaths, cardApplToExport);
                 var saveAs = string.Format("text-{0:yyyy-MM-dd_hh-mm-ss-tt}", DateTime.Now);
@@ -455,9 +594,8 @@ namespace ZenithCardPerso.Web.Controllers
             }
 
         }
-        public void CreateFiles(string[] sourceFiles, List<CardApplication> cardAppsList)
+        public void CreateFiles(string[] sourceFiles, List<CardApplicationsDTO> cardAppsList)
         {
-            string dest = @"C:\pc\";
             using (ZipFile zip = new ZipFile())
             {
                 string[] filenames = sourceFiles;
@@ -468,28 +606,17 @@ namespace ZenithCardPerso.Web.Controllers
                     ZipEntry e = zip.AddFile(fileName, "/cardspix");
                     e.Comment = "Added";
                 }
-                //foreach (String filename in filenames)
-                //{
-
-
-                //    ZipEntry e = zip.AddFile(filename,"/cardspix");
-                //    e.Comment = "Added";
-                //}
-
+                
                 zip.Comment = String.Format("The downloaded file are for the just generated card application on machine '{0}'",
                       System.Net.Dns.GetHostName());
                 var path = CreateIfMissing(@"C:\pc\");
-                //var fileName = "CardsApplication" + DateTime.Today.ToString("dd-mm-yyyy");
+                
                 var saveAs = string.Format("text-{0:yyyy-MM-dd_hh-mm-ss-tt}", DateTime.Now);
                 var filePath = path + "myfile" + saveAs + ".zip";
                 zip.Save(filePath);
 
                 _cardAPPCmdBLL.UpdateStatus(cardAppsList);
-                //foreach (var item in sourceFiles)
-                //{
-                //    var fN = Path.GetFileName(item);
-                //    System.IO.File.Copy(item, dest + fN);
-                //}
+               
             }
         }
         private string CreateIfMissing(string path)
@@ -499,17 +626,9 @@ namespace ZenithCardPerso.Web.Controllers
                 Directory.CreateDirectory(path);
             return path;
         }
-        public ActionResult About()
+        
+        public ActionResult ImageTracking()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

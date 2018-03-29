@@ -12,7 +12,7 @@ namespace ZenithCardRepo.Services.BLL.Query
     public interface ICardApplicationQueryBLL
     {
         IEnumerable<CardApplicationsDTO> GetCardApplications();
-        IEnumerable<CardApplication> CardApplicationToExport();
+        IEnumerable<CardApplicationsDTO> CardApplicationToExport(List<CardApplicationsDTO> cardApps);
 
         IEnumerable<CardApplicationsDTO> CardApplicationSearch(CardAppViewModel cardAppVM);
 
@@ -21,6 +21,9 @@ namespace ZenithCardRepo.Services.BLL.Query
         bool CheckProcessedStatus(List<CardApplicationsDTO> cardAppsDTO);
 
         CardApplicationsDTO GetCardApplication(int ID);
+
+        List<CardApplicationsDTO> GetCardApplicationsByIDs(List<int> cardAPPIds);
+        
 
     }
 }

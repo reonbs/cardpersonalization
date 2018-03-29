@@ -42,6 +42,7 @@
                             <th>Name</th>
                             <th>User</th>
                             <th></th>
+                            <th></th>
 
                         </tr>
                     </thead>
@@ -56,7 +57,7 @@
                                     <td>@Html.DisplayFor(m => item.FullName)</td>
                                     <td>@Html.DisplayFor(m => item.UserName)</td>
                                     <td>@Html.ActionLink("Edit", "UserEdit", "Account", new { ID = item.Id }, null)</td>
-
+                                    <td>@Html.ActionLink("Reset Password", "ResetPassword", "Account", new { email = item.Email }, null)</td>
                                 </tr>
                             }
                         }

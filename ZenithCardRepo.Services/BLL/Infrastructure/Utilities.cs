@@ -1,6 +1,10 @@
-﻿using System;
+﻿using SendGrid;
+using SendGrid.Helpers.Mail;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -14,6 +18,10 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
         public const string OrganisationCode = "OrganizationCode";
         public const string InstitutionID = "InstitutionID";
         public const string Activity_Log_Details = "Activity_Log_Details";
+        public const string Approve = "Approve";
+        public const string Decline = "Decline";
+        public const int Approve_Rank = 99;
+        public const int Decline_Rank = 98;
 
         public static string GetEnumDescription(Enum value)
         {
@@ -83,6 +91,48 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
             return attribute == null ? value.ToString() : attribute.Description;
         }
 
+        public static async Task<bool> Execute()
+        {
+            var apiKey = "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";//Environment.GetEnvironmentVariable("NAME_OF_THE_ENVIRONMENT_VARIABLE_FOR_YOUR_SENDGRID_KEY");
+            var client = new SendGridClient(apiKey);
+            var from = new EmailAddress("no-reply@zenithcardperso.com", "Zenith Card");
+            var subject = "Card Application";
+            var to = new EmailAddress("raphkens@live.com", "Ekene Egonu");
+            var plainTextContent = "and easy to do anywhere, even with C#";
+            var htmlContent = SendEmail();
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            var response = await client.SendEmailAsync(msg);
+
+            return true;
+        }
+
+        public static string SendEmail()
+        {
+            StreamReader reader = null;
+            try
+            {
+                var assembly = Assembly.GetExecutingAssembly();
+
+                var emailPath = ConfigurationManager.AppSettings["EmailLoc"];
+                reader = new StreamReader(emailPath);
+                var body = reader.ReadToEnd();
+
+                
+                return body;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally
+            {
+                if(reader != null)
+                reader.Dispose();
+            }    
+
+
+        }
     }
     public enum ValidationResponse
     {
@@ -113,5 +163,5 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
         [Description("Unknown Error - 12")]
         UnknownError
     }
-    
+
 }

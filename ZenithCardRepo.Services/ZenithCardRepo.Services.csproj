@@ -43,8 +43,16 @@
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SendGrid, Version=9.8.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sendgrid.9.9.0\lib\net452\SendGrid.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Activities" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
@@ -55,16 +63,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\Command\ApprovalCMDBLL.cs" />
     <Compile Include="BLL\Command\CardApplicationCmdBLL.cs" />
     <Compile Include="BLL\Command\FilterCMDBLL.cs" />
+    <Compile Include="BLL\Command\IApprovalCMDBLL.cs" />
     <Compile Include="BLL\Command\ICardApplicationCmdBLL.cs" />
     <Compile Include="BLL\Command\IFilterCMDBLL.cs" />
     <Compile Include="BLL\Command\IImageSettingCmdBLL.cs" />
+    <Compile Include="BLL\Command\ILegendCMDBLL.cs" />
     <Compile Include="BLL\Command\ImageSettingCmdBLL.cs" />
     <Compile Include="BLL\Command\IManageUserCMDBLL.cs" />
     <Compile Include="BLL\Command\IOrganisationCmdBLL.cs" />
+    <Compile Include="BLL\Command\IPermissionCMDBLL.cs" />
+    <Compile Include="BLL\Command\LegendCMDBLL.cs" />
     <Compile Include="BLL\Command\ManageUserCMDBLL.cs" />
     <Compile Include="BLL\Command\OrganisationCmdBLL.cs" />
+    <Compile Include="BLL\Command\PermissionCMDBLL.cs" />
+    <Compile Include="BLL\Infrastructure\IAutoDependencyRegister.cs" />
+    <Compile Include="BLL\Infrastructure\PermissionDBO.cs" />
+    <Compile Include="BLL\Query\ApprovalQueryBLL.cs" />
+    <Compile Include="BLL\Query\IApprovalQueryBLL.cs" />
+    <Compile Include="BLL\Query\IPermissionQueryBLL.cs" />
+    <Compile Include="BLL\Query\PermissionQueryBLL.cs" />
     <Compile Include="BLL\Infrastructure\ExcelExportHelper.cs" />
     <Compile Include="BLL\Infrastructure\IdentityExtensions.cs" />
     <Compile Include="BLL\Infrastructure\IImageService.cs" />
@@ -75,10 +95,12 @@
     <Compile Include="BLL\Query\ICardApplicationQueryBLL.cs" />
     <Compile Include="BLL\Query\IGetApplicationLegends.cs" />
     <Compile Include="BLL\Query\IImageSettingQueryBLL.cs" />
+    <Compile Include="BLL\Query\ILegendQueryBLL.cs" />
     <Compile Include="BLL\Query\ImageSettingQueryBLL.cs" />
     <Compile Include="BLL\Query\IManageUserQueryBLL.cs" />
     <Compile Include="BLL\Query\IOrganisationQueryBLL.cs" />
     <Compile Include="BLL\Query\IReportQueryBLL.cs" />
+    <Compile Include="BLL\Query\LegendQueryBLL.cs" />
     <Compile Include="BLL\Query\ManageUserQueryBLL.cs" />
     <Compile Include="BLL\Query\OrganisationQueryBLL.cs" />
     <Compile Include="BLL\Query\ReportQueryBLL.cs" />

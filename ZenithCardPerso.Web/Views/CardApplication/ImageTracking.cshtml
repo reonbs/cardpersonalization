@@ -1,0 +1,397 @@
+﻿@model ZenithCardRepo.Data.Models.CardApplication
+@{
+
+
+    ViewBag.Title = "Home Page";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Card Applicaton</h4>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+                <!---Validation msg start-->
+                <div class="row">
+                    @if (ViewData?.ModelState[""]?.Errors?.Any() == true) //@ViewBag.Error != null
+                    {
+                        <div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"
+                                    aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <i class="mdi mdi-block-helper"></i>
+                            @Html.ValidationSummary()
+                        </div>
+
+                    }
+                    @if (ViewData["Message"] as string == "Success")
+                    {
+                        <div class="alert alert-icon alert-success alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"
+                                    aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <i class="mdi mdi-check-all"></i>
+                            <span>Your card application was successful</span>
+                        </div>
+                    }
+                </div>
+                <!---Validation msg end-->
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="text-center card-box">
+                            <div class="">
+                                @*member-card*@
+                                <div class="">
+                                    @*thumb-xl member-thumb m-b-10 center-block*@
+                                    @*<img src="assets/images/users/avatar-1.jpg" class="img-circle img-thumbnail" alt="profile-image">*@
+                                    @Html.Hidden("HDImageByte")
+                                    <img id="userimage" src="~/images/avatar.png" style="width:400px;"/>@**style="width:300px;"**@
+                                    <canvas style="display:none;"></canvas>
+                                </div>
+                                <br />
+                                <input id="captureImage" type="button" class="btn btn-default" value="Capture Image" />
+                                @*<input type="button" value="verify" id="verify" />*@
+                                <div class="clearfix"></div>
+                            </div>
+
+                        </div> <!-- end card-box -->
+
+                    </div> <!-- end col -->
+
+                    <div class="col-md-9 card-box">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(m => m.TitleCode, new { @class = "control-label" })
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(m => m.FirstName, new { @class = "control-label" })
+                                        @Html.EditorFor(m => m.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(m => m.MiddleName, new { @class = "control-label" })
+                                        @Html.EditorFor(m => m.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(m => m.LastName, new { @class = "control-label" })
+                                        @Html.EditorFor(m => m.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(m => m.Sex, new { @class = "control-label" })
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(m => m.MaritalStatus, new { @class = "control-label" })
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(m => m.OfficePhoneNo, new { @class = "control-label" })
+                                        @Html.EditorFor(m => m.OfficePhoneNo, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(m => m.GSMNo, new { @class = "control-label" })
+                                        @Html.EditorFor(m => m.GSMNo, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(m => m.EmailAddress, new { @class = "control-label" })
+                                        @Html.EditorFor(m => m.EmailAddress, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 card-box">
+                        <div class="col-md-3">
+                            @Html.LabelFor(m => m.MainAccountNo, new { @class = "control-label" })
+                            @Html.EditorFor(m => m.MainAccountNo, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+
+                        <div class="col-md-3">
+                            @Html.LabelFor(m => m.OtherAccountNo, new { @class = "control-label" })
+                            @Html.EditorFor(m => m.OtherAccountNo, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(m => m.NameonCard, new { @class = "control-label" })
+                            @Html.EditorFor(m => m.NameonCard, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(m => m.IDCardType, new { @class = "control-label" })
+
+                        </div>
+
+                        <div class="col-md-3">
+                            @Html.LabelFor(m => m.IDNo, new { @class = "control-label" })
+                            @Html.EditorFor(m => m.IDNo, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+
+                        <div class="col-md-3">
+                            @Html.LabelFor(m => m.IDIssueDate, new { @class = "control-label" })
+                            <div class="input-group">
+                                @Html.EditorFor(m => m.IDIssueDate, new { htmlAttributes = new { @class = "form-control" } })
+                                <span class="input-group-addon bg-custom b-0"><i class="mdi mdi-calendar text-white"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(m => m.IDExpiryDate, new { @class = "control-label" })
+                            <div class="input-group">
+                                @Html.EditorFor(m => m.IDExpiryDate, new { htmlAttributes = new { @class = "form-control" } })
+                                <span class="input-group-addon bg-custom b-0"><i class="mdi mdi-calendar text-white"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(m => m.SocioProfCode, new { @class = "control-label" })
+
+                        </div>
+
+                        <div class="col-md-3">
+                            @Html.LabelFor(m => m.DateofBirth, new { @class = "control-label" })
+                            <div class="input-group">
+                                @Html.EditorFor(m => m.DateofBirth, new { htmlAttributes = new { @class = "form-control" } })
+                                <span class="input-group-addon bg-custom b-0"><i class="mdi mdi-calendar text-white"></i></span>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            @Html.LabelFor(m => m.Nationality, new { @class = "control-label" })
+
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(m => m.RequestingBranchCode, new { @class = "control-label" })
+                            @Html.EditorFor(m => m.RequestingBranchCode, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(m => m.State, new { @class = "control-label" })
+
+                        </div>
+
+                        <div class="col-md-3">
+                            @Html.LabelFor(m => m.City, new { @class = "control-label" })
+                            @*@Html.DropDownListFor(m => m.City, ViewData["City"] as SelectList, "----Select---", new { @class = "form-control" })*@
+                            <select id="City" name="City" class="form-control">
+                                <option>---Select---</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(m => m.ProductCode, new { @class = "control-label" })
+
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.OfficeAddress1, new { @class = "control-label" })
+                            @Html.EditorFor(m => m.OfficeAddress1, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.OfficeAddress2, new { @class = "control-label" })
+                            @Html.EditorFor(m => m.OfficeAddress2, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <!-- end col -->
+                    <button id="applicationSBT" type="button" class="btn btn-purple waves-effect waves-light pull-right">Submit</button>
+                    <input id="applicationBTN" type="submit" value="Submit" class="notToShow" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="PictureModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <select id="videoSource"></select>
+                    </div>
+                    <br />
+                    @*<div id="my_camera"></div>*@
+                    <video autoplay style="width:300px; text-align:center;"></video>
+                </div>
+                <div class="modal-footer">
+                    @*<input type="button" value="configure..." onclick="webcam.configure()" />*@
+                    <input id="takeShot" type=button value="Take Snapshot" class="btn btn-primary">
+                    <input id="snapShot" type=button value="Snapshot" class="btn btn-primary">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    @*<input type="button" value="Reset..." onclick="Webcam.reset()" />*@
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section Scripts{
+    <style type="text/css">
+        #results {
+            float: right;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid;
+            background: #ccc;
+        }
+    </style>
+
+    <script src="~/webcamjs/webcam.js"></script>
+    <!-- Configure a few settings and attach camera -->
+    <script language="JavaScript">
+
+    </script>
+
+    <!-- Code to handle taking the snapshot and displaying it locally -->
+    <script language="JavaScript">
+        $(function () {
+
+
+
+            var videoElement = document.querySelector('video');
+            var canvas = document.querySelector('canvas');
+            var ctx = canvas.getContext('2d');
+            var localMediaStream = null;
+            var videoSelect = document.querySelector('select#videoSource');
+
+            $('#captureImage').click(function () {
+                $('#PictureModal').modal('show');
+                navigator.mediaDevices.enumerateDevices().then(gotDevices).then(getStream).catch(handleError);
+            });
+
+            $('#videoSource').on('change', function () {
+                getStream();
+                //console.log();
+            });
+            $('#snapShot').click(function () {
+                snapshot();
+            });
+            function snapshot() {
+                if (localMediaStream) {
+
+                    canvas.width = 300;
+                    canvas.height = 300;
+                    ctx.drawImage(videoElement, 0, 0);
+                   // console.log(Math.floor((videoElement.videoWidth / 2) - (300 / 2)));
+                    //ctx.drawImage(canvas,
+                    //    Math.floor((400 / 2) - (300 / 2)),
+                    //    Math.floor((400 / 2) - (300 / 2)),
+                    //    300,
+                    //    300,
+                    //    0,
+                    //    0,
+                    //    300,
+                    //    300
+                    //);
+                    // "image/webp" works in Chrome.
+                    // Other browsers will fall back to image/png.
+                    //document.querySelector('userimage').src = canvas.toDataURL('image/webp');
+                    //JSON.stringify(canvas.toDataURL('image/webp'));
+                    $('#HDImageByte').val(canvas.toDataURL('image/jpeg'));
+                    console.log(JSON.stringify(canvas.toDataURL('image/jpeg')));
+                    $("#userimage").attr("src", canvas.toDataURL('image/jpeg'));
+
+
+                }
+            }
+
+            function gotDevices(deviceInfos) {
+                $('#videoSource').append('<option>' + '---Select---' + '</option>');
+                for (var i = 0; i !== deviceInfos.length; ++i) {
+                    var deviceInfo = deviceInfos[i];
+                    var option = document.createElement('option');
+                    option.value = deviceInfo.deviceId;
+                    if (deviceInfo.kind === 'videoinput') {
+                        option.text = deviceInfo.label || 'camera ' + (videoSelect.length + 1);
+                        $('#videoSource').append(option);
+                    } else {
+                        console.log('Found one other kind of source/device: ', deviceInfo);
+                    }
+                }
+            }
+
+            function getStream() {
+                if (window.stream) {
+                    window.stream.getTracks().forEach(function (track) {
+                        track.stop();
+                    });
+                }
+                console.log($('#videoSelect option:selected').val());
+                var constraints = {
+                    //audio: {
+                    //    deviceId: { exact: audioSelect.value }
+                    //},
+                    video: {
+                        width: 300,
+                        height: 300,
+                        deviceId: {
+                            exact: $('#videoSource option:selected').val()
+                        }
+                    }
+                };
+
+                navigator.mediaDevices.getUserMedia(constraints).
+                    then(gotStream).catch(handleError);
+            }
+
+            function gotStream(stream) {
+                window.stream = stream; // make stream available to console
+                videoElement.srcObject = stream;
+                localMediaStream = stream;
+            }
+
+            function handleError(error) {
+                console.log('Error: ', error);
+            }
+
+            //$('#my_camera').hide();
+
+            $("#takeShot").click(take_snapshot);
+
+            function WebCamSettings() {
+                Webcam.set({
+                    width: 320,
+                    height: 240,
+                    image_format: 'jpeg',
+                    jpeg_quality: 90
+
+                });
+
+                Webcam.attach('#my_camera');
+            }
+            function take_snapshot() {
+                // take snapshot and get image data
+
+                $('#PictureModal').modal('hide');
+
+                Webcam.snap(function (data_uri) {
+                    // display results in page
+                    console.log(JSON.stringify(data_uri));
+                    //document.getElementById('results').innerHTML =
+                    //    '<h2>Here is your image:</h2>' +
+                    //    '<img src="' + data_uri + '"/>';
+                    $("#userimage").attr("src", data_uri);
+                    $('#HDImageByte').val(data_uri);
+
+                });
+            }
+
+
+        });
+    </script>
+
+    <script src="~/Scripts/CardPersoScripts/Index.js"></script>
+
+}

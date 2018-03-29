@@ -1,0 +1,84 @@
+﻿@model IEnumerable<ZenithCardRepo.Data.Models.State>
+@{
+    ViewBag.Title = "Search Result";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box">
+                <h4 class="page-title">States</h4>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-md-12">
+                @Html.ActionLink("Create", "AddState", "Legend", null, null)
+            </div>
+            <div class="card-box table-responsive">
+                @if (TempData["Message"] as string == "Success")
+                {
+                    <div class="alert alert-icon alert-success alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <i class="mdi mdi-check-all"></i>
+                        <span>State was successfully updated</span>
+                    </div>
+                }
+                @{
+                    int i = 0;
+                }
+
+                <table id="tblTitles" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>S/N..</th>
+                            <th>Region Name</th>
+                            <th>State Code</th>
+                            <th></th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (Model.ToList()?.Count > 0)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@(i = i + 1)</td>
+                                    <td>@Html.DisplayFor(m => item.RegionName)</td>
+                                    <td>@Html.DisplayFor(m => item.StateCode)</td>
+                                    <td>@Html.ActionLink("Edit", "StateEdit", "Legend", new { ID = item.ID }, null)</td>
+                                    <td>@Html.ActionLink("Delete", "StateDelete", "Legend", new { ID = item.ID }, new { onClick = " return confirm('Are you sure you want to delete?');" })</td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="3" style="text-align:center;">No Institutions available</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+}
+@section Scripts{
+    <script>
+        $(function () {
+            $("#tblTitles").dataTable();
+        });
+    </script>
+}

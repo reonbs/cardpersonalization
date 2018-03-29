@@ -1,0 +1,78 @@
+﻿@model ZenithCardRepo.Data.Models.IDCardType
+@{
+    ViewBag.Title = "Create City";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Create ID Card Type</h4>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @Html.ActionLink("List of ID Card Type", "IDCardTypes", "Legend", null, null)
+        </div>
+        <div class="col-sm-12">
+            <div class="card-box">
+                <!---Validation msg start-->
+                <div class="row">
+                    @if (ViewData?.ModelState[""]?.Errors?.Any() == true) //@ViewBag.Error != null
+                    {
+                        <div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"
+                                    aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <i class="mdi mdi-block-helper"></i>
+                            @Html.ValidationSummary()
+                        </div>
+
+                    }
+                    @if (TempData["Message"] as string == "Success")
+                    {
+                        <div class="alert alert-icon alert-success alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"
+                                    aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <i class="mdi mdi-check-all"></i>
+                            <span>ID Card Type was created successfully</span>
+                        </div>
+                    }
+                </div>
+                <!---Validation msg end-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-8">
+                                @Html.LabelFor(m => m.ABRVWording, new { @class = "control-label" })
+                                @Html.EditorFor(m => m.ABRVWording, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-8">
+                                @Html.LabelFor(m => m.DocumentCode, new { @class = "control-label" })
+                                @Html.EditorFor(m => m.DocumentCode, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-purple waves-effect waves-light pull-right">Submit</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+

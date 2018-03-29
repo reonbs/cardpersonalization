@@ -1,7 +1,6 @@
 ﻿@model ZenithCardRepo.Data.ViewModel.CardAppViewModel
-@{
-    /**/
 
+@{
     ViewBag.Title = "CardApplications";
 }
 
@@ -17,10 +16,38 @@
 @using (Html.BeginForm("CardApplications", "CardApplication", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
+    <!---Validation msg start-->
+    <div class="row">
+        @if (ViewData?.ModelState[""]?.Errors?.Any() == true) //@ViewBag.Error != null
+        {
+            <div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <i class="mdi mdi-block-helper"></i>
+                @Html.ValidationSummary()
+            </div>
+
+        }
+        @if (ViewData["Message"] as string == "Successonapproval")
+        {
+            <div class="alert alert-icon alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <i class="mdi mdi-check-all"></i>
+                <span>Your request for approval was successful</span>
+            </div>
+        }
+    </div>
+    <!---Validation msg end-->
     <div class="row card-box">
         <div class="col-sm-12">
             <div class="form-group">
                 <div class="col-md-3">
+                    @Html.Hidden("HDComment")
                     @Html.LabelFor(m => m.FromDate)
                     <div class="input-group">
                         @Html.EditorFor(m => m.FromDate, new { htmlAttributes = new { @class = "form-control" } })
@@ -61,25 +88,54 @@
         </div>
 
     </div>
-    <div class="row">
-        <span><input type="submit" name="response" formaction=@Url.Action("ExportToExcel") formmethod="post" value="ExportToExcel" class="btn btn-primary pull-right" /></span>
+    <div class="row pull-right">
+        <span><button type="submit" name="response" formaction=@Url.Action("ExportToExcel") formmethod="post" class="btn btn-primary waves-effect w-md waves-light m-b-5">Export To Excel</button></span>
 
-        <span><input type="submit" class="btn btn-primary pull-right" value="Search" /></span>
+        <span><button type="submit" class="btn btn-primary waves-effect w-md waves-light m-b-5">Search</button></span>
 
         @if (Convert.ToBoolean(ViewData["IsDownloadRequired"]))
         {
-            <span>@Html.ActionLink("Request Approval", "CardDownloadApproval", "CardApplication", new { batchNo = (Model == null) ? "" : Model.BatchNo }, new { @class = "btn btn-primary pull-right" })</span>
+            @*@Html.ActionLink("Request Approval", "CardDownloadApproval", "CardApplication", new { batchNo = (Model == null) ? "" : Model.BatchNo, ID = Model.}, new { @class = "btn btn-primary waves-effect w-md waves-light m-b-5" })*@
+            <span>
+                <button id="requestApprovalBTN" type="button" class="btn btn-primary waves-effect w-md waves-light m-b-5">Request Appoval</button>
+
+            </span>
         }
         else
         {
-            <span>@Html.ActionLink("Process Card", "ProcessCard", "CardApplication", null, new { @class = "btn btn-primary pull-right" })</span>
+            <button type="submit" name="response" formaction=@Url.Action("ProcessCard") formmethod="post" class="btn btn-primary waves-effect w-md waves-light m-b-5">Process Card</button>
+
         }
 
+        <span><button type="submit" name="response" formaction=@Url.Action("DeleteCardApplications") formmethod="post" class="btn btn-primary waves-effect w-md waves-light m-b-5">Delete</button></span>
+    </div>
+    <button id="requestApprovalSBT" type="submit" name="response" formaction=@Url.Action("CardDownloadApproval") formmethod="post" class="notToShow">Request Approval</button>
+    <div id="commentModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Comment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="commentDiv"></div>
+                    <input id="commentTXT" type="text" class="form-control" row="3" multiple />
+                </div>
+                <div class="modal-footer">
+                    <input id="commentBTN" type=button value="Submit" class="btn btn-primary">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
     </div>
     <br />
     var cardApplications = ViewBag.CardApplications as List<ZenithCardRepo.Data.DTOs.CardApplicationsDTO>;
 
     @Html.Partial("SearchResult", cardApplications)
+
     @section Scripts{
         <script>
             $(function () {
@@ -101,7 +157,25 @@
                             $('#Department').append('<option value=' + v.Code + '>' + v.Name + '</option>');
                         });
                     });
-                })
+                });
+
+                $('#requestApprovalBTN').on('click', function () {
+                    $('#commentModal').modal('show');
+
+                });
+
+                $('#commentBTN').click(function () {
+                    if (confirm('Are you sure you want to submit?')) {
+                        var comment = $('#commentTXT').val();
+
+                        $('#HDComment').val(comment);
+                        $('#commentModal').modal('hide');
+
+                        $('#requestApprovalSBT').click();
+                    }
+                });
+
+                //$("#tblSearcResults").dataTable();
             });
         </script>
     }

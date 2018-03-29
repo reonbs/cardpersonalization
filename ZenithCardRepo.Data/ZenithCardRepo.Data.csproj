@@ -77,6 +77,7 @@
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="DTOs\CardApplicationsDTO.cs" />
+    <Compile Include="DTOs\RolePermissionDTO.cs" />
     <Compile Include="IdentityModels\ApplicationRole.cs" />
     <Compile Include="IdentityModels\ApplicationRoleManager.cs" />
     <Compile Include="IdentityModels\ApplicationRoleStore.cs" />
@@ -208,7 +209,36 @@
     <Compile Include="Migrations\201802200742017_AddModel30.Designer.cs">
       <DependentUpon>201802200742017_AddModel30.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802211406166_Addmodel31.cs" />
+    <Compile Include="Migrations\201802211406166_Addmodel31.Designer.cs">
+      <DependentUpon>201802211406166_Addmodel31.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802220732199_Addmodel32.cs" />
+    <Compile Include="Migrations\201802220732199_Addmodel32.Designer.cs">
+      <DependentUpon>201802220732199_Addmodel32.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802221046253_Addmodel33.cs" />
+    <Compile Include="Migrations\201802221046253_Addmodel33.Designer.cs">
+      <DependentUpon>201802221046253_Addmodel33.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802221235556_Addmodel34.cs" />
+    <Compile Include="Migrations\201802221235556_Addmodel34.Designer.cs">
+      <DependentUpon>201802221235556_Addmodel34.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802262203431_addmodel344.cs" />
+    <Compile Include="Migrations\201802262203431_addmodel344.Designer.cs">
+      <DependentUpon>201802262203431_addmodel344.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802271237535_addmodel345.cs" />
+    <Compile Include="Migrations\201802271237535_addmodel345.Designer.cs">
+      <DependentUpon>201802271237535_addmodel345.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803010917568_addmodel346.cs" />
+    <Compile Include="Migrations\201803010917568_addmodel346.Designer.cs">
+      <DependentUpon>201803010917568_addmodel346.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Approval.cs" />
     <Compile Include="Models\AuditRecord.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\CardApplication.cs" />
@@ -220,15 +250,20 @@
     <Compile Include="Models\MaritalStatus.cs" />
     <Compile Include="Models\NationalityCode.cs" />
     <Compile Include="Models\OrganizationProfile.cs" />
+    <Compile Include="Models\Permission.cs" />
     <Compile Include="Models\ProductCode.cs" />
+    <Compile Include="Models\RolePermission.cs" />
     <Compile Include="Models\Sex.cs" />
     <Compile Include="Models\SocioProfCode.cs" />
     <Compile Include="Models\State.cs" />
     <Compile Include="Models\TitleCode.cs" />
+    <Compile Include="Models\UserPermission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DTOs\ApprovalDTO.cs" />
     <Compile Include="ViewModel\AuditViewModel.cs" />
     <Compile Include="ViewModel\CardAppViewModel.cs" />
     <Compile Include="ViewModel\DepartmentViewModel.cs" />
+    <Compile Include="ViewModel\PermissionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -327,6 +362,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802200742017_AddModel30.resx">
       <DependentUpon>201802200742017_AddModel30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802211406166_Addmodel31.resx">
+      <DependentUpon>201802211406166_Addmodel31.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802220732199_Addmodel32.resx">
+      <DependentUpon>201802220732199_Addmodel32.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802221046253_Addmodel33.resx">
+      <DependentUpon>201802221046253_Addmodel33.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802221235556_Addmodel34.resx">
+      <DependentUpon>201802221235556_Addmodel34.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802262203431_addmodel344.resx">
+      <DependentUpon>201802262203431_addmodel344.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802271237535_addmodel345.resx">
+      <DependentUpon>201802271237535_addmodel345.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803010917568_addmodel346.resx">
+      <DependentUpon>201803010917568_addmodel346.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

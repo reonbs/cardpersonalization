@@ -31,36 +31,23 @@ namespace ZenithCardRepo.Services.BLL.Command
         public void AddCardApplication(CardApplicationsDTO cardApplicationDTO, string ImageByte, string saveLocation, string instCode)
         {
             var referenceNo = instCode + "_" + cardApplicationDTO.Department + "_" + GenerateNO("12");
-
-            
-
             var cardApplication = CardApplicationsDTO.GetModelFromDTO(cardApplicationDTO);
 
-
-            //DateTime.ParseExact(taxCertVM.Expiry, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)
-            //cardApplication.IDIssueDate = DateTime.ParseExact(cardApplication.IDIssueDate, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            //cardApplication.IDNo = referenceNo;
             cardApplication.OfficeAddress2 = referenceNo;
             cardApplication.ImageLocation = saveLocation;
             cardApplication.DateCreated = DateTime.Now;
             cardApplication.isProcessed = false;
-            //cardApplication.DateofBirth = DateTime.ParseExact(DateofBirth, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            //cardApplication.IDIssueDate = DateTime.ParseExact(IDIssueDate, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            //cardApplication.IDExpiryDate = DateTime.ParseExact(IDExpiryDate, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
             _CardAppRepo.Insert(cardApplication);
             _CardAppRepo.Save();
 
-            //cardApplication.IDNo = referenceNo + "-" + cardApplication.ID;
             var updateRefNo = referenceNo + "-" + cardApplication.ID;
             cardApplication.OfficeAddress2 = updateRefNo;
             saveLocation = ProcessedImage(cardApplicationDTO, ImageByte, saveLocation, updateRefNo);
             cardApplication.ImageLocation = saveLocation;
 
-
             _CardAppRepo.Update(cardApplication);
             _CardAppRepo.Save();
-
         }
 
         public string ProcessedImage(CardApplicationsDTO cardApplication, string ImageByte, string saveLocation, string referenceNo)
@@ -113,9 +100,10 @@ namespace ZenithCardRepo.Services.BLL.Command
             return res;
         }
 
-        public async Task<string> UpdateBatchNo(List<CardApplication> cardAppsList)
+        public async Task<string> UpdateBatchNo(List<CardApplicationsDTO> cardAppsList)
         {
-            foreach (var cardApp in cardAppsList)
+            var cardApplication = cardAppsList.Select(CardApplicationsDTO.GetModelFromDTO);
+            foreach (var cardApp in cardApplication)
             {
                 cardApp.ProcessedBatchNo = GenerateBatchNo("8");
                 _CardAppRepo.Update(cardApp);
@@ -125,12 +113,13 @@ namespace ZenithCardRepo.Services.BLL.Command
             return "";
         }
 
-        public void UpdateStatus(List<CardApplication> cardAPPlicationList)
+        public void UpdateStatus(List<CardApplicationsDTO> cardAPPlicationList)
         {
             foreach (var cardAPPlication in cardAPPlicationList)
             {
                 var cardAPPs = _queryAppRepo.GetBy(x => x.ID == cardAPPlication.ID && x.IsDeleted != true).FirstOrDefault();
                 cardAPPs.isProcessed = true;
+                cardAPPs.IsApproved = false;
                 _CardAppRepo.Save();
             }
 
@@ -158,11 +147,11 @@ namespace ZenithCardRepo.Services.BLL.Command
 
         public void UpdateCardApplication(CardApplicationsDTO cardApplicationDTO, string ImageByte, string saveLocation, string instCode)
         {
-            var referenceNo = instCode + "_" + cardApplicationDTO.Department + "_" + GenerateNO("8") + "-"+ cardApplicationDTO.ID;
+            var referenceNo = instCode + "_" + cardApplicationDTO.Department + "_" + GenerateNO("8") + "-" + cardApplicationDTO.ID;
 
             var cardApplication = CardApplicationsDTO.GetModelFromDTO(cardApplicationDTO);
 
-            saveLocation = ProcessedImage(cardApplicationDTO,ImageByte,saveLocation,referenceNo);
+            saveLocation = ProcessedImage(cardApplicationDTO, ImageByte, saveLocation, referenceNo);
 
             //cardApplication.IDNo = referenceNo;
             cardApplication.OfficeAddress2 = referenceNo;
@@ -171,6 +160,24 @@ namespace ZenithCardRepo.Services.BLL.Command
             _CardAppRepo.Update(cardApplication);
             _CardAppRepo.Save();
 
+        }
+
+        public void CardApplicationApprovalUpdate(List<CardApplicationsDTO> cardApps, string Comment)
+        {
+            var cardAppSelected = cardApps.Where(x => x.IsSelected == true);
+
+            if (cardAppSelected.Count() > 0)
+            {
+                foreach (var cardApp in cardApps)
+                {
+                    var cardApplication = _queryAppRepo.GetBy(x => x.ID == cardApp.ID).FirstOrDefault();
+                    cardApplication.IsApproved = true;
+
+                    _CardAppRepo.Update(cardApplication);
+                }
+
+                _CardAppRepo.Save();
+            }
         }
     }
 }

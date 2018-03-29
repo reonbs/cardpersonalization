@@ -65,29 +65,62 @@ namespace ZenithCardRepo.Services.BLL.Query
 
         }
 
-        public IEnumerable<CardApplication> CardApplicationToExport()
+        public IEnumerable<CardApplicationsDTO> CardApplicationToExport(List<CardApplicationsDTO> cardApps)
         {
-            return _cardAppRepo.GetAll().Where(x => x.isProcessed != true && x.IsDeleted != true);
+            List<CardApplicationsDTO> cardAppsDTO = new List<CardApplicationsDTO>();
+            foreach (var cardApp in cardApps)
+            {
+                var cardAppls = _cardAppRepo.GetAll().Where(x=> x.ID == cardApp.ID).Select(CardApplicationsDTO.GetDTOWithImgLocFromModel).FirstOrDefault();
+                
+                cardAppsDTO.Add(cardAppls);
+            }
+
+            return cardAppsDTO;
+            //return _cardAppRepo.GetAll().Where(x => x.isProcessed != true && x.IsDeleted != true).Select(CardApplicationsDTO.GetDTOWithImgLocFromModel);
         }
 
         public bool CheckProcessedStatus(List<CardApplicationsDTO> cardAppDTOs)
         {
-            return cardAppDTOs.Any(x => x.IsProcessed == true);
+            return cardAppDTOs.Any(x => x.IsProcessed == true && x.IsApproved != true);
         }
 
         public IEnumerable<CardApplicationsDTO> GetCardApplications()
         {
-            return _cardAppRepo.GetAll().Where(x => x.isProcessed != true && x.IsDeleted != true).Select(CardApplicationsDTO.GetDTOFromModel);
+            return _cardAppRepo.GetAll().Where(x => x.isProcessed != true && x.IsDeleted != true && x.IsApproved != false).Select(CardApplicationsDTO.GetDTOFromModel);
         }
 
         public IEnumerable<CardApplicationsDTO> MyCardApplications(string loggedOnUser)
         {
-            return _cardAppRepo.GetBy(x => x.CreatedBy.ToLower() == loggedOnUser.ToLower() && x.IsDeleted != true && x.isProcessed == false).Select(CardApplicationsDTO.GetDTOFromModel).ToList();
+            return _cardAppRepo.GetBy(x => x.CreatedBy.ToLower() == loggedOnUser.ToLower() && x.IsDeleted != true && (x.isProcessed == false || x.isProcessed == null)).Select(CardApplicationsDTO.GetDTOFromModel).ToList();
         }
 
         public CardApplicationsDTO GetCardApplication(int ID)
         {
             return _cardAppRepo.GetBy(x => x.ID == ID).Select(CardApplicationsDTO.GetCompleteDTOFromModel).FirstOrDefault();
+        }
+
+        public List<CardApplicationsDTO> GetCardApplicationsByIDs(List<int> cardAPPIds)
+        {
+            List<CardApplication> cardApps = new List<CardApplication>();
+
+            foreach (var cardAppID in cardAPPIds)
+            {
+                var cardApp = _cardAppRepo.GetBy(x => x.ID == cardAppID && x.IsApproved != true).FirstOrDefault();
+                if (cardApp != null)
+                {
+                    cardApps.Add(cardApp);
+                }
+                
+            }
+            if (cardApps.Count() > 0)
+            {
+                return cardApps.Select(CardApplicationsDTO.GetCompleteDTOFromModel).ToList();
+            }
+            else
+            {
+                return new List<CardApplicationsDTO> { };
+            }
+            
         }
     }
 }

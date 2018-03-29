@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ZenithCardPerso.Web.Filters;
 using ZenithCardRepo.Data.ViewModel;
 using ZenithCardRepo.Services.BLL.Infrastructure;
 using ZenithCardRepo.Services.BLL.Query;
@@ -18,7 +19,8 @@ namespace ZenithCardPerso.Web.Controllers
             _reportQueryBLL = reportQueryBLL;
             _orgQueryBLL = orgQueryBLL;
         }
-        // GET: Report
+
+        [ValidateUserPermission(Permissions = "can_view_audittrail")]
         public ActionResult AuditTrail()
         {
             TempData[Utilities.Activity_Log_Details] = "Accessed Audit trail records";
@@ -33,6 +35,7 @@ namespace ZenithCardPerso.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_view_audittrail")]
         public ActionResult AuditTrailSearch(AuditViewModel auditVM)
         {
             var auditRecords =  _reportQueryBLL.GetAuditRecordsSearch(auditVM);

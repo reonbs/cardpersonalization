@@ -11,9 +11,11 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebApplication6.IdentityModels;
+using ZenithCardPerso.Web.Filters;
 using ZenithCardPerso.Web.Models;
 using ZenithCardRepo.Data.IdentityModels;
 using ZenithCardRepo.Services.BLL.Command;
+using ZenithCardRepo.Services.BLL.Infrastructure;
 using ZenithCardRepo.Services.BLL.Query;
 
 namespace ZenithCardPerso.Web.Controllers
@@ -187,7 +189,7 @@ namespace ZenithCardPerso.Web.Controllers
                     return View(model);
             }
         }
-
+        [ValidateUserPermission(Permissions = "can_view_users")]
         public ActionResult Users()
         {
             var users = UserManager.Users.ToList();
@@ -195,6 +197,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View(users);
         }
 
+        [ValidateUserPermission(Permissions = "can_edit_user")]
         public ActionResult UserEdit(string ID)
         {
             var userManger = _manageUserQueryBLL.GetApplicationUser(ID);
@@ -239,6 +242,7 @@ namespace ZenithCardPerso.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_edit_user")]
         public ActionResult UserEdit(ApplicationUser user, List<UserRoleViewModel> UserRole)
         {
             var loggedOnUser = User.Identity.Name;
@@ -257,11 +261,14 @@ namespace ZenithCardPerso.Web.Controllers
             LoadInstitution();
 
             return RedirectToAction("Users");
+
+            
         }
-        //
-        // GET: /Account/Register
+
+        [ValidateUserPermission(Permissions = "can_create_user")]
         public ActionResult CreateUser()
         {
+
             var roles = RoleManager.Roles.ToList();
             List<UserRoleViewModel> userRoleVM = new List<UserRoleViewModel>();
             foreach (var item in roles)
@@ -269,19 +276,18 @@ namespace ZenithCardPerso.Web.Controllers
                 userRoleVM.Add(new UserRoleViewModel { Role = item.Name });
             }
 
-            //RegisterViewModel userVM = new RegisterViewModel { UserRole = userRoleVM };
+            var institutionID = ((ClaimsIdentity)User.Identity).FindFirst(Utilities.InstitutionID).Value;
 
+            //RegisterViewModel userVM = new RegisterViewModel { UserRole = userRoleVM };
             ViewBag.UserRoles = userRoleVM;
 
             var institutions = _orgQueryBLL.GetInstitutions();
-            ViewData["Institution"] = new SelectList(institutions, "ID", "Name", "");
+            ViewData["Institution"] = new SelectList(institutions, "ID", "Name", institutionID);
             return View();
         }
 
-        //
-        // POST: /Account/Register
+        [ValidateUserPermission(Permissions = "can_create_user")]
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateUser(RegisterViewModel model, List<UserRoleViewModel> UserRole)
         {
@@ -366,6 +372,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View(model);
         }
 
+        [ValidateUserPermission(Permissions = "can_create_role")]
         public ActionResult AddRole()
         {
 
@@ -374,6 +381,7 @@ namespace ZenithCardPerso.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_create_role")]
         public ActionResult AddRole(ApplicationRole role)
         {
             //_roleManager.Roles.ToList();
@@ -386,6 +394,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
         }
 
+        [ValidateUserPermission(Permissions = "can_view_roles")]
         public ActionResult Roles()
         {
             var roles = RoleManager.Roles.ToList();
@@ -393,6 +402,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View(roles);
         }
 
+        [ValidateUserPermission(Permissions = "can_edit_role")]
         public ActionResult EditRole(string ID)
         {
             var role = RoleManager.Roles.FirstOrDefault(x => x.Id == ID);
@@ -401,6 +411,7 @@ namespace ZenithCardPerso.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_edit_role")]
         public ActionResult EditRole(ApplicationRole role)
         {
             RoleManager.Update(role);
@@ -429,7 +440,6 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
         }
 
-        //
         // POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
@@ -467,16 +477,16 @@ namespace ZenithCardPerso.Web.Controllers
 
         //
         // GET: /Account/ResetPassword
-        [AllowAnonymous]
-        public ActionResult ResetPassword(string code)
+        public ActionResult ResetPassword(string email)
         {
-            return code == null ? View("Error") : View();
+            var user = UserManager.FindByName(email);
+            var resetPasswordVM = new ResetPasswordViewModel { FullName = user.FullName,Email = user.Email };
+            return View(resetPasswordVM);
         }
 
         //
         // POST: /Account/ResetPassword
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
         {
@@ -485,12 +495,8 @@ namespace ZenithCardPerso.Web.Controllers
                 return View(model);
             }
             var user = await UserManager.FindByNameAsync(model.Email);
-            if (user == null)
-            {
-                // Don't reveal that the user does not exist
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
-            }
-            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            var code =  UserManager.GeneratePasswordResetToken(user.Id);
+            var result = await UserManager.ResetPasswordAsync(user.Id, code, model.Password);
             if (result.Succeeded)
             {
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
@@ -660,7 +666,7 @@ namespace ZenithCardPerso.Web.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("CardApplicationCreate", "CardApplication");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

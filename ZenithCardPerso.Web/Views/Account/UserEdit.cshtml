@@ -48,38 +48,31 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                                 @Html.HiddenFor(m => m.Id)
                                 @Html.LabelFor(m => m.UserName, new { @class = "control-label" })
                                 @Html.EditorFor(m => m.UserName, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                                 @Html.Label("Institution", new { @class = "control-label" })
                                 @Html.DropDownListFor(m => m.InstitutionID, ViewData["Institution"] as SelectList, "----Select---", new { @class = "form-control select2" })
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                                 @Html.LabelFor(m => m.Email, new { @class = "control-label" })
                                 @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
+
                         <div class="form-group">
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                                 @Html.LabelFor(m => m.FirstName, new { @class = "control-label" })
                                 @Html.EditorFor(m => m.FirstName, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                                 @Html.LabelFor(m => m.MiddleName, new { @class = "control-label" })
                                 @Html.EditorFor(m => m.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                                 @Html.LabelFor(m => m.LastName, new { @class = "control-label" })
                                 @Html.EditorFor(m => m.LastName, new { htmlAttributes = new { @class = "form-control" } })
 
@@ -87,6 +80,7 @@
                                 @Html.HiddenFor(m => m.CreatedBy)
                             </div>
                         </div>
+
                         <div class="form-group">
                             <div class="col-md-8">
                                 @Html.LabelFor(m => m.IsDisabled, new { @class = "control-label" })
@@ -97,24 +91,27 @@
                     <hr />
                     <h4>Roles</h4>
                     <hr />
-
                     @{
                         var UserRole = ViewBag.UserRoles as List<ZenithCardPerso.Web.Models.UserRoleViewModel>;
                     }
-                    @for (int i = 0; i < UserRole.Count(); i++)
-                    {
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-1">
-                                    @Html.CheckBox("UserRole[" + @i + "].SelectedRole", UserRole[i].SelectedRole)
-                                </div>
-                                <div class="col-md-6">
-                                    @Html.TextBox("UserRole[" + @i + "].Role", UserRole[i].Role, new { @readonly = "readonly", @class = "qty readonly" })
-                                </div>
-                            </div>
-                            <br />
-                        </div>
-                    }
+                    <table id="tblUserEdit" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Role Name</th>
+                            </tr>
+                        </thead>
+                        @for (int i = 0; i < UserRole.Count(); i++)
+                        {
+
+                            <tbody>
+                                <tr>
+                                    <td>@Html.CheckBox("UserRole[" + @i + "].SelectedRole", UserRole[i].SelectedRole)</td>
+                                    <td> @Html.TextBox("UserRole[" + @i + "].Role", UserRole[i].Role, new { @readonly = "readonly", @class = "qty readonly" })</td>
+                                </tr>
+                            </tbody>
+                        }
+                    </table>
                     <button type="submit" class="btn btn-purple waves-effect waves-light pull-right">Submit</button>
 
                 </div>

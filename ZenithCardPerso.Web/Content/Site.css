@@ -58,6 +58,23 @@
     background-color: #868786;
 }
 
-#tblRegistrations input{
-    border:0px;
+#tblRegistrations, #tblUserEdit, #tblSearcResults input {
+    border: 0px;
+}
+#tblRolePermissions input {
+    border: 0px;
+    background:inherit;
+}
+
+.noborder input{
+    border:0px
+}
+
+.btn-primary {
+    background-color: #868786 !important;
+    border: 1px solid #868786 !important;
+}
+
+.bg-custom {
+    background-color: #868786 !important;
 }

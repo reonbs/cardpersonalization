@@ -10,5 +10,6 @@ namespace ZenithCardRepo.Services.BLL.Query
     public interface IManageUserQueryBLL
     {
         ApplicationUser GetApplicationUser(string ID);
+        //ApplicationRole GetApplicationRole();
     }
 }

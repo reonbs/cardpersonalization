@@ -37,6 +37,12 @@ namespace ZenithCardRepo.Data
 
         public DbSet<ApplicationRole> ApplicationRoles { get; set; }
 
+        public DbSet<Permission> Permissions { get; set; }
+
+        public DbSet<RolePermission> RolePermissions { get; set; }
+
+        public DbSet<Approval> Approvals { get; set; }
+
 
     }
 

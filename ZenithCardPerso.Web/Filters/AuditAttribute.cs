@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -19,6 +20,7 @@ namespace ZenithCardPerso.Web.Filters
     {
         //private IFilterCMDBLL _filterCMDBLL { get; set; }
         public int AuditingLevel { get; set; }
+        
 
         //public override void OnActionExecuting(ActionExecutingContext filterContext)
         //{
@@ -113,7 +115,7 @@ namespace ZenithCardPerso.Web.Filters
                 base.OnActionExecuted(filterContext);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;

@@ -34,7 +34,7 @@
                         </div>
 
                     }
-                    @if (ViewData["Message"] as string == "Success")
+                    @if (TempData["Message"] as string == "Success")
                     {
                         <div class="alert alert-icon alert-success alert-dismissible fade in" role="alert">
                             <button type="button" class="close" data-dismiss="alert"
@@ -71,6 +71,7 @@
                                     @*<img src="assets/images/users/avatar-1.jpg" class="img-circle img-thumbnail" alt="profile-image">*@
                                     @Html.Hidden("HDImageByte")
                                     <img id="userimage" src="~/images/avatar.png" style="width:180px;" />
+                                    <canvas style="display:none;"></canvas>
                                     <i class="mdi mdi-star-circle member-star text-success" title="verified user"></i>
                                 </div>
                                 <br />
@@ -183,7 +184,7 @@
 
 
                         <div class="col-md-3">
-                           
+
                             @Html.LabelFor(m => m.Nationality, new { @class = "control-label" })
                             @Html.DropDownListFor(m => m.Nationality, ViewData["NationalityView"] as SelectList, "----Select---", new { @class = "form-control" })
                         </div>
@@ -217,7 +218,7 @@
                         </div>
                     </div>
                     <!-- end col -->
-                    <button id="applicationSBT" type="button" class="btn btn-purple waves-effect waves-light pull-right">Submit</button>
+                    <button id="applicationSBT" type="button" class="btn btn-primary pull-right">Submit</button>
                     <input id="applicationBTN" type="submit" value="Submit" class="notToShow" />
                 </div>
             </div>
@@ -234,14 +235,20 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div id="my_camera"></div>
-
+                    <div class="row">
+                        <select id="videoSource"></select>
+                    </div>
+                    <hr />
+                    @*<div id="my_camera"></div>
+                    <div id="my_camera2"></div>
+                    <video autoplay="autoplay" style="width:450px; text-align:center;"></video>*@
+                    <video autoplay style="width:300px; text-align:center;"></video>
                 </div>
                 <div class="modal-footer">
-                    
+
                     <input id="takeShot" type=button value="Take Snapshot" class="btn btn-primary">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    
+
                 </div>
             </div>
         </div>
@@ -277,7 +284,7 @@
             background: #ccc;
         }
     </style>
-    <script type="text/javascript" src="~/webcamjs/webcam.min.js"></script>
+    <script type="text/javascript" src="~/webcamjs/webcam.js"></script>
 
     <!-- Configure a few settings and attach camera -->
     <script language="JavaScript">
@@ -289,6 +296,16 @@
         $(function () {
             var width = "";
             var heigth = "";
+
+            var videoElement = document.querySelector('video');
+            var canvas = document.querySelector('canvas');
+            var ctx = canvas.getContext('2d');
+            var localMediaStream = null;
+            var videoSelect = document.querySelector('select#videoSource');
+
+            $('#checkWebcam').click(function () {
+                console.log(Webcam.cameraIDs);
+            });
 
             $.get('/Image/GetImageSetting', function (data) {
                 console.log(data);
@@ -329,43 +346,49 @@
 
             $('#captureImage').click(function () {
                 $('#PictureModal').modal('show');
-                $('#my_camera').show();
-                WebCamSettings();
+                
+                navigator.mediaDevices.enumerateDevices().then(gotDevices).then(getStream).catch(handleError);
+
             });
+
             $("#takeShot").click(take_snapshot);
 
-            function WebCamSettings() {
-                Webcam.set({
-                    width: 640,
-                    height: 480,
-                    image_format: 'jpeg',
-                    jpeg_quality: 90,
-                    crop_width: width,
-                    crop_height: heigth
+            $('#videoSource').on('change', function () {
+                getStream();
 
-                });
-                Webcam.attach('#my_camera');
+            });
+            // WebCamSettings();
+            var videoElement = document.querySelector('video');
+            function gotStream(stream) {
+                window.stream = stream; // make stream available to console
+                videoElement.srcObject = stream;
+                localMediaStream = stream;
+            }
+            function handleError(error) {
+                console.log('Error: ', error);
             }
 
             function take_snapshot() {
                 // take snapshot and get image data
-
+                snapshot();
                 $('#PictureModal').modal('hide');
-
-                Webcam.snap(function (data_uri) {
-                    // display results in page
-                    console.log(JSON.stringify(data_uri));
-                    //document.getElementById('results').innerHTML =
-                    //    '<h2>Here is your image:</h2>' +
-                    //    '<img src="' + data_uri + '"/>';
-                    $("#userimage").attr("src", data_uri);
-                    $('#HDImageByte').val(data_uri);
-
-                });
 
                 ValidateImage();
             }
+            function snapshot() {
+                if (localMediaStream) {
 
+                    canvas.width = width;
+                    canvas.height = heigth;
+                    ctx.drawImage(videoElement, 0, 0);
+
+                    $('#HDImageByte').val(canvas.toDataURL('image/jpeg'));
+                    console.log(JSON.stringify(canvas.toDataURL('image/jpeg')));
+                    $("#userimage").attr("src", canvas.toDataURL('image/jpeg'));
+
+
+                }
+            }
             function ValidateImage() {
                 run_waitMe('roundBounce');
 
@@ -390,6 +413,53 @@
 
                     })
                 });
+            }
+            function gotDevices(deviceInfos) {
+                $('#videoSource').append('<option>' + '---Select---' + '</option>');
+                for (var i = 0; i !== deviceInfos.length; ++i) {
+                    var deviceInfo = deviceInfos[i];
+                    var option = document.createElement('option');
+                    option.value = deviceInfo.deviceId;
+                    if (deviceInfo.kind === 'videoinput') {
+                        option.text = deviceInfo.label || 'camera ' + (videoSelect.length + 1);
+                        $('#videoSource').append(option);
+                    } else {
+                        console.log('Found one other kind of source/device: ', deviceInfo);
+                    }
+                }
+            }
+            function getStream() {
+                if (window.stream) {
+                    window.stream.getTracks().forEach(function (track) {
+                        track.stop();
+                    });
+                }
+                console.log($('#videoSelect option:selected').val());
+                var constraints = {
+                    //audio: {
+                    //    deviceId: { exact: audioSelect.value }
+                    //},
+                    video: {
+                        width: 300,
+                        height: 300,
+                        deviceId: {
+                            exact: $('#videoSource option:selected').val()
+                        }
+                    }
+                };
+
+                navigator.mediaDevices.getUserMedia(constraints).
+                    then(gotStream).catch(handleError);
+            }
+
+            function gotStream(stream) {
+                window.stream = stream; // make stream available to console
+                videoElement.srcObject = stream;
+                localMediaStream = stream;
+            }
+
+            function handleError(error) {
+                console.log('Error: ', error);
             }
 
             $('#IDIssueDate,#IDExpiryDate,#DateofBirth').datepicker({

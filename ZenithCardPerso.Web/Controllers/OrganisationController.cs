@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ZenithCardPerso.Web.Filters;
 using ZenithCardRepo.Data.Models;
 using ZenithCardRepo.Data.ViewModel;
 using ZenithCardRepo.Services.BLL.Command;
@@ -56,6 +57,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View(organizationProfile);
         }
 
+        [ValidateUserPermission(Permissions = "can_create_institution")]
         public ActionResult CreateInstitution()
         {
             return View();
@@ -63,6 +65,7 @@ namespace ZenithCardPerso.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_create_institution")]
         public ActionResult CreateInstitution(Institution institution)
         {
             try
@@ -95,7 +98,7 @@ namespace ZenithCardPerso.Web.Controllers
             }
             return View(institution);
         }
-
+        [ValidateUserPermission(Permissions = "can_view_institutions")]
         public ActionResult Institutions()
         {
             try
@@ -111,6 +114,7 @@ namespace ZenithCardPerso.Web.Controllers
             }
         }
 
+        [ValidateUserPermission(Permissions = "can_edit_institution")]
         public ActionResult InstitutionEdit(int ID)
         {
             try
@@ -127,6 +131,7 @@ namespace ZenithCardPerso.Web.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_edit_institution")]
         public ActionResult InstitutionEdit(Institution institution)
         {
             try
@@ -144,7 +149,7 @@ namespace ZenithCardPerso.Web.Controllers
                 throw;
             }
         }
-
+        [ValidateUserPermission(Permissions = "can_delete_institution")]
         public ActionResult InstitutionDelete(int ID)
         {
             try
@@ -162,7 +167,7 @@ namespace ZenithCardPerso.Web.Controllers
                 throw;
             }
         }
-
+        [ValidateUserPermission(Permissions = "can_create_department")]
         public ActionResult CreateDepartment()
         {
             try
@@ -184,6 +189,7 @@ namespace ZenithCardPerso.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_create_department")]
         public ActionResult CreateDepartment(Department department)
         {
             try
@@ -228,6 +234,7 @@ namespace ZenithCardPerso.Web.Controllers
             return Json(departments, JsonRequestBehavior.AllowGet);
         }
 
+        [ValidateUserPermission(Permissions = "can_view_departments")]
         public ActionResult Departments()
         {
             try
@@ -247,6 +254,7 @@ namespace ZenithCardPerso.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateUserPermission(Permissions = "can_view_departments")]
         public ActionResult Departments(DepartmentViewModel deptVM)
         {
             var depts = _orgQueryBLL.GetDepartments(deptVM);
@@ -254,6 +262,8 @@ namespace ZenithCardPerso.Web.Controllers
             LoadInstitution();
             return View();
         }
+
+        [ValidateUserPermission(Permissions = "can_edit_department")]
         public ActionResult DepartmentEdit(int ID)
         {
             var dept = _orgQueryBLL.GetDepartment(ID);
@@ -263,6 +273,7 @@ namespace ZenithCardPerso.Web.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_edit_department")]
         public ActionResult DepartmentEdit(Department department)
         {
             try
@@ -284,7 +295,7 @@ namespace ZenithCardPerso.Web.Controllers
             }
             return View();
         }
-
+        [ValidateUserPermission(Permissions = "can_delete_department")]
         public ActionResult DepartmentDelete(int ID)
         {
             try

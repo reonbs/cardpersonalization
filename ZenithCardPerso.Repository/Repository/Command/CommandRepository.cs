@@ -46,6 +46,24 @@ namespace ZenithCardPerso.Repository.Command
             _dbSet.Remove(entity);
         }
 
+        public void AttachEntity(TEntity entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+            _dbSet.Attach(entity);
+        }
+
+        public void DeleteRange(List<TEntity> entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+            _dbSet.RemoveRange(entity);
+        }
+
         public int Save()
         {
             return _context.SaveChanges();

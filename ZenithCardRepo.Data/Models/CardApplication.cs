@@ -40,7 +40,7 @@ namespace ZenithCardRepo.Data.Models
         public string MainAccountNo { get; set; }
         [Display(Name = "Other Account No"), MaxLength(10)]
         public string OtherAccountNo { get; set; }
-        [Required, Display(Name = "Name on Card"), MaxLength(23)]
+        [Required, Display(Name = "Name on Card"), MaxLength(21)]
         public string NameonCard { get; set; }
         [Required, Display(Name = "ID Card Type"), MaxLength(2)]
         public string IDCardType { get; set; }
@@ -68,5 +68,7 @@ namespace ZenithCardRepo.Data.Models
         public int InstitutionID { get; set; }
         public Institution Institution { get; set; }
         public bool IsDeleted { get; set; }
+        public bool IsApproved { get; set; }
+
     }
 }

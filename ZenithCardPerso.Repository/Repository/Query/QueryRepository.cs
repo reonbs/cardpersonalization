@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -43,6 +44,7 @@ namespace ZenithCardPerso.Repository.Query
             return _dbSet.Where(predicate).AsQueryable<TEntity>();
         }
         
+
         public IEnumerable<TEntity> AllInclude(params Expression<Func<TEntity, object>>[] includeProperties)
         {
             return GetAllIncluding(includeProperties).ToList();
@@ -61,6 +63,16 @@ namespace ZenithCardPerso.Repository.Query
 
             return includeProperties.Aggregate
               (queryable, (current, includeProperty) => current.Include(includeProperty));
+        }
+
+        public DbRawSqlQuery<T> StoreprocedureQuery<T>(string storeprocedureName)
+        {
+            return _context.Database.SqlQuery<T>("EXEC " + storeprocedureName);
+        }
+
+        public DbRawSqlQuery<T> StoreprocedureQueryFor<T>(string storeprocedureName, params object[] parameters)
+        {
+            return _context.Database.SqlQuery<T>("EXEC " + storeprocedureName, parameters);
         }
     }
 }
