@@ -260,6 +260,7 @@
     <Content Include="assets\css\responsive.css" />
     <Content Include="assets\css\typicons.css" />
     <Content Include="assets\css\variables.css" />
+    <Content Include="assets\EmailTemplate\CardApplicationApproval.html" />
     <Content Include="assets\EmailTemplate\CardApplicationEmail.html" />
     <Content Include="assets\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
@@ -694,30 +695,14 @@
     <Content Include="assets\pages\jquery.todo.js" />
     <Content Include="assets\pages\jquery.tooltipster.js" />
     <Content Include="assets\pages\jquery.wizard-init.js" />
-    <Content Include="bin\bin\Debug\x64\cvextern.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="bin\bin\Debug\x64\msvcp120.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="bin\bin\Debug\x64\msvcr120.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="bin\bin\Debug\x64\opencv_ffmpeg310_64.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="bin\bin\Debug\x86\cvextern.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="bin\bin\Debug\x86\msvcp120.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="bin\bin\Debug\x86\msvcr120.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="bin\bin\Debug\x86\opencv_ffmpeg310.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="bin\bin\Debug\x64\cvextern.dll" />
+    <Content Include="bin\bin\Debug\x64\msvcp120.dll" />
+    <Content Include="bin\bin\Debug\x64\msvcr120.dll" />
+    <Content Include="bin\bin\Debug\x64\opencv_ffmpeg310_64.dll" />
+    <Content Include="bin\bin\Debug\x86\cvextern.dll" />
+    <Content Include="bin\bin\Debug\x86\msvcp120.dll" />
+    <Content Include="bin\bin\Debug\x86\msvcr120.dll" />
+    <Content Include="bin\bin\Debug\x86\opencv_ffmpeg310.dll" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -1530,6 +1515,9 @@
     <Content Include="Views\Legend\AddNationalityCode.cshtml" />
     <Content Include="Views\Legend\NationalityCodeEdit.cshtml" />
     <Content Include="Views\Legend\NationalityCodes.cshtml" />
+    <Content Include="Views\Shared\_sideMenuPartial.cshtml" />
+    <Content Include="Views\Account\CreateInstitutionUser.cshtml" />
+    <Content Include="Views\Permission\AccessDenied.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

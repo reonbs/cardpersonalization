@@ -15,7 +15,7 @@ namespace ZenithCardRepo.Services.BLL.Query
         Permission GetPermission(int ID);
         List<PermissionViewModel> GetRolePermissions(string roleID);
         List<UserPermission> FetchUserPermission(string username, string roleName);
-
         List<string> FetchUserRoles(string userID);
+        string FetchUserPermission(string userName, string[] roles);
     }
 }

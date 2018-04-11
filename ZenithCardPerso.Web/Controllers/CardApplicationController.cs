@@ -68,9 +68,17 @@ namespace ZenithCardPerso.Web.Controllers
 
         public JsonResult ValidateImage(string HDImageByte)
         {
-            var valMsgs = _cardAPPCmdBLL.ImageBase64String(HDImageByte);
+            try
+            {
+                var valMsgs = _cardAPPCmdBLL.ImageBase64String(HDImageByte);
 
-            return Json(valMsgs, JsonRequestBehavior.AllowGet);
+                return Json(valMsgs, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                _log.Error(ex);
+                throw;
+            }
         }
 
         [Audit(AuditingLevel = 2)]
@@ -81,15 +89,11 @@ namespace ZenithCardPerso.Web.Controllers
             string instID = string.Empty;
             try
             {
-                
-                await Utilities.Execute();
-
                 instID = User.Identity.GetInstitutionID();
                 if (instID == "" || instID == "0  ")
                 {
                     return RedirectToAction("Login", "Account");
                 }
-
 
                 if (string.IsNullOrEmpty(HDImageByte))
                 {
@@ -112,8 +116,10 @@ namespace ZenithCardPerso.Web.Controllers
                     TempData[Utilities.Activity_Log_Details] = "Card Application has been captured Successfully";
 
                     TempData["Message"] = "Success";
-                    ModelState.Clear();
 
+                    await Utilities.ExecuteEmail("raphkens@live.com","Ekene Egonu", CardEnums.CardApplicationEmail);
+
+                    ModelState.Clear();
 
                     if (instID == "" || instID == "0  ")
                     {
@@ -211,7 +217,7 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Audit]
-        [ValidateUserPermission(Permissions = "can_create_cardapplications")]
+        [ValidateUserPermission(Permissions = "can_view_cardapplications")]
         public ActionResult CardApplications(CardAppViewModel cardAppVM)
         {
             try
@@ -394,7 +400,9 @@ namespace ZenithCardPerso.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CardDownloadApproval(List<CardApplicationsDTO> cardApps,string HDComment)
+        [Audit]
+        [ValidateUserPermission(Permissions = "can_request_approval")]
+        public async Task<ActionResult> CardDownloadApproval(List<CardApplicationsDTO> cardApps,string HDComment)
         {
             try
             {
@@ -406,6 +414,8 @@ namespace ZenithCardPerso.Web.Controllers
                     _approvalCMDBLL.AddApproval(cardApps, requestBy, HDComment);
 
                     TempData["Message"] = "Successonapproval";
+
+                    await Utilities.ExecuteEmail("raphkens@live.com","Ekene Approver", CardEnums.CardApprovalEmail);
 
                     return RedirectToAction("CardApplications");
                 }
@@ -422,7 +432,7 @@ namespace ZenithCardPerso.Web.Controllers
             }
             return View();
         }
-
+        [ValidateUserPermission(Permissions = "can_approve_cardrequest")]
         public ActionResult CardRequestApprovals()
         {
             try
@@ -438,8 +448,8 @@ namespace ZenithCardPerso.Web.Controllers
             }
             return View();
         }
-        
 
+        [ValidateUserPermission(Permissions = "can_approve_cardrequest")]
         public ActionResult ViewApplicationsForApproval(int approvalID)
         {
             try
@@ -465,6 +475,7 @@ namespace ZenithCardPerso.Web.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_approve_cardrequest")]
         public ActionResult ViewApplicationsForApproval(List<CardApplicationsDTO> cardApps, string Comment,string HDApprovalID)
         {
             try
@@ -491,7 +502,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
         }
 
-        
+        [ValidateUserPermission(Permissions = "can_approve_cardrequest")]
         public ActionResult CardApplicationDecline(int approvalID)
         {
             try
@@ -576,7 +587,7 @@ namespace ZenithCardPerso.Web.Controllers
                 CreateFiles(filePaths, cardApplToExport);
                 var saveAs = string.Format("text-{0:yyyy-MM-dd_hh-mm-ss-tt}", DateTime.Now);
 
-                System.IO.File.WriteAllBytes(@"c:\pc\cardsapps" + saveAs + ".xls", filecontent);
+                System.IO.File.WriteAllBytes(@"c:\picturecards\cardsapps" + saveAs + ".xls", filecontent);
                 //BackgroundJob.Enqueue(() => CreateFiles(filePaths));
 
                 TempData["Message"] = "Success";
@@ -596,27 +607,35 @@ namespace ZenithCardPerso.Web.Controllers
         }
         public void CreateFiles(string[] sourceFiles, List<CardApplicationsDTO> cardAppsList)
         {
-            using (ZipFile zip = new ZipFile())
+            try
             {
-                string[] filenames = sourceFiles;
-
-                foreach (var cardApp in cardAppsList)
+                using (ZipFile zip = new ZipFile())
                 {
-                    var fileName = filenames.Where(x => x.Contains(cardApp.OfficeAddress2)).FirstOrDefault();//.Contains(cardApp.IDNo);
-                    ZipEntry e = zip.AddFile(fileName, "/cardspix");
-                    e.Comment = "Added";
-                }
-                
-                zip.Comment = String.Format("The downloaded file are for the just generated card application on machine '{0}'",
-                      System.Net.Dns.GetHostName());
-                var path = CreateIfMissing(@"C:\pc\");
-                
-                var saveAs = string.Format("text-{0:yyyy-MM-dd_hh-mm-ss-tt}", DateTime.Now);
-                var filePath = path + "myfile" + saveAs + ".zip";
-                zip.Save(filePath);
+                    string[] filenames = sourceFiles;
 
-                _cardAPPCmdBLL.UpdateStatus(cardAppsList);
-               
+                    foreach (var cardApp in cardAppsList)
+                    {
+                        var fileName = filenames.Where(x => x.Contains(cardApp.OfficeAddress2)).FirstOrDefault();//.Contains(cardApp.IDNo);
+                        ZipEntry e = zip.AddFile(fileName, "/cardspix");
+                        e.Comment = "Added";
+                    }
+
+                    zip.Comment = String.Format("The downloaded file are for the just generated card application on machine '{0}'",
+                          System.Net.Dns.GetHostName());
+                    var path = CreateIfMissing(@"C:\picturecards\");
+
+                    var saveAs = string.Format("text-{0:yyyy-MM-dd_hh-mm-ss-tt}", DateTime.Now);
+                    var filePath = path + "CardPerso_" + saveAs + ".zip";
+                    zip.Save(filePath);
+
+                    _cardAPPCmdBLL.UpdateStatus(cardAppsList);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                _log.Error(ex);
+                throw;
             }
         }
         private string CreateIfMissing(string path)

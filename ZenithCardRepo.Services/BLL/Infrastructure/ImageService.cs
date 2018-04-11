@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -15,9 +16,11 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
     public class ImageService : IImageService
     {
         private IImageSettingQueryBLL _imgSettingQueryBLL;
-        public ImageService(IImageSettingQueryBLL imgSettingQueryBLL)
+        private ILog _log;
+        public ImageService(IImageSettingQueryBLL imgSettingQueryBLL, ILog log)
         {
             _imgSettingQueryBLL = imgSettingQueryBLL;
+            _log = log;
         }
         public string ImageURL(string url)
         {
@@ -29,7 +32,7 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
                 if (!string.IsNullOrEmpty(ext))
                 {
                     string path = AppDomain.CurrentDomain.BaseDirectory;
-                    string fullpath = path + "\\ImageUpload";
+                    string fullpath = path + "ImageUpload";
                     if (!Directory.Exists(fullpath))
                     {
                         Directory.CreateDirectory(fullpath);
@@ -77,10 +80,11 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
 
         public List<string> ImageBase64String(string base64Str)
         {
+            string filename = string.Empty;
             try
             {
                 string path = AppDomain.CurrentDomain.BaseDirectory;
-                string fullpath = path + "\\ImageUpload";
+                string fullpath = path + "ImageUpload";
                 //check if the destination folder exist
                 if (!Directory.Exists(fullpath))
                 {
@@ -88,7 +92,7 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
                 }
                 //get the full path
                 string n = string.Format("text-{0:yyyy-MM-dd_hh-mm-ss-tt}.bin", DateTime.Now);
-                string filename = fullpath + "\\" + n + ".jpg";
+                filename = fullpath + "\\" + n + ".jpg";
 
                 //convert base64string to byte array
                 string toReplace = $"data:image/jpeg;base64,";
@@ -114,17 +118,15 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
                     byteBuffer = null;
                 }
 
-
-
                 if (File.Exists(filename))
                 {
                     List<string> value = new List<string>() ;
                     value = ValidateImage(filename, "Base64String", img, "");
 
-
                     //Delete the file
                     try
                     {
+                        //File.Delete(filename);
                         if (File.Exists(filename))
                         {
                             File.Delete(filename);
@@ -132,6 +134,7 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
                     }
                     catch (Exception)
                     {
+                        throw;
                     }
 
                     return value;
@@ -141,16 +144,26 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
                     return new List<string> { "Convertion from base64string failed." };
                 }
 
+                //return new List<string>();
+
             }
             catch (Exception ex)
             {
-                ValidationResponse enumVar = ValidationResponse.UnknownError;
-                string value = Utilities.GetEnumDescription(enumVar);
-                ex.Message.ToString();
+                //ValidationResponse enumVar = ValidationResponse.UnknownError;
+                //string value = Utilities.GetEnumDescription(enumVar);
+                //ex.Message.ToString();
                 //return value;
+                throw;
             }
+            //finally
+            //{
+            //    if (File.Exists(filename))
+            //    {
+            //        File.Delete(filename);
+            //    }
+            //}
 
-            return new List<string>();
+            //return new List<string>();
 
         }
 
@@ -179,7 +192,6 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
                     responseCode = ImageValidator.EyesValidation(imagePath);
                     var desc = validationType + Utilities.GetValidationResponse(responseCode);
                     valMsgs.Add(desc);
-
 
                 }
 
@@ -274,8 +286,8 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
             }
             catch (Exception ex)
             {
-
-                ex.Message.ToString() ;
+                _log.Error(ex);
+                throw;
             }
 
             return new List<string> { };

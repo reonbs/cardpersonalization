@@ -105,7 +105,7 @@ namespace ZenithCardRepo.Services.BLL.Query
 
             foreach (var cardAppID in cardAPPIds)
             {
-                var cardApp = _cardAppRepo.GetBy(x => x.ID == cardAppID && x.IsApproved != true).FirstOrDefault();
+                var cardApp = _cardAppRepo.GetBy(x => x.ID == cardAppID && x.IsApproved != true && x.IsDeleted == false).FirstOrDefault();
                 if (cardApp != null)
                 {
                     cardApps.Add(cardApp);

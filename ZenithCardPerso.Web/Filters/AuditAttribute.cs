@@ -71,6 +71,8 @@ namespace ZenithCardPerso.Web.Filters
 
                 var description = "No user Action took place";
 
+                var logggg = Utilities.Activity_Log_Details;
+
                 if (!string.IsNullOrEmpty(filterContext.Controller.TempData[Utilities.Activity_Log_Details].ToString()))
                 {
                     description = filterContext.Controller.TempData[Utilities.Activity_Log_Details].ToString();
@@ -118,7 +120,7 @@ namespace ZenithCardPerso.Web.Filters
             catch (Exception ex)
             {
 
-                throw;
+                //throw;
             }
         }
         private string SerializeRequest(HttpRequestBase request)

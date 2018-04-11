@@ -307,7 +307,7 @@
                 console.log(Webcam.cameraIDs);
             });
 
-            $.get('/Image/GetImageSetting', function (data) {
+            $.get("@Url.Action("GetImageSetting", "Image",null,Request.Url.Scheme)", function (data) {//'/Image/GetImageSetting'
                 console.log(data);
                 width = data.Height;//$('#ImageWidth').val(data.Height);
                 heigth = data.Width;//$('#ImageHeight').val(data.Width);
@@ -375,6 +375,7 @@
 
                 ValidateImage();
             }
+
             function snapshot() {
                 if (localMediaStream) {
 
@@ -389,12 +390,13 @@
 
                 }
             }
+
             function ValidateImage() {
                 run_waitMe('roundBounce');
 
                 var img = $('#HDImageByte').val();
 
-                $.post('/CardApplication/ValidateImage/', { HDImageByte: img }, function (data) {
+                @*$.post("@Url.Action("ValidateImage", "CardApplication")", { HDImageByte: img }, function (data) {//'/CardApplication/ValidateImage/'
                     $('#validationModal ul').empty();
 
                     $('#validationModal').modal('show');
@@ -412,6 +414,38 @@
 
 
                     })
+                });*@
+
+                var methodUrl = "@Url.Action("ValidateImage","CardApplication")";
+                var dataToSend = JSON.stringify({ HDImageByte: img})
+                $.ajax({
+                    type: "POST",
+                    url: methodUrl,
+                    data: dataToSend,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        $('#validationModal ul').empty();
+
+                        $('#validationModal').modal('show');
+                        $('body').waitMe("hide");
+                        console.log(data);
+                        $.each(data, function (i, v) {
+
+                            console.log(v.indexOf('Successful'));
+                            if (v.indexOf('Successful') != -1) {
+                                $('#validations').append('<li id=' + i + '>' + v + '</li>');
+                                $("#" + i).css('color', 'green');
+                            } else {
+                                $('#validations').append('<li>' + v + '</li>').css('color', 'red');
+                            }
+
+
+                        })
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert("error : " + jqXHR);
+                    }
                 });
             }
             function gotDevices(deviceInfos) {
@@ -473,7 +507,7 @@
                 $('#City').append('<option>--Select--</option>');
                 var stateCode = $(this).val();
 
-                $.post('/CardApplication/GetCity/?stateCode=' + stateCode, function (data) {
+                $.get("@Url.Action("GetCity", "CardApplication")", { stateCode: stateCode }, function (data) {//'/CardApplication/GetCity/?stateCode=' + stateCode
                     $.each(data, function (i, v) {
                         $('#City').append('<option value="' + v.CityCode + '">' + v.CityName + '</option>')
                     });

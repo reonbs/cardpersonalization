@@ -1,0 +1,133 @@
+﻿@using Microsoft.AspNet.Identity
+@using System.Security.Claims
+
+@{
+    var permissions = (User.Identity as ClaimsIdentity).FindFirstValue("UserPermissions");
+}
+<div id="sidebar-menu">
+    <ul>
+        @*<li class="menu-title">Navigation</li>*@
+
+        @if (User.IsInRole("InstitutionAdmin") || permissions.Contains(""))
+        {
+            <li class="has_sub">
+                <a href="javascript:void(0);" class="waves-effect">
+                    <i class="mdi mdi-view-dashboard"></i>
+                    <span class="menu-arrow"></span>
+                    <span> Cards </span>
+                </a>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="@Url.Action("CardApplicationCreate","CardApplication")">Application</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("MyCardApplications","CardApplication")">My Application</a>
+                    </li>
+
+                </ul>
+            </li>
+
+        }
+        @if (permissions.Contains("can_approve_cardrequest"))
+        {
+            <li class="has_sub">
+                <a href="javascript:void(0);" class="waves-effect">
+                    <i class="mdi mdi-settings"></i>
+                    <span> Approvals </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="@Url.Action("CardRequestApprovals","CardApplication")">Card Application approvals</a>
+                    </li>
+                </ul>
+            </li>
+        }
+        @if (User.IsInRole("SuperAdmin") || permissions.Contains("can_create_institutionusers"))
+        {
+            <li class="has_sub">
+                <a href="javascript:void(0);" class="waves-effect">
+                    <i class="mdi mdi-settings"></i>
+                    <span> Admin </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="list-unstyled">
+                    @if (permissions.Contains("can_create_institutionusers"))
+                    {
+                        <li>
+                            <a href="@Url.Action("CreateUser","Account")">Cretae User</a>
+                        </li>
+                    }
+
+                    @if (User.IsInRole("SuperAdmin"))
+                    {
+                        <li>
+                            <a href="@Url.Action("CardApplications","CardApplication")">Card Applications</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Institutions","Organisation")">Institutions</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Departments","Organisation")">Departments</a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Roles","Account")">Roles</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Users","Account")">Users</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("AddSetting","Image")">Image Settings</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("ImageSettingEdit","Image")">Edit Image Settings</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("AuditTrail","Report")">Audit Trail</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Permissions","Permission")">Permissions</a>
+                        </li>
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect">
+                                <span> Legends </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="@Url.Action("Titles","Legend")">Title</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Sexes","Legend")">Sexes</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("MaritalStatusList","Legend")">Marital Status</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Cities","Legend")">City</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("States","Legend")">States</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("IDCardTypes","Legend")">ID Card Types</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("SocioProfCodes","Legend")">Socio Prof Codes</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("ProductCodes","Legend")">Product Codes</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("NationalityCodes","Legend")">Nationality Codes</a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </li>
+        }
+
+    </ul>
+</div>

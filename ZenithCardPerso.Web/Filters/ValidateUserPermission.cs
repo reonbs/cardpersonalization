@@ -79,7 +79,7 @@ namespace ZenithCardPerso.Web.Filters
                     foreach (string permission in permissions)
                     {
                         string[] storedPermissions = _permissionQueryBLL.FetchUserPermission(userName, role).Select(x => x.Permission).ToArray(); //PermissionDBO.FetchUserPermissions(userName, role);
-                       /// var permissionBDO = new PermissionDBO();
+                                                                                                                                                  /// var permissionBDO = new PermissionDBO();
 
 
                         //If the user permissions is in the list of authorized permissions return true. 
@@ -92,6 +92,26 @@ namespace ZenithCardPerso.Web.Filters
                                 UserPermissions.Add(permission);
                         }
                     }
+                }
+
+                if (UserPermissions.Count > 0)
+                {
+                    try
+                    {
+                        //SessionManager.InitializeSession(WebSecurity.CurrentUserName);
+                    }
+                    finally
+                    {
+
+                    }
+
+                }
+                else
+                {
+
+                    filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Permission", action = "AccessDenied" }));
+
+                    filterContext.Result.ExecuteResult(filterContext.Controller.ControllerContext);
                 }
             }
         }

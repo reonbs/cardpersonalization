@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -66,6 +67,22 @@ namespace ZenithCardRepo.Services.BLL.Query
             var userRoles = _permissionQueryBLL.StoreprocedureQueryFor<string>("FLTUserPermissionsAndRole @userid", new SqlParameter("userid", userID)).ToList();
 
             return userRoles;
+        }
+
+        public string FetchUserPermission(string userName, string[] roles)
+        {
+            List<string> permissions = new List<string>();
+            foreach (var role in roles)
+            {
+                var permissionsFromRole = FetchUserPermission(userName, role).Select(x => x.Permission);
+                foreach (var permissionFromRole in permissionsFromRole)
+                {
+                    permissions.Add(permissionFromRole);
+                }
+            }
+
+            var jsonPermission = JsonConvert.SerializeObject(permissions);
+            return jsonPermission;
         }
 
     }

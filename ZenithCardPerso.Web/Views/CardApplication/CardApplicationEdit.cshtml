@@ -371,24 +371,57 @@
                 run_waitMe('roundBounce');
 
                 var img = $('#HDImageByte').val();
-                $.post('/CardApplication/ValidateImage/', { HDImageByte: img }, function (data) {
-                    $('#validationModal ul').empty();
+                //$.post('/CardApplication/ValidateImage/', { HDImageByte: img }, function (data) {
+                //    $('#validationModal ul').empty();
 
-                    $('#validationModal').modal('show');
-                    $('body').waitMe("hide");
-                    console.log(data);
-                    $.each(data, function (i, v) {
+                //    $('#validationModal').modal('show');
+                //    $('body').waitMe("hide");
+                //    console.log(data);
+                //    $.each(data, function (i, v) {
 
-                        console.log(v.indexOf('Successful'));
-                        if (v.indexOf('Successful') != -1) {
-                            $('#validations').append('<li id=' + i + '>' + v + '</li>');
-                            $("#" + i).css('color', 'green');
-                        } else {
-                            $('#validations').append('<li>' + v + '</li>').css('color', 'red');
-                        }
+                //        console.log(v.indexOf('Successful'));
+                //        if (v.indexOf('Successful') != -1) {
+                //            $('#validations').append('<li id=' + i + '>' + v + '</li>');
+                //            $("#" + i).css('color', 'green');
+                //        } else {
+                //            $('#validations').append('<li>' + v + '</li>').css('color', 'red');
+                //        }
 
 
-                    })
+                //    })
+                //});
+
+
+                var methodUrl = "@Url.Action("ValidateImage","CardApplication")";
+                var dataToSend = JSON.stringify({ HDImageByte: img })
+                $.ajax({
+                    type: "POST",
+                    url: methodUrl,
+                    data: dataToSend,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        $('#validationModal ul').empty();
+
+                        $('#validationModal').modal('show');
+                        $('body').waitMe("hide");
+                        console.log(data);
+                        $.each(data, function (i, v) {
+
+                            console.log(v.indexOf('Successful'));
+                            if (v.indexOf('Successful') != -1) {
+                                $('#validations').append('<li id=' + i + '>' + v + '</li>');
+                                $("#" + i).css('color', 'green');
+                            } else {
+                                $('#validations').append('<li>' + v + '</li>').css('color', 'red');
+                            }
+
+
+                        })
+                    },
+                    error: function (e, d, b) {
+                        alert("error : " + d);
+                    }
                 });
             }
 

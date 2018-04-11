@@ -30,7 +30,7 @@ namespace ZenithCardPerso.Web.Controllers
         private IOrganisationQueryBLL _orgQueryBLL;
         private IManageUserQueryBLL _manageUserQueryBLL;
         private IManageUserCMDBLL _manageUserCMDBLL;
-
+        public IPermissionQueryBLL _permissionQueryBLL;
 
         public AccountController(
             ApplicationUserManager userManager,
@@ -39,7 +39,8 @@ namespace ZenithCardPerso.Web.Controllers
             IAuthenticationManager authManager,
             IOrganisationQueryBLL orgQueryBLL,
             IManageUserQueryBLL manageUserQueryBLL,
-            IManageUserCMDBLL manageUserCMDBLL
+            IManageUserCMDBLL manageUserCMDBLL,
+            IPermissionQueryBLL permissionQueryBLL
             )
         {
             _userManager = userManager;
@@ -49,7 +50,7 @@ namespace ZenithCardPerso.Web.Controllers
             _orgQueryBLL = orgQueryBLL;
             _manageUserQueryBLL = manageUserQueryBLL;
             _manageUserCMDBLL = manageUserCMDBLL;
-
+            _permissionQueryBLL = permissionQueryBLL;
         }
 
         public ApplicationSignInManager SignInManager
@@ -109,13 +110,35 @@ namespace ZenithCardPerso.Web.Controllers
             }
 
             ApplicationUser usermodel = UserManager.Users.FirstOrDefault(m => m.UserName.Trim() == model.Email && m.IsDisabled == false);
-
+            
 
             if (usermodel != null)
             {
-                var userIdentity = await UserManager.CreateIdentityAsync(usermodel, DefaultAuthenticationTypes.ApplicationCookie);
+                ClaimsIdentity userIdentity = await UserManager.CreateIdentityAsync(usermodel, DefaultAuthenticationTypes.ApplicationCookie);
+
+                //List<string> permissions = new List<string>();
+                var userID = usermodel.Roles.Select(x => x.UserId).FirstOrDefault();
+                var roles = UserManager.GetRoles(userID).ToArray(); ;
+
+                var storedPermissions = _permissionQueryBLL.FetchUserPermission(usermodel.UserName, roles);
+
+                //foreach (var role in roles)
+                //{
+                //    var storedPermissions = _permissionQueryBLL.FetchUserPermission(model.Email, role).Select(x => x.Permission).ToList();
+                //    foreach (var storedPermission in storedPermissions)
+                //    {
+                //        permissions.Add(storedPermission);
+                //    }
+                //}
+
+                //var storedPermissions = _permissionQueryBLL.FetchUserPermission(model.Email, "").Select(x => x.Permission).ToArray();
+
+
+                //permissions = permissions.Distinct().ToList();
 
                 userIdentity.AddClaim(new Claim("InstitutionID", usermodel.InstitutionID.ToString()));
+
+                userIdentity.AddClaim(new Claim("UserPermissions", storedPermissions));
 
                 var listIdentity = new List<ClaimsIdentity>();
                 listIdentity.Add(userIdentity);
@@ -124,7 +147,7 @@ namespace ZenithCardPerso.Web.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "User is disabled");
+                ModelState.AddModelError("", "username or password is incorrect");
 
                 return RedirectToAction("Login");
             }
@@ -250,22 +273,30 @@ namespace ZenithCardPerso.Web.Controllers
 
             var selectedRoles = UserRole.Where(x => x.SelectedRole == true).Select(x => x.Role).ToArray();
 
-            UserManager.AddToRoles(user.Id, selectedRoles);
+            foreach (var selectedRole in selectedRoles)
+            {
+                UserManager.AddToRole(user.Id, selectedRole);
+            }
+            
 
             var deselectedRoles = UserRole.Where(x => x.SelectedRole == false).Select(x => x.Role).ToArray();
 
-            UserManager.RemoveFromRoles(user.Id, deselectedRoles);
+            foreach (var deselectedRole in deselectedRoles)
+            {
+                UserManager.RemoveFromRole(user.Id, deselectedRole);
+            }
+            
+
+            
 
             TempData["Message"] = "Success";
 
             LoadInstitution();
 
             return RedirectToAction("Users");
-
-            
         }
 
-        [ValidateUserPermission(Permissions = "can_create_user")]
+        [ValidateUserPermission(Permissions = "can_create_user,can_create_institutionusers")]
         public ActionResult CreateUser()
         {
 
@@ -286,7 +317,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
         }
 
-        [ValidateUserPermission(Permissions = "can_create_user")]
+        [ValidateUserPermission(Permissions = "can_create_user,can_create_institutionusers")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateUser(RegisterViewModel model, List<UserRoleViewModel> UserRole)
@@ -295,8 +326,16 @@ namespace ZenithCardPerso.Web.Controllers
 
             if (ModelState.IsValid)
             {
+                List<UserRoleViewModel> roles = new List<UserRoleViewModel>();
+                if (UserRole != null)
+                {
+                    roles = UserRole.Where(x => x.SelectedRole == true).ToList();
+                }
+                else
+                {
+                    roles.Add(new UserRoleViewModel { SelectedRole = true, Role = "Enroller" });
+                }
 
-                var roles = UserRole.Where(x => x.SelectedRole == true);
 
                 var user = new ApplicationUser
                 {
@@ -318,10 +357,12 @@ namespace ZenithCardPerso.Web.Controllers
 
                     List<string> selectecRoles = new List<string>();
 
+
                     foreach (var role in roles)
                     {
                         selectecRoles.Add(role.Role);
                     }
+
 
                     var addRoleResult = await UserManager.AddToRolesAsync(usermodel.Id, selectecRoles.ToArray<string>());
 
@@ -372,6 +413,11 @@ namespace ZenithCardPerso.Web.Controllers
             return View(model);
         }
 
+        public ActionResult CreateInstitutionUser()
+        {
+
+            return View();
+        }
         [ValidateUserPermission(Permissions = "can_create_role")]
         public ActionResult AddRole()
         {
@@ -480,7 +526,7 @@ namespace ZenithCardPerso.Web.Controllers
         public ActionResult ResetPassword(string email)
         {
             var user = UserManager.FindByName(email);
-            var resetPasswordVM = new ResetPasswordViewModel { FullName = user.FullName,Email = user.Email };
+            var resetPasswordVM = new ResetPasswordViewModel { FullName = user.FullName, Email = user.Email };
             return View(resetPasswordVM);
         }
 
@@ -495,7 +541,7 @@ namespace ZenithCardPerso.Web.Controllers
                 return View(model);
             }
             var user = await UserManager.FindByNameAsync(model.Email);
-            var code =  UserManager.GeneratePasswordResetToken(user.Id);
+            var code = UserManager.GeneratePasswordResetToken(user.Id);
             var result = await UserManager.ResetPasswordAsync(user.Id, code, model.Password);
             if (result.Succeeded)
             {

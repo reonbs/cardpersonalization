@@ -1,8 +1,10 @@
 ﻿@model ZenithCardPerso.Web.Models.RegisterViewModel
-
+@using Microsoft.AspNet.Identity
+@using System.Security.Claims
 @{
     ViewBag.Title = "Register";
     //Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    var permissions = (User.Identity as ClaimsIdentity).FindFirstValue("UserPermissions");
 }
 
 
@@ -55,8 +57,18 @@
                         @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
                     </div>
                     <div class="col-xs-4">
-                        @Html.Label("Institution", new { @class = "control-label" })
-                        @Html.DropDownListFor(m => m.InstitutionID, ViewData["Institution"] as SelectList, "----Select---", new { @class = "form-control select2" })
+                        @if (!permissions.Contains("can_create_institutionusers"))
+                        {
+                            @Html.Label("Institution", new { @class = "control-label" })
+                            @Html.DropDownListFor(m => m.InstitutionID, ViewData["Institution"] as SelectList, "----Select---", new { @class = "form-control select2" })
+                        }
+                        else
+                        {
+                            @Html.Label("Institution", new { @class = "control-label" })
+                            @Html.DropDownListFor(m => m.InstitutionID, ViewData["Institution"] as SelectList, "----Select---", new { @class = "", disabled = "disabled" })
+                            
+                        }
+
                     </div>
                     <div class="col-xs-4">
                         @Html.LabelFor(m => m.Password, new { @class = "control-label" })
@@ -89,30 +101,34 @@
                     </div>
                 </div>
 
-                <hr />
-                <h4>Roles</h4>
-                <hr />
-                @{
-                    var UserRole = ViewBag.UserRoles as List<ZenithCardPerso.Web.Models.UserRoleViewModel>;
-                }
-                <table id="tblUserEdit" class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Role Name</th>
-                        </tr>
-                    </thead>
-                    @for (int i = 0; i < UserRole.Count(); i++)
-                    {
+                @if (!permissions.Contains("can_create_institutionusers"))
+                {
+                    <hr />
+                    <h4>Roles</h4>
+                    <hr />
 
-                        <tbody>
+                    var UserRole = ViewBag.UserRoles as List<ZenithCardPerso.Web.Models.UserRoleViewModel>;
+
+                    <table id="tblUserEdit" class="table table-bordered">
+                        <thead>
                             <tr>
-                                <td>@Html.CheckBox("UserRole[" + @i + "].SelectedRole", UserRole[i].SelectedRole)</td>
-                                <td> @Html.TextBox("UserRole[" + @i + "].Role", UserRole[i].Role, new { @readonly = "readonly", @class = "qty readonly" })</td>
+                                <th></th>
+                                <th>Role Name</th>
                             </tr>
-                        </tbody>
-                    }
-                </table>
+                        </thead>
+                        @for (int i = 0; i < UserRole.Count(); i++)
+                        {
+
+                            <tbody>
+                                <tr>
+                                    <td>@Html.CheckBox("UserRole[" + @i + "].SelectedRole", UserRole[i].SelectedRole)</td>
+                                    <td> @Html.TextBox("UserRole[" + @i + "].Role", UserRole[i].Role, new { @readonly = "readonly", @class = "qty readonly" })</td>
+                                </tr>
+                            </tbody>
+                        }
+                    </table>
+                }
+
 
 
                 <button class="btn btn-primary pull-right" type="submit">Create</button>
@@ -128,6 +144,13 @@
     <script>
         $(function () {
             $('#InstitutionID').select2();
+            $('#InstitutionID').on("change", function () {
+                if ($('#InstitutionID').prop("disabled")) {
+                    alert("You can only create users for your institution, contact the administrator");
+                    location.href ="/Account/CreateUser"
+                    return;
+                }
+            })
         });
     </script>
 }

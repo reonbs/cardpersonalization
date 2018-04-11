@@ -91,33 +91,62 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
             return attribute == null ? value.ToString() : attribute.Description;
         }
 
-        public static async Task<bool> Execute()
+        public static async Task<bool> ExecuteEmail(string toEmail,string toName, CardEnums emailType)
         {
-            var apiKey = "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";//Environment.GetEnvironmentVariable("NAME_OF_THE_ENVIRONMENT_VARIABLE_FOR_YOUR_SENDGRID_KEY");
+
+            var apiKey = ConfigurationManager.AppSettings["SendGrid_APIKey"];//Environment.GetEnvironmentVariable("NAME_OF_THE_ENVIRONMENT_VARIABLE_FOR_YOUR_SENDGRID_KEY");
             var client = new SendGridClient(apiKey);
-            var from = new EmailAddress("no-reply@zenithcardperso.com", "Zenith Card");
-            var subject = "Card Application";
-            var to = new EmailAddress("raphkens@live.com", "Ekene Egonu");
-            var plainTextContent = "and easy to do anywhere, even with C#";
-            var htmlContent = SendEmail();
+            var emailFrom = ConfigurationManager.AppSettings["SendGrid_From"];
+            var fromName = ConfigurationManager.AppSettings["SendGrid_FromName"];
+            var from = new EmailAddress(emailFrom, fromName);
+            var subject = ConfigurationManager.AppSettings["SendGrid_Subject"];
+            var to = new EmailAddress(toEmail, toName);
+            var plainTextContent = "Card Application";
+            var htmlContent = HTMLContent(emailType);
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             var response = await client.SendEmailAsync(msg);
 
             return true;
         }
 
-        public static string SendEmail()
+        public static string HTMLContent(CardEnums emailType)
         {
             StreamReader reader = null;
             try
             {
                 var assembly = Assembly.GetExecutingAssembly();
+                string path = AppDomain.CurrentDomain.BaseDirectory;
+                string emailPath = string.Empty;
+                string compPath = string.Empty;
+                string body = string.Empty;
 
-                var emailPath = ConfigurationManager.AppSettings["EmailLoc"];
-                reader = new StreamReader(emailPath);
-                var body = reader.ReadToEnd();
+                if (CardEnums.CardApplicationEmail == emailType)
+                {
+                    emailPath = ConfigurationManager.AppSettings["Template_Application"];
+                    compPath = path + emailPath;
+                    reader = new StreamReader(compPath);
+                    body = reader.ReadToEnd();
+                }
+                else if (CardEnums.CardApprovalEmail == emailType)
+                {
+                    emailPath = ConfigurationManager.AppSettings["Template_Approval"];
+                    compPath = path + emailPath;
+                    reader = new StreamReader(compPath);
+                    body = reader.ReadToEnd();
+                }
+                else if (CardEnums.UserCreation == emailType)
+                {
+                    emailPath = ConfigurationManager.AppSettings["Template_Approval"];
+                    compPath = path + emailPath;
+                    reader = new StreamReader(compPath);
+                    body = reader.ReadToEnd();
+                    body = body.Replace("{UserName}", "");
+                    body = body.Replace("{Password}", "");
+                    body = body.Replace("{Institution}", "");
+                    body = body.Replace("{Url}", "");
 
-                
+                }
+
                 return body;
             }
             catch (Exception ex)
@@ -127,9 +156,9 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
             }
             finally
             {
-                if(reader != null)
-                reader.Dispose();
-            }    
+                if (reader != null)
+                    reader.Dispose();
+            }
 
 
         }

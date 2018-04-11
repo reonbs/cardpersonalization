@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ZenithCardPerso.Web.Filters;
 using ZenithCardRepo.Data.Models;
 using ZenithCardRepo.Services.BLL.Command;
 using ZenithCardRepo.Services.BLL.Query;
@@ -23,12 +24,14 @@ namespace ZenithCardPerso.Web.Controllers
             _legendQueryBLL = legendQueryBLL;
         }
         // GET: Legend
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult Title()
         {
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult Title(TitleCode title)
         {
             try
@@ -56,7 +59,7 @@ namespace ZenithCardPerso.Web.Controllers
             }
             return View();
         }
-
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult Titles()
         {
             try
@@ -71,6 +74,7 @@ namespace ZenithCardPerso.Web.Controllers
             }
 
         }
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult TitleEdit(int ID)
         {
             try
@@ -95,6 +99,7 @@ namespace ZenithCardPerso.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult TitleEdit(TitleCode title)
         {
             try
@@ -113,6 +118,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
         }
 
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult Sexes()
         {
             try
@@ -128,6 +134,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
         }
 
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult SexEdit(int ID)
         {
             try
@@ -149,8 +156,10 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult SexEdit(Sex sex)
         {
             try
@@ -172,10 +181,14 @@ namespace ZenithCardPerso.Web.Controllers
             ModelState.AddModelError("", "Update failed");
             return View(sex);
         }
+
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult AddMaritalStatus()
         {
             return View();
         }
+
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult AddMaritalStatus(MaritalStatus maritalStatus)
         {
             try
@@ -193,6 +206,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
         }
 
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult MaritalStatusEdit(int ID)
         {
             try
@@ -214,8 +228,10 @@ namespace ZenithCardPerso.Web.Controllers
 
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult MaritalStatusEdit(MaritalStatus maritalStatus)
         {
             try
@@ -235,6 +251,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
         }
 
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult MaritalStatusList()
         {
             try
@@ -249,13 +266,17 @@ namespace ZenithCardPerso.Web.Controllers
             }
             return View();
         }
+
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult AddCity()
         {
             return View();
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult AddCity(City city)
         {
             try
@@ -274,6 +295,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View(city);
         }
 
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult CityEdit(int ID)
         {
             try
@@ -297,6 +319,7 @@ namespace ZenithCardPerso.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult CityEdit(City city)
         {
             try
@@ -317,6 +340,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View(city);
         }
 
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult Cities()
         {
             try
@@ -332,11 +356,13 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
         }
 
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult AddState()
         {
             return View();
         }
 
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddState(State state)
@@ -357,6 +383,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View(state);
         }
 
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult StateEdit(int ID)
         {
             try
@@ -378,6 +405,7 @@ namespace ZenithCardPerso.Web.Controllers
 
         }
 
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult StateEdit(State state)
@@ -400,6 +428,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View(state);
         }
 
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult States()
         {
 
@@ -416,6 +445,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
         }
 
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult AddIDCardType()
         {
             return View();
@@ -423,6 +453,7 @@ namespace ZenithCardPerso.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult AddIDCardType(IDCardType idCardType)
         {
             try
@@ -441,6 +472,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View(idCardType);
         }
 
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult IDCardTypeEdit(int ID)
         {
             try
@@ -464,6 +496,7 @@ namespace ZenithCardPerso.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult IDCardTypeEdit(IDCardType idCardType)
         {
             try
@@ -484,6 +517,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View(idCardType);
         }
 
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult IDCardTypes()
         {
             try
@@ -499,13 +533,16 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
         }
 
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult AddSocioProfCode()
         {
             return View();
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult AddSocioProfCode(SocioProfCode socioProfCode)
         {
             try
@@ -524,6 +561,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View(socioProfCode);
         }
 
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult SocioProfCodeEdit(int ID)
         {
             try
@@ -547,6 +585,7 @@ namespace ZenithCardPerso.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult SocioProfCodeEdit(SocioProfCode socioProfCode)
         {
             try
@@ -567,6 +606,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View(socioProfCode);
         }
 
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult SocioProfCodes()
         {
             try
@@ -581,6 +621,8 @@ namespace ZenithCardPerso.Web.Controllers
             }
             return View();
         }
+
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult AddProductCode()
         {
             return View();
@@ -588,6 +630,7 @@ namespace ZenithCardPerso.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult AddProductCode(ProductCode productCode)
         {
             try
@@ -606,6 +649,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View(productCode);
         }
 
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult ProductCodeEdit(int ID)
         {
             try
@@ -629,6 +673,7 @@ namespace ZenithCardPerso.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult ProductCodeEdit(ProductCode productCode)
         {
             try
@@ -649,6 +694,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View(productCode);
         }
 
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult ProductCodes()
         {
             try
@@ -664,6 +710,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
         }
 
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult AddNationalityCode()
         {
             return View();
@@ -671,6 +718,7 @@ namespace ZenithCardPerso.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult AddNationalityCode(NationalityCode nationalityCode)
         {
             try
@@ -689,6 +737,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View(nationalityCode);
         }
 
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult NationalityCodeEdit(int ID)
         {
             try
@@ -712,6 +761,7 @@ namespace ZenithCardPerso.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult NationalityCodeEdit(NationalityCode nationalityCode)
         {
             try
@@ -731,6 +781,8 @@ namespace ZenithCardPerso.Web.Controllers
 
             return View(nationalityCode);
         }
+
+        [ValidateUserPermission(Permissions = "can_modify_legends")]
         public ActionResult NationalityCodes()
         {
             try

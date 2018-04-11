@@ -168,5 +168,11 @@ namespace ZenithCardPerso.Web.Controllers
 
             return View();
         }
+
+        public ActionResult AccessDenied()
+        {
+
+            return View();
+        }
     }
 }

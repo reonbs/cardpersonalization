@@ -28,14 +28,14 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                         <i class="mdi mdi-check-all"></i>
-                        <span>Department was successfully updated</span>
+                        <span>User was successfully updated</span>
                     </div>
                 }
                 @{
                     int i = 0;
                 }
 
-                <table id="tblRegistrations" class="table table-striped table-bordered">
+                <table id="tblUsers" class="table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th>S/N..</th>
@@ -74,5 +74,12 @@
     </div>
 
 
+}
+@section Scripts{
+    <script>
+        $(function () {
+            $('#tblUsers').dataTable();
+        });
+    </script>
 }
 

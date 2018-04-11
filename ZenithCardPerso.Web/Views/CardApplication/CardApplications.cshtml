@@ -107,9 +107,11 @@
 
         }
 
-        <span><button type="submit" name="response" formaction=@Url.Action("DeleteCardApplications") formmethod="post" class="btn btn-primary waves-effect w-md waves-light m-b-5">Delete</button></span>
+        <span><button id="deleteCardsBTN" type="button" class="btn btn-primary waves-effect w-md waves-light m-b-5">Delete</button></span>
+
     </div>
     <button id="requestApprovalSBT" type="submit" name="response" formaction=@Url.Action("CardDownloadApproval") formmethod="post" class="notToShow">Request Approval</button>
+    <button id="deleteCardsSBT" type="submit" name="response" formaction=@Url.Action("DeleteCardApplications") formmethod="post" class="notToShow">Delete</button>
     <div id="commentModal" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -126,7 +128,6 @@
                 <div class="modal-footer">
                     <input id="commentBTN" type=button value="Submit" class="btn btn-primary">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
                 </div>
             </div>
         </div>
@@ -149,7 +150,7 @@
 
                 $('#Institution').on('change', function () {
                     var instID = $(this).val();
-                    $.get('/CardApplication/GetDepartment/?instID=' + instID, function (data) {
+                    $.get("@Url.Action("GetDepartment", "CardApplication")", { instID: instID }, function (data) {//'/CardApplication/GetDepartment/?instID=' + instID
                         $('#Department').empty();
                         $('#Department').append('<option>--Select--</option>');
 
@@ -158,9 +159,16 @@
                         });
                     });
                 });
+                var isSelectedCount = 0;
 
                 $('#requestApprovalBTN').on('click', function () {
-                    $('#commentModal').modal('show');
+
+                    if (isSelectedCount > 0) {
+                        $('#commentModal').modal('show');
+                    } else {
+                        alert("Select card application you want to request approval for");
+                    }
+
 
                 });
 
@@ -175,7 +183,24 @@
                     }
                 });
 
-                //$("#tblSearcResults").dataTable();
+                $('#deleteCardsBTN').click(function () {
+                    if (isSelectedCount > 0) {
+                        if (confirm("Are you sure you want to delete?")) {
+                            $('#deleteCardsSBT').click();
+                        }
+                    } else {
+                        alert("Select card application you want to delete");
+                    }
+
+                });
+
+                $("input[id$=IsSelected]").on("change", function () {
+                    if ($(this).is(":checked")) {
+                        isSelectedCount += 1;;
+                    } else {
+                        isSelectedCount -= 1;
+                    }
+                });
             });
         </script>
     }

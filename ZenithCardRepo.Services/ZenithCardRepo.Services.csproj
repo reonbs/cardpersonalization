@@ -79,6 +79,7 @@
     <Compile Include="BLL\Command\ManageUserCMDBLL.cs" />
     <Compile Include="BLL\Command\OrganisationCmdBLL.cs" />
     <Compile Include="BLL\Command\PermissionCMDBLL.cs" />
+    <Compile Include="BLL\Infrastructure\CardEnums.cs" />
     <Compile Include="BLL\Infrastructure\IAutoDependencyRegister.cs" />
     <Compile Include="BLL\Infrastructure\PermissionDBO.cs" />
     <Compile Include="BLL\Query\ApprovalQueryBLL.cs" />
