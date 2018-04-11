@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ZenithCardRepo.Data.Models.ProcessedCard>
+@{
+    ViewBag.Title = "ProcessedCard";
+}
+
+<hr />
+@using (Html.BeginForm())
+{
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box table-responsive">
+                @if (TempData["Message"] as string == "Success")
+                {
+                    <div class="alert alert-icon alert-success alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <i class="mdi mdi-check-all"></i>
+                        @*<span>Card Application Download was successful <a href="@Url.Action("ViewProcessedCards","CardApplication")">Click to view downloads</a></span>*@
+                    </div>
+                }
+                @{
+                    var cardApps = Model?.ToList();
+                }
+
+                <table id="tblSearcResults" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Bath Number</th>
+                            <th>FileToDownload</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (Model?.ToList().Count > 0)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(x => item.BatchNo)</td>
+                                    <td><a href="@item.DownloadLink" download>Click to view downloads</a></td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="2" style="text-align:center;">No processed card</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+

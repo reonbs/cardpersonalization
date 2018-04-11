@@ -13,9 +13,11 @@ namespace ZenithCardRepo.Services.BLL.Query
     public class CardApplicationQueryBLL : ICardApplicationQueryBLL
     {
         private IQueryRepository<CardApplication> _cardAppRepo;
-        public CardApplicationQueryBLL(IQueryRepository<CardApplication> cardAppRepo)
+        private IQueryRepository<ProcessedCard> _processedCardRepo;
+        public CardApplicationQueryBLL(IQueryRepository<CardApplication> cardAppRepo, IQueryRepository<ProcessedCard> processedCardRepo)
         {
             _cardAppRepo = cardAppRepo;
+            _processedCardRepo = processedCardRepo;
         }
 
         public IEnumerable<CardApplicationsDTO> CardApplicationSearch(CardAppViewModel cardAppVM)
@@ -121,6 +123,11 @@ namespace ZenithCardRepo.Services.BLL.Query
                 return new List<CardApplicationsDTO> { };
             }
             
+        }
+
+        public List<ProcessedCard> GetProcessedCard()
+        {
+            return _processedCardRepo.GetAll().ToList();
         }
     }
 }

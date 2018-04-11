@@ -23,7 +23,8 @@ namespace ZenithCardRepo.Services.BLL.Query
         CardApplicationsDTO GetCardApplication(int ID);
 
         List<CardApplicationsDTO> GetCardApplicationsByIDs(List<int> cardAPPIds);
-        
+
+        List<ProcessedCard> GetProcessedCard();
 
     }
 }

@@ -16,7 +16,7 @@ namespace ZenithCardRepo.Services.BLL.Command
         void UpdateCardApplication(CardApplicationsDTO cardApplicationDTO, string ImageByte, string saveLocation, string instCode);
         List<string> ImageBase64String(string base64Str);
 
-        Task<string> UpdateBatchNo(List<CardApplicationsDTO> cardAppsList);
+        Task<string> UpdateBatchNo(string downloadLink,List<CardApplicationsDTO> cardAppsList);
 
         void CardApplicationEdit(CardApplication cardApplication);
 

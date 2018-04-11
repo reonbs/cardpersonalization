@@ -15,18 +15,21 @@ namespace ZenithCardRepo.Services.BLL.Command
     public class CardApplicationCmdBLL : ICardApplicationCmdBLL
     {
         private ICommandRepository<CardApplication> _CardAppRepo;
+        private ICommandRepository<ProcessedCard> _processedCardRepo;
         private IQueryRepository<CardApplication> _queryAppRepo;
         private IImageService _imageService;
 
         public CardApplicationCmdBLL(
             ICommandRepository<CardApplication> CardAppRepo,
             IQueryRepository<CardApplication> queryAppRepo,
-            IImageService imageService
+            IImageService imageService,
+            ICommandRepository<ProcessedCard> processedCardRepo
             )
         {
             _CardAppRepo = CardAppRepo;
             _queryAppRepo = queryAppRepo;
             _imageService = imageService;
+            _processedCardRepo = processedCardRepo;
         }
         public void AddCardApplication(CardApplicationsDTO cardApplicationDTO, string ImageByte, string saveLocation, string instCode)
         {
@@ -100,15 +103,28 @@ namespace ZenithCardRepo.Services.BLL.Command
             return res;
         }
 
-        public async Task<string> UpdateBatchNo(List<CardApplicationsDTO> cardAppsList)
+        public async Task<string> UpdateBatchNo(string downloadLink, List<CardApplicationsDTO> cardAppsList)
         {
             var cardApplication = cardAppsList.Select(CardApplicationsDTO.GetModelFromDTO);
+            var batchNumber = GenerateBatchNo("8");
+
             foreach (var cardApp in cardApplication)
             {
-                cardApp.ProcessedBatchNo = GenerateBatchNo("8");
-                _CardAppRepo.Update(cardApp);
-                await _CardAppRepo.SaveAync();
+                var application = _queryAppRepo.GetBy(x => x.ID == cardApp.ID).FirstOrDefault();
+                application.ProcessedBatchNo = batchNumber;
+                //cardApp.ProcessedBatchNo = batchNumber;
+                _CardAppRepo.Update(application);
+                
             }
+
+            var processedCard = new ProcessedCard
+            {
+                BatchNo = batchNumber,
+                DownloadLink = downloadLink
+            };
+            _processedCardRepo.Insert(processedCard);
+
+            await _CardAppRepo.SaveAync();
 
             return "";
         }

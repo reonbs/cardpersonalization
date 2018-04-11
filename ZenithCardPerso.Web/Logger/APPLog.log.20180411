@@ -50,3 +50,461 @@
 2018-04-11 11:48:55,351 DEBUG [Worker #1d8a63d8] ?.CallSite.Target - Background process 'Worker #1d8a63d8' started.
 2018-04-11 11:48:55,400 DEBUG [DelayedJobScheduler] ?.CallSite.Target - Background process 'DelayedJobScheduler' started.
 2018-04-11 11:48:55,484 DEBUG [RecurringJobScheduler] ?.CallSite.Target - Background process 'RecurringJobScheduler' started.
+2018-04-11 15:16:31,070 INFO [1] ZenithCardPerso.Web.MvcApplication.Application_Start -  <<<< Staring ::: Zentih Card APP checking Startup Config Setting @ : 04/11/2018 15:16:31 >>>>>>
+2018-04-11 15:16:32,353 INFO [1] ZenithCardPerso.Web.MvcApplication.Application_Start -  <<<< Ending ::: Zentih Card APP Startup Config Setting ok @ : 04/11/2018 15:16:32 >>>>>>
+2018-04-11 15:16:32,670 INFO [1] ?.CallSite.Target - Start installing Hangfire SQL objects...
+2018-04-11 15:16:32,849 INFO [1] ?.CallSite.Target - Hangfire SQL objects installed.
+2018-04-11 15:16:33,152 INFO [1] ?.CallSite.Target - Starting Hangfire Server
+2018-04-11 15:16:33,157 INFO [1] ?.CallSite.Target - Using job storage: 'SQL Server: CYB310-SOFT-01\SQLSERVER2012@ZenithCardPersoDB'
+2018-04-11 15:16:33,158 INFO [1] ?.CallSite.Target - Using the following options for SQL Server job storage:
+2018-04-11 15:16:33,158 INFO [1] ?.CallSite.Target -     Queue poll interval: 00:00:15.
+2018-04-11 15:16:33,158 INFO [1] ?.CallSite.Target - Using the following options for Hangfire Server:
+2018-04-11 15:16:33,158 INFO [1] ?.CallSite.Target -     Worker count: 20
+2018-04-11 15:16:33,159 INFO [1] ?.CallSite.Target -     Listening queues: 'default'
+2018-04-11 15:16:33,159 INFO [1] ?.CallSite.Target -     Shutdown timeout: 00:00:15
+2018-04-11 15:16:33,159 INFO [1] ?.CallSite.Target -     Schedule polling interval: 00:00:15
+2018-04-11 15:16:33,183 DEBUG [BackgroundProcessingServer] ?.CallSite.Target - Background process 'BackgroundProcessingServer' started.
+2018-04-11 15:16:33,362 DEBUG [ServerHeartbeat] ?.CallSite.Target - Background process 'ServerHeartbeat' started.
+2018-04-11 15:16:33,366 DEBUG [ServerWatchdog] ?.CallSite.Target - Background process 'ServerWatchdog' started.
+2018-04-11 15:16:33,378 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Background process 'Hangfire.SqlServer.ExpirationManager' started.
+2018-04-11 15:16:33,388 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'AggregatedCounter' table...
+2018-04-11 15:16:33,391 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Background process 'Hangfire.SqlServer.CountersAggregator' started.
+2018-04-11 15:16:33,414 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 15:16:33,424 DEBUG [Worker #bb86c665] ?.CallSite.Target - Background process 'Worker #bb86c665' started.
+2018-04-11 15:16:33,459 DEBUG [Worker #1d3c51eb] ?.CallSite.Target - Background process 'Worker #1d3c51eb' started.
+2018-04-11 15:16:33,460 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 15:16:33,467 DEBUG [Worker #5f04f14d] ?.CallSite.Target - Background process 'Worker #5f04f14d' started.
+2018-04-11 15:16:33,556 DEBUG [Worker #be85e5c4] ?.CallSite.Target - Background process 'Worker #be85e5c4' started.
+2018-04-11 15:16:33,557 DEBUG [Worker #e7de045e] ?.CallSite.Target - Background process 'Worker #e7de045e' started.
+2018-04-11 15:16:33,558 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'AggregatedCounter' table.
+2018-04-11 15:16:33,559 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Job' table...
+2018-04-11 15:16:33,652 DEBUG [Worker #989b8947] ?.CallSite.Target - Background process 'Worker #989b8947' started.
+2018-04-11 15:16:33,697 DEBUG [Worker #643a0150] ?.CallSite.Target - Background process 'Worker #643a0150' started.
+2018-04-11 15:16:33,770 DEBUG [Worker #dc89f90e] ?.CallSite.Target - Background process 'Worker #dc89f90e' started.
+2018-04-11 15:16:33,848 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Job' table.
+2018-04-11 15:16:33,849 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'List' table...
+2018-04-11 15:16:33,850 DEBUG [Worker #31506d29] ?.CallSite.Target - Background process 'Worker #31506d29' started.
+2018-04-11 15:16:33,853 DEBUG [Worker #9c9decd6] ?.CallSite.Target - Background process 'Worker #9c9decd6' started.
+2018-04-11 15:16:33,915 DEBUG [Worker #25df0045] ?.CallSite.Target - Background process 'Worker #25df0045' started.
+2018-04-11 15:16:33,917 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'List' table.
+2018-04-11 15:16:33,917 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Set' table...
+2018-04-11 15:16:33,976 DEBUG [Worker #d4d6c78c] ?.CallSite.Target - Background process 'Worker #d4d6c78c' started.
+2018-04-11 15:16:33,987 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Set' table.
+2018-04-11 15:16:33,987 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Hash' table...
+2018-04-11 15:16:33,992 DEBUG [Worker #e8ad31ec] ?.CallSite.Target - Background process 'Worker #e8ad31ec' started.
+2018-04-11 15:16:34,065 DEBUG [Worker #e1707a99] ?.CallSite.Target - Background process 'Worker #e1707a99' started.
+2018-04-11 15:16:34,073 DEBUG [Worker #d798a582] ?.CallSite.Target - Background process 'Worker #d798a582' started.
+2018-04-11 15:16:34,095 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Hash' table.
+2018-04-11 15:16:34,095 DEBUG [Worker #f7a6c6aa] ?.CallSite.Target - Background process 'Worker #f7a6c6aa' started.
+2018-04-11 15:16:34,104 DEBUG [Worker #955503af] ?.CallSite.Target - Background process 'Worker #955503af' started.
+2018-04-11 15:16:34,122 DEBUG [Worker #1766060c] ?.CallSite.Target - Background process 'Worker #1766060c' started.
+2018-04-11 15:16:34,122 DEBUG [Worker #3d5ff1b4] ?.CallSite.Target - Background process 'Worker #3d5ff1b4' started.
+2018-04-11 15:16:34,159 DEBUG [Worker #d64fbf90] ?.CallSite.Target - Background process 'Worker #d64fbf90' started.
+2018-04-11 15:16:34,193 DEBUG [DelayedJobScheduler] ?.CallSite.Target - Background process 'DelayedJobScheduler' started.
+2018-04-11 15:16:34,222 DEBUG [RecurringJobScheduler] ?.CallSite.Target - Background process 'RecurringJobScheduler' started.
+2018-04-11 15:20:11,516 ERROR [8] ZenithCardPerso.Web.Controllers.CardApplicationController+<CardApplicationCreate>d__11.MoveNext - System.Net.Http.HttpRequestException: An error occurred while sending the request. ---> System.Net.WebException: The remote name could not be resolved: 'api.sendgrid.com'
+   at System.Net.HttpWebRequest.EndGetRequestStream(IAsyncResult asyncResult, TransportContext& context)
+   at System.Net.Http.HttpClientHandler.GetRequestStreamCallback(IAsyncResult ar)
+   --- End of inner exception stack trace ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at SendGrid.Helpers.Reliability.RetryDelegatingHandler.<SendAsync>d__4.MoveNext() in C:\Users\ethomas\Documents\GitHub\sendgrid-csharp\src\SendGrid\Reliability\RetryDelegatingHandler.cs:line 50
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at SendGrid.SendGridClient.<MakeRequest>d__23.MoveNext() in C:\Users\ethomas\Documents\GitHub\sendgrid-csharp\src\SendGrid\SendGridClient.cs:line 250
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at SendGrid.SendGridClient.<RequestAsync>d__24.MoveNext() in C:\Users\ethomas\Documents\GitHub\sendgrid-csharp\src\SendGrid\SendGridClient.cs:line 290
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at SendGrid.SendGridClient.<SendEmailAsync>d__25.MoveNext() in C:\Users\ethomas\Documents\GitHub\sendgrid-csharp\src\SendGrid\SendGridClient.cs:line 301
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at ZenithCardRepo.Services.BLL.Infrastructure.Utilities.<ExecuteEmail>d__11.MoveNext() in C:\CardPeronalization\ZenithCardPersoSoln\ZenithCardRepo.Services\BLL\Infrastructure\Utilities.cs:line 107
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at ZenithCardPerso.Web.Controllers.CardApplicationController.<CardApplicationCreate>d__11.MoveNext() in C:\CardPeronalization\ZenithCardPersoSoln\ZenithCardPerso.Web\Controllers\CardApplicationController.cs:line 120
+2018-04-11 15:21:33,460 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 15:21:33,468 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 15:26:33,468 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 15:26:33,477 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 15:31:33,485 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 15:31:33,497 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 15:36:33,505 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 15:36:33,513 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 15:41:33,519 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 15:41:33,527 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 15:46:33,529 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 15:46:33,550 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 15:46:34,096 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'AggregatedCounter' table...
+2018-04-11 15:46:34,116 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'AggregatedCounter' table.
+2018-04-11 15:46:34,116 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Job' table...
+2018-04-11 15:46:34,135 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Job' table.
+2018-04-11 15:46:34,135 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'List' table...
+2018-04-11 15:46:34,155 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'List' table.
+2018-04-11 15:46:34,155 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Set' table...
+2018-04-11 15:46:34,177 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Set' table.
+2018-04-11 15:46:34,178 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Hash' table...
+2018-04-11 15:46:34,198 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Hash' table.
+2018-04-11 16:14:50,432 INFO [1] ZenithCardPerso.Web.MvcApplication.Application_Start -  <<<< Staring ::: Zentih Card APP checking Startup Config Setting @ : 04/11/2018 16:14:50 >>>>>>
+2018-04-11 16:14:51,174 INFO [1] ZenithCardPerso.Web.MvcApplication.Application_Start -  <<<< Ending ::: Zentih Card APP Startup Config Setting ok @ : 04/11/2018 16:14:51 >>>>>>
+2018-04-11 16:14:52,102 INFO [1] ?.CallSite.Target - Start installing Hangfire SQL objects...
+2018-04-11 16:14:52,338 INFO [1] ?.CallSite.Target - Hangfire SQL objects installed.
+2018-04-11 16:14:52,454 INFO [1] ?.CallSite.Target - Starting Hangfire Server
+2018-04-11 16:14:52,457 INFO [1] ?.CallSite.Target - Using job storage: 'SQL Server: CYB310-SOFT-01\SQLSERVER2012@ZenithCardPersoDB'
+2018-04-11 16:14:52,458 INFO [1] ?.CallSite.Target - Using the following options for SQL Server job storage:
+2018-04-11 16:14:52,458 INFO [1] ?.CallSite.Target -     Queue poll interval: 00:00:15.
+2018-04-11 16:14:52,458 INFO [1] ?.CallSite.Target - Using the following options for Hangfire Server:
+2018-04-11 16:14:52,458 INFO [1] ?.CallSite.Target -     Worker count: 20
+2018-04-11 16:14:52,459 INFO [1] ?.CallSite.Target -     Listening queues: 'default'
+2018-04-11 16:14:52,459 INFO [1] ?.CallSite.Target -     Shutdown timeout: 00:00:15
+2018-04-11 16:14:52,459 INFO [1] ?.CallSite.Target -     Schedule polling interval: 00:00:15
+2018-04-11 16:14:52,475 DEBUG [BackgroundProcessingServer] ?.CallSite.Target - Background process 'BackgroundProcessingServer' started.
+2018-04-11 16:14:52,722 DEBUG [ServerHeartbeat] ?.CallSite.Target - Background process 'ServerHeartbeat' started.
+2018-04-11 16:14:52,756 DEBUG [ServerWatchdog] ?.CallSite.Target - Background process 'ServerWatchdog' started.
+2018-04-11 16:14:52,757 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Background process 'Hangfire.SqlServer.ExpirationManager' started.
+2018-04-11 16:14:52,759 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'AggregatedCounter' table...
+2018-04-11 16:14:52,766 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Background process 'Hangfire.SqlServer.CountersAggregator' started.
+2018-04-11 16:14:52,820 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 16:14:52,823 INFO [ServerWatchdog] ?.CallSite.Target - 1 servers were removed due to timeout
+2018-04-11 16:14:52,823 DEBUG [Worker #f930cd64] ?.CallSite.Target - Background process 'Worker #f930cd64' started.
+2018-04-11 16:14:52,865 DEBUG [Worker #a975ea34] ?.CallSite.Target - Background process 'Worker #a975ea34' started.
+2018-04-11 16:14:52,893 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 16:14:52,904 DEBUG [Worker #b3b222ee] ?.CallSite.Target - Background process 'Worker #b3b222ee' started.
+2018-04-11 16:14:52,946 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'AggregatedCounter' table.
+2018-04-11 16:14:52,947 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Job' table...
+2018-04-11 16:14:52,982 DEBUG [Worker #ceb0d5dd] ?.CallSite.Target - Background process 'Worker #ceb0d5dd' started.
+2018-04-11 16:14:53,076 DEBUG [Worker #3590d954] ?.CallSite.Target - Background process 'Worker #3590d954' started.
+2018-04-11 16:14:53,076 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Job' table.
+2018-04-11 16:14:53,098 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'List' table...
+2018-04-11 16:14:53,121 DEBUG [Worker #c2664934] ?.CallSite.Target - Background process 'Worker #c2664934' started.
+2018-04-11 16:14:53,177 DEBUG [Worker #587727b0] ?.CallSite.Target - Background process 'Worker #587727b0' started.
+2018-04-11 16:14:53,237 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'List' table.
+2018-04-11 16:14:53,238 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Set' table...
+2018-04-11 16:14:53,237 DEBUG [Worker #927aa223] ?.CallSite.Target - Background process 'Worker #927aa223' started.
+2018-04-11 16:14:53,298 DEBUG [Worker #be15c294] ?.CallSite.Target - Background process 'Worker #be15c294' started.
+2018-04-11 16:14:53,343 DEBUG [Worker #5a2db42e] ?.CallSite.Target - Background process 'Worker #5a2db42e' started.
+2018-04-11 16:14:53,387 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Set' table.
+2018-04-11 16:14:53,389 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Hash' table...
+2018-04-11 16:14:53,392 DEBUG [Worker #2a66db64] ?.CallSite.Target - Background process 'Worker #2a66db64' started.
+2018-04-11 16:14:53,400 DEBUG [Worker #38a62779] ?.CallSite.Target - Background process 'Worker #38a62779' started.
+2018-04-11 16:14:53,436 DEBUG [Worker #f20a2591] ?.CallSite.Target - Background process 'Worker #f20a2591' started.
+2018-04-11 16:14:53,454 DEBUG [Worker #ed235bfc] ?.CallSite.Target - Background process 'Worker #ed235bfc' started.
+2018-04-11 16:14:53,465 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Hash' table.
+2018-04-11 16:14:53,471 DEBUG [Worker #7322c768] ?.CallSite.Target - Background process 'Worker #7322c768' started.
+2018-04-11 16:14:53,513 DEBUG [Worker #d514eb42] ?.CallSite.Target - Background process 'Worker #d514eb42' started.
+2018-04-11 16:14:53,547 DEBUG [Worker #e4413e73] ?.CallSite.Target - Background process 'Worker #e4413e73' started.
+2018-04-11 16:14:53,573 DEBUG [Worker #6fcbfdfd] ?.CallSite.Target - Background process 'Worker #6fcbfdfd' started.
+2018-04-11 16:14:53,582 DEBUG [Worker #6c51391e] ?.CallSite.Target - Background process 'Worker #6c51391e' started.
+2018-04-11 16:14:53,678 DEBUG [Worker #9019bb26] ?.CallSite.Target - Background process 'Worker #9019bb26' started.
+2018-04-11 16:14:53,690 DEBUG [DelayedJobScheduler] ?.CallSite.Target - Background process 'DelayedJobScheduler' started.
+2018-04-11 16:14:53,759 DEBUG [RecurringJobScheduler] ?.CallSite.Target - Background process 'RecurringJobScheduler' started.
+2018-04-11 16:19:52,895 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 16:19:52,904 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 16:26:59,196 INFO [1] ZenithCardPerso.Web.MvcApplication.Application_Start -  <<<< Staring ::: Zentih Card APP checking Startup Config Setting @ : 04/11/2018 16:26:59 >>>>>>
+2018-04-11 16:26:59,927 INFO [1] ZenithCardPerso.Web.MvcApplication.Application_Start -  <<<< Ending ::: Zentih Card APP Startup Config Setting ok @ : 04/11/2018 16:26:59 >>>>>>
+2018-04-11 16:27:00,079 INFO [1] ?.CallSite.Target - Start installing Hangfire SQL objects...
+2018-04-11 16:27:00,142 INFO [1] ?.CallSite.Target - Hangfire SQL objects installed.
+2018-04-11 16:27:00,165 INFO [1] ?.CallSite.Target - Starting Hangfire Server
+2018-04-11 16:27:00,168 INFO [1] ?.CallSite.Target - Using job storage: 'SQL Server: CYB310-SOFT-01\SQLSERVER2012@ZenithCardPersoDB'
+2018-04-11 16:27:00,168 INFO [1] ?.CallSite.Target - Using the following options for SQL Server job storage:
+2018-04-11 16:27:00,168 INFO [1] ?.CallSite.Target -     Queue poll interval: 00:00:15.
+2018-04-11 16:27:00,168 INFO [1] ?.CallSite.Target - Using the following options for Hangfire Server:
+2018-04-11 16:27:00,168 INFO [1] ?.CallSite.Target -     Worker count: 20
+2018-04-11 16:27:00,169 INFO [1] ?.CallSite.Target -     Listening queues: 'default'
+2018-04-11 16:27:00,169 INFO [1] ?.CallSite.Target -     Shutdown timeout: 00:00:15
+2018-04-11 16:27:00,169 INFO [1] ?.CallSite.Target -     Schedule polling interval: 00:00:15
+2018-04-11 16:27:00,182 DEBUG [BackgroundProcessingServer] ?.CallSite.Target - Background process 'BackgroundProcessingServer' started.
+2018-04-11 16:27:00,371 DEBUG [ServerHeartbeat] ?.CallSite.Target - Background process 'ServerHeartbeat' started.
+2018-04-11 16:27:00,381 DEBUG [ServerWatchdog] ?.CallSite.Target - Background process 'ServerWatchdog' started.
+2018-04-11 16:27:00,431 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Background process 'Hangfire.SqlServer.ExpirationManager' started.
+2018-04-11 16:27:00,432 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Background process 'Hangfire.SqlServer.CountersAggregator' started.
+2018-04-11 16:27:00,434 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'AggregatedCounter' table...
+2018-04-11 16:27:00,442 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 16:27:00,473 DEBUG [Worker #159676b8] ?.CallSite.Target - Background process 'Worker #159676b8' started.
+2018-04-11 16:27:00,516 DEBUG [Worker #071500d1] ?.CallSite.Target - Background process 'Worker #071500d1' started.
+2018-04-11 16:27:00,521 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 16:27:00,558 DEBUG [Worker #0cd63c6f] ?.CallSite.Target - Background process 'Worker #0cd63c6f' started.
+2018-04-11 16:27:00,612 DEBUG [Worker #320d2286] ?.CallSite.Target - Background process 'Worker #320d2286' started.
+2018-04-11 16:27:00,613 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'AggregatedCounter' table.
+2018-04-11 16:27:00,613 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Job' table...
+2018-04-11 16:27:00,648 DEBUG [Worker #7656069f] ?.CallSite.Target - Background process 'Worker #7656069f' started.
+2018-04-11 16:27:00,649 DEBUG [Worker #1026cc49] ?.CallSite.Target - Background process 'Worker #1026cc49' started.
+2018-04-11 16:27:00,759 DEBUG [Worker #1b984f97] ?.CallSite.Target - Background process 'Worker #1b984f97' started.
+2018-04-11 16:27:00,767 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Job' table.
+2018-04-11 16:27:00,767 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'List' table...
+2018-04-11 16:27:00,814 DEBUG [Worker #2cdfa5cf] ?.CallSite.Target - Background process 'Worker #2cdfa5cf' started.
+2018-04-11 16:27:00,831 DEBUG [Worker #87442e57] ?.CallSite.Target - Background process 'Worker #87442e57' started.
+2018-04-11 16:27:00,871 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'List' table.
+2018-04-11 16:27:00,872 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Set' table...
+2018-04-11 16:27:00,902 DEBUG [Worker #65f89d1d] ?.CallSite.Target - Background process 'Worker #65f89d1d' started.
+2018-04-11 16:27:00,910 DEBUG [Worker #d0fa4595] ?.CallSite.Target - Background process 'Worker #d0fa4595' started.
+2018-04-11 16:27:00,947 DEBUG [Worker #86d489b7] ?.CallSite.Target - Background process 'Worker #86d489b7' started.
+2018-04-11 16:27:00,989 DEBUG [Worker #190c4453] ?.CallSite.Target - Background process 'Worker #190c4453' started.
+2018-04-11 16:27:01,028 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Set' table.
+2018-04-11 16:27:01,029 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Hash' table...
+2018-04-11 16:27:01,029 DEBUG [Worker #9a3cd65e] ?.CallSite.Target - Background process 'Worker #9a3cd65e' started.
+2018-04-11 16:27:01,098 DEBUG [Worker #9b554d66] ?.CallSite.Target - Background process 'Worker #9b554d66' started.
+2018-04-11 16:27:01,117 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Hash' table.
+2018-04-11 16:27:01,121 DEBUG [Worker #692970e9] ?.CallSite.Target - Background process 'Worker #692970e9' started.
+2018-04-11 16:27:01,127 DEBUG [Worker #ca7b56a4] ?.CallSite.Target - Background process 'Worker #ca7b56a4' started.
+2018-04-11 16:27:01,135 DEBUG [Worker #b5d634a8] ?.CallSite.Target - Background process 'Worker #b5d634a8' started.
+2018-04-11 16:27:01,164 DEBUG [Worker #31a73a2f] ?.CallSite.Target - Background process 'Worker #31a73a2f' started.
+2018-04-11 16:27:01,201 DEBUG [Worker #3033a722] ?.CallSite.Target - Background process 'Worker #3033a722' started.
+2018-04-11 16:27:01,224 DEBUG [DelayedJobScheduler] ?.CallSite.Target - Background process 'DelayedJobScheduler' started.
+2018-04-11 16:27:01,251 DEBUG [RecurringJobScheduler] ?.CallSite.Target - Background process 'RecurringJobScheduler' started.
+2018-04-11 16:32:00,491 INFO [ServerWatchdog] ?.CallSite.Target - 1 servers were removed due to timeout
+2018-04-11 16:32:00,528 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 16:32:00,539 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 16:37:00,542 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 16:37:00,550 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 16:42:00,551 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 16:42:00,565 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 16:47:00,570 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 16:47:00,579 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 16:52:00,583 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 16:52:00,594 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 17:23:22,910 INFO [1] ZenithCardPerso.Web.MvcApplication.Application_Start -  <<<< Staring ::: Zentih Card APP checking Startup Config Setting @ : 04/11/2018 17:23:22 >>>>>>
+2018-04-11 17:23:23,544 INFO [1] ZenithCardPerso.Web.MvcApplication.Application_Start -  <<<< Ending ::: Zentih Card APP Startup Config Setting ok @ : 04/11/2018 17:23:23 >>>>>>
+2018-04-11 17:23:23,759 INFO [1] ?.CallSite.Target - Start installing Hangfire SQL objects...
+2018-04-11 17:23:23,865 INFO [1] ?.CallSite.Target - Hangfire SQL objects installed.
+2018-04-11 17:23:23,928 INFO [1] ?.CallSite.Target - Starting Hangfire Server
+2018-04-11 17:23:23,931 INFO [1] ?.CallSite.Target - Using job storage: 'SQL Server: CYB310-SOFT-01\SQLSERVER2012@ZenithCardPersoDB'
+2018-04-11 17:23:23,932 INFO [1] ?.CallSite.Target - Using the following options for SQL Server job storage:
+2018-04-11 17:23:23,932 INFO [1] ?.CallSite.Target -     Queue poll interval: 00:00:15.
+2018-04-11 17:23:23,932 INFO [1] ?.CallSite.Target - Using the following options for Hangfire Server:
+2018-04-11 17:23:23,932 INFO [1] ?.CallSite.Target -     Worker count: 20
+2018-04-11 17:23:23,932 INFO [1] ?.CallSite.Target -     Listening queues: 'default'
+2018-04-11 17:23:23,933 INFO [1] ?.CallSite.Target -     Shutdown timeout: 00:00:15
+2018-04-11 17:23:23,933 INFO [1] ?.CallSite.Target -     Schedule polling interval: 00:00:15
+2018-04-11 17:23:23,948 DEBUG [BackgroundProcessingServer] ?.CallSite.Target - Background process 'BackgroundProcessingServer' started.
+2018-04-11 17:23:24,114 DEBUG [ServerHeartbeat] ?.CallSite.Target - Background process 'ServerHeartbeat' started.
+2018-04-11 17:23:24,121 DEBUG [ServerWatchdog] ?.CallSite.Target - Background process 'ServerWatchdog' started.
+2018-04-11 17:23:24,154 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Background process 'Hangfire.SqlServer.ExpirationManager' started.
+2018-04-11 17:23:24,161 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'AggregatedCounter' table...
+2018-04-11 17:23:24,170 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Background process 'Hangfire.SqlServer.CountersAggregator' started.
+2018-04-11 17:23:24,174 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 17:23:24,180 DEBUG [Worker #686b708c] ?.CallSite.Target - Background process 'Worker #686b708c' started.
+2018-04-11 17:23:24,181 INFO [ServerWatchdog] ?.CallSite.Target - 1 servers were removed due to timeout
+2018-04-11 17:23:24,196 DEBUG [Worker #ebc8924f] ?.CallSite.Target - Background process 'Worker #ebc8924f' started.
+2018-04-11 17:23:24,259 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 17:23:24,272 DEBUG [Worker #dfc72ac9] ?.CallSite.Target - Background process 'Worker #dfc72ac9' started.
+2018-04-11 17:23:24,339 DEBUG [Worker #eecd26fd] ?.CallSite.Target - Background process 'Worker #eecd26fd' started.
+2018-04-11 17:23:24,367 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'AggregatedCounter' table.
+2018-04-11 17:23:24,367 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Job' table...
+2018-04-11 17:23:24,408 DEBUG [Worker #ae109106] ?.CallSite.Target - Background process 'Worker #ae109106' started.
+2018-04-11 17:23:24,458 DEBUG [Worker #710ea69f] ?.CallSite.Target - Background process 'Worker #710ea69f' started.
+2018-04-11 17:23:24,535 DEBUG [Worker #696735bf] ?.CallSite.Target - Background process 'Worker #696735bf' started.
+2018-04-11 17:23:24,537 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Job' table.
+2018-04-11 17:23:24,542 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'List' table...
+2018-04-11 17:23:24,582 DEBUG [Worker #b4969371] ?.CallSite.Target - Background process 'Worker #b4969371' started.
+2018-04-11 17:23:24,637 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'List' table.
+2018-04-11 17:23:24,637 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Set' table...
+2018-04-11 17:23:24,637 DEBUG [Worker #1839d8c4] ?.CallSite.Target - Background process 'Worker #1839d8c4' started.
+2018-04-11 17:23:24,670 DEBUG [Worker #f3bcdf29] ?.CallSite.Target - Background process 'Worker #f3bcdf29' started.
+2018-04-11 17:23:24,749 DEBUG [Worker #3ffe4f53] ?.CallSite.Target - Background process 'Worker #3ffe4f53' started.
+2018-04-11 17:23:24,790 DEBUG [Worker #3af707d8] ?.CallSite.Target - Background process 'Worker #3af707d8' started.
+2018-04-11 17:23:24,853 DEBUG [Worker #c4db5295] ?.CallSite.Target - Background process 'Worker #c4db5295' started.
+2018-04-11 17:23:24,855 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Set' table.
+2018-04-11 17:23:24,855 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Hash' table...
+2018-04-11 17:23:24,889 DEBUG [Worker #41ccb08c] ?.CallSite.Target - Background process 'Worker #41ccb08c' started.
+2018-04-11 17:23:24,901 DEBUG [Worker #4b52cb9e] ?.CallSite.Target - Background process 'Worker #4b52cb9e' started.
+2018-04-11 17:23:24,949 DEBUG [Worker #ef0ea346] ?.CallSite.Target - Background process 'Worker #ef0ea346' started.
+2018-04-11 17:23:25,007 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Hash' table.
+2018-04-11 17:23:25,008 DEBUG [Worker #49899ad9] ?.CallSite.Target - Background process 'Worker #49899ad9' started.
+2018-04-11 17:23:25,044 DEBUG [Worker #475d7730] ?.CallSite.Target - Background process 'Worker #475d7730' started.
+2018-04-11 17:23:25,057 DEBUG [Worker #90f1bc04] ?.CallSite.Target - Background process 'Worker #90f1bc04' started.
+2018-04-11 17:23:25,091 DEBUG [Worker #ea70b8ce] ?.CallSite.Target - Background process 'Worker #ea70b8ce' started.
+2018-04-11 17:23:25,097 DEBUG [DelayedJobScheduler] ?.CallSite.Target - Background process 'DelayedJobScheduler' started.
+2018-04-11 17:23:25,142 DEBUG [RecurringJobScheduler] ?.CallSite.Target - Background process 'RecurringJobScheduler' started.
+2018-04-11 17:25:26,959 INFO [1] ZenithCardPerso.Web.MvcApplication.Application_Start -  <<<< Staring ::: Zentih Card APP checking Startup Config Setting @ : 04/11/2018 17:25:26 >>>>>>
+2018-04-11 17:25:27,568 INFO [1] ZenithCardPerso.Web.MvcApplication.Application_Start -  <<<< Ending ::: Zentih Card APP Startup Config Setting ok @ : 04/11/2018 17:25:27 >>>>>>
+2018-04-11 17:25:27,727 INFO [1] ?.CallSite.Target - Start installing Hangfire SQL objects...
+2018-04-11 17:25:27,791 INFO [1] ?.CallSite.Target - Hangfire SQL objects installed.
+2018-04-11 17:25:27,832 INFO [1] ?.CallSite.Target - Starting Hangfire Server
+2018-04-11 17:25:27,834 INFO [1] ?.CallSite.Target - Using job storage: 'SQL Server: CYB310-SOFT-01\SQLSERVER2012@ZenithCardPersoDB'
+2018-04-11 17:25:27,835 INFO [1] ?.CallSite.Target - Using the following options for SQL Server job storage:
+2018-04-11 17:25:27,835 INFO [1] ?.CallSite.Target -     Queue poll interval: 00:00:15.
+2018-04-11 17:25:27,835 INFO [1] ?.CallSite.Target - Using the following options for Hangfire Server:
+2018-04-11 17:25:27,835 INFO [1] ?.CallSite.Target -     Worker count: 20
+2018-04-11 17:25:27,836 INFO [1] ?.CallSite.Target -     Listening queues: 'default'
+2018-04-11 17:25:27,836 INFO [1] ?.CallSite.Target -     Shutdown timeout: 00:00:15
+2018-04-11 17:25:27,836 INFO [1] ?.CallSite.Target -     Schedule polling interval: 00:00:15
+2018-04-11 17:25:27,849 DEBUG [BackgroundProcessingServer] ?.CallSite.Target - Background process 'BackgroundProcessingServer' started.
+2018-04-11 17:25:28,014 DEBUG [ServerHeartbeat] ?.CallSite.Target - Background process 'ServerHeartbeat' started.
+2018-04-11 17:25:28,016 DEBUG [ServerWatchdog] ?.CallSite.Target - Background process 'ServerWatchdog' started.
+2018-04-11 17:25:28,028 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Background process 'Hangfire.SqlServer.ExpirationManager' started.
+2018-04-11 17:25:28,031 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'AggregatedCounter' table...
+2018-04-11 17:25:28,064 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Background process 'Hangfire.SqlServer.CountersAggregator' started.
+2018-04-11 17:25:28,066 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 17:25:28,075 DEBUG [Worker #90447f6e] ?.CallSite.Target - Background process 'Worker #90447f6e' started.
+2018-04-11 17:25:28,113 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 17:25:28,148 DEBUG [Worker #06e2fdb1] ?.CallSite.Target - Background process 'Worker #06e2fdb1' started.
+2018-04-11 17:25:28,159 DEBUG [Worker #68896bfc] ?.CallSite.Target - Background process 'Worker #68896bfc' started.
+2018-04-11 17:25:28,259 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'AggregatedCounter' table.
+2018-04-11 17:25:28,259 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Job' table...
+2018-04-11 17:25:28,268 DEBUG [Worker #d238e955] ?.CallSite.Target - Background process 'Worker #d238e955' started.
+2018-04-11 17:25:28,271 DEBUG [Worker #3c231a28] ?.CallSite.Target - Background process 'Worker #3c231a28' started.
+2018-04-11 17:25:28,315 DEBUG [Worker #e63cb364] ?.CallSite.Target - Background process 'Worker #e63cb364' started.
+2018-04-11 17:25:28,380 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Job' table.
+2018-04-11 17:25:28,381 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'List' table...
+2018-04-11 17:25:28,388 DEBUG [Worker #bb889c53] ?.CallSite.Target - Background process 'Worker #bb889c53' started.
+2018-04-11 17:25:28,398 DEBUG [Worker #4a5de848] ?.CallSite.Target - Background process 'Worker #4a5de848' started.
+2018-04-11 17:25:28,423 DEBUG [Worker #d3c768b6] ?.CallSite.Target - Background process 'Worker #d3c768b6' started.
+2018-04-11 17:25:28,469 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'List' table.
+2018-04-11 17:25:28,469 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Set' table...
+2018-04-11 17:25:28,470 DEBUG [Worker #dca3b51d] ?.CallSite.Target - Background process 'Worker #dca3b51d' started.
+2018-04-11 17:25:28,480 DEBUG [Worker #5922a6e2] ?.CallSite.Target - Background process 'Worker #5922a6e2' started.
+2018-04-11 17:25:28,501 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Set' table.
+2018-04-11 17:25:28,502 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Hash' table...
+2018-04-11 17:25:28,513 DEBUG [Worker #75cfd9e3] ?.CallSite.Target - Background process 'Worker #75cfd9e3' started.
+2018-04-11 17:25:28,574 DEBUG [Worker #56da96a7] ?.CallSite.Target - Background process 'Worker #56da96a7' started.
+2018-04-11 17:25:28,590 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Hash' table.
+2018-04-11 17:25:28,596 DEBUG [Worker #702536fc] ?.CallSite.Target - Background process 'Worker #702536fc' started.
+2018-04-11 17:25:28,655 DEBUG [Worker #212e4dca] ?.CallSite.Target - Background process 'Worker #212e4dca' started.
+2018-04-11 17:25:28,658 DEBUG [Worker #097a30bc] ?.CallSite.Target - Background process 'Worker #097a30bc' started.
+2018-04-11 17:25:28,700 DEBUG [Worker #cdecc9f3] ?.CallSite.Target - Background process 'Worker #cdecc9f3' started.
+2018-04-11 17:25:28,767 DEBUG [Worker #1a0fb441] ?.CallSite.Target - Background process 'Worker #1a0fb441' started.
+2018-04-11 17:25:28,812 DEBUG [Worker #1702aba9] ?.CallSite.Target - Background process 'Worker #1702aba9' started.
+2018-04-11 17:25:28,820 DEBUG [Worker #97b3a8dd] ?.CallSite.Target - Background process 'Worker #97b3a8dd' started.
+2018-04-11 17:25:28,840 DEBUG [DelayedJobScheduler] ?.CallSite.Target - Background process 'DelayedJobScheduler' started.
+2018-04-11 17:25:28,875 DEBUG [RecurringJobScheduler] ?.CallSite.Target - Background process 'RecurringJobScheduler' started.
+2018-04-11 17:30:28,082 INFO [ServerWatchdog] ?.CallSite.Target - 1 servers were removed due to timeout
+2018-04-11 17:30:28,115 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 17:30:28,123 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 17:35:28,123 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 17:35:28,150 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 17:40:28,158 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 17:40:28,166 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 17:45:28,167 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 17:45:28,176 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 17:50:28,185 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 17:50:28,194 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 17:55:28,196 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 17:55:28,208 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 17:55:28,600 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'AggregatedCounter' table...
+2018-04-11 17:55:28,628 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'AggregatedCounter' table.
+2018-04-11 17:55:28,628 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Job' table...
+2018-04-11 17:55:28,659 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Job' table.
+2018-04-11 17:55:28,660 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'List' table...
+2018-04-11 17:55:28,693 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'List' table.
+2018-04-11 17:55:28,694 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Set' table...
+2018-04-11 17:55:28,718 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Set' table.
+2018-04-11 17:55:28,718 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Hash' table...
+2018-04-11 17:55:28,741 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Hash' table.
+2018-04-11 18:00:28,210 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 18:00:28,221 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 18:05:28,222 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 18:05:28,259 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 18:10:10,709 INFO [1] ZenithCardPerso.Web.MvcApplication.Application_Start -  <<<< Staring ::: Zentih Card APP checking Startup Config Setting @ : 04/11/2018 18:10:10 >>>>>>
+2018-04-11 18:10:13,574 INFO [1] ZenithCardPerso.Web.MvcApplication.Application_Start -  <<<< Ending ::: Zentih Card APP Startup Config Setting ok @ : 04/11/2018 18:10:13 >>>>>>
+2018-04-11 18:10:13,970 INFO [1] ?.CallSite.Target - Start installing Hangfire SQL objects...
+2018-04-11 18:10:14,206 INFO [1] ?.CallSite.Target - Hangfire SQL objects installed.
+2018-04-11 18:10:14,324 INFO [1] ?.CallSite.Target - Starting Hangfire Server
+2018-04-11 18:10:14,327 INFO [1] ?.CallSite.Target - Using job storage: 'SQL Server: CYB310-SOFT-01\SQLSERVER2012@ZenithCardPersoDB'
+2018-04-11 18:10:14,328 INFO [1] ?.CallSite.Target - Using the following options for SQL Server job storage:
+2018-04-11 18:10:14,328 INFO [1] ?.CallSite.Target -     Queue poll interval: 00:00:15.
+2018-04-11 18:10:14,329 INFO [1] ?.CallSite.Target - Using the following options for Hangfire Server:
+2018-04-11 18:10:14,329 INFO [1] ?.CallSite.Target -     Worker count: 20
+2018-04-11 18:10:14,329 INFO [1] ?.CallSite.Target -     Listening queues: 'default'
+2018-04-11 18:10:14,330 INFO [1] ?.CallSite.Target -     Shutdown timeout: 00:00:15
+2018-04-11 18:10:14,330 INFO [1] ?.CallSite.Target -     Schedule polling interval: 00:00:15
+2018-04-11 18:10:14,347 DEBUG [BackgroundProcessingServer] ?.CallSite.Target - Background process 'BackgroundProcessingServer' started.
+2018-04-11 18:10:14,750 DEBUG [ServerHeartbeat] ?.CallSite.Target - Background process 'ServerHeartbeat' started.
+2018-04-11 18:10:14,829 DEBUG [ServerWatchdog] ?.CallSite.Target - Background process 'ServerWatchdog' started.
+2018-04-11 18:10:14,840 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Background process 'Hangfire.SqlServer.ExpirationManager' started.
+2018-04-11 18:10:14,854 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'AggregatedCounter' table...
+2018-04-11 18:10:14,878 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Background process 'Hangfire.SqlServer.CountersAggregator' started.
+2018-04-11 18:10:14,879 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 18:10:14,903 DEBUG [Worker #2ba7c927] ?.CallSite.Target - Background process 'Worker #2ba7c927' started.
+2018-04-11 18:10:14,988 DEBUG [Worker #0390fc3e] ?.CallSite.Target - Background process 'Worker #0390fc3e' started.
+2018-04-11 18:10:14,992 DEBUG [Worker #acde906c] ?.CallSite.Target - Background process 'Worker #acde906c' started.
+2018-04-11 18:10:14,992 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 18:10:15,044 DEBUG [Worker #6a048715] ?.CallSite.Target - Background process 'Worker #6a048715' started.
+2018-04-11 18:10:15,122 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'AggregatedCounter' table.
+2018-04-11 18:10:15,122 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Job' table...
+2018-04-11 18:10:15,124 DEBUG [Worker #074237b4] ?.CallSite.Target - Background process 'Worker #074237b4' started.
+2018-04-11 18:10:15,220 DEBUG [Worker #818c2af2] ?.CallSite.Target - Background process 'Worker #818c2af2' started.
+2018-04-11 18:10:15,220 DEBUG [Worker #e0740d63] ?.CallSite.Target - Background process 'Worker #e0740d63' started.
+2018-04-11 18:10:15,220 DEBUG [Worker #b5ad0d60] ?.CallSite.Target - Background process 'Worker #b5ad0d60' started.
+2018-04-11 18:10:15,241 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Job' table.
+2018-04-11 18:10:15,247 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'List' table...
+2018-04-11 18:10:15,306 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'List' table.
+2018-04-11 18:10:15,308 DEBUG [Worker #397b82b5] ?.CallSite.Target - Background process 'Worker #397b82b5' started.
+2018-04-11 18:10:15,330 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Set' table...
+2018-04-11 18:10:15,342 DEBUG [Worker #ee382117] ?.CallSite.Target - Background process 'Worker #ee382117' started.
+2018-04-11 18:10:15,376 DEBUG [Worker #89a2c70e] ?.CallSite.Target - Background process 'Worker #89a2c70e' started.
+2018-04-11 18:10:15,386 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Set' table.
+2018-04-11 18:10:15,386 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Hash' table...
+2018-04-11 18:10:15,431 DEBUG [Worker #c211ea59] ?.CallSite.Target - Background process 'Worker #c211ea59' started.
+2018-04-11 18:10:15,477 DEBUG [Worker #e075a692] ?.CallSite.Target - Background process 'Worker #e075a692' started.
+2018-04-11 18:10:15,528 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Hash' table.
+2018-04-11 18:10:15,532 DEBUG [Worker #099b77d0] ?.CallSite.Target - Background process 'Worker #099b77d0' started.
+2018-04-11 18:10:15,566 DEBUG [Worker #3fde2cf9] ?.CallSite.Target - Background process 'Worker #3fde2cf9' started.
+2018-04-11 18:10:15,589 DEBUG [Worker #a018824b] ?.CallSite.Target - Background process 'Worker #a018824b' started.
+2018-04-11 18:10:15,591 DEBUG [Worker #90d2c932] ?.CallSite.Target - Background process 'Worker #90d2c932' started.
+2018-04-11 18:10:15,635 DEBUG [Worker #68883c99] ?.CallSite.Target - Background process 'Worker #68883c99' started.
+2018-04-11 18:10:15,673 DEBUG [Worker #c79b26b6] ?.CallSite.Target - Background process 'Worker #c79b26b6' started.
+2018-04-11 18:10:15,677 DEBUG [Worker #80ba6f10] ?.CallSite.Target - Background process 'Worker #80ba6f10' started.
+2018-04-11 18:10:15,700 DEBUG [DelayedJobScheduler] ?.CallSite.Target - Background process 'DelayedJobScheduler' started.
+2018-04-11 18:10:15,773 DEBUG [RecurringJobScheduler] ?.CallSite.Target - Background process 'RecurringJobScheduler' started.
+2018-04-11 18:14:25,454 INFO [1] ZenithCardPerso.Web.MvcApplication.Application_Start -  <<<< Staring ::: Zentih Card APP checking Startup Config Setting @ : 04/11/2018 18:14:25 >>>>>>
+2018-04-11 18:14:26,675 INFO [1] ZenithCardPerso.Web.MvcApplication.Application_Start -  <<<< Ending ::: Zentih Card APP Startup Config Setting ok @ : 04/11/2018 18:14:26 >>>>>>
+2018-04-11 18:14:26,827 INFO [1] ?.CallSite.Target - Start installing Hangfire SQL objects...
+2018-04-11 18:14:27,011 INFO [1] ?.CallSite.Target - Hangfire SQL objects installed.
+2018-04-11 18:14:27,036 INFO [1] ?.CallSite.Target - Starting Hangfire Server
+2018-04-11 18:14:27,038 INFO [1] ?.CallSite.Target - Using job storage: 'SQL Server: CYB310-SOFT-01\SQLSERVER2012@ZenithCardPersoDB'
+2018-04-11 18:14:27,038 INFO [1] ?.CallSite.Target - Using the following options for SQL Server job storage:
+2018-04-11 18:14:27,039 INFO [1] ?.CallSite.Target -     Queue poll interval: 00:00:15.
+2018-04-11 18:14:27,039 INFO [1] ?.CallSite.Target - Using the following options for Hangfire Server:
+2018-04-11 18:14:27,039 INFO [1] ?.CallSite.Target -     Worker count: 20
+2018-04-11 18:14:27,039 INFO [1] ?.CallSite.Target -     Listening queues: 'default'
+2018-04-11 18:14:27,039 INFO [1] ?.CallSite.Target -     Shutdown timeout: 00:00:15
+2018-04-11 18:14:27,039 INFO [1] ?.CallSite.Target -     Schedule polling interval: 00:00:15
+2018-04-11 18:14:27,054 DEBUG [BackgroundProcessingServer] ?.CallSite.Target - Background process 'BackgroundProcessingServer' started.
+2018-04-11 18:14:27,258 DEBUG [ServerHeartbeat] ?.CallSite.Target - Background process 'ServerHeartbeat' started.
+2018-04-11 18:14:27,315 DEBUG [ServerWatchdog] ?.CallSite.Target - Background process 'ServerWatchdog' started.
+2018-04-11 18:14:27,341 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Background process 'Hangfire.SqlServer.ExpirationManager' started.
+2018-04-11 18:14:27,346 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'AggregatedCounter' table...
+2018-04-11 18:14:27,357 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Background process 'Hangfire.SqlServer.CountersAggregator' started.
+2018-04-11 18:14:27,385 INFO [ServerWatchdog] ?.CallSite.Target - 1 servers were removed due to timeout
+2018-04-11 18:14:27,386 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-04-11 18:14:27,425 DEBUG [Worker #49c42e89] ?.CallSite.Target - Background process 'Worker #49c42e89' started.
+2018-04-11 18:14:27,432 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-04-11 18:14:27,434 DEBUG [Worker #7d58d73d] ?.CallSite.Target - Background process 'Worker #7d58d73d' started.
+2018-04-11 18:14:27,442 DEBUG [Worker #efd35b06] ?.CallSite.Target - Background process 'Worker #efd35b06' started.
+2018-04-11 18:14:27,458 DEBUG [Worker #19dd94fd] ?.CallSite.Target - Background process 'Worker #19dd94fd' started.
+2018-04-11 18:14:27,527 DEBUG [Worker #8d836adf] ?.CallSite.Target - Background process 'Worker #8d836adf' started.
+2018-04-11 18:14:27,529 DEBUG [Worker #b4d6fe11] ?.CallSite.Target - Background process 'Worker #b4d6fe11' started.
+2018-04-11 18:14:27,629 DEBUG [Worker #08deab35] ?.CallSite.Target - Background process 'Worker #08deab35' started.
+2018-04-11 18:14:27,702 DEBUG [Worker #5d874c83] ?.CallSite.Target - Background process 'Worker #5d874c83' started.
+2018-04-11 18:14:27,760 DEBUG [Worker #5020d63c] ?.CallSite.Target - Background process 'Worker #5020d63c' started.
+2018-04-11 18:14:27,784 DEBUG [Worker #1f7aae3e] ?.CallSite.Target - Background process 'Worker #1f7aae3e' started.
+2018-04-11 18:14:27,816 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'AggregatedCounter' table.
+2018-04-11 18:14:27,818 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Job' table...
+2018-04-11 18:14:27,818 DEBUG [Worker #8f0808b5] ?.CallSite.Target - Background process 'Worker #8f0808b5' started.
+2018-04-11 18:14:27,831 DEBUG [Worker #19eec7ef] ?.CallSite.Target - Background process 'Worker #19eec7ef' started.
+2018-04-11 18:14:27,869 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Job' table.
+2018-04-11 18:14:27,871 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'List' table...
+2018-04-11 18:14:27,885 DEBUG [Worker #9b4f5b22] ?.CallSite.Target - Background process 'Worker #9b4f5b22' started.
+2018-04-11 18:14:27,925 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'List' table.
+2018-04-11 18:14:27,926 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Set' table...
+2018-04-11 18:14:27,927 DEBUG [Worker #0fabc2b1] ?.CallSite.Target - Background process 'Worker #0fabc2b1' started.
+2018-04-11 18:14:27,934 DEBUG [Worker #10cd104c] ?.CallSite.Target - Background process 'Worker #10cd104c' started.
+2018-04-11 18:14:27,980 DEBUG [Worker #438728e6] ?.CallSite.Target - Background process 'Worker #438728e6' started.
+2018-04-11 18:14:28,000 DEBUG [Worker #c92add5a] ?.CallSite.Target - Background process 'Worker #c92add5a' started.
+2018-04-11 18:14:28,001 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Set' table.
+2018-04-11 18:14:28,001 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Hash' table...
+2018-04-11 18:14:28,022 DEBUG [Worker #e48e8349] ?.CallSite.Target - Background process 'Worker #e48e8349' started.
+2018-04-11 18:14:28,074 DEBUG [Worker #e3108d6a] ?.CallSite.Target - Background process 'Worker #e3108d6a' started.
+2018-04-11 18:14:28,075 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Hash' table.
+2018-04-11 18:14:28,108 DEBUG [Worker #5814a95f] ?.CallSite.Target - Background process 'Worker #5814a95f' started.
+2018-04-11 18:14:28,128 DEBUG [DelayedJobScheduler] ?.CallSite.Target - Background process 'DelayedJobScheduler' started.
+2018-04-11 18:14:28,141 DEBUG [RecurringJobScheduler] ?.CallSite.Target - Background process 'RecurringJobScheduler' started.

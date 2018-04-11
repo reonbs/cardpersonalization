@@ -582,14 +582,16 @@ namespace ZenithCardPerso.Web.Controllers
 
                 string[] filePaths = Directory.GetFiles(saveLocation, "*.jpeg");
 
-                await _cardAPPCmdBLL.UpdateBatchNo(cardApplToExport);
+                
 
-                CreateFiles(filePaths, cardApplToExport);
+                
                 var saveAs = string.Format("text-{0:yyyy-MM-dd_hh-mm-ss-tt}", DateTime.Now);
-
-                System.IO.File.WriteAllBytes(@"c:\picturecards\cardsapps" + saveAs + ".xls", filecontent);
+                string excelPath = @"c:\picturecards\cardsapps" + saveAs + ".xls";
+                System.IO.File.WriteAllBytes(excelPath, filecontent);
                 //BackgroundJob.Enqueue(() => CreateFiles(filePaths));
-
+                //var downloadlink = CreateFiles(excelPath,filePaths, cardApplToExport);
+                CreateFiles(excelPath, filePaths, cardApplToExport);
+                await _cardAPPCmdBLL.UpdateBatchNo("", cardApplToExport);
                 TempData["Message"] = "Success";
 
                 TempData[Utilities.Activity_Log_Details] = "Card Applications was processed";
@@ -605,7 +607,7 @@ namespace ZenithCardPerso.Web.Controllers
             }
 
         }
-        public void CreateFiles(string[] sourceFiles, List<CardApplicationsDTO> cardAppsList)
+        public void CreateFiles(string excelPath, string[] sourceFiles, List<CardApplicationsDTO> cardAppsList)
         {
             try
             {
@@ -617,8 +619,11 @@ namespace ZenithCardPerso.Web.Controllers
                     {
                         var fileName = filenames.Where(x => x.Contains(cardApp.OfficeAddress2)).FirstOrDefault();//.Contains(cardApp.IDNo);
                         ZipEntry e = zip.AddFile(fileName, "/cardspix");
+                        
                         e.Comment = "Added";
                     }
+
+                    zip.AddFile(excelPath,"/cardcsv");
 
                     zip.Comment = String.Format("The downloaded file are for the just generated card application on machine '{0}'",
                           System.Net.Dns.GetHostName());
@@ -626,10 +631,16 @@ namespace ZenithCardPerso.Web.Controllers
 
                     var saveAs = string.Format("text-{0:yyyy-MM-dd_hh-mm-ss-tt}", DateTime.Now);
                     var filePath = path + "CardPerso_" + saveAs + ".zip";
-                    zip.Save(filePath);
+                    //zip.Save(filePath);
 
                     _cardAPPCmdBLL.UpdateStatus(cardAppsList);
 
+                    Response.ClearContent();
+                    Response.ClearHeaders();
+                    Response.AppendHeader("content-disposition", "attachment;filename=Proccessed_Cards.zip");
+                    zip.Save(Response.OutputStream);
+
+                    //return filePath;
                 }
             }
             catch (Exception ex)
@@ -649,6 +660,12 @@ namespace ZenithCardPerso.Web.Controllers
         public ActionResult ImageTracking()
         {
             return View();
+        }
+
+        public ActionResult ViewProcessedCards()
+        {
+            var processedCards =_cardAppQueryBLL.GetProcessedCard();
+            return View(processedCards);
         }
     }
 }

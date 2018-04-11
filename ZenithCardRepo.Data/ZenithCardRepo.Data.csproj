@@ -237,6 +237,10 @@
     <Compile Include="Migrations\201803010917568_addmodel346.Designer.cs">
       <DependentUpon>201803010917568_addmodel346.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804111624307_AddProcesscards.cs" />
+    <Compile Include="Migrations\201804111624307_AddProcesscards.Designer.cs">
+      <DependentUpon>201804111624307_AddProcesscards.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Approval.cs" />
     <Compile Include="Models\AuditRecord.cs" />
@@ -251,6 +255,7 @@
     <Compile Include="Models\NationalityCode.cs" />
     <Compile Include="Models\OrganizationProfile.cs" />
     <Compile Include="Models\Permission.cs" />
+    <Compile Include="Models\ProcessedCard.cs" />
     <Compile Include="Models\ProductCode.cs" />
     <Compile Include="Models\RolePermission.cs" />
     <Compile Include="Models\Sex.cs" />
@@ -383,6 +388,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803010917568_addmodel346.resx">
       <DependentUpon>201803010917568_addmodel346.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804111624307_AddProcesscards.resx">
+      <DependentUpon>201804111624307_AddProcesscards.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
