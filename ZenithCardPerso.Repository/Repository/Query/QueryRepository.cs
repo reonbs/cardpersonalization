@@ -43,7 +43,8 @@ namespace ZenithCardPerso.Repository.Query
         {
             return _dbSet.Where(predicate).AsQueryable<TEntity>();
         }
-        
+
+       
 
         public IEnumerable<TEntity> AllInclude(params Expression<Func<TEntity, object>>[] includeProperties)
         {

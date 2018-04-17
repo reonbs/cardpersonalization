@@ -293,7 +293,7 @@
             var width = "";
             var heigth = "";
 
-            $.get('/Image/GetImageSetting', function (data) {
+            $.get("@Url.Action("GetImageSetting", "Image",null,Request.Url.Scheme)", function (data) {//'/Image/GetImageSetting'
                 console.log(data);
                 width = data.Height;//$('#ImageWidth').val(data.Height);
                 heigth = data.Width;//$('#ImageHeight').val(data.Width);
@@ -437,7 +437,7 @@
                 $('#City').append('<option>--Select--</option>');
                 var stateCode = $(this).val();
 
-                $.post('/CardApplication/GetCity/?stateCode=' + stateCode, function (data) {
+                $.get("@Url.Action("GetCity", "CardApplication")", { stateCode: stateCode }, function (data) {
                     $.each(data, function (i, v) {
                         $('#City').append('<option value="' + v.CityCode + '">' + v.CityName + '</option>')
                     });
@@ -454,13 +454,13 @@
 
                 $('#City').empty();
                 $('#City').append('<option>--Select--</option>');
-                $.post('/CardApplication/GetCity/?stateCode=' + stateCode, function (data) {
+                $.get("@Url.Action("GetCity", "CardApplication")", { stateCode: stateCode }, function (data) {
                     $.each(data, function (i, v) {
                         $('#City').append('<option value="' + v.CityCode + '">' + v.CityName + '</option>');
                     })
                 }).then(function (data) {
                     var ID = $("#ID").val();
-                    $.post('/CardApplication/GetCardApplicationEdit/' + ID, function (data) {
+                    $.get("@Url.Action("GetCardApplicationEdit", "CardApplication")", { ID: ID }, function (data) {
                         console.log(data);
                         $("#City").val(data.City);
                     })

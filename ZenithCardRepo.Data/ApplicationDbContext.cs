@@ -43,7 +43,7 @@ namespace ZenithCardRepo.Data
 
         public DbSet<Approval> Approvals { get; set; }
 
-        public DbSet<ProcessedCard> ProccessedCards { get; set; }
+        //public DbSet<ProcessedCard> ProccessedCards { get; set; }
 
 
     }

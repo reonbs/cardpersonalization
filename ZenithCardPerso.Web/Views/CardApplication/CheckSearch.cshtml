@@ -13,7 +13,7 @@
     </div>
 </div>
 <br />
-@using (Html.BeginForm())
+@using (Html.BeginForm("CardApplicationsSearch","CardApplication",FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     <!---Validation msg start-->
@@ -89,9 +89,8 @@
 
     </div>
     <div class="row pull-right">
-        <span><button type="submit" formaction=@Url.Action("ExportToExcel","CardApplication") formmethod="post" class="btn btn-primary waves-effect w-md waves-light m-b-5">Export To Excel</button></span>
 
-        <span><button type="submit" formaction=@Url.Action("CardApplicationsSearch","CardApplication") formmethod="post" class="btn btn-primary waves-effect w-md waves-light m-b-5">Search</button></span>
+        <span><button type="submit" class="btn btn-primary waves-effect w-md waves-light m-b-5">Search</button></span>
 
         @if (Convert.ToBoolean(ViewData["IsDownloadRequired"]))
         {
@@ -103,15 +102,13 @@
         }
         else
         {
-            <button type="submit" formaction=@Url.Action("ProcessCard","CardApplication") formmethod="post" class="btn btn-primary waves-effect w-md waves-light m-b-5">Process Card</button>
+            
 
         }
 
         <span><button id="deleteCardsBTN" type="button" class="btn btn-primary waves-effect w-md waves-light m-b-5">Delete</button></span>
 
     </div>
-    <button id="requestApprovalSBT" type="submit" formaction=@Url.Action("CardDownloadApproval","CardApplication") formmethod="post" class="notToShow">Request Approval</button>
-    <button id="deleteCardsSBT" type="submit" formaction=@Url.Action("DeleteCardApplications","CardApplication") formmethod="post" class="notToShow">Delete</button>
     <div id="commentModal" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

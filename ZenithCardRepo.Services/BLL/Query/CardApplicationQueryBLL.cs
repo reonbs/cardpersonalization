@@ -13,16 +13,19 @@ namespace ZenithCardRepo.Services.BLL.Query
     public class CardApplicationQueryBLL : ICardApplicationQueryBLL
     {
         private IQueryRepository<CardApplication> _cardAppRepo;
-        private IQueryRepository<ProcessedCard> _processedCardRepo;
-        public CardApplicationQueryBLL(IQueryRepository<CardApplication> cardAppRepo, IQueryRepository<ProcessedCard> processedCardRepo)
+        //private IQueryRepository<ProcessedCard> _processedCardRepo;
+        public CardApplicationQueryBLL(IQueryRepository<CardApplication> cardAppRepo//,
+            //IQueryRepository<ProcessedCard> processedCardRepo
+            )
         {
             _cardAppRepo = cardAppRepo;
-            _processedCardRepo = processedCardRepo;
+            //_processedCardRepo = processedCardRepo;
         }
 
-        public IEnumerable<CardApplicationsDTO> CardApplicationSearch(CardAppViewModel cardAppVM)
+        public async Task<IEnumerable<CardApplicationsDTO>> CardApplicationSearch(CardAppViewModel cardAppVM)
         {
-            var cardApps = _cardAppRepo.GetAll().Where(x => x.IsDeleted != true);
+            var cardApplications = await _cardAppRepo.GetAllAsync();
+            var cardApps = cardApplications.Where(x => x.IsDeleted != true);
             int resultFound = 0;
             if (!string.IsNullOrEmpty(cardAppVM.FromDate))
             {
@@ -58,7 +61,7 @@ namespace ZenithCardRepo.Services.BLL.Query
 
             if (resultFound > 0)
             {
-                return cardApps.Select(CardApplicationsDTO.GetCompleteDTOFromModel);
+                return cardApps.Select(CardApplicationsDTO.GetDTOFromModelForSearch);
             }
             else
             {
@@ -125,9 +128,9 @@ namespace ZenithCardRepo.Services.BLL.Query
             
         }
 
-        public List<ProcessedCard> GetProcessedCard()
-        {
-            return _processedCardRepo.GetAll().ToList();
-        }
+        //public List<ProcessedCard> GetProcessedCard()
+        //{
+        //    return _processedCardRepo.GetAll().ToList();
+        //}
     }
 }

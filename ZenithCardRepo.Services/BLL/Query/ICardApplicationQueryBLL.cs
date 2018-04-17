@@ -14,7 +14,7 @@ namespace ZenithCardRepo.Services.BLL.Query
         IEnumerable<CardApplicationsDTO> GetCardApplications();
         IEnumerable<CardApplicationsDTO> CardApplicationToExport(List<CardApplicationsDTO> cardApps);
 
-        IEnumerable<CardApplicationsDTO> CardApplicationSearch(CardAppViewModel cardAppVM);
+        Task<IEnumerable<CardApplicationsDTO>> CardApplicationSearch(CardAppViewModel cardAppVM);
 
         IEnumerable<CardApplicationsDTO> MyCardApplications(string loggedOnUser);
 
@@ -24,7 +24,7 @@ namespace ZenithCardRepo.Services.BLL.Query
 
         List<CardApplicationsDTO> GetCardApplicationsByIDs(List<int> cardAPPIds);
 
-        List<ProcessedCard> GetProcessedCard();
+        //List<ProcessedCard> GetProcessedCard();
 
     }
 }

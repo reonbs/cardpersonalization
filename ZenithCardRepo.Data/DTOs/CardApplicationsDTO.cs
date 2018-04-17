@@ -92,7 +92,7 @@ namespace ZenithCardRepo.Data.DTOs
 
         public static CardApplicationsDTO GetCompleteDTOFromModel(CardApplication cardApplication)
         {
-            var ii = Convert.ToBase64String(File.ReadAllBytes(cardApplication.ImageLocation));
+            //var ii = Convert.ToBase64String(File.ReadAllBytes(cardApplication.ImageLocation));
 
             return new CardApplicationsDTO
             {
@@ -110,6 +110,51 @@ namespace ZenithCardRepo.Data.DTOs
                 EmailAddress = cardApplication.EmailAddress,
                 FirstName = cardApplication.FirstName,
                 ImageLocation = Convert.ToBase64String(File.ReadAllBytes(cardApplication.ImageLocation)),
+                InstitutionID = cardApplication.InstitutionID,
+                LastName = cardApplication.LastName,
+                MainAccountNo = cardApplication.MainAccountNo,
+                MaritalStatus = cardApplication.MaritalStatus,
+                MiddleName = cardApplication.MiddleName,
+                NameonCard = cardApplication.NameonCard,
+                Nationality = cardApplication.Nationality,
+                OfficeAddress1 = cardApplication.OfficeAddress1,
+                OfficeAddress2 = cardApplication.OfficeAddress2,
+                OfficePhoneNo = cardApplication.OfficePhoneNo,
+                OtherAccountNo = cardApplication.OtherAccountNo,
+                ProcessedBatchNo = cardApplication.ProcessedBatchNo,
+                ProductCode = cardApplication.ProductCode,
+                RequestingBranchCode = cardApplication.RequestingBranchCode,
+                Sex = cardApplication.Sex,
+                SocioProfCode = cardApplication.SocioProfCode,
+                State = cardApplication.State,
+                TitleCode = cardApplication.TitleCode,
+                CreatedBy = cardApplication.CreatedBy,
+                DateCreated = cardApplication.DateCreated,
+                DateModified = cardApplication.DateModified,
+                ModifiedBy = cardApplication.ModifiedBy,
+                IsApproved = cardApplication.IsApproved
+
+            };
+        }
+
+        public static CardApplicationsDTO GetDTOFromModelForSearch(CardApplication cardApplication)
+        {
+
+            return new CardApplicationsDTO
+            {
+                FullName = cardApplication.FirstName + " " + cardApplication.MiddleName + " " + cardApplication.LastName,
+                IsProcessed = (cardApplication.isProcessed == null) ? false : (bool)cardApplication.isProcessed,
+                City = cardApplication.City,
+                DateofBirth = cardApplication.DateofBirth.ToString("dd/MM/yyyy"),
+                GSMNo = cardApplication.GSMNo,
+                ID = cardApplication.ID,
+                IDCardType = cardApplication.IDCardType,
+                IDExpiryDate = cardApplication.IDExpiryDate.ToString("dd/MM/yyyy"),
+                IDIssueDate = cardApplication.IDIssueDate.ToString("dd/MM/yyyy"),
+                IDNo = cardApplication.IDNo,
+                Department = cardApplication.Department,
+                EmailAddress = cardApplication.EmailAddress,
+                FirstName = cardApplication.FirstName,
                 InstitutionID = cardApplication.InstitutionID,
                 LastName = cardApplication.LastName,
                 MainAccountNo = cardApplication.MainAccountNo,

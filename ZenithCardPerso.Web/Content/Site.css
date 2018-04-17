@@ -78,3 +78,10 @@
 .bg-custom {
     background-color: #868786 !important;
 }
+
+#sidebar-menu > ul > li > a {
+    color: #fff;
+    display: block;
+    padding: 12px 20px;
+    margin: 2px 0;
+}

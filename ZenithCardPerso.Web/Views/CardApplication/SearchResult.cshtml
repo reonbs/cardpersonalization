@@ -4,9 +4,8 @@
 }
 
 <hr />
-@using (Html.BeginForm())
-{
-
+@*@using (Html.BeginForm())
+{*@
 
     <div class="row">
         <div class="col-sm-12">
@@ -19,7 +18,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                         <i class="mdi mdi-check-all"></i>
-                        <span>Card Application Download was successful <a href="@Url.Action("ViewProcessedCards","CardApplication")">Click to view downloads</a></span>
+                        <span>Card Application Download was successful @*<a href="@Url.Action("ViewProcessedCards","CardApplication")">Click to view downloads</a>*@</span>
                     </div>
                 }
                 @{
@@ -67,5 +66,5 @@
             </div>
         </div>
     </div>
-}
+@**}*@
 

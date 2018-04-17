@@ -13,7 +13,6 @@ namespace ZenithCardRepo.Data.ViewModel
         public string ToDate { get; set; }
         [Display(Name ="Is Completed")]
         public string Processed { get; set; }
-
         public string BatchNo { get; set; }
         public string Institution { get; set; }
         public string Department { get; set; }

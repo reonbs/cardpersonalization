@@ -345,6 +345,7 @@
             $('#my_camera').hide();
 
             $('#captureImage').click(function () {
+                $('#videoSource').empty();
                 $('#PictureModal').modal('show');
                 
                 navigator.mediaDevices.enumerateDevices().then(gotDevices).then(getStream).catch(handleError);

@@ -236,6 +236,7 @@
     <Compile Include="Extentions\ActionExtensions.cs" />
     <Compile Include="Extentions\Helpers.cs" />
     <Compile Include="Extentions\LinkExtensions.cs" />
+    <Compile Include="Filters\AjaxValidateAntiForgeryTokenAttribute.cs" />
     <Compile Include="Filters\AuditAttribute.cs" />
     <Compile Include="Filters\ValidateUserPermission.cs" />
     <Compile Include="Global.asax.cs">
@@ -1519,6 +1520,7 @@
     <Content Include="Views\Account\CreateInstitutionUser.cshtml" />
     <Content Include="Views\Permission\AccessDenied.cshtml" />
     <Content Include="Views\CardApplication\ViewProcessedCards.cshtml" />
+    <Content Include="Views\CardApplication\CheckSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
