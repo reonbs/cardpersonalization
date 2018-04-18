@@ -9,48 +9,42 @@
 {
     @Html.AntiForgeryToken()
     <!---Validation msg start-->
-    <div class="row">
-        @if (ViewData?.ModelState[""]?.Errors?.Any() == true) 
-        {
-            <div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert">
-                <button type="button" class="close" data-dismiss="alert"
-                        aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <i class="mdi mdi-block-helper"></i>
-                @Html.ValidationSummary()
-            </div>
-
-        }
-        @if (TempData["Message"] as string == "Success")
-        {
-            <div class="alert alert-icon alert-success alert-dismissible fade in" role="alert">
-                <button type="button" class="close" data-dismiss="alert"
-                        aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <i class="mdi mdi-check-all"></i>
-                <span>Password Reset was successful</span>
-            </div>
-        }
-        @if (TempData["Message"] as string == "Failed")
-        {
-        <div class="row">
-            <div class="col-md-12">
-                <div class="">
-                    <div class="">
-                        <div class="row">
-                            <div class="form-control form-bg-danger">
-                                <i class="ti-save"></i>
-                                <span>Username or password is incorrect</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="row">
+    @if (ViewData?.ModelState[""]?.Errors?.Any() == true)
+    {
+        <div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <i class="mdi mdi-block-helper"></i>
+            @Html.ValidationSummary()
         </div>
-        }
-    </div>
+
+    }
+    @if (TempData["Message"] as string == "Success")
+    {
+        <div class="alert alert-icon alert-success alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <i class="mdi mdi-check-all"></i>
+            <span>Password Reset was successful</span>
+        </div>
+    }
+    @if (TempData["Message"] as string == "Failed")
+    {
+        <div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <i class="mdi mdi-block-helper"></i>
+           <span>UserName or Password is incorrect</span>
+        </div>
+    }
+</div>
     <!---Validation msg end-->
     <div class="text-center" style="background-color: lightgray;">
         @*<h2 class="text-uppercase" style="color:#fff;">*@

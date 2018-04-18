@@ -132,7 +132,7 @@ namespace ZenithCardPerso.Web.Controllers
 
                 if (usermodel.IsDefaultPassword)
                 {
-                    return RedirectToAction("ResetPassword", new { userName = usermodel.UserName });
+                    return RedirectToAction("ResetPassword", new { email = usermodel.Email });
                 }
             }
             else
