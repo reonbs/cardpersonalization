@@ -11,5 +11,6 @@ namespace ZenithCardRepo.Services.BLL.Command
     {
         //void CreateUser(ApplicationUser user);
         void UpdateUser(ApplicationUser user,string loggedOnUser);
+        void UpdatedDefaultPassword(ApplicationUser user);
     }
 }

@@ -116,25 +116,10 @@ namespace ZenithCardPerso.Web.Controllers
             {
                 ClaimsIdentity userIdentity = await UserManager.CreateIdentityAsync(usermodel, DefaultAuthenticationTypes.ApplicationCookie);
 
-                //List<string> permissions = new List<string>();
                 var userID = usermodel.Roles.Select(x => x.UserId).FirstOrDefault();
                 var roles = UserManager.GetRoles(userID).ToArray(); ;
 
                 var storedPermissions = _permissionQueryBLL.FetchUserPermission(usermodel.UserName, roles);
-
-                //foreach (var role in roles)
-                //{
-                //    var storedPermissions = _permissionQueryBLL.FetchUserPermission(model.Email, role).Select(x => x.Permission).ToList();
-                //    foreach (var storedPermission in storedPermissions)
-                //    {
-                //        permissions.Add(storedPermission);
-                //    }
-                //}
-
-                //var storedPermissions = _permissionQueryBLL.FetchUserPermission(model.Email, "").Select(x => x.Permission).ToArray();
-
-
-                //permissions = permissions.Distinct().ToList();
 
                 userIdentity.AddClaim(new Claim("InstitutionID", usermodel.InstitutionID.ToString()));
 
@@ -144,6 +129,11 @@ namespace ZenithCardPerso.Web.Controllers
                 listIdentity.Add(userIdentity);
                 ClaimsPrincipal c = new ClaimsPrincipal(listIdentity);
                 AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = model.RememberMe }, userIdentity);
+
+                if (usermodel.IsDefaultPassword)
+                {
+                    return RedirectToAction("ResetPassword", new { userName = usermodel.UserName });
+                }
             }
             else
             {
@@ -164,6 +154,8 @@ namespace ZenithCardPerso.Web.Controllers
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
+                    TempData["Message"] = "Failed";
+                    return RedirectToAction("Login");
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
@@ -347,7 +339,8 @@ namespace ZenithCardPerso.Web.Controllers
                     LastName = model.LastName,
                     DateCreated = DateTime.Now,
                     CreatedBy = User.Identity.Name,
-                    IsDisabled = model.IsDisabled
+                    IsDisabled = model.IsDisabled,
+                    IsDefaultPassword = true
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -530,6 +523,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View(resetPasswordVM);
         }
 
+
         //
         // POST: /Account/ResetPassword
         [HttpPost]
@@ -541,11 +535,45 @@ namespace ZenithCardPerso.Web.Controllers
                 return View(model);
             }
             var user = await UserManager.FindByNameAsync(model.Email);
-            var code = UserManager.GeneratePasswordResetToken(user.Id);
-            var result = await UserManager.ResetPasswordAsync(user.Id, code, model.Password);
+
+            UserManager.RemovePassword(user.Id);
+
+            var result = UserManager.AddPassword(user.Id, model.Password);
             if (result.Succeeded)
             {
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                _manageUserCMDBLL.UpdatedDefaultPassword(user);
+                TempData["Message"] = "Success";
+                return RedirectToAction("Login", "Account");
+            }
+            AddErrors(result);
+            return View();
+        }
+
+        public ActionResult ResetPasswordAdmin(string email)
+        {
+            var user = UserManager.FindByName(email);
+            var resetPasswordVM = new ResetPasswordViewModel { FullName = user.FullName, Email = user.Email };
+            return View(resetPasswordVM);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ResetPasswordAdmin(ResetPasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = await UserManager.FindByNameAsync(model.Email);
+
+            UserManager.RemovePassword(user.Id);
+
+            var result = UserManager.AddPassword(user.Id, model.Password);
+            if (result.Succeeded)
+            {
+                _manageUserCMDBLL.UpdatedDefaultPassword(user);
+                TempData["Message"] = "Success";
+                return RedirectToAction("Login", "Account");
             }
             AddErrors(result);
             return View();

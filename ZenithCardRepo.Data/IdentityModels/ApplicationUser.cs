@@ -31,6 +31,7 @@ namespace ZenithCardRepo.Data.IdentityModels
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
         public bool IsDisabled { get; set; }
+        public bool IsDefaultPassword { get; set; }
 
         [NotMapped]
         public string FullName

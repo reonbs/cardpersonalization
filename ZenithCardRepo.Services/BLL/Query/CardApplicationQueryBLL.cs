@@ -15,7 +15,7 @@ namespace ZenithCardRepo.Services.BLL.Query
         private IQueryRepository<CardApplication> _cardAppRepo;
         //private IQueryRepository<ProcessedCard> _processedCardRepo;
         public CardApplicationQueryBLL(IQueryRepository<CardApplication> cardAppRepo//,
-            //IQueryRepository<ProcessedCard> processedCardRepo
+                                                                                    //IQueryRepository<ProcessedCard> processedCardRepo
             )
         {
             _cardAppRepo = cardAppRepo;
@@ -24,6 +24,9 @@ namespace ZenithCardRepo.Services.BLL.Query
 
         public async Task<IEnumerable<CardApplicationsDTO>> CardApplicationSearch(CardAppViewModel cardAppVM)
         {
+            cardAppVM.FromDate = (!string.IsNullOrEmpty(cardAppVM.FromDate)) ? cardAppVM.FromDate.Replace("s", "/") : "";
+            cardAppVM.ToDate = (!string.IsNullOrEmpty(cardAppVM.ToDate)) ? cardAppVM.ToDate.Replace("s", "/") : "";
+
             var cardApplications = await _cardAppRepo.GetAllAsync();
             var cardApps = cardApplications.Where(x => x.IsDeleted != true);
             int resultFound = 0;
@@ -75,8 +78,8 @@ namespace ZenithCardRepo.Services.BLL.Query
             List<CardApplicationsDTO> cardAppsDTO = new List<CardApplicationsDTO>();
             foreach (var cardApp in cardApps)
             {
-                var cardAppls = _cardAppRepo.GetAll().Where(x=> x.ID == cardApp.ID).Select(CardApplicationsDTO.GetDTOWithImgLocFromModel).FirstOrDefault();
-                
+                var cardAppls = _cardAppRepo.GetAll().Where(x => x.ID == cardApp.ID).Select(CardApplicationsDTO.GetDTOWithImgLocFromModel).FirstOrDefault();
+
                 cardAppsDTO.Add(cardAppls);
             }
 
@@ -115,7 +118,7 @@ namespace ZenithCardRepo.Services.BLL.Query
                 {
                     cardApps.Add(cardApp);
                 }
-                
+
             }
             if (cardApps.Count() > 0)
             {
@@ -125,7 +128,7 @@ namespace ZenithCardRepo.Services.BLL.Query
             {
                 return new List<CardApplicationsDTO> { };
             }
-            
+
         }
 
         //public List<ProcessedCard> GetProcessedCard()

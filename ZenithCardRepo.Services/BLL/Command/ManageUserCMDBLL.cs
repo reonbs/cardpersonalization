@@ -47,5 +47,14 @@ namespace ZenithCardRepo.Services.BLL.Command
             }
             
         }
+
+        public void UpdatedDefaultPassword(ApplicationUser user)
+        {
+            var applicationUser = _userQueryRepo.GetBy(x => x.UserName == user.UserName).FirstOrDefault();
+            applicationUser.IsDefaultPassword = false;
+
+            _userCMDRepo.Update(applicationUser);
+            _userCMDRepo.Save();
+        }
     }
 }

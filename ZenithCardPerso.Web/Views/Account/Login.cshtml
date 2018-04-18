@@ -10,7 +10,7 @@
     @Html.AntiForgeryToken()
     <!---Validation msg start-->
     <div class="row">
-        @if (ViewData?.ModelState[""]?.Errors?.Any() == true) //@ViewBag.Error != null
+        @if (ViewData?.ModelState[""]?.Errors?.Any() == true) 
         {
             <div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert">
                 <button type="button" class="close" data-dismiss="alert"
@@ -30,8 +30,25 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <i class="mdi mdi-check-all"></i>
-                <span>User is disabled</span>
+                <span>Password Reset was successful</span>
             </div>
+        }
+        @if (TempData["Message"] as string == "Failed")
+        {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+                    <div class="">
+                        <div class="row">
+                            <div class="form-control form-bg-danger">
+                                <i class="ti-save"></i>
+                                <span>Username or password is incorrect</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         }
     </div>
     <!---Validation msg end-->

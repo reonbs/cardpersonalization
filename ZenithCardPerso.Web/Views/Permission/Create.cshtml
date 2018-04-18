@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="page-title-box">
-                <h4 class="page-title">Register Institution</h4>
+                <h4 class="page-title">Create Permission</h4>
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -18,7 +18,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            @Html.ActionLink("List of Institution", "Institutions", "Organisation", null, null)
+            @Html.ActionLink("List of Permissions", "Permissions", "Permission", null, null)
         </div>
         <div class="col-sm-12">
             <div class="card-box">
@@ -34,8 +34,8 @@
                             <i class="mdi mdi-block-helper"></i>
                             @Html.ValidationSummary()
                         </div>
-
                     }
+
                     @if (TempData["Message"] as string == "Success")
                     {
                         <div class="alert alert-icon alert-success alert-dismissible fade in" role="alert">

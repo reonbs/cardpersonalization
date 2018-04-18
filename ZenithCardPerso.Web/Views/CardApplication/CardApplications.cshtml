@@ -48,22 +48,26 @@
             <div class="form-group">
                 <div class="col-md-3">
                     @Html.Hidden("HDComment")
+                    @Html.Hidden("FromDate")
                     @Html.LabelFor(m => m.FromDate)
                     <div class="input-group">
-                        @Html.EditorFor(m => m.FromDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @*@Html.EditorFor(m => m.FromDate, new { htmlAttributes = new { @class = "form-control" } })*@
+                        <input id="SearchFromDate" class="form-control" />
                         <span class="input-group-addon bg-custom b-0"><i class="mdi mdi-calendar text-white"></i></span>
                     </div>
                 </div>
                 <div class="col-md-3">
                     @Html.LabelFor(m => m.ToDate)
                     <div class="input-group">
-                        @Html.EditorFor(m => m.ToDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.Hidden("ToDate")
+                        @*@Html.EditorFor(m => m.ToDate, new { htmlAttributes = new { @class = "form-control" } })*@
+                        <input id="SearchToDate" class="form-control" />
                         <span class="input-group-addon bg-custom b-0"><i class="mdi mdi-calendar text-white"></i></span>
                     </div>
                 </div>
                 <div class="col-md-3">
                     @Html.LabelFor(m => m.Processed)
-                    @Html.DropDownListFor(m => m.Processed, ViewData["IsProcessed"] as SelectList, "----Select----", new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.Processed, ViewData["IsProcessed"] as SelectList, "", new { @class = "form-control" })
                 </div>
                 <div class="col-md-3">
                     @Html.LabelFor(m => m.BatchNo)
@@ -73,14 +77,14 @@
             <div class="form-group">
                 <div class="col-md-3">
                     @Html.LabelFor(m => m.Institution)
-                    @Html.DropDownListFor(m => m.Institution, ViewData["Institution"] as SelectList, "----Select----", new { @class = "form-control select2" })
+                    @Html.DropDownListFor(m => m.Institution, ViewData["Institution"] as SelectList, "", new { @class = "form-control select2" })
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-3">
                     @Html.LabelFor(m => m.Department)
                     <select id="Department" name="Department" class="form-control select2">
-                        <option>--Select--</option>
+                        <option></option>
                     </select>
                 </div>
             </div>
@@ -91,7 +95,7 @@
     <div class="row pull-right">
         <span><button type="submit" formaction=@Url.Action("ExportToExcel","CardApplication") formmethod="post" class="btn btn-primary waves-effect w-md waves-light m-b-5">Export To Excel</button></span>
 
-        <span><button type="submit" formaction=@Url.Action("CardApplicationsSearch","CardApplication") formmethod="post" class="btn btn-primary waves-effect w-md waves-light m-b-5">Search</button></span>
+        <span><button type="submit" formaction=@Url.Action("CardApplications","CardApplication") formmethod="post" class="btn btn-primary waves-effect w-md waves-light m-b-5">Search</button></span>
 
         @if (Convert.ToBoolean(ViewData["IsDownloadRequired"]))
         {
@@ -140,7 +144,7 @@
     @section Scripts{
         <script>
             $(function () {
-                $('#FromDate, #ToDate').datepicker({
+                $('#SearchFromDate, #SearchToDate').datepicker({
                     format: "dd/mm/yyyy",
                     autoclose: true,
                     todayHighlight: true
@@ -152,7 +156,7 @@
                     var instID = $(this).val();
                     $.get("@Url.Action("GetDepartment", "CardApplication")", { instID: instID }, function (data) {//'/CardApplication/GetDepartment/?instID=' + instID
                         $('#Department').empty();
-                        $('#Department').append('<option>--Select--</option>');
+                        $('#Department').append('<option></option>');
 
                         $.each(data, function (i, v) {
                             $('#Department').append('<option value=' + v.Code + '>' + v.Name + '</option>');
@@ -201,6 +205,22 @@
                         isSelectedCount -= 1;
                     }
                 });
+
+                $('#SearchFromDate').on('change', function () {
+                    var date = $(this).val();
+
+                    var newDate = date.replace(/\//g, 's');
+
+                    $('#FromDate').val(newDate);
+                })
+
+                $('#SearchToDate').on('change', function () {
+                    var date = $(this).val();
+
+                    var newDate = date.replace(/\//g, 's');
+
+                    $('#ToDate').val(newDate);
+                })
             });
         </script>
     }

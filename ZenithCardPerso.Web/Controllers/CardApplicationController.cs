@@ -219,7 +219,7 @@ namespace ZenithCardPerso.Web.Controllers
         [ValidateAntiForgeryToken]
         //[Audit]
         [ValidateUserPermission(Permissions = "can_view_cardapplications")]
-        public async Task<ActionResult> CardApplicationsSearch(CardAppViewModel cardAppVM)
+        public async Task<ActionResult> CardApplications(CardAppViewModel cardAppVM)
         {
             try
             {
@@ -232,7 +232,7 @@ namespace ZenithCardPerso.Web.Controllers
                 ViewData["IsDownloadRequired"] = _cardAppQueryBLL.CheckProcessedStatus(cardApps);
 
                 TempData[Utilities.Activity_Log_Details] = "Search was carried out on Card Applications";
-                return View("CardApplications",cardAppVM);
+                return View(cardAppVM);
             }
             catch (Exception ex)
             {
@@ -242,7 +242,7 @@ namespace ZenithCardPerso.Web.Controllers
 
             CardSearchOptions();
             ModelState.AddModelError("", "Card applications could not be retrieved");
-            return View(cardAppVM);
+            return View();
         }
 
         [Audit]
