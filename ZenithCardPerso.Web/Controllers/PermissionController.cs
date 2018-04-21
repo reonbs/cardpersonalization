@@ -162,7 +162,7 @@ namespace ZenithCardPerso.Web.Controllers
             catch (Exception ex)
             {
                 ModelState.AddModelError("", ex);
-                throw;
+                
             }
 
 

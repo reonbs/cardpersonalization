@@ -8,6 +8,7 @@ using ZenithCardPerso.Web.Filters;
 using ZenithCardRepo.Data.Models;
 using ZenithCardRepo.Data.ViewModel;
 using ZenithCardRepo.Services.BLL.Command;
+using ZenithCardRepo.Services.BLL.Infrastructure;
 using ZenithCardRepo.Services.BLL.Query;
 
 namespace ZenithCardPerso.Web.Controllers
@@ -25,6 +26,7 @@ namespace ZenithCardPerso.Web.Controllers
         }
 
         // GET: Organisation
+        [ValidateUserPermission(Permissions = "can_create_organisation")]
         public ActionResult Create()
         {
             return View();
@@ -32,6 +34,8 @@ namespace ZenithCardPerso.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_create_organisation")]
+        [Audit]
         public ActionResult Create(OrganizationProfile organizationProfile)
         {
             try
@@ -40,16 +44,17 @@ namespace ZenithCardPerso.Web.Controllers
                 {
                     _orgCMDBLL.AddOrganisation(organizationProfile);
                     ViewData["Message"] = "Success";
+                    TempData[Utilities.Activity_Log_Details] = $"organtisation {organizationProfile.Name} has been added";
                     ModelState.Clear();
                     return View();
                 }
             }
             catch (Exception ex)
             {
-                ex.Message.ToString();
+                
 
                 ModelState.AddModelError("", "An error has occurred, Kindly contact your system administrator");
-
+                _log.Error(ex);
             }
 
             ModelState.AddModelError("", "Verify that all data submitted is valid");
@@ -66,6 +71,7 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_create_institution")]
+        [Audit]
         public ActionResult CreateInstitution(Institution institution)
         {
             try
@@ -83,7 +89,10 @@ namespace ZenithCardPerso.Web.Controllers
 
                     _orgCMDBLL.CreateInstitution(institution);
 
+
                     ModelState.Clear();
+
+                    TempData[Utilities.Activity_Log_Details] = $"institution has been added";
                     TempData["Message"] = "Success";
 
                     return View();
@@ -93,8 +102,8 @@ namespace ZenithCardPerso.Web.Controllers
             }
             catch (Exception ex)
             {
-                ex.Message.ToString();
-                throw;
+                _log.Error(ex);
+               
             }
             return View(institution);
         }
@@ -110,8 +119,10 @@ namespace ZenithCardPerso.Web.Controllers
             catch (Exception ex)
             {
                 _log.Error(ex);
-                throw;
+                
             }
+
+            return View();
         }
 
         [ValidateUserPermission(Permissions = "can_edit_institution")]
@@ -126,18 +137,23 @@ namespace ZenithCardPerso.Web.Controllers
             catch (Exception ex)
             {
                 _log.Error(ex);
-                throw;
+                
             }
+
+            return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_edit_institution")]
+        [Audit]
         public ActionResult InstitutionEdit(Institution institution)
         {
             try
             {
                 _orgCMDBLL.UpdateInstitution(institution);
 
+                TempData[Utilities.Activity_Log_Details] = $"institution with ID:  {institution.ID} has been edited";
                 TempData["Message"] = "Success";
 
                 return RedirectToAction("Institutions");
@@ -146,16 +162,22 @@ namespace ZenithCardPerso.Web.Controllers
             catch (Exception ex)
             {
                 _log.Error(ex);
-                throw;
+                
             }
+
+            return View();
         }
+
+
         [ValidateUserPermission(Permissions = "can_delete_institution")]
+        [Audit]
         public ActionResult InstitutionDelete(int ID)
         {
             try
             {
                 _orgCMDBLL.InstitutionDelete(ID);
 
+                TempData[Utilities.Activity_Log_Details] = $"institution {ID} has been deleted";
                 TempData["Message"] = "Success";
 
                 return RedirectToAction("Institutions");
@@ -164,8 +186,11 @@ namespace ZenithCardPerso.Web.Controllers
             {
                 _log.Error(ex);
 
-                throw;
+                
             }
+
+            ModelState.AddModelError("","Error deleteting institution");
+            return View();
         }
         [ValidateUserPermission(Permissions = "can_create_department")]
         public ActionResult CreateDepartment()
@@ -179,9 +204,10 @@ namespace ZenithCardPerso.Web.Controllers
             }
             catch (Exception ex)
             {
-                ex.Message.ToString();
-                throw;
+                _log.Error(ex);
+                
             }
+            return View();
 
         }
 
@@ -190,6 +216,7 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_create_department")]
+        [Audit]
         public ActionResult CreateDepartment(Department department)
         {
             try
@@ -209,6 +236,8 @@ namespace ZenithCardPerso.Web.Controllers
                     }
 
                     _orgCMDBLL.CreateDepartment(department);
+
+                    TempData[Utilities.Activity_Log_Details] = $"department has been added";
                     TempData["Message"] = "Success";
 
                     ModelState.Clear();
@@ -220,7 +249,6 @@ namespace ZenithCardPerso.Web.Controllers
             catch (Exception ex)
             {
                 ex.Message.ToString();
-                throw;
             }
 
 
@@ -249,16 +277,20 @@ namespace ZenithCardPerso.Web.Controllers
             catch (Exception ex)
             {
                 _log.Error(ex);
-                throw;
+                
             }
+
+            return View();
         }
 
         [HttpPost]
         [ValidateUserPermission(Permissions = "can_view_departments")]
+        [Audit]
         public ActionResult Departments(DepartmentViewModel deptVM)
         {
             var depts = _orgQueryBLL.GetDepartments(deptVM);
             ViewData["Depts"] = depts;
+            TempData[Utilities.Activity_Log_Details] = $"department has been added";
             LoadInstitution();
             return View();
         }
@@ -274,6 +306,7 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_edit_department")]
+        [Audit]
         public ActionResult DepartmentEdit(Department department)
         {
             try
@@ -281,7 +314,7 @@ namespace ZenithCardPerso.Web.Controllers
                 if (ModelState.IsValid)
                 {
                     _orgCMDBLL.UpdateDepartent(department);
-
+                    TempData[Utilities.Activity_Log_Details] = $"department has been edited";
                     TempData["Message"] = "Success";
                     LoadInstitution();
                     return View(); 
@@ -291,7 +324,7 @@ namespace ZenithCardPerso.Web.Controllers
             catch (Exception ex)
             {
                 _log.Error(ex);
-                throw;
+                
             }
             return View();
         }
@@ -302,6 +335,7 @@ namespace ZenithCardPerso.Web.Controllers
             {
                 _orgCMDBLL.DepartmentDelete(ID);
 
+                TempData[Utilities.Activity_Log_Details] = $"department has been deleted";
                 TempData["Message"] = "Success";
 
                 return RedirectToAction("Departments");
@@ -310,8 +344,11 @@ namespace ZenithCardPerso.Web.Controllers
             catch (Exception ex)
             {
                 _log.Error(ex);
-                throw;
+              
             }
+
+            ModelState.AddModelError("",$"Error deleting department : ID : {ID}");
+            return View();
             
         }
         public void LoadInstitution()

@@ -102,6 +102,7 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Audit]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
@@ -110,7 +111,7 @@ namespace ZenithCardPerso.Web.Controllers
             }
 
             ApplicationUser usermodel = UserManager.Users.FirstOrDefault(m => m.UserName.Trim() == model.Email && m.IsDisabled == false);
-            
+
 
             if (usermodel != null)
             {
@@ -148,6 +149,7 @@ namespace ZenithCardPerso.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    TempData[Utilities.Activity_Log_Details] = $"User {model.Email} has successfully logged on";
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -204,15 +206,19 @@ namespace ZenithCardPerso.Web.Controllers
                     return View(model);
             }
         }
+        
         [ValidateUserPermission(Permissions = "can_view_users")]
+        [Audit]
         public ActionResult Users()
         {
             var users = UserManager.Users.ToList();
-
+            TempData[Utilities.Activity_Log_Details] = $"Users list was viewed successfully";
             return View(users);
         }
 
+        
         [ValidateUserPermission(Permissions = "can_edit_user")]
+        [Audit]
         public ActionResult UserEdit(string ID)
         {
             var userManger = _manageUserQueryBLL.GetApplicationUser(ID);
@@ -246,6 +252,7 @@ namespace ZenithCardPerso.Web.Controllers
             }
 
             ViewBag.UserRoles = UserRoleVM;
+            TempData[Utilities.Activity_Log_Details] = $"User details with id: {ID} has been viewed";
 
             return View(userManger);
         }
@@ -256,6 +263,7 @@ namespace ZenithCardPerso.Web.Controllers
         }
 
         [HttpPost]
+        [Audit]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_edit_user")]
         public ActionResult UserEdit(ApplicationUser user, List<UserRoleViewModel> UserRole)
@@ -269,7 +277,7 @@ namespace ZenithCardPerso.Web.Controllers
             {
                 UserManager.AddToRole(user.Id, selectedRole);
             }
-            
+
 
             var deselectedRoles = UserRole.Where(x => x.SelectedRole == false).Select(x => x.Role).ToArray();
 
@@ -277,10 +285,10 @@ namespace ZenithCardPerso.Web.Controllers
             {
                 UserManager.RemoveFromRole(user.Id, deselectedRole);
             }
-            
 
-            
 
+
+            TempData[Utilities.Activity_Log_Details] = $"User {user.Id} was updated successfully";
             TempData["Message"] = "Success";
 
             LoadInstitution();
@@ -310,6 +318,7 @@ namespace ZenithCardPerso.Web.Controllers
         }
 
         [ValidateUserPermission(Permissions = "can_create_user,can_create_institutionusers")]
+        [Audit]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateUser(RegisterViewModel model, List<UserRoleViewModel> UserRole)
@@ -361,6 +370,7 @@ namespace ZenithCardPerso.Web.Controllers
 
                     if (addRoleResult.Succeeded)
                     {
+                        TempData[Utilities.Activity_Log_Details] = $"User with username: {usermodel.UserName} has been created successfully";
                         TempData["Message"] = "Success";
                         ModelState.Clear();
                     }
@@ -371,33 +381,8 @@ namespace ZenithCardPerso.Web.Controllers
 
                     return RedirectToAction("CreateUser");
                 }
-                //if (result.Succeeded)
-                //{
-                //    ApplicationUser usermodel = UserManager.Users.FirstOrDefault(m => m.UserName.Trim() == model.Email);
-                //    if (usermodel != null)
-                //    {
-                //        var userIdentity = await UserManager.CreateIdentityAsync(usermodel, DefaultAuthenticationTypes.ApplicationCookie);
-                //        userIdentity.AddClaim(new Claim("RegistrationType", usermodel.RegistrationType));
-                //        userIdentity.AddClaim(new Claim("OrganizationCode", usermodel.OrganizationCode));
 
 
-                //        var listIdentity = new List<ClaimsIdentity>();
-                //        listIdentity.Add(userIdentity);
-                //        ClaimsPrincipal c = new ClaimsPrincipal(listIdentity);
-                //        AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, userIdentity);
-                //    }
-
-                //    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-                //    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                //    // Send an email with this link
-                //    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                //    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                //    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                //    return RedirectToAction("Index", "Home");
-
-                //}
                 AddErrors(result);
             }
 
@@ -421,6 +406,7 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_create_role")]
+        [Audit]
         public ActionResult AddRole(ApplicationRole role)
         {
             //_roleManager.Roles.ToList();
@@ -428,6 +414,8 @@ namespace ZenithCardPerso.Web.Controllers
             RoleManager.Create(role);
 
             ModelState.Clear();
+
+            TempData[Utilities.Activity_Log_Details] = $"Role {role.Name} was created successfully";
 
             TempData["Message"] = "Success";
             return View();
@@ -451,10 +439,12 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_edit_role")]
+        [Audit]
         public ActionResult EditRole(ApplicationRole role)
         {
             RoleManager.Update(role);
 
+            TempData[Utilities.Activity_Log_Details] = $"Role {role.Name} has been edited";
             TempData["Message"] = "Success";
             return View();
         }
@@ -528,20 +518,18 @@ namespace ZenithCardPerso.Web.Controllers
         // POST: /Account/ResetPassword
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Audit]
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var result = await ResetUser(model);
 
-            UserManager.RemovePassword(user.Id);
-
-            var result = UserManager.AddPassword(user.Id, model.Password);
             if (result.Succeeded)
             {
-                _manageUserCMDBLL.UpdatedDefaultPassword(user);
+                TempData[Utilities.Activity_Log_Details] = $"User {model.Email} has carried out a password reset";
                 TempData["Message"] = "Success";
                 return RedirectToAction("Login", "Account");
             }
@@ -549,6 +537,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
         }
 
+        [ValidateUserPermission(Permissions ="can_reset_password")]
         public ActionResult ResetPasswordAdmin(string email)
         {
             var user = UserManager.FindByName(email);
@@ -558,12 +547,29 @@ namespace ZenithCardPerso.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_reset_password")]
         public async Task<ActionResult> ResetPasswordAdmin(ResetPasswordViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
+
+
+            var result = await ResetUser(model);
+
+            if (result.Succeeded)
+            {
+                TempData[Utilities.Activity_Log_Details] = $"User with username {model.Email} password was reset";
+                TempData["Message"] = "Success";
+                return RedirectToAction("Users", "Account");
+            }
+            AddErrors(result);
+            return View();
+        }
+
+        public async Task<IdentityResult> ResetUser(ResetPasswordViewModel model)
+        {
             var user = await UserManager.FindByNameAsync(model.Email);
 
             UserManager.RemovePassword(user.Id);
@@ -572,13 +578,9 @@ namespace ZenithCardPerso.Web.Controllers
             if (result.Succeeded)
             {
                 _manageUserCMDBLL.UpdatedDefaultPassword(user);
-                TempData["Message"] = "Success";
-                return RedirectToAction("Login", "Account");
             }
-            AddErrors(result);
-            return View();
+            return result;
         }
-
         //
         // GET: /Account/ResetPasswordConfirmation
         [AllowAnonymous]
@@ -705,8 +707,10 @@ namespace ZenithCardPerso.Web.Controllers
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Audit]
         public ActionResult LogOff()
         {
+            TempData[Utilities.Activity_Log_Details] = $"User {User.Identity.Name} logged off";
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("CardApplicationCreate", "CardApplication");
         }
