@@ -151,7 +151,6 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
             }
             catch (Exception ex)
             {
-
                 throw;
             }
             finally

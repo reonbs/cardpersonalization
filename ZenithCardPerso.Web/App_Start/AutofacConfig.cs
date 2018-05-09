@@ -24,6 +24,7 @@ using ZenithCardRepo.Data.Models;
 using ZenithCardRepo.Services.BLL.Command;
 using ZenithCardRepo.Services.BLL.Infrastructure;
 using ZenithCardRepo.Services.BLL.Query;
+using ZenithCardRepo.Services.BLL.UnitofWork;
 
 namespace ZenithCardPerso.Web.App_Start
 {
@@ -84,6 +85,7 @@ namespace ZenithCardPerso.Web.App_Start
             builder.RegisterType<PermissionQueryBLL>().As<IPermissionQueryBLL>();
             builder.RegisterType<ApprovalCMDBLL>().As<IApprovalCMDBLL>();
             builder.RegisterType<ApprovalQueryBLL>().As<IApprovalQueryBLL>();
+            builder.RegisterType<UnitOfWork>().AsSelf();
 
             //builder.RegisterAssemblyTypes(typeof(IAutoDependencyRegister).Assembly)
             //   .AssignableTo<IAutoDependencyRegister>()

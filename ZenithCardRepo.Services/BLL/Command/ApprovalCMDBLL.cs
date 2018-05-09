@@ -34,7 +34,6 @@ namespace ZenithCardRepo.Services.BLL.Command
         }
         public void AddApproval(List<CardApplicationsDTO> cardApps, string requestBy, string comment)
         {
-
             try
             {
                 var selectedCardApps = cardApps.Where(x => x.IsSelected == true);

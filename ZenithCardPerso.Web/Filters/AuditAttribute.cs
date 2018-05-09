@@ -64,64 +64,78 @@ namespace ZenithCardPerso.Web.Filters
         {
             try
             {
+                
                 // Stores the Request in an Accessible object
-                var request = filterContext.HttpContext.Request;
-
-                ClaimsIdentity claimsIdentity = HttpContext.Current.User.Identity as ClaimsIdentity;
-                var institutionID = int.Parse(claimsIdentity.FindFirst(Utilities.InstitutionID).Value);
-
-                var description = "No user Action took place";
-
-                var logggg = Utilities.Activity_Log_Details;
-
-                if (!string.IsNullOrEmpty(filterContext.Controller.TempData[Utilities.Activity_Log_Details].ToString()))
+                if (filterContext != null)
                 {
-                    description = filterContext.Controller.TempData[Utilities.Activity_Log_Details].ToString();
+                    var request = filterContext.HttpContext.Request;
+
+                    ClaimsIdentity claimsIdentity = HttpContext.Current.User.Identity as ClaimsIdentity;
+                    var instID = claimsIdentity.FindFirst(Utilities.InstitutionID);
+
+                    if (instID != null)
+                    {
+                        var institutionID = int.Parse(instID.Value);
+
+                        var description = "No user Action took place";
+
+                        if (filterContext.Controller.TempData.Count > 0)
+                        {
+                            //if (!string.IsNullOrEmpty(filterContext.Controller.TempData[Utilities.Activity_Log_Details].ToString()))
+                            //{
+                            //    description = filterContext.Controller.TempData[Utilities.Activity_Log_Details].ToString();
+                            //}
+                            description = filterContext.Controller.TempData[Utilities.Activity_Log_Details].ToString();
+                        }
+                        else
+                        {
+                            description = "No user Action took place";
+                        }
+
+                        //var sessionIdentifier = string.Join("", MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(request.Cookies[FormsAuthentication.FormsCookieName].Value)).Select(s => s.ToString("x2")));
+
+                        // Generate an audit
+                        AuditRecord auditRecord = new AuditRecord()
+                        {
+                            //SessionID = sessionIdentifier,
+                            // Your Audit Identifier     
+                            AuditRecordID = Guid.NewGuid(),
+                            // Our Username (if available)
+                            UserName = (request.IsAuthenticated) ? filterContext.HttpContext.User.Identity.Name : "Anonymous",
+                            // The IP Address of the Request
+                            IPAddress = request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? request.UserHostAddress,
+                            // The URL that was accessed
+                            AreaAccessed = request.RawUrl,
+                            // Creates our Timestamp
+                            TimeAccessed = DateTime.UtcNow,
+                            Data = SerializeRequest(request),
+                            Module = request.RequestContext.RouteData.Values["Controller"].ToString(),
+                            Action = request.RequestContext.RouteData.Values["Action"].ToString(),
+                            Description = description,
+                            InstitutionID = Convert.ToInt32(institutionID)
+                        };
+
+                        // Stores the Audit in the Database
+                        //_filterCMDBLL.AddAuditRecord(auditRecord);
+                        using (ApplicationDbContext db = new ApplicationDbContext())
+                        {
+                            db.AuditRecords.Add(auditRecord);
+                            db.SaveChanges();
+                        }
+
+                        base.OnActionExecuted(filterContext);
+                    }
+
                 }
-                else
-                {
-                    description = "No user Action took place";
-                }
-
-
-                //var sessionIdentifier = string.Join("", MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(request.Cookies[FormsAuthentication.FormsCookieName].Value)).Select(s => s.ToString("x2")));
-
-                // Generate an audit
-                AuditRecord auditRecord = new AuditRecord()
-                {
-                    //SessionID = sessionIdentifier,
-                    // Your Audit Identifier     
-                    AuditRecordID = Guid.NewGuid(),
-                    // Our Username (if available)
-                    UserName = (request.IsAuthenticated) ? filterContext.HttpContext.User.Identity.Name : "Anonymous",
-                    // The IP Address of the Request
-                    IPAddress = request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? request.UserHostAddress,
-                    // The URL that was accessed
-                    AreaAccessed = request.RawUrl,
-                    // Creates our Timestamp
-                    TimeAccessed = DateTime.UtcNow,
-                    Data = SerializeRequest(request),
-                    Module = request.RequestContext.RouteData.Values["Controller"].ToString(),
-                    Action = request.RequestContext.RouteData.Values["Action"].ToString(),
-                    Description = description,
-                    InstitutionID = Convert.ToInt32(institutionID)
-                };
-
-                // Stores the Audit in the Database
-                //_filterCMDBLL.AddAuditRecord(auditRecord);
-                using (ApplicationDbContext db = new ApplicationDbContext())
-                {
-                    db.AuditRecords.Add(auditRecord);
-                    db.SaveChanges();
-                }
-
-                base.OnActionExecuted(filterContext);
-
             }
             catch (Exception ex)
             {
                 _log.Error(ex);
-                //throw;
+
+            }
+            finally
+            {
+
             }
         }
         private string SerializeRequest(HttpRequestBase request)

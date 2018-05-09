@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,20 +28,20 @@ namespace ZenithCardRepo.Services.BLL.Query
             int resultFound = 0;
             if (!string.IsNullOrEmpty(auditVM.StartDate) && !string.IsNullOrEmpty(auditVM.EndDate))
             {
-                var startDate = Convert.ToDateTime(auditVM.StartDate);
-                var endDate = Convert.ToDateTime(auditVM.EndDate);
+                var startDate = DateTime.ParseExact(auditVM.StartDate, "dd/MM/yyyy", CultureInfo.InvariantCulture); //Convert.ToDateTime(auditVM.StartDate);
+                var endDate = DateTime.ParseExact(auditVM.EndDate, "dd/MM/yyyy", CultureInfo.InvariantCulture); //Convert.ToDateTime(auditVM.EndDate);
                 auditRecords = auditRecords.Where(x => x.TimeAccessed >= startDate && x.TimeAccessed <= endDate);
                 resultFound = auditRecords.Count();
             }
             if (!string.IsNullOrEmpty(auditVM.StartDate))
             {
-                var startDate = Convert.ToDateTime(auditVM.StartDate);
+                var startDate = DateTime.ParseExact(auditVM.StartDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 auditRecords = auditRecords.Where(x => x.TimeAccessed >= startDate);
                 resultFound = auditRecords.Count();
             }
             if (!string.IsNullOrEmpty(auditVM.EndDate))
             {
-                var endDate = Convert.ToDateTime(auditVM.EndDate);
+                var endDate = DateTime.ParseExact(auditVM.EndDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 auditRecords = auditRecords.Where(x => x.TimeAccessed <= endDate);
                 resultFound = auditRecords.Count();
             }

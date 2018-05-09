@@ -1,6 +1,7 @@
-﻿.notToShow{
-    visibility:hidden;
+﻿.notToShow {
+    visibility: hidden;
 }
+
 #topNavBar {
     background-color: #e3000f;
     border-radius: 0;
@@ -22,26 +23,32 @@
     top: 0;
     box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.06), 0 1px 0 0 rgba(0, 0, 0, 0.02);
 }
+
 .navbar-default .navbar-nav > li > a {
     color: #fff;
     margin: 10px;
 }
+
 #sidebar-menu ul ul li a {
     color: #fff;
 }
+
 .topbar .topbar-left {
     background: #fff;
 }
+
 .account-logo-box {
     background-color: red;
 }
+
 .content-page .content {
     background: #f9f5f5;
 }
 
-.success{
-    color:green;
+.success {
+    color: green;
 }
+
 .text-center img {
     width: 100px;
     padding: 10px;
@@ -61,13 +68,19 @@
 #tblRegistrations, #tblUserEdit, #tblSearcResults input {
     border: 0px;
 }
+
 #tblRolePermissions input {
     border: 0px;
-    background:inherit;
+    background: inherit;
 }
 
-.noborder input{
-    border:0px
+#tblUserEdit input {
+    border: 0px;
+    background: inherit;
+}
+
+.noborder input {
+    border: 0px
 }
 
 .btn-primary {

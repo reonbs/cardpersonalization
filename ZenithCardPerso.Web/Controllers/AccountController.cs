@@ -17,10 +17,14 @@ using ZenithCardRepo.Data.IdentityModels;
 using ZenithCardRepo.Services.BLL.Command;
 using ZenithCardRepo.Services.BLL.Infrastructure;
 using ZenithCardRepo.Services.BLL.Query;
+using System.Web.Security.AntiXss;
+using ZenithCardRepo.Services.BLL.UnitofWork;
+using System.Net;
 
 namespace ZenithCardPerso.Web.Controllers
 {
     [Authorize]
+    //[RequireHttps]
     public class AccountController : Controller
     {
         private readonly ApplicationUserManager _userManager;
@@ -31,6 +35,7 @@ namespace ZenithCardPerso.Web.Controllers
         private IManageUserQueryBLL _manageUserQueryBLL;
         private IManageUserCMDBLL _manageUserCMDBLL;
         public IPermissionQueryBLL _permissionQueryBLL;
+        private UnitOfWork _unitOfWork;
 
         public AccountController(
             ApplicationUserManager userManager,
@@ -40,7 +45,8 @@ namespace ZenithCardPerso.Web.Controllers
             IOrganisationQueryBLL orgQueryBLL,
             IManageUserQueryBLL manageUserQueryBLL,
             IManageUserCMDBLL manageUserCMDBLL,
-            IPermissionQueryBLL permissionQueryBLL
+            IPermissionQueryBLL permissionQueryBLL,
+            UnitOfWork unitOfWork
             )
         {
             _userManager = userManager;
@@ -51,6 +57,7 @@ namespace ZenithCardPerso.Web.Controllers
             _manageUserQueryBLL = manageUserQueryBLL;
             _manageUserCMDBLL = manageUserCMDBLL;
             _permissionQueryBLL = permissionQueryBLL;
+            _unitOfWork = unitOfWork;
         }
 
         public ApplicationSignInManager SignInManager
@@ -110,7 +117,7 @@ namespace ZenithCardPerso.Web.Controllers
             }
 
             ApplicationUser usermodel = UserManager.Users.FirstOrDefault(m => m.UserName.Trim() == model.Email && m.IsDisabled == false);
-            
+
 
             if (usermodel != null)
             {
@@ -119,7 +126,10 @@ namespace ZenithCardPerso.Web.Controllers
                 var userID = usermodel.Roles.Select(x => x.UserId).FirstOrDefault();
                 var roles = UserManager.GetRoles(userID).ToArray(); ;
 
+                
                 var storedPermissions = _permissionQueryBLL.FetchUserPermission(usermodel.UserName, roles);
+
+                userIdentity.AddClaim(new Claim("FullName",usermodel.FullName));
 
                 userIdentity.AddClaim(new Claim("InstitutionID", usermodel.InstitutionID.ToString()));
 
@@ -132,13 +142,13 @@ namespace ZenithCardPerso.Web.Controllers
 
                 if (usermodel.IsDefaultPassword)
                 {
-                    return RedirectToAction("ResetPassword", new { email = usermodel.Email });
+                    return RedirectToAction("ResetPassword", new { Id = usermodel.Id });
                 }
             }
             else
             {
                 ModelState.AddModelError("", "username or password is incorrect");
-
+                TempData["Message"] = "Failed";
                 return RedirectToAction("Login");
             }
 
@@ -148,6 +158,7 @@ namespace ZenithCardPerso.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    //TempData[Utilities.Activity_Log_Details] = $"User {model.Email} has successfully logged on";
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -204,17 +215,23 @@ namespace ZenithCardPerso.Web.Controllers
                     return View(model);
             }
         }
+        
         [ValidateUserPermission(Permissions = "can_view_users")]
+        [Audit]
         public ActionResult Users()
         {
             var users = UserManager.Users.ToList();
-
+            TempData[Utilities.Activity_Log_Details] = $"Users list was viewed successfully";
             return View(users);
         }
 
+        
         [ValidateUserPermission(Permissions = "can_edit_user")]
+        [Audit]
         public ActionResult UserEdit(string ID)
         {
+            TempData[Utilities.Activity_Log_Details] = $"User details with id: {ID} has been viewed";
+
             var userManger = _manageUserQueryBLL.GetApplicationUser(ID);
             LoadInstitution();
 
@@ -246,6 +263,7 @@ namespace ZenithCardPerso.Web.Controllers
             }
 
             ViewBag.UserRoles = UserRoleVM;
+            
 
             return View(userManger);
         }
@@ -258,8 +276,11 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_edit_user")]
-        public ActionResult UserEdit(ApplicationUser user, List<UserRoleViewModel> UserRole)
+        [Audit]
+        public async Task<ActionResult> UserEdit(ApplicationUser user, List<UserRoleViewModel> UserRole)
         {
+            TempData[Utilities.Activity_Log_Details] = $"User {user.Id} was updated successfully";
+
             var loggedOnUser = User.Identity.Name;
             _manageUserCMDBLL.UpdateUser(user, loggedOnUser);
 
@@ -267,19 +288,19 @@ namespace ZenithCardPerso.Web.Controllers
 
             foreach (var selectedRole in selectedRoles)
             {
-                UserManager.AddToRole(user.Id, selectedRole);
+                //UserManager.AddToRole(user.Id, selectedRole);
+
+                await UserManager.AddToRoleAsync(user.Id, selectedRole);
             }
-            
+
 
             var deselectedRoles = UserRole.Where(x => x.SelectedRole == false).Select(x => x.Role).ToArray();
 
             foreach (var deselectedRole in deselectedRoles)
             {
-                UserManager.RemoveFromRole(user.Id, deselectedRole);
+                //UserManager.RemoveFromRole(user.Id, deselectedRole);
+                await UserManager.RemoveFromRoleAsync(user.Id, deselectedRole);
             }
-            
-
-            
 
             TempData["Message"] = "Success";
 
@@ -312,8 +333,10 @@ namespace ZenithCardPerso.Web.Controllers
         [ValidateUserPermission(Permissions = "can_create_user,can_create_institutionusers")]
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Audit]
         public async Task<ActionResult> CreateUser(RegisterViewModel model, List<UserRoleViewModel> UserRole)
         {
+            TempData[Utilities.Activity_Log_Details] = $"User with username: {model.UserName} has been created successfully";
             var modelState = ModelState.Where(x => x.Value.Errors.Count > 0);
 
             if (ModelState.IsValid)
@@ -327,7 +350,6 @@ namespace ZenithCardPerso.Web.Controllers
                 {
                     roles.Add(new UserRoleViewModel { SelectedRole = true, Role = "Enroller" });
                 }
-
 
                 var user = new ApplicationUser
                 {
@@ -361,6 +383,7 @@ namespace ZenithCardPerso.Web.Controllers
 
                     if (addRoleResult.Succeeded)
                     {
+                        TempData[Utilities.Activity_Log_Details] = $"User with username: {usermodel.UserName} has been created successfully";
                         TempData["Message"] = "Success";
                         ModelState.Clear();
                     }
@@ -371,33 +394,8 @@ namespace ZenithCardPerso.Web.Controllers
 
                     return RedirectToAction("CreateUser");
                 }
-                //if (result.Succeeded)
-                //{
-                //    ApplicationUser usermodel = UserManager.Users.FirstOrDefault(m => m.UserName.Trim() == model.Email);
-                //    if (usermodel != null)
-                //    {
-                //        var userIdentity = await UserManager.CreateIdentityAsync(usermodel, DefaultAuthenticationTypes.ApplicationCookie);
-                //        userIdentity.AddClaim(new Claim("RegistrationType", usermodel.RegistrationType));
-                //        userIdentity.AddClaim(new Claim("OrganizationCode", usermodel.OrganizationCode));
 
 
-                //        var listIdentity = new List<ClaimsIdentity>();
-                //        listIdentity.Add(userIdentity);
-                //        ClaimsPrincipal c = new ClaimsPrincipal(listIdentity);
-                //        AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, userIdentity);
-                //    }
-
-                //    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-                //    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                //    // Send an email with this link
-                //    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                //    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                //    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                //    return RedirectToAction("Index", "Home");
-
-                //}
                 AddErrors(result);
             }
 
@@ -421,13 +419,17 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_create_role")]
+        [Audit]
         public ActionResult AddRole(ApplicationRole role)
         {
             //_roleManager.Roles.ToList();
 
+            TempData[Utilities.Activity_Log_Details] = $"Role {role.Name} was created successfully";
+
             RoleManager.Create(role);
 
             ModelState.Clear();
+
 
             TempData["Message"] = "Success";
             return View();
@@ -451,10 +453,13 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_edit_role")]
+        [Audit]
         public ActionResult EditRole(ApplicationRole role)
         {
+            TempData[Utilities.Activity_Log_Details] = $"Role {role.Name} has been edited";
             RoleManager.Update(role);
 
+            
             TempData["Message"] = "Success";
             return View();
         }
@@ -516,9 +521,9 @@ namespace ZenithCardPerso.Web.Controllers
 
         //
         // GET: /Account/ResetPassword
-        public ActionResult ResetPassword(string email)
+        public ActionResult ResetPassword(string Id)
         {
-            var user = UserManager.FindByName(email);
+            var user = UserManager.FindById(Id);
             var resetPasswordVM = new ResetPasswordViewModel { FullName = user.FullName, Email = user.Email };
             return View(resetPasswordVM);
         }
@@ -528,20 +533,20 @@ namespace ZenithCardPerso.Web.Controllers
         // POST: /Account/ResetPassword
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Audit]
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
         {
+            //TempData[Utilities.Activity_Log_Details] = $"User {model.Email} has carried out a password reset";
+
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var result = await ResetUser(model);
 
-            UserManager.RemovePassword(user.Id);
-
-            var result = UserManager.AddPassword(user.Id, model.Password);
             if (result.Succeeded)
             {
-                _manageUserCMDBLL.UpdatedDefaultPassword(user);
+                TempData[Utilities.Activity_Log_Details] = $"User {model.FullName} has carried out a password reset";
                 TempData["Message"] = "Success";
                 return RedirectToAction("Login", "Account");
             }
@@ -549,21 +554,50 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
         }
 
+        [ValidateUserPermission(Permissions ="can_reset_password")]
         public ActionResult ResetPasswordAdmin(string email)
         {
+            email = AntiXssEncoder.HtmlEncode(email, true);
             var user = UserManager.FindByName(email);
-            var resetPasswordVM = new ResetPasswordViewModel { FullName = user.FullName, Email = user.Email };
-            return View(resetPasswordVM);
+            if (user != null)
+            {
+                var resetPasswordVM = new ResetPasswordViewModel { FullName = user.FullName, Email = user.Email };
+                return View(resetPasswordVM);
+            }
+            else
+            {
+                TempData["Message"] = "Failed";
+                return RedirectToAction("Users");
+            }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_reset_password")]
         public async Task<ActionResult> ResetPasswordAdmin(ResetPasswordViewModel model)
         {
+            TempData[Utilities.Activity_Log_Details] = $"User with username {model.Email} password was reset";
+
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
+
+
+            var result = await ResetUser(model);
+
+            if (result.Succeeded)
+            {
+                
+                TempData["Message"] = "Success";
+                return RedirectToAction("Users", "Account");
+            }
+            AddErrors(result);
+            return View();
+        }
+
+        public async Task<IdentityResult> ResetUser(ResetPasswordViewModel model)
+        {
             var user = await UserManager.FindByNameAsync(model.Email);
 
             UserManager.RemovePassword(user.Id);
@@ -572,13 +606,9 @@ namespace ZenithCardPerso.Web.Controllers
             if (result.Succeeded)
             {
                 _manageUserCMDBLL.UpdatedDefaultPassword(user);
-                TempData["Message"] = "Success";
-                return RedirectToAction("Login", "Account");
             }
-            AddErrors(result);
-            return View();
+            return result;
         }
-
         //
         // GET: /Account/ResetPasswordConfirmation
         [AllowAnonymous]
@@ -705,8 +735,10 @@ namespace ZenithCardPerso.Web.Controllers
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Audit]
         public ActionResult LogOff()
         {
+            TempData[Utilities.Activity_Log_Details] = $"User {User.Identity.Name} logged off";
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("CardApplicationCreate", "CardApplication");
         }
@@ -719,7 +751,47 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
         }
 
+        [ValidateUserPermission(Permissions ="can_delete_users")]
+        public async Task<ActionResult> DeleteUser(string id)
+        {
+            if (ModelState.IsValid)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
 
+                var user = await _userManager.FindByIdAsync(id);
+                var logins = user.Logins;
+                var rolesForUser = await _userManager.GetRolesAsync(id);
+
+                using (var transaction = _unitOfWork.context.Database.BeginTransaction())
+                {
+                    foreach (var login in logins.ToList())
+                    {
+                        await _userManager.RemoveLoginAsync(login.UserId, new UserLoginInfo(login.LoginProvider, login.ProviderKey));
+                    }
+
+                    if (rolesForUser.Count() > 0)
+                    {
+                        foreach (var item in rolesForUser.ToList())
+                        {
+                            // item should be the name of the role
+                            var result = await _userManager.RemoveFromRoleAsync(user.Id, item);
+                        }
+                    }
+
+                    await _userManager.DeleteAsync(user);
+                    transaction.Commit();
+                }
+
+                return RedirectToAction("Users");
+            }
+            else
+            {
+                return View();
+            }
+        }
 
         #region Helpers
         // Used for XSRF protection when adding external logins

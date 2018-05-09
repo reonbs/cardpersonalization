@@ -118,6 +118,10 @@
     <script>
         $(function () {
             $("#tblAuditTrail").dataTable();
+
+            $('#StartDate,#EndDate').datepicker({
+                dateFormat: 'dd/mm/yy'
+            });
         });
     </script>
 }

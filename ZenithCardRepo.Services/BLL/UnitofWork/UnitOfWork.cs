@@ -10,22 +10,16 @@ using ZenithCardRepo.Data.Models;
 
 namespace ZenithCardRepo.Services.BLL.UnitofWork
 {
-    public class UnitOfWork<T> where T : class, IDisposable
+    public class UnitOfWork : IDisposable
     {
-        private readonly ApplicationDbContext context;
+        public ApplicationDbContext context;
         private bool disposed;
         private Dictionary<string, object> repositories;
-        private IQueryRepository<T> _queryRepo;
-        private ICommandRepository<T> _cmdRepo;
-
-        public UnitOfWork(ApplicationDbContext context, IQueryRepository<T> queryRepo, ICommandRepository<T> cmdRepo)
+        
+        public UnitOfWork(ApplicationDbContext context)
         {
             this.context = context;
-            _queryRepo = queryRepo;
-            _cmdRepo = cmdRepo;
         }
-
-        
 
         public void Dispose()
         {

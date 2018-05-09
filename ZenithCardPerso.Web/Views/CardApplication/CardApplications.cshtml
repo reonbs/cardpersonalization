@@ -16,6 +16,8 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+
+    var cardApplications = ViewBag.CardApplications as List<ZenithCardRepo.Data.DTOs.CardApplicationsDTO>;
     <!---Validation msg start-->
     <div class="row">
         @if (ViewData?.ModelState[""]?.Errors?.Any() == true) //@ViewBag.Error != null
@@ -30,7 +32,7 @@
             </div>
 
         }
-        @if (ViewData["Message"] as string == "Successonapproval")
+        @if (TempData["Message"] as string == "Successonapproval")
         {
             <div class="alert alert-icon alert-success alert-dismissible fade in" role="alert">
                 <button type="button" class="close" data-dismiss="alert"
@@ -41,14 +43,26 @@
                 <span>Your request for approval was successful</span>
             </div>
         }
+        @if (TempData["Message"] as string == "failedprocess")
+        {
+            <div class="alert alert-icon alert-danger alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <i class="mdi mdi-block-helper"></i>
+                <span>There is not available cards to be processed</span>
+            </div>
+        }
     </div>
     <!---Validation msg end-->
+    @Html.Hidden("HDComment")
+    @Html.Hidden("FromDate")
+    @Html.Hidden("ToDate")
     <div class="row card-box">
         <div class="col-sm-12">
             <div class="form-group">
                 <div class="col-md-3">
-                    @Html.Hidden("HDComment")
-                    @Html.Hidden("FromDate")
                     @Html.LabelFor(m => m.FromDate)
                     <div class="input-group">
                         @*@Html.EditorFor(m => m.FromDate, new { htmlAttributes = new { @class = "form-control" } })*@
@@ -59,7 +73,6 @@
                 <div class="col-md-3">
                     @Html.LabelFor(m => m.ToDate)
                     <div class="input-group">
-                        @Html.Hidden("ToDate")
                         @*@Html.EditorFor(m => m.ToDate, new { htmlAttributes = new { @class = "form-control" } })*@
                         <input id="SearchToDate" class="form-control" />
                         <span class="input-group-addon bg-custom b-0"><i class="mdi mdi-calendar text-white"></i></span>
@@ -73,14 +86,10 @@
                     @Html.LabelFor(m => m.BatchNo)
                     @Html.EditorFor(m => m.BatchNo, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
-            </div>
-            <div class="form-group">
                 <div class="col-md-3">
                     @Html.LabelFor(m => m.Institution)
                     @Html.DropDownListFor(m => m.Institution, ViewData["Institution"] as SelectList, "", new { @class = "form-control select2" })
                 </div>
-            </div>
-            <div class="form-group">
                 <div class="col-md-3">
                     @Html.LabelFor(m => m.Department)
                     <select id="Department" name="Department" class="form-control select2">
@@ -88,13 +97,17 @@
                     </select>
                 </div>
             </div>
-
         </div>
-
     </div>
     <div class="row pull-right">
-        <span><button type="submit" formaction=@Url.Action("ExportToExcel","CardApplication") formmethod="post" class="btn btn-primary waves-effect w-md waves-light m-b-5">Export To Excel</button></span>
-
+        @if (cardApplications?.Count > 0)
+        {
+            <span><button type="submit" formaction=@Url.Action("ExportToExcel","CardApplication") formmethod="post" class="btn btn-primary waves-effect w-md waves-light m-b-5">Export To Excel</button></span>
+        }
+        else
+        {
+            <button class="btn btn-primary waves-effect w-md waves-light m-b-5" disabled>Export To Excel</button>
+        }
         <span><button type="submit" formaction=@Url.Action("CardApplications","CardApplication") formmethod="post" class="btn btn-primary waves-effect w-md waves-light m-b-5">Search</button></span>
 
         @if (Convert.ToBoolean(ViewData["IsDownloadRequired"]))
@@ -107,10 +120,17 @@
         }
         else
         {
-            <button type="submit" formaction=@Url.Action("ProcessCard","CardApplication") formmethod="post" class="btn btn-primary waves-effect w-md waves-light m-b-5">Process Card</button>
+            if (cardApplications?.Count > 0)
+            {
+                <button type="submit" formaction=@Url.Action("ProcessCard", "CardApplication") formmethod="post" class="btn btn-primary waves-effect w-md waves-light m-b-5">Process Card</button>
+            }
+            else
+            {
+
+                <button class="btn btn-primary waves-effect w-md waves-light m-b-5" disabled>Process Card</button>
+            }
 
         }
-
         <span><button id="deleteCardsBTN" type="button" class="btn btn-primary waves-effect w-md waves-light m-b-5">Delete</button></span>
 
     </div>
@@ -137,7 +157,7 @@
         </div>
     </div>
     <br />
-    var cardApplications = ViewBag.CardApplications as List<ZenithCardRepo.Data.DTOs.CardApplicationsDTO>;
+
 
     @Html.Partial("SearchResult", cardApplications)
 
@@ -145,12 +165,11 @@
         <script>
             $(function () {
                 $('#SearchFromDate, #SearchToDate').datepicker({
-                    format: "dd/mm/yyyy",
-                    autoclose: true,
-                    todayHighlight: true
+                    dateFormat: "dd/mm/yy"
+                    
                 });
 
-                $('#Department, #Institution').select2();
+               // $('#Department, #Institution').select2();
 
                 $('#Institution').on('change', function () {
                     var instID = $(this).val();
@@ -221,6 +240,30 @@
 
                     $('#ToDate').val(newDate);
                 })
+
+                function toggleChecked(status) {
+                    $("#tblSearcResults input").each(function () {
+                        // Set the checked status of each to match the
+                        // checked status of the check all checkbox:
+                        $(this).prop("checked", status);
+                    });
+                }
+
+
+
+               // Grab a reference to the check all box:
+               //var checkAllBox = $("#checkall");
+
+               //Set the default value of the global checkbox to true:
+                //checkAllBox.prop('checked', true);
+
+                // Attach the call to toggleChecked to the
+                // click event of the global checkbox:
+                    //checkAllBox.click(function () {
+                    //    var status = checkAllBox.prop('checked');
+                    //    toggleChecked(status);
+                    //});
+
             });
         </script>
     }

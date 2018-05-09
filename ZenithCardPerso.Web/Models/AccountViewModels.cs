@@ -88,6 +88,7 @@ namespace ZenithCardPerso.Web.Models
         [Required]
         public string LastName { get; set; }
         [Required]
+        [EmailAddress]
         public string UserName { get; set; }
         public bool IsDisabled { get; set; }
 

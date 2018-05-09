@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using ZenithCardPerso.Web.Filters;
 using ZenithCardRepo.Data.Models;
 using ZenithCardRepo.Services.BLL.Command;
+using ZenithCardRepo.Services.BLL.Infrastructure;
 using ZenithCardRepo.Services.BLL.Query;
 
 namespace ZenithCardPerso.Web.Controllers
@@ -32,6 +33,7 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_modify_legends")]
+        [Audit]
         public ActionResult Title(TitleCode title)
         {
             try
@@ -46,6 +48,7 @@ namespace ZenithCardPerso.Web.Controllers
                     }
                     _legendCMDBLL.ADDTitle(title);
 
+                    TempData[Utilities.Activity_Log_Details] = $"Tile code has been added";
                     TempData["Message"] = "Success";
 
                     ModelState.Clear();
@@ -75,6 +78,7 @@ namespace ZenithCardPerso.Web.Controllers
 
         }
         [ValidateUserPermission(Permissions = "can_modify_legends")]
+        
         public ActionResult TitleEdit(int ID)
         {
             try
@@ -100,12 +104,14 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_modify_legends")]
+        [Audit]
         public ActionResult TitleEdit(TitleCode title)
         {
             try
             {
                 _legendCMDBLL.UpdateTite(title);
 
+                TempData[Utilities.Activity_Log_Details] = $"Tile {title.ID} has been Edited";
                 TempData["Message"] = "Success";
 
 
@@ -135,6 +141,7 @@ namespace ZenithCardPerso.Web.Controllers
         }
 
         [ValidateUserPermission(Permissions = "can_modify_legends")]
+
         public ActionResult SexEdit(int ID)
         {
             try
@@ -160,6 +167,7 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_modify_legends")]
+        [Audit]
         public ActionResult SexEdit(Sex sex)
         {
             try
@@ -168,6 +176,7 @@ namespace ZenithCardPerso.Web.Controllers
                 {
                     _legendCMDBLL.UpdateSex(sex);
 
+                    TempData[Utilities.Activity_Log_Details] = $"Sex {sex.ID}  has been added";
                     TempData["Message"] = "Success";
 
                     return View();
@@ -187,8 +196,9 @@ namespace ZenithCardPerso.Web.Controllers
         {
             return View();
         }
-
+        [HttpPost]
         [ValidateUserPermission(Permissions = "can_modify_legends")]
+        [Audit]
         public ActionResult AddMaritalStatus(MaritalStatus maritalStatus)
         {
             try
@@ -196,14 +206,21 @@ namespace ZenithCardPerso.Web.Controllers
                 if (ModelState.IsValid)
                 {
                     _legendCMDBLL.AddMaritasStatus(maritalStatus);
+
+                    TempData[Utilities.Activity_Log_Details] = $"Marital Status  has been added";
+
+                    TempData["Message"] = "Success";
+                    return View();
                 }
             }
             catch (Exception ex)
             {
 
-                throw;
+                _log.Error(ex);
             }
-            return View();
+
+            ModelState.AddModelError("","Error adding marital status");
+            return View(maritalStatus);
         }
 
         [ValidateUserPermission(Permissions = "can_modify_legends")]
@@ -232,6 +249,7 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_modify_legends")]
+        [Audit]
         public ActionResult MaritalStatusEdit(MaritalStatus maritalStatus)
         {
             try
@@ -240,6 +258,7 @@ namespace ZenithCardPerso.Web.Controllers
                 {
                     _legendCMDBLL.UpdateMaritalStatus(maritalStatus);
 
+                    TempData[Utilities.Activity_Log_Details] = $"Marital status {maritalStatus.ID}  has been edited";
                     TempData["Message"] = "Success";
                     return View();
                 }
@@ -277,13 +296,17 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_modify_legends")]
+        [Audit]
         public ActionResult AddCity(City city)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+                    
                     _legendCMDBLL.AddCity(city);
+                    TempData[Utilities.Activity_Log_Details] = $"City has been added";
+                    TempData["Message"] = "Success";
                 }
             }
             catch (Exception ex)
@@ -320,6 +343,7 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_modify_legends")]
+        [Audit]
         public ActionResult CityEdit(City city)
         {
             try
@@ -328,6 +352,7 @@ namespace ZenithCardPerso.Web.Controllers
                 {
                     _legendCMDBLL.UpdateCity(city);
 
+                    TempData[Utilities.Activity_Log_Details] = $"City {city.ID} has been edited";
                     TempData["Message"] = "Success";
                     return View();
                 }
@@ -365,6 +390,7 @@ namespace ZenithCardPerso.Web.Controllers
         [ValidateUserPermission(Permissions = "can_modify_legends")]
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Audit]
         public ActionResult AddState(State state)
         {
             try
@@ -372,6 +398,11 @@ namespace ZenithCardPerso.Web.Controllers
                 if (ModelState.IsValid)
                 {
                     _legendCMDBLL.AddState(state);
+
+                    TempData[Utilities.Activity_Log_Details] = $"State has been added";
+                    TempData["Message"] = "Success";
+
+                    return RedirectToAction("AddState");
                 }
             }
             catch (Exception ex)
@@ -408,6 +439,7 @@ namespace ZenithCardPerso.Web.Controllers
         [ValidateUserPermission(Permissions = "can_modify_legends")]
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Audit]
         public ActionResult StateEdit(State state)
         {
             try
@@ -416,6 +448,7 @@ namespace ZenithCardPerso.Web.Controllers
                 {
                     _legendCMDBLL.UpdateState(state);
 
+                    TempData[Utilities.Activity_Log_Details] = $"State has been edited";
                     TempData["Message"] = "Success";
                     return View();
                 }
@@ -454,6 +487,7 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_modify_legends")]
+        [Audit]
         public ActionResult AddIDCardType(IDCardType idCardType)
         {
             try
@@ -461,6 +495,10 @@ namespace ZenithCardPerso.Web.Controllers
                 if (ModelState.IsValid)
                 {
                     _legendCMDBLL.AddIDCardType(idCardType);
+                    TempData[Utilities.Activity_Log_Details] = $"IDCardType has been Added";
+                    TempData["Message"] = "Success";
+
+                    return RedirectToAction("AddIDCardType");
                 }
             }
             catch (Exception ex)
@@ -497,6 +535,7 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_modify_legends")]
+        [Audit]
         public ActionResult IDCardTypeEdit(IDCardType idCardType)
         {
             try
@@ -505,6 +544,7 @@ namespace ZenithCardPerso.Web.Controllers
                 {
                     _legendCMDBLL.UpdateIDCardType(idCardType);
 
+                    TempData[Utilities.Activity_Log_Details] = $"IDCardType {idCardType.ID} has been edited";
                     TempData["Message"] = "Success";
                     return View();
                 }
@@ -514,6 +554,7 @@ namespace ZenithCardPerso.Web.Controllers
                 _log.Error(ex);
             }
 
+            ModelState.AddModelError("","Error adding idcardtype");
             return View(idCardType);
         }
 
@@ -550,6 +591,10 @@ namespace ZenithCardPerso.Web.Controllers
                 if (ModelState.IsValid)
                 {
                     _legendCMDBLL.AddSocioProfCode(socioProfCode);
+                    TempData[Utilities.Activity_Log_Details] = $"IDCardType has been added";
+                    TempData["Message"] = "Success";
+
+                    return RedirectToAction("AddSocioProfCode");
                 }
             }
             catch (Exception ex)
@@ -586,6 +631,7 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_modify_legends")]
+        [Audit]
         public ActionResult SocioProfCodeEdit(SocioProfCode socioProfCode)
         {
             try
@@ -594,6 +640,7 @@ namespace ZenithCardPerso.Web.Controllers
                 {
                     _legendCMDBLL.UpdateSocioProfCode(socioProfCode);
 
+                    TempData[Utilities.Activity_Log_Details] = $"Socio Prof code with id {socioProfCode.ID} has been edited";
                     TempData["Message"] = "Success";
                     return View();
                 }
@@ -631,6 +678,7 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_modify_legends")]
+        [Audit]
         public ActionResult AddProductCode(ProductCode productCode)
         {
             try
@@ -638,6 +686,11 @@ namespace ZenithCardPerso.Web.Controllers
                 if (ModelState.IsValid)
                 {
                     _legendCMDBLL.AddProductCode(productCode);
+
+                    TempData[Utilities.Activity_Log_Details] = $"Product code has been added";
+                    TempData["Message"] = "Success";
+
+                    return View();
                 }
             }
             catch (Exception ex)
@@ -674,6 +727,7 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_modify_legends")]
+        [Audit]
         public ActionResult ProductCodeEdit(ProductCode productCode)
         {
             try
@@ -682,6 +736,7 @@ namespace ZenithCardPerso.Web.Controllers
                 {
                     _legendCMDBLL.UpdateProductCode(productCode);
 
+                    TempData[Utilities.Activity_Log_Details] = $"Productcode has been added";
                     TempData["Message"] = "Success";
                     return View();
                 }
@@ -691,6 +746,7 @@ namespace ZenithCardPerso.Web.Controllers
                 _log.Error(ex);
             }
 
+            ModelState.AddModelError("","Error adding product code");
             return View(productCode);
         }
 
@@ -726,6 +782,11 @@ namespace ZenithCardPerso.Web.Controllers
                 if (ModelState.IsValid)
                 {
                     _legendCMDBLL.AddNationalityCode(nationalityCode);
+
+                    TempData[Utilities.Activity_Log_Details] = $"Nationality code has been added";
+                    TempData["Message"] = "Success";
+
+                    return View();
                 }
             }
             catch (Exception ex)
@@ -762,6 +823,7 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_modify_legends")]
+        [Audit]
         public ActionResult NationalityCodeEdit(NationalityCode nationalityCode)
         {
             try
@@ -769,7 +831,7 @@ namespace ZenithCardPerso.Web.Controllers
                 if (ModelState.IsValid)
                 {
                     _legendCMDBLL.UpdateNationalityCode(nationalityCode);
-
+                    TempData[Utilities.Activity_Log_Details] = $"Nationality code has been edited";
                     TempData["Message"] = "Success";
                     return View();
                 }

@@ -118,8 +118,8 @@ namespace ZenithCardRepo.Services.BLL.Query
                 {
                     cardApps.Add(cardApp);
                 }
-
             }
+
             if (cardApps.Count() > 0)
             {
                 return cardApps.Select(CardApplicationsDTO.GetCompleteDTOFromModel).ToList();

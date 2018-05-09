@@ -230,7 +230,6 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
         }
 
-        //
         // POST: /Manage/ChangePassword
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -248,7 +247,9 @@ namespace ZenithCardPerso.Web.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+
+                TempData["Message"] = "Success";
+                return RedirectToAction("Login", "Account");
             }
             AddErrors(result);
             return View(model);

@@ -73,7 +73,8 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
                 foreach (DataColumn column in dataTable.Columns)
                 {
                     ExcelRange columnCells = workSheet.Cells[workSheet.Dimension.Start.Row, columnIndex, workSheet.Dimension.End.Row, columnIndex];
-                    if (columnIndex < 29) //added to exclude url column
+
+                    if (columnIndex < 26) //added to exclude url column //column.Caption != "ImageLocation" || column.Caption != "ProcessedBatchNo"
                     {
                         int maxLength = columnCells.Max(cell => cell.Value.ToString().Count());
                         if (maxLength < 150)

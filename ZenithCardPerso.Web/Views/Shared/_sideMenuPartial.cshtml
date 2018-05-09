@@ -43,6 +43,29 @@
                 </ul>
             </li>
         }
+        @if (User.IsInRole("CardOps"))
+        {
+            <li class="has_sub">
+                <a href="javascript:void(0);" class="waves-effect">
+                    <i class="mdi mdi-settings"></i>
+                    <span> Card Operations </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="list-unstyled">
+                    
+                    <li>
+                        <a href="@Url.Action("CardApplications","CardApplication")">Card Applications</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Institutions","Organisation")">Institutions</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Departments","Organisation")">Departments</a>
+                    </li>
+                    
+                </ul>
+            </li>
+        }
         @if (User.IsInRole("SuperAdmin") || permissions.Contains("can_create_institutionusers"))
         {
             <li class="has_sub">
@@ -55,21 +78,12 @@
                     @if (permissions.Contains("can_create_institutionusers"))
                     {
                         <li>
-                            <a href="@Url.Action("CreateUser","Account")">Cretae User</a>
+                            <a href="@Url.Action("CreateUser","Account")">Create User</a>
                         </li>
                     }
 
                     @if (User.IsInRole("SuperAdmin"))
                     {
-                        <li>
-                            <a href="@Url.Action("CardApplications","CardApplication")">Card Applications</a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Institutions","Organisation")">Institutions</a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Departments","Organisation")">Departments</a>
-                        </li>
 
                         <li>
                             <a href="@Url.Action("Roles","Account")">Roles</a>

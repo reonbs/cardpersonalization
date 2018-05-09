@@ -33,6 +33,7 @@ namespace ZenithCardRepo.Services.BLL.Command
             applicationUser.DateModified = DateTime.Now;
             applicationUser.ModifiedBy = loggedOnUser;
             applicationUser.IsDisabled = user.IsDisabled;
+            applicationUser.Email = user.Email;
 
             _userCMDRepo.Update(applicationUser);
             _userCMDRepo.Save();

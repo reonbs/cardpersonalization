@@ -62,6 +62,13 @@ namespace ZenithCardRepo.Services.BLL.Query
             return userPermission;
         }
 
+        public List<ApproversDTO> GetApprovers(string permissionName)
+        {
+            var approvers = _permissionQueryBLL.StoreprocedureQueryFor<ApproversDTO>("FLTApprovers @permissionname", new SqlParameter("permissionname", permissionName)).ToList();
+
+            return approvers;
+        }
+
         public List<string> FetchUserRoles(string userID)
         {
             var userRoles = _permissionQueryBLL.StoreprocedureQueryFor<string>("FLTUserPermissionsAndRole @userid", new SqlParameter("userid", userID)).ToList();
