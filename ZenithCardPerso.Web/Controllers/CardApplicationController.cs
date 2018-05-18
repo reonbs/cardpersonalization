@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -301,7 +302,12 @@ namespace ZenithCardPerso.Web.Controllers
             isProcessed.Add("Yes", "true");
             isProcessed.Add("No", "false");
 
+            Dictionary<string, string> isApproved = new Dictionary<string, string>();
+            isApproved.Add("Yes", "true");
+            isApproved.Add("No", "false");
+
             ViewData["IsProcessed"] = new SelectList(isProcessed, "Value", "Key", "");
+            ViewData["isApproved"] = new SelectList(isApproved, "Value", "Key", "");
 
             var institutions = _orgQueryBLL.GetInstitutions();
             ViewData["Institution"] = new SelectList(institutions, "ID", "Name", "");
@@ -506,9 +512,10 @@ namespace ZenithCardPerso.Web.Controllers
         [Audit]
         public ActionResult  CardRequestApprovals()
         {
+            List<Approval> approvals = new List<Approval>{};
             try
             {
-                var approvals = _approvalQueryBLL.GetApprovals();
+                approvals = _approvalQueryBLL.GetApprovals();
                 TempData[Utilities.Activity_Log_Details] = "Card application approvals has been viewed";
                 return View(approvals);
 
@@ -519,7 +526,7 @@ namespace ZenithCardPerso.Web.Controllers
             }
 
             ModelState.AddModelError("", "Error retrieving card application");
-            return View();
+            return View(approvals);
         }
 
         
@@ -543,29 +550,37 @@ namespace ZenithCardPerso.Web.Controllers
                 _log.Error(ex);
             }
 
-            ModelState.AddModelError("", "Error viewing card application for approval");
-            return View();
+            //ModelState.AddModelError("", "Error viewing card application for approval");
+            TempData["Message"] = "Failed";
+            TempData[Utilities.Activity_Log_Details] = "Error viewing card application for approval";
+            return RedirectToAction("CardRequestApprovals");
         }
         /// <summary>
-        /// Approve Selected Card applications
+        /// 
         /// </summary>
-        /// <param name="approvalID"></param>
+        /// <param name="cardApps"></param>
+        /// <param name="comment"></param>
+        /// <param name="hdApprovalId"></param>
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_approve_cardrequest")]
         [Audit]
-        public ActionResult ViewApplicationsForApproval(List<CardApplicationsDTO> cardApps, string Comment, string HDApprovalID)
+        public ActionResult ViewApplicationsForApproval(List<CardApplicationsDTO> cardApps, string comment, string hdApprovalId)
         {
             try
             {
-                var cards = cardApps.Where(x => x.IsSelected == true);
-                if (cards.Count() > 0)
+                var cards = cardApps.Where(x => x.IsSelected);
+                if (cards.Any())
                 {
-                    _cardAPPCmdBLL.CardApplicationApprovalUpdate(cardApps, Comment);
-                    var approvalID = Convert.ToInt32(HDApprovalID);
+                    //cardApps = cardApps.Where(x => x.IsSelected).ToList();
+                    _cardAPPCmdBLL.CardApplicationApprovalUpdate(cardApps, comment);
 
-                    _approvalCMDBLL.UpdateApproval(approvalID, Utilities.Approve);
+                    var allApproved = cardApps.Count == cards.Count();
+
+                    var approvalID = Convert.ToInt32(hdApprovalId);
+
+                    _approvalCMDBLL.UpdateApproval(approvalID, Utilities.Approve, cardApps, allApproved);
 
                     TempData[Utilities.Activity_Log_Details] = "Card applications has been approved";
 
@@ -590,7 +605,7 @@ namespace ZenithCardPerso.Web.Controllers
         {
             try
             {
-                _approvalCMDBLL.UpdateApproval(approvalID, Utilities.Decline);
+                _approvalCMDBLL.UpdateApproval(approvalID, Utilities.Decline,null,false);
 
                 TempData[Utilities.Activity_Log_Details] = $"Card applications with appprovalid {approvalID} has been viewed";
 
@@ -702,6 +717,7 @@ namespace ZenithCardPerso.Web.Controllers
 
                 CardSearchOptions();
                 return View("CardApplications");
+                //return RedirectToAction("CardApplications");
                 //return File(filecontent, ExcelExportHelper.ExcelContentType, "CardApplication.xlxs");
             }
             catch (Exception ex)

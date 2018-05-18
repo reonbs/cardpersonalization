@@ -93,7 +93,8 @@
                     @Html.TextArea("Comment", new { htmlAttributes = new { @class = "form-control" } })
                     @Html.Hidden("HDApprovalID", approvalID)
                     <br />
-                    <button type="submit" name="response" formaction=@Url.Action("ViewApplicationsForApproval") formmethod="post" class="btn btn-primary">Approve</button>
+                    <button id="ApproveCardsBTN" type="button" class="btn btn-primary">Approve</button>
+                    <button id="ApproveCardsSBT"  type="submit" name="response" formaction=@Url.Action("ViewApplicationsForApproval") formmethod="post" class="notToShow">Approve</button>
 
                     @*<button type="submit" name="response" formaction=@Url.Action("CardApplicationDecline") formmethod="post" class="btn btn-primary">Decline</button>*@
                     @Html.ActionLink("Decline", "CardApplicationDecline", "CardApplication", new { approvalID = approvalID }, new { @class = "btn btn-primary" })
@@ -106,4 +107,32 @@
 
 
 
+}
+
+@section Scripts{
+    <script>
+        $(function () {
+
+            var isSelectedCount = 0;
+
+            $('#ApproveCardsBTN').on('click', function () {
+
+                if (isSelectedCount > 0) {
+                    $('#ApproveCardsSBT').click();
+                } else {
+                    alert("Select card application you want to appprove");
+                }
+
+
+            });
+
+            $("input[id$=IsSelected]").on("change", function () {
+                if ($(this).is(":checked")) {
+                    isSelectedCount += 1;;
+                } else {
+                    isSelectedCount -= 1;
+                }
+            });
+        });
+    </script>
 }

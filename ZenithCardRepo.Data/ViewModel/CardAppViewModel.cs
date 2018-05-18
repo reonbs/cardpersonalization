@@ -16,6 +16,7 @@ namespace ZenithCardRepo.Data.ViewModel
         public string BatchNo { get; set; }
         public string Institution { get; set; }
         public string Department { get; set; }
+        public string IsApproved { get; set; }
 
         
     }

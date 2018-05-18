@@ -30,7 +30,17 @@
                         <i class="mdi mdi-check-all"></i>
                         <span>Permission was successfully added</span>
                     </div>
-                }
+                } @if (TempData["Message"] as string == "DeleteSuccess")
+                  {
+                      <div class="alert alert-icon alert-success alert-dismissible fade in" role="alert">
+                          <button type="button" class="close" data-dismiss="alert"
+                                  aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                          <i class="mdi mdi-check-all"></i>
+                          <span>Permission was successfully Deleted</span>
+                      </div>
+                  }
                 @{
                     int i = 0;
                 }
@@ -54,7 +64,7 @@
                                     <td>@(i = i + 1)</td>
                                     <td>@Html.DisplayFor(m => item.Name)</td>
                                     <td>@Html.ActionLink("Edit", "PermissionEdit", "Permission", new { ID = item.ID }, null)</td>
-                                    <td>@Html.ActionLink("Delete", "PermissionDelete", "Permission", new { ID = item.ID }, new { onClick = " return confirm('Are you sure you want to delete?');" })</td>
+                                    <td>@Html.ActionLink("Delete", "DeletePermission", "Permission", new { ID = item.ID }, new { onClick = " return confirm('Are you sure you want to delete?');" })</td>
                                 </tr>
                             }
                         }

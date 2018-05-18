@@ -47,7 +47,7 @@
                         foreach (var item in Model)
                         {
                             <tr>
-                                <td>@Html.ActionLink(item.FullName, "GetRegistration", "Register", null, null)</td>
+                                <td>@Html.DisplayFor(m => item.FullName )</td>
                                 <td>@Html.DisplayFor(m => item.OfficePhoneNo)</td>
                                 <td>@Html.DisplayFor(m => item.Sex)</td>
                                 <td>@Html.DisplayFor(m => item.RequestingBranchCode)</td>

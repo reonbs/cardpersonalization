@@ -57,7 +57,7 @@
                                     <td>@Html.DisplayFor(m => item.FullName)</td>
                                     <td>@Html.DisplayFor(m => item.UserName)</td>
                                     <td>@Html.ActionLink("Edit", "UserEdit", "Account", new { ID = item.Id }, null)</td>
-                                    <td>@Html.ActionLink("Reset Password", "ResetPasswordAdmin", "Account", new { email = item.Email }, null)</td>
+                                    <td>@Html.ActionLink("Reset Password", "ResetPasswordAdmin", "Account", new { Id = item.Id }, null)</td>
                                     <td>@Html.ActionLink("Delete Users", "DeleteUser", "Account", new { id = item.Id }, null)</td>
                                 </tr>
                             }

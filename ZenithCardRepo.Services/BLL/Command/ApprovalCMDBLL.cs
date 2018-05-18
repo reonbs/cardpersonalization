@@ -73,25 +73,34 @@ namespace ZenithCardRepo.Services.BLL.Command
 
         }
 
-        public void UpdateApproval(int approvalID, string approvalType)
+
+
+        public void UpdateApproval(int approvalID, string approvalType, List<CardApplicationsDTO> cardApps, bool allApproved)
         {
             var approval = _approvalQueryepo.GetBy(x => x.ID == approvalID).FirstOrDefault();
+            
 
-            switch (approvalType)
+            if (approval != null)
             {
-                case Utilities.Approve:
-                    approval.Rank = Utilities.Approve_Rank;
-                    break;
-                case Utilities.Decline:
-                    approval.Rank = Utilities.Decline_Rank;
-                    break;
-                default:
-                    break;
+                switch (approvalType)
+                {
+                    case Utilities.Approve:
+                        approval.Rank = (allApproved) ? Utilities.Approve_Rank : 1;
+                        break;
+                    case Utilities.Decline:
+                        approval.Rank = Utilities.Decline_Rank;
+                        break;
+                    default:
+                        break;
+                }
+
+
+                _approvalCMDRepo.Update(approval);
+                _approvalCMDRepo.Save();
             }
 
-
-            _approvalCMDRepo.Update(approval);
-            _approvalCMDRepo.Save();
         }
+
+        
     }
 }

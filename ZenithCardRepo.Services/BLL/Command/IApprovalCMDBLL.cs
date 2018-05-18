@@ -12,6 +12,8 @@ namespace ZenithCardRepo.Services.BLL.Command
     {
         void AddApproval(List<CardApplicationsDTO> cardApps, string requestBy, string comment);
 
-        void UpdateApproval(int approvalID, string approvalType);
+        void UpdateApproval(int approvalID, string approvalType, List<CardApplicationsDTO> cardApps, bool allApproved);
+
+        //void UpdateCardApplicationIDs(List<CardApplicationsDTO> cardApps, string cardAppIDs);   
     }
 }

@@ -169,6 +169,22 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
         }
 
+        public ActionResult DeletePermission(int ID)
+        {
+            try
+            {
+                _permissionCMDBLL.DeletePermission(ID);
+                TempData["Message"] = "DeleteSuccess";
+                return RedirectToAction("Permissions");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                _log.Error(ex);
+                throw;
+            }
+        }
+
         public ActionResult AccessDenied()
         {
 

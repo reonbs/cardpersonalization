@@ -555,10 +555,10 @@ namespace ZenithCardPerso.Web.Controllers
         }
 
         [ValidateUserPermission(Permissions ="can_reset_password")]
-        public ActionResult ResetPasswordAdmin(string email)
+        public ActionResult ResetPasswordAdmin(string Id)
         {
-            email = AntiXssEncoder.HtmlEncode(email, true);
-            var user = UserManager.FindByName(email);
+            
+            var user = UserManager.FindById(Id);
             if (user != null)
             {
                 var resetPasswordVM = new ResetPasswordViewModel { FullName = user.FullName, Email = user.Email };
@@ -598,7 +598,7 @@ namespace ZenithCardPerso.Web.Controllers
 
         public async Task<IdentityResult> ResetUser(ResetPasswordViewModel model)
         {
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await UserManager.FindByIdAsync(model.Id);
 
             UserManager.RemovePassword(user.Id);
 

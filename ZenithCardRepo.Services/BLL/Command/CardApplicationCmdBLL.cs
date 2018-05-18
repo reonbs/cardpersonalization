@@ -180,9 +180,9 @@ namespace ZenithCardRepo.Services.BLL.Command
 
         public void CardApplicationApprovalUpdate(List<CardApplicationsDTO> cardApps, string Comment)
         {
-            var cardAppSelected = cardApps.Where(x => x.IsSelected == true);
+            cardApps = cardApps.Where(x => x.IsSelected).ToList();
 
-            if (cardAppSelected.Count() > 0)
+            if (cardApps.Any())
             {
                 foreach (var cardApp in cardApps)
                 {

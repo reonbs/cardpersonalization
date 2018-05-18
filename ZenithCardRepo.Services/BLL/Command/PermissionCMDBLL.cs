@@ -8,23 +8,30 @@ using ZenithCardPerso.Repository.Query;
 using ZenithCardRepo.Data.DTOs;
 using ZenithCardRepo.Data.Models;
 using ZenithCardRepo.Data.ViewModel;
+using ZenithCardRepo.Services.BLL.UnitofWork;
 
 namespace ZenithCardRepo.Services.BLL.Command
 {
     public class PermissionCMDBLL : IPermissionCMDBLL
     {
         private ICommandRepository<Permission> _permissionCMDRepo;
+        private readonly IQueryRepository<Permission> _permissionQueryRepo;
         private ICommandRepository<RolePermission> _rolePermissionCMDRepo;
         private IQueryRepository<RolePermission> _rolePermissionQueryRepo;
+        private readonly UnitOfWork _unitOfWork;
         public PermissionCMDBLL(
-            ICommandRepository<Permission> permissionCMDRepo,
+            ICommandRepository<Permission> permissionCMDRepo, 
             IQueryRepository<RolePermission> rolePermissionQueryRepo,
-            ICommandRepository<RolePermission> rolePermissionCMDRepo
+            ICommandRepository<RolePermission> rolePermissionCMDRepo,
+            IQueryRepository<Permission> permissionQueryRepo,
+            UnitOfWork unitOfWork
             )
         {
             _permissionCMDRepo = permissionCMDRepo;
             _rolePermissionQueryRepo = rolePermissionQueryRepo;
             _rolePermissionCMDRepo = rolePermissionCMDRepo;
+            _permissionQueryRepo = permissionQueryRepo;
+            _unitOfWork = unitOfWork;
         }
         public void CreatePermission(Permission permission)
         {
@@ -96,6 +103,24 @@ namespace ZenithCardRepo.Services.BLL.Command
                 _rolePermissionCMDRepo.DeleteRange(rolePermissions);
                 _rolePermissionCMDRepo.Save();
             }
+        }
+
+        public void DeletePermission(int ID)
+        {
+            using (var transaction = _unitOfWork.context.Database.BeginTransaction())
+            {
+                var permission = _permissionQueryRepo.GetBy(x => x.ID == ID).FirstOrDefault();
+                var rolePermission = _rolePermissionQueryRepo.GetBy(x => x.PermissionID == ID).ToList();
+
+                _permissionCMDRepo.Delete(permission);
+                _rolePermissionCMDRepo.DeleteRange(rolePermission);
+
+                _rolePermissionCMDRepo.Save();
+
+                transaction.Commit();
+            }
+           
+
         }
     }
 }

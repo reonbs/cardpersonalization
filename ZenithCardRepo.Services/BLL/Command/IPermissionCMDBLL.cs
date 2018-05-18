@@ -16,5 +16,6 @@ namespace ZenithCardRepo.Services.BLL.Command
         void EditRolePermission(List<PermissionViewModel> rolePermission, string roleID);
         void BulkInsertRolePermission(List<RolePermissionDTO> rolePermissionDTO);
         void DeleteRolePermission(List<RolePermissionDTO> rolePermissionDTOs);
+        void DeletePermission(int ID);
     }
 }

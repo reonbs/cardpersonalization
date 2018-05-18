@@ -96,6 +96,10 @@
                         <option></option>
                     </select>
                 </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.IsApproved)
+                    @Html.DropDownListFor(m => m.IsApproved, ViewData["IsApproved"] as SelectList, "", new { @class = "form-control" })
+                </div>
             </div>
         </div>
     </div>

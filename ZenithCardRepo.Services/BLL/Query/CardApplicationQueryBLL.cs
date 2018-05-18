@@ -61,6 +61,12 @@ namespace ZenithCardRepo.Services.BLL.Query
                 cardApps = cardApps.Where(x => x.InstitutionID == Convert.ToInt32(cardAppVM.Institution));
                 resultFound = cardApps.Count();
             }
+            else if (!string.IsNullOrEmpty(cardAppVM.IsApproved))
+            {
+                var isApproved = Convert.ToBoolean(cardAppVM.IsApproved);
+                cardApps = cardApps.Where(x => x.IsApproved == isApproved);
+                resultFound = cardApps.Count();
+            }
 
             if (resultFound > 0)
             {

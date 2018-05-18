@@ -26,7 +26,7 @@
 
 .navbar-default .navbar-nav > li > a {
     color: #fff;
-    margin: 10px;
+    margin: 0px;
 }
 
 #sidebar-menu ul ul li a {
@@ -97,4 +97,9 @@
     display: block;
     padding: 12px 20px;
     margin: 2px 0;
+}
+
+#userName {
+    padding-top: 25px;
+    margin-right: 20px;
 }
