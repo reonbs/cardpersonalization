@@ -137,6 +137,11 @@ namespace ZenithCardRepo.Services.BLL.Query
 
         }
 
+        public bool ValidatedApplication(string IDNo)
+        {
+           return _cardAppRepo.GetBy(x => x.IDNo.ToUpper() == IDNo.ToUpper()).Any();
+        }
+
         //public List<ProcessedCard> GetProcessedCard()
         //{
         //    return _processedCardRepo.GetAll().ToList();

@@ -25,6 +25,7 @@ namespace ZenithCardRepo.Services.BLL.Query
         List<CardApplicationsDTO> GetCardApplicationsByIDs(List<int> cardAPPIds);
 
         //List<ProcessedCard> GetProcessedCard();
+        bool ValidatedApplication(string IDNo);
 
     }
 }

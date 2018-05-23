@@ -40,6 +40,9 @@ namespace ZenithCardRepo.Services.BLL.Command
             cardApplication.ImageLocation = saveLocation;
             cardApplication.DateCreated = DateTime.Now;
             cardApplication.isProcessed = false;
+            cardApplication.NameonCard = cardApplication.NameonCard.ToUpper();
+            cardApplication.OfficeAddress1 = cardApplication.OfficeAddress1.ToUpper();
+            cardApplication.OfficeAddress2 = cardApplication.OfficeAddress2.ToUpper();
 
             _CardAppRepo.Insert(cardApplication);
             _CardAppRepo.Save();

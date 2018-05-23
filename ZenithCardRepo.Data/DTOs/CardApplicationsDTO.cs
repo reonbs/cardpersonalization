@@ -39,7 +39,11 @@ namespace ZenithCardRepo.Data.DTOs
         public string State { get; set; }
         [Required, Display(Name = "Requesting Branch Code")]
         public string RequestingBranchCode { get; set; }
-        [Display(Name = "Main Account No"), MaxLength(10)]
+        [Required,
+         RegularExpression("^[0-9]*$", ErrorMessage = "Account No must be numeric"),
+         Display(Name = "Main Account No"),
+         MaxLength(10, ErrorMessage = "Number must be 10 digits"),
+         MinLength(10, ErrorMessage = "Number must be 10 digits")]
         public string MainAccountNo { get; set; }
         [Display(Name = "Other Account No"), MaxLength(10)]
         public string OtherAccountNo { get; set; }
@@ -75,6 +79,8 @@ namespace ZenithCardRepo.Data.DTOs
         public bool IsSelected { get; set; }
         public string FullName { get; set; }
         public bool IsApproved { get; set; }
+
+        
 
         public static CardApplicationsDTO GetDTOFromModel(CardApplication cardApplication)
         {

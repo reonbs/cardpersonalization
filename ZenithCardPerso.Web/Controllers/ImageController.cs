@@ -72,27 +72,27 @@ namespace ZenithCardPerso.Web.Controllers
             }
             catch (Exception ex)
             {
-                ex.Message.ToString();
-                throw;
+                _log.Error(ex);
             }
-            //return View();
+            return View();
         }
         [ValidateUserPermission(Permissions = "can_view_imagesetting")]
         [Audit]
         public ActionResult ImageSettingEdit()
         {
+            ImageValidationSetting imgSetting = null;
             try
             {
-                var imgSetting = _imgSettingQueryBLL.GetImageSetting();
+                imgSetting = _imgSettingQueryBLL.GetImageSetting();
                 TempData[Utilities.Activity_Log_Details] = $"Image setting edit was viewed";
                 return View(imgSetting);
             }
             catch (Exception ex)
             {
-                ex.Message.ToString();
-                throw;
+                _log.Error(ex);
             }
-            
+
+            return View(imgSetting);
         }
 
         [HttpPost]
@@ -108,14 +108,14 @@ namespace ZenithCardPerso.Web.Controllers
                 TempData[Utilities.Activity_Log_Details] = $"Image setting was edited";
                 TempData["Message"] = "Success";
 
-                return View();
+                return RedirectToAction("ImageSettingEdit");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                _log.Error(ex);
             }
-            
+            ModelState.AddModelError("","Error editing image settings");
+            return View(imgValSetting);
         }
 
 

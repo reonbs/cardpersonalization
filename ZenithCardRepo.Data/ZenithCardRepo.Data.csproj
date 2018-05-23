@@ -250,6 +250,10 @@
     <Compile Include="Migrations\201804181252370_AddIsdefault.Designer.cs">
       <DependentUpon>201804181252370_AddIsdefault.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805231511262_Addmodel347.cs" />
+    <Compile Include="Migrations\201805231511262_Addmodel347.Designer.cs">
+      <DependentUpon>201805231511262_Addmodel347.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Approval.cs" />
     <Compile Include="Models\AuditRecord.cs" />
@@ -405,6 +409,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804181252370_AddIsdefault.resx">
       <DependentUpon>201804181252370_AddIsdefault.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805231511262_Addmodel347.resx">
+      <DependentUpon>201805231511262_Addmodel347.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

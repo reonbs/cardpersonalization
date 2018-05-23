@@ -116,6 +116,14 @@ namespace ZenithCardPerso.Web.Controllers
                     LoadApplicationLegends(instID);
                     return View(cardApplication);
                 }
+
+                var appCheck = _cardAppQueryBLL.ValidatedApplication(cardApplication.IDNo);
+                if (appCheck)
+                {
+                    ModelState.AddModelError("", "Card application already exist for this applicant");
+                    LoadApplicationLegends(instID);
+                    return View(cardApplication);
+                }
                 cardApplication.InstitutionID = Convert.ToInt32(instID);
                 cardApplication.CreatedBy = User.Identity.Name;
 

@@ -36,8 +36,8 @@ namespace ZenithCardRepo.Services.BLL.Command
         {
             try
             {
-                var selectedCardApps = cardApps.Where(x => x.IsSelected == true);
-                if (selectedCardApps.Count() > 0)
+                var selectedCardApps = cardApps.Where(x => x.IsSelected);
+                if (selectedCardApps.Any())
                 {
 
 

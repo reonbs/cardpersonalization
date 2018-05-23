@@ -1,5 +1,18 @@
 ﻿$(function () {
+    function run_waitMe(effect) {
+        $('body').waitMe({
+            effect: effect,
+            text: 'Please wait...',
+            bg: 'rgba(0,0,0,0.5)',
+            color: '#000',
+            maxSize: '',
+            sourcer: 'img.svg',
+            onClose: function () { }
 
+        });
+    }
+
+    //form validation
     $('#applicationSBT').click(FormValidation);
 
     function FormValidation() {
@@ -12,6 +25,11 @@
             preventDuplicates: false,
             onclick: null
         };
+        var imgVal = $("#userimage").attr("src");
+
+        if (imgVal === "/images/avatar.png") {
+            toastr.error('capture image');
+        } else 
         if ($('#Department').val() === "") {
             toastr.error('Select Department');
         } else if ($('#TitleCode').val() === "") {
@@ -67,8 +85,12 @@
         } else if ($('#OfficeAddress2').val() === "") {
             toastr.error('Enter Office Address 2');
         } else {
+            //run_waitMe('roundBounce');
             if (confirm('Are you sure you want to submit')) {
+
                 $('#applicationBTN').click();
+                //run_waitMe('roundBounce');
+
             }
         }
 
@@ -85,4 +107,6 @@
         return /^[a-zA-Z\s]+$/.test(str)
         //  /^[a-zA-Z0-9]*$/
     }
+
+
 });

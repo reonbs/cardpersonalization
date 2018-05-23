@@ -36,7 +36,11 @@ namespace ZenithCardRepo.Data.Models
         public string State { get; set; }
         [Required, Display(Name = "Requesting Banch Code")]
         public string RequestingBranchCode { get; set; }
-        [Display(Name = "Main Account No"), MaxLength(10)]
+        [Required,
+         Display(Name = "Main Account No"),
+         RegularExpression("^[0-9]*$", ErrorMessage = "Account No must be numeric"),
+         MaxLength(10, ErrorMessage = "Number must be 10 digits"),
+         MinLength(10, ErrorMessage = "Number must be 10 digits")]
         public string MainAccountNo { get; set; }
         [Display(Name = "Other Account No"), MaxLength(10)]
         public string OtherAccountNo { get; set; }
