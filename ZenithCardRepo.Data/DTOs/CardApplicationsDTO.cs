@@ -79,8 +79,8 @@ namespace ZenithCardRepo.Data.DTOs
         public bool IsSelected { get; set; }
         public string FullName { get; set; }
         public bool IsApproved { get; set; }
+        public DateTime? LastDownloadDate { get; set; }
 
-        
 
         public static CardApplicationsDTO GetDTOFromModel(CardApplication cardApplication)
         {
@@ -138,7 +138,8 @@ namespace ZenithCardRepo.Data.DTOs
                 DateCreated = cardApplication.DateCreated,
                 DateModified = cardApplication.DateModified,
                 ModifiedBy = cardApplication.ModifiedBy,
-                IsApproved = cardApplication.IsApproved
+                IsApproved = cardApplication.IsApproved,
+                LastDownloadDate =  cardApplication.LastDownloadDate
 
             };
         }
@@ -183,7 +184,8 @@ namespace ZenithCardRepo.Data.DTOs
                 DateCreated = cardApplication.DateCreated,
                 DateModified = cardApplication.DateModified,
                 ModifiedBy = cardApplication.ModifiedBy,
-                IsApproved = cardApplication.IsApproved
+                IsApproved = cardApplication.IsApproved,
+                LastDownloadDate = cardApplication.LastDownloadDate
 
             };
         }
@@ -229,7 +231,8 @@ namespace ZenithCardRepo.Data.DTOs
                 DateCreated = cardApplication.DateCreated,
                 DateModified = cardApplication.DateModified,
                 ModifiedBy = cardApplication.ModifiedBy,
-                IsApproved = cardApplication.IsApproved
+                IsApproved = cardApplication.IsApproved,
+                LastDownloadDate = cardApplication.LastDownloadDate
 
             };
         }
@@ -272,7 +275,8 @@ namespace ZenithCardRepo.Data.DTOs
                 DateCreated = cardApplicationDTO.DateCreated,
                 DateModified = cardApplicationDTO.DateModified,
                 ModifiedBy = cardApplicationDTO.ModifiedBy,
-                IsApproved = cardApplicationDTO.IsApproved
+                IsApproved = cardApplicationDTO.IsApproved,
+                LastDownloadDate = cardApplicationDTO.LastDownloadDate
 
 
             };

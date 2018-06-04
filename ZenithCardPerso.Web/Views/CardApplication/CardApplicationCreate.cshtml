@@ -76,7 +76,9 @@
                                     <i class="mdi mdi-star-circle member-star text-success" title="verified user"></i>
                                 </div>
                                 <br />
-                                <input id="captureImage" type="button" class="btn btn-default" value="Capture Image" />
+                                <span id="captureImage"><i class="glyphicon glyphicon-camera"></i></span>
+                                <span id="imgUpload"><i class="glyphicon glyphicon-upload"></i></span>
+                                @*<input id="captureImage" type="button" class="btn btn-default" value="Capture Image" />*@
                                 <div class="clearfix"></div>
                             </div>
 
@@ -206,7 +208,7 @@
                         </div>
                         <div class="col-md-6">
                             @Html.LabelFor(m => m.OfficeAddress1, new { @class = "control-label" })
-                            @Html.EditorFor(m => m.OfficeAddress1, new { htmlAttributes = new { @class = "form-control" , style = "text-transform:uppercase" } })
+                            @Html.EditorFor(m => m.OfficeAddress1, new { htmlAttributes = new { @class = "form-control", style = "text-transform:uppercase" } })
                         </div>
                         <div class="col-md-6">
                             @Html.LabelFor(m => m.OfficeAddress2, new { @class = "control-label" })
@@ -236,8 +238,8 @@
                     </div>
                     <hr />
                     @*<div id="my_camera"></div>
-                    <div id="my_camera2"></div>
-                    <video autoplay="autoplay" style="width:450px; text-align:center;"></video>*@
+                        <div id="my_camera2"></div>
+                        <video autoplay="autoplay" style="width:450px; text-align:center;"></video>*@
                     <video autoplay style="width:300px; text-align:center;"></video>
                 </div>
                 <div class="modal-footer">
@@ -250,25 +252,68 @@
         </div>
     </div>
 
+
     <div id="validationModal" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Image Validations</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>*@
                 </div>
                 <div class="modal-body">
                     <ul id="validations"></ul>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input id="acceptImage" type=button value="Accept Photo" class="btn btn-primary">
+                    <input id="reUploadImage" type=button value="Re-Upload Photo" class="btn btn-primary">
+                    <input id="retakeImage" type=button value="Re-Capture Photo" class="btn btn-primary">
+                    @*<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>*@
                 </div>
             </div>
         </div>
     </div>
 }
+
+
+<form id="FormUpload" name="FormUpload" enctype="multipart/form-data" method="post">
+    <div id="UploadModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Select Photo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <hr />
+                    <div class="form-group m-b-0">
+                        <label class="control-label">Select Photo to upload</label>
+                        <input type="file" name="fileUpload" id="fileUpload" class="filestyle" data-buttonname="btn-primary">
+                    </div>
+
+                    <div class="progress CustomProgress">
+                        <div id="FileProgress"
+                             class="progress-bar" role="progressbar"
+                             aria-valuenow="0" aria-valuemin="0"
+                             aria-valuemax="100" style="width: 0%;">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnUploadFile" type="button" class="btn btn-secondary">Upload</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+
+
 @section Scripts{
     <style type="text/css">
         #results {
@@ -281,7 +326,7 @@
     </style>
     <!-- Code to handle taking the snapshot and displaying it locally -->
     <script language="JavaScript">
-        $(function () {
+        $(function() {
             var width = "";
             var heigth = "";
 
@@ -292,11 +337,40 @@
             var videoSelect = document.querySelector('select#videoSource');
 
 
-            $.get("@Url.Action("GetImageSetting", "Image",null,Request.Url.Scheme)", function (data) {//'/Image/GetImageSetting'
-                console.log(data);
-                width = data.Height;//$('#ImageWidth').val(data.Height);
-                heigth = data.Width;//$('#ImageHeight').val(data.Width);
-                console.log(width + "*" + heigth)
+            $.get("@Url.Action("GetImageSetting", "Image", null, Request.Url.Scheme)",
+                function(data) { //'/Image/GetImageSetting'
+                    console.log(data);
+                    width = data.Height; //$('#ImageWidth').val(data.Height);
+                    heigth = data.Width; //$('#ImageHeight').val(data.Width);
+                    console.log(width + "*" + heigth)
+                });
+
+            $('#fileUpload').change(function () {
+                var _URL = window.URL || window.webkitURL;
+                var file = $(this)[0].files[0];
+
+                var img = new Image();
+                var imgwidth = 0;
+                var imgheight = 0;
+                var maxwidth = 640;
+                var maxheight = 640;
+
+                img.src = _URL.createObjectURL(file);
+                img.onload = function() {
+                    imgwidth = this.width;
+                    imgheight = this.height;
+
+                    console.log("width :" + imgwidth);
+                    console.log("height :" + imgheight);
+                    if (imgwidth !== width || imgheight !== heigth) {
+                        $('#btnUploadFile').hide();
+                        alert('Image dimension should be 300 x 300');
+                        
+                    } else {
+                        $('#btnUploadFile').show();
+                    }
+
+                }
             });
 
             function run_waitMe(effect) {
@@ -307,15 +381,17 @@
                     color: '#000',
                     maxSize: '',
                     sourcer: 'img.svg',
-                    onClose: function () { }
+                    onClose: function() {}
 
                 });
             }
 
-            $('#verify').click(function () {
+            $('#verify').click(function() {
                 function hasGetUserMedia() {
-                    return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
-                        navigator.mozGetUserMedia || navigator.msGetUserMedia);
+                    return !!(navigator.getUserMedia ||
+                        navigator.webkitGetUserMedia ||
+                        navigator.mozGetUserMedia ||
+                        navigator.msGetUserMedia);
                 }
 
                 if (hasGetUserMedia()) {
@@ -329,28 +405,51 @@
 
             $('#my_camera').hide();
 
-            $('#captureImage').click(function () {
+            $('#captureImage').click(CaptureImage);
+            $('#retakeImage').click(function() {
+                $('#validationModal').modal('hide');
+                CaptureImage();
+            });
+
+            $('#reUploadImage').click(function() {
+                $('#validationModal').modal('hide');
+                var form = $('#FormUpload')[0];
+                form.reset();
+                $("#FileProgress").hide();
+                $('#UploadModal').modal('show');
+
+            });
+
+            function CaptureImage() {
                 $('#videoSource').empty();
                 $('#PictureModal').modal('show');
                 $('#takeShot').hide();
-                
+
                 navigator.mediaDevices.enumerateDevices().then(gotDevices).then(getStream).catch(handleError);
 
+            }
+
+            $('#acceptImage').click(function() {
+                $('#validationModal').modal('hide');
             });
 
             $("#takeShot").click(take_snapshot);
 
-            $('#videoSource').on('change', function () {
-                getStream();
-                $('#takeShot').show();
-            });
+            $('#videoSource').on('change',
+                function() {
+                    getStream();
+                    $('#takeShot').show();
+
+                });
             // WebCamSettings();
             var videoElement = document.querySelector('video');
+
             function gotStream(stream) {
                 window.stream = stream; // make stream available to console
                 videoElement.srcObject = stream;
                 localMediaStream = stream;
             }
+
             function handleError(error) {
                 console.log('Error: ', error);
             }
@@ -371,7 +470,7 @@
                     ctx.drawImage(videoElement, 0, 0);
 
                     $('#HDImageByte').val(canvas.toDataURL('image/jpeg'));
-                    
+
                     $("#userimage").attr("src", canvas.toDataURL('image/jpeg'));
 
 
@@ -403,38 +502,61 @@
                     })
                 });*@
 
-                var methodUrl = "@Url.Action("ValidateImage","CardApplication")";
-                var dataToSend = JSON.stringify({ HDImageByte: img})
+                var methodUrl = "@Url.Action("ValidateCaptureImage", "CardApplication")";
+                var dataToSend = JSON.stringify({ HDImageByte: img });
+                var isImageInvalid;
                 $.ajax({
                     type: "POST",
                     url: methodUrl,
                     data: dataToSend,
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    success: function (data) {
+                    success: function(data) {
                         $('#validationModal ul').empty();
 
-                        $('#validationModal').modal('show');
+                        $('#validationModal').modal({
+                            show: true,
+                            backdrop: 'static',
+                            keyboard: false
+                        });
                         $('body').waitMe("hide");
                         console.log(data);
-                        $.each(data, function (i, v) {
+                        $.each(data,
+                            function(i, v) {
 
-                            console.log(v.indexOf('Successful'));
-                            if (v.indexOf('Successful') != -1) {
-                                $('#validations').append('<li id=' + i + '>' + v + '</li>');
-                                $("#" + i).css('color', 'green');
-                            } else {
-                                $('#validations').append('<li>' + v + '</li>').css('color', 'red');
-                            }
+                                if (v.indexOf('Successful') !== -1) {
+                                    $('#validations').append('<li id=' + i + '>' + v + '</li>');
+                                    $("#" + i).css('color', 'green');
+                                } else if (v.indexOf('Result') !== -1) {
+                                    $("#" + i).css('visibility', 'hidden');
+                                    if (v.indexOf('In') !== -1) {
+                                        //$('#acceptImage').hide();
+                                        //$('#applicationSBT').hide();
+                                        isImageInvalid = true;
+                                    } else {
+                                        isImageInvalid = false;
+                                        //$('#applicationSBT').show();
+                                    }
+                                } else {
+                                    $('#validations').append('<li>' + v + '</li>').css('color', 'red');
+                                }
 
 
-                        })
+                            });
+                        if (!isImageInvalid) {
+                            $('#applicationSBT').show();
+                            $('#acceptImage').show();
+                        } else {
+                            $('#acceptImage').hide();
+                            $('#applicationSBT').hide();
+                        }
                     },
-                    error: function (jqXHR, textStatus, errorThrown) {
+                    error: function(jqXHR, textStatus, errorThrown) {
                         alert("error : " + jqXHR);
                     }
                 });
             }
+
             function gotDevices(deviceInfos) {
                 $('#videoSource').append('<option>' + '---Select---' + '</option>');
                 for (var i = 0; i !== deviceInfos.length; ++i) {
@@ -444,18 +566,17 @@
                     if (deviceInfo.kind === 'videoinput') {
                         option.text = deviceInfo.label || 'camera ' + (videoSelect.length + 1);
                         $('#videoSource').append(option);
-                    } else {
-                        console.log('Found one other kind of source/device: ', deviceInfo);
                     }
                 }
             }
+
             function getStream() {
                 if (window.stream) {
-                    window.stream.getTracks().forEach(function (track) {
+                    window.stream.getTracks().forEach(function(track) {
                         track.stop();
                     });
                 }
-                
+
                 var constraints = {
                     //audio: {
                     //    deviceId: { exact: audioSelect.value }
@@ -469,8 +590,7 @@
                     }
                 };
 
-                navigator.mediaDevices.getUserMedia(constraints).
-                    then(gotStream).catch(handleError);
+                navigator.mediaDevices.getUserMedia(constraints).then(gotStream).catch(handleError);
             }
 
             function gotStream(stream) {
@@ -487,21 +607,143 @@
                 dateFormat: "dd/mm/yy"
                 //autoclose: true,
                 //todayHighlight: true
+
+            });
+
+            $('#State').on('change',
+                function() {
+                    $('#City').empty();
+                    $('#City').append('<option>--Select--</option>');
+                    var stateCode = $(this).val();
+
+                    $.get("@Url.Action("GetCity", "CardApplication")",
+                        { stateCode: stateCode },
+                        function(data) { //'/CardApplication/GetCity/?stateCode=' + stateCode
+                            $.each(data,
+                                function(i, v) {
+                                    $('#City').append('<option value="' + v.CityCode + '">' + v.CityName + '</option>')
+                                });
+                        });
+
+                });
+
+            $('#imgUpload').click(function() {
+                $('#UploadModal').modal('show');
+            });
+
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#userimage').attr('src', e.target.result);
+                        $('#HDImageByte').empty();
+                        $('#HDImageByte').val(e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                   
+                }
+            }
+
+            $("#fileUpload").change(function() {
+                readURL(this);
+                //$('#UploadModal').modal('hide');
+            });
+
+            $('#btnUploadFile').click(function() {
+                $('#UploadModal').modal('hide');
+                UploadFile();
                 
             });
 
-            $('#State').on('change', function () {
-                $('#City').empty();
-                $('#City').append('<option>--Select--</option>');
-                var stateCode = $(this).val();
+            function UploadFile() {
+               
+                run_waitMe('roundBounce');
+                
+                var form = $('#FormUpload')[0];
+                var dataString = new FormData(form);
+                $.ajax({
+                    url: "@Url.Action("ValidateUploadImage", "CardApplication")", //Server script to process data
+                    type: 'POST',
+                    xhr: function() { // Custom XMLHttpRequest
+                        var myXhr = $.ajaxSettings.xhr();
+                        if (myXhr.upload) { // Check if upload property exists
+                            //myXhr.upload.onprogress = progressHandlingFunction
+                            myXhr.upload.addEventListener('progress',
+                                progressHandlingFunction,
+                                false); // For handling the progress of the upload
+                        }
+                        return myXhr;
+                    },
+                    //Ajax events
+                    success: function (data) {
+                        $('body').waitMe("hide");
+                        $('#validationModal ul').empty();
 
-                $.get("@Url.Action("GetCity", "CardApplication")", { stateCode: stateCode }, function (data) {//'/CardApplication/GetCity/?stateCode=' + stateCode
-                    $.each(data, function (i, v) {
-                        $('#City').append('<option value="' + v.CityCode + '">' + v.CityName + '</option>')
-                    });
+                        $('#validationModal').modal({
+                            show: true,
+                            backdrop: 'static',
+                            keyboard: false
+                        });
+                        $('body').waitMe("hide");
+                        console.log(data);
+                        $.each(data,
+                            function(i, v) {
+
+                                if (v.indexOf('Successful') !== -1) {
+                                    $('#validations').append('<li id=' + i + '>' + v + '</li>');
+                                    $("#" + i).css('color', 'green');
+                                } else if (v.indexOf('Result') !== -1) {
+                                    $("#" + i).css('visibility', 'hidden');
+                                    if (v.indexOf('In') !== -1) {
+                                        //$('#acceptImage').hide();
+                                        //$('#applicationSBT').hide();
+                                        isImageInvalid = true;
+                                    } else {
+                                        isImageInvalid = false;
+                                        //$('#applicationSBT').show();
+                                    }
+                                } else {
+                                    $('#validations').append('<li>' + v + '</li>').css('color', 'red');
+                                }
+
+
+                            });
+                        if (!isImageInvalid) {
+                            $('#applicationSBT').show();
+                            $('#acceptImage').show();
+
+                        } else {
+                            $('#acceptImage').hide();
+                            $('#applicationSBT').hide();
+                        }
+                    },
+                    error: function(r, e, o) {
+                        console.log(e);
+                        $('body').waitMe("hide");
+                    },
+                    complete: function() {
+                        console.log('mmmm');
+                    },
+                    // Form data
+                    data: dataString,
+                    //Options to tell jQuery not to process data or worry about content-type.
+                    cache: false,
+                    contentType: false,
+                    processData: false
                 });
+            }
 
-            });
+            function progressHandlingFunction(e) {
+                $("#FileProgress").show();
+                if (e.lengthComputable) {
+                    var percentComplete = Math.round(e.loaded * 100 / e.total);
+                    $("#FileProgress").css("width",
+                        percentComplete + '%').attr('aria-valuenow', percentComplete);
+                    $('#FileProgress span').text(percentComplete + "%");
+                } else {
+                    $('#FileProgress span').text('unable to compute');
+                }
+            }
         });
     </script>
 

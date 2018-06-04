@@ -25,25 +25,28 @@
                 var cardApps = Model?.ToList();
             }
 
-            <table id="tblSearcResults" class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th>
-                            @*<input type="checkbox" id="checkall" />*@
-                        </th>
-                        <th>Full Name</th>
-                        <th>Office Phone No</th>
-                        <th>Sex</th>
-                        <th>Requesting Branch Code</th>
-                        <th>Is Completed</th>
-                        <th></th>
-                    </tr>
-                </thead>
+            @if (Model?.ToList().Count > 0)
+            {
+                <table id="tblSearcResults" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                @*<input type="checkbox" id="checkall" />*@
+                            </th>
+                            <th>Full Name</th>
+                            <th>Office Phone No</th>
+                            <th>Sex</th>
+                            <th>Requesting Branch Code</th>
+                            <th>Date Created</th>
+                            <th>last Download Date</th>
+                            <th>BatchNo</th>
+                            <th>Completed</th>
+                            <th></th>
+                        </tr>
+                    </thead>
 
-                <tbody>
-                    @if (Model?.ToList().Count > 0)
-                    {
-                        for (int i = 0; i < cardApps.Count(); i++)
+                    <tbody>
+                        @for (int i = 0; i < cardApps.Count(); i++)
                         {
                             <tr>
                                 @Html.Hidden("cardApps[" + @i + "].ID", cardApps[i].ID)
@@ -52,22 +55,32 @@
                                 <td>@Html.TextBox("cardApps[" + @i + "].OfficePhoneNo", cardApps[i].OfficePhoneNo, new { @readonly = "readonly", @class = "qty readonly" })</td>
                                 <td>@Html.TextBox("cardApps[" + @i + "].Sex", cardApps[i].Sex, new { @readonly = "readonly", @class = "qty readonly" })</td>
                                 <td>@Html.TextBox("cardApps[" + @i + "].RequestingBranchCode", cardApps[i].RequestingBranchCode, new { @readonly = "readonly", @class = "qty readonly" })</td>
+                                <td>@Html.TextBox("cardApps[" + @i + "].DateCreated", cardApps[i].DateCreated, new { @readonly = "readonly", @class = "qty readonly" })</td>
+                                <td>@Html.TextBox("cardApps[" + @i + "].LastDownloadDate", cardApps[i].LastDownloadDate, new { @readonly = "readonly", @class = "qty readonly" })</td>
+                                <td>@Html.TextBox("cardApps[" + @i + "].ProcessedBatchNo", cardApps[i].ProcessedBatchNo, new { @readonly = "readonly", @class = "qty readonly" })</td>
                                 <td>@Html.CheckBox("cardApps[" + @i + "].IsProcessed", cardApps[i].IsProcessed, new { @disabled = "disabled" })</td>
                                 @if (!cardApps[i].IsProcessed)
                                 {
                                     <td>@Html.ActionLink("Edit", "CardApplicationEdit", "CardApplication", new { ID = cardApps[i].ID }, null)</td>
                                 }
+                                else
+                                {
+                                    <td><a href="#">processed</a></td>
+                                }
                             </tr>
                         }
-                    }
-                    else
-                    {
-                        <tr>
-                            <td colspan="7" style="text-align:center;">No Cards to be processed</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div>
+                    <span>No Result Found</span>
+                </div>
+            }
+
+
         </div>
     </div>
 </div>

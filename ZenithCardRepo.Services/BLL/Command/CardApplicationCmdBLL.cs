@@ -115,6 +115,7 @@ namespace ZenithCardRepo.Services.BLL.Command
             {
                 var application = _queryAppRepo.GetBy(x => x.ID == cardApp.ID).FirstOrDefault();
                 application.ProcessedBatchNo = batchNumber;
+                application.LastDownloadDate = DateTime.Now;
                 //cardApp.ProcessedBatchNo = batchNumber;
                 _CardAppRepo.Update(application);
                 

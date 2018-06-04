@@ -103,3 +103,13 @@
     padding-top: 25px;
     margin-right: 20px;
 }
+
+#captureImage, #imgUpload {
+    font-size: 30px;
+    margin: 20px;
+
+}
+
+div#validationModal input {
+    margin: 10px;
+}

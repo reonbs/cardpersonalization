@@ -60,12 +60,12 @@
                         @if (!permissions.Contains("can_create_institutionusers"))
                         {
                             @Html.Label("Institution", new { @class = "control-label" })
-                            @Html.DropDownListFor(m => m.InstitutionID, ViewData["Institution"] as SelectList, "----Select---", new { @class = "form-control select2" })
+                            @Html.DropDownListFor(m => m.InstitutionID, ViewData["Institution"] as SelectList, "----Select---", new { @class = "form-control" })
                         }
                         else
                         {
                             @Html.Label("Institution", new { @class = "control-label" })
-                            @Html.DropDownListFor(m => m.InstitutionID, ViewData["Institution"] as SelectList, "----Select---", new { @class = "", disabled = "disabled" })
+                            @Html.DropDownListFor(m => m.InstitutionID, ViewData["Institution"] as SelectList, "----Select---", new { @class = "form-control", disabled = "disabled" })
                             
                         }
 
@@ -143,7 +143,7 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(function () {
-            $('#InstitutionID').select2();
+            //$('#InstitutionID').select2();
             $('#InstitutionID').on("change", function () {
                 if ($('#InstitutionID').prop("disabled")) {
                     alert("You can only create users for your institution, contact the administrator");

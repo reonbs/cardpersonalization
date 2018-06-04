@@ -23,6 +23,12 @@
                     <li>
                         <a href="@Url.Action("MyCardApplications","CardApplication")">My Application</a>
                     </li>
+                    @if (permissions.Contains("can_download_cardapplicationreport"))
+                    {
+                        <li>
+                            <a href="@Url.Action("InstitutionReport","CardApplication")">Reports</a>
+                        </li>
+                    }
 
                 </ul>
             </li>
@@ -52,7 +58,7 @@
                     <span class="menu-arrow"></span>
                 </a>
                 <ul class="list-unstyled">
-                    
+
                     <li>
                         <a href="@Url.Action("CardApplications","CardApplication")">Card Applications</a>
                     </li>
@@ -62,7 +68,7 @@
                     <li>
                         <a href="@Url.Action("Departments","Organisation")">Departments</a>
                     </li>
-                    
+
                 </ul>
             </li>
         }

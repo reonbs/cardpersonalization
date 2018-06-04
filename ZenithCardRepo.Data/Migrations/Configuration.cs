@@ -9,7 +9,8 @@ namespace ZenithCardRepo.Data.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(ZenithCardRepo.Data.ApplicationDbContext context)

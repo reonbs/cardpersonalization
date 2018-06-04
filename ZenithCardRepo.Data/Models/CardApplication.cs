@@ -73,6 +73,7 @@ namespace ZenithCardRepo.Data.Models
         public Institution Institution { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsApproved { get; set; }
+        public DateTime? LastDownloadDate { get; set; }
 
     }
 }

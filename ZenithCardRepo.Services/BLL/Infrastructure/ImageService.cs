@@ -120,7 +120,7 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
 
                 if (File.Exists(filename))
                 {
-                    List<string> value = new List<string>() ;
+                    List<string> value = new List<string>();
                     value = ValidateImage(filename, "Base64String", img, "");
 
                     //Delete the file
@@ -181,18 +181,23 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
                 List<string> valMsgs = new List<string>();
 
                 StringBuilder sb = new StringBuilder();
-                int counter = 0;
-
+                double counter = 0;
+                double resCount = 0;
                 string responseCode = "";
+
                 string validationType = string.Empty;
 
                 if (true)
                 {
                     validationType = "Eyes Validation - ";
                     responseCode = ImageValidator.EyesValidation(imagePath);
+                    if (responseCode == "00")
+                    {
+                        resCount += 1;
+                    }
                     var desc = validationType + Utilities.GetValidationResponse(responseCode);
                     valMsgs.Add(desc);
-
+                    counter += 1;
                 }
 
                 if (true)
@@ -200,9 +205,13 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
 
                     validationType = "Single Face Detection - ";
                     responseCode = ImageValidator.SingleFaceDetection(imagePath);
+                    if (responseCode == "00")
+                    {
+                        resCount += 1;
+                    }
                     var desc = validationType + Utilities.GetValidationResponse(responseCode);
                     valMsgs.Add(desc);
-
+                    counter += 1;
                 }
 
                 if (true)
@@ -210,8 +219,13 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
                     validationType = "Multiple Faces Validation - ";
                     //int noOfFaces = item.NoOfFaces == null ? 0 : (int)item.NoOfFaces;
                     responseCode = ImageValidator.MultipleFaceDetection(imagePath, 1);
+                    if (responseCode == "00")
+                    {
+                        resCount += 1;
+                    }
                     var desc = validationType + Utilities.GetValidationResponse(responseCode);
                     valMsgs.Add(desc);
+                    counter += 1;
                 }
 
 
@@ -222,9 +236,13 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
                     validationType = "Head Tilt - ";
                     int degreeOfTilt = Convert.ToInt32(imgSetting.HeadTilt);
                     responseCode = ImageValidator.HeadTilt(imagePath, degreeOfTilt);
+                    if (responseCode == "00")
+                    {
+                        resCount += 1;
+                    }
                     var desc = validationType + Utilities.GetValidationResponse(responseCode);
                     valMsgs.Add(desc);
-
+                    counter += 1;
                 }
 
                 //if (true)
@@ -233,7 +251,7 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
                 //    responseCode = "10"; //ResolutionCheck(imagePath);
                 //    var desc = Utilities.GetValidationResponse(responseCode);
                 //    valMsgs.Add(desc);
-                    
+
                 //}
 
 
@@ -241,8 +259,13 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
                 {
                     validationType = "Image Dimension - ";
                     responseCode = ImageValidator.Dimension(imgSetting.Width, imgSetting.Height, imagePath);
+                    if (responseCode == "00")
+                    {
+                        resCount += 1;
+                    }
                     var desc = validationType + Utilities.GetValidationResponse(responseCode);
                     valMsgs.Add(desc);
+                    counter += 1;
                 }
 
 
@@ -250,8 +273,13 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
                 {
                     validationType = "Blur Detection - ";
                     responseCode = ImageValidator.BlurDetection(imagePath);
+                    if (responseCode == "00")
+                    {
+                        resCount += 1;
+                    }
                     var desc = validationType + Utilities.GetValidationResponse(responseCode);
                     valMsgs.Add(desc);
+                    counter += 1;
                 }
 
                 if (true)
@@ -259,8 +287,13 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
 
                     validationType = "Facial Scan Validation - ";
                     responseCode = ImageValidator.InvalidImage(imagePath);
+                    if (responseCode == "00")
+                    {
+                        resCount += 1;
+                    }
                     var desc = validationType + Utilities.GetValidationResponse(responseCode);
                     valMsgs.Add(desc);
+                    counter += 1;
 
                 }
 
@@ -269,10 +302,19 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
                 {
                     validationType = "Image Size Validation - ";
                     responseCode = ImageValidator.ImageSize(imgSetting.ImageSize, imagePath);
+                    if (responseCode == "00")
+                    {
+                        resCount += 1;
+                    }
                     var desc = validationType + Utilities.GetValidationResponse(responseCode);
                     valMsgs.Add(desc);
+                    counter += 1;
                 }
 
+                var resultPercentage = (resCount / counter);
+
+                var result = (resultPercentage >= 0.875) ? "Valid Image" : "InValid Image";
+                valMsgs.Add("Result :" + result);
 
                 //if (true)
                 //{
@@ -287,7 +329,6 @@ namespace ZenithCardRepo.Services.BLL.Infrastructure
             catch (Exception ex)
             {
                 _log.Error(ex);
-                throw;
             }
 
             return new List<string> { };

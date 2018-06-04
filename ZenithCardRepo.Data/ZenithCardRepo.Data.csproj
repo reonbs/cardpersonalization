@@ -254,6 +254,10 @@
     <Compile Include="Migrations\201805231511262_Addmodel347.Designer.cs">
       <DependentUpon>201805231511262_Addmodel347.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805280824017_AddLastDownloadDate.cs" />
+    <Compile Include="Migrations\201805280824017_AddLastDownloadDate.Designer.cs">
+      <DependentUpon>201805280824017_AddLastDownloadDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Approval.cs" />
     <Compile Include="Models\AuditRecord.cs" />
@@ -280,6 +284,7 @@
     <Compile Include="ViewModel\AuditViewModel.cs" />
     <Compile Include="ViewModel\CardAppViewModel.cs" />
     <Compile Include="ViewModel\DepartmentViewModel.cs" />
+    <Compile Include="ViewModel\InstitutionReportViewModel.cs" />
     <Compile Include="ViewModel\PermissionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -412,6 +417,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805231511262_Addmodel347.resx">
       <DependentUpon>201805231511262_Addmodel347.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805280824017_AddLastDownloadDate.resx">
+      <DependentUpon>201805280824017_AddLastDownloadDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

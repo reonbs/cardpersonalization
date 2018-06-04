@@ -58,6 +58,9 @@
     <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="Calabonga.OperationResults, Version=1.4.6545.36374, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OperationResult.1.4.1\lib\net461\Calabonga.OperationResults.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
     </Reference>
@@ -1059,6 +1062,7 @@
     <Content Include="Views\CardApplication\ViewProcessedCards.cshtml" />
     <Content Include="Views\CardApplication\CheckSearch.cshtml" />
     <Content Include="Views\Account\ResetPasswordAdmin.cshtml" />
+    <Content Include="Views\CardApplication\InstitutionReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

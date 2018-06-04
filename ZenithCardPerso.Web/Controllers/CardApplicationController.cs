@@ -1,11 +1,15 @@
-﻿using Hangfire;
+﻿using Calabonga.OperationResults;
+using Hangfire;
 using Ionic.Zip;
 using log4net;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
+//using System.Net.Mail;
 using System.Runtime.Remoting.Messaging;
 using System.Threading.Tasks;
 using System.Web;
@@ -54,7 +58,7 @@ namespace ZenithCardPerso.Web.Controllers
             _permissionQueryBLL = permissionQueryBLL;
         }
 
-        
+
         [ValidateUserPermission(Permissions = "can_create_cardapplication")]
         [Audit]
         public ActionResult CardApplicationCreate()
@@ -72,7 +76,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
         }
 
-        public JsonResult ValidateImage(string HDImageByte)
+        public JsonResult ValidateCaptureImage(string HDImageByte)
         {
             try
             {
@@ -87,24 +91,48 @@ namespace ZenithCardPerso.Web.Controllers
             }
         }
 
-        
+        [HttpPost]
+        public JsonResult ValidateUploadImage(HttpPostedFileBase fileUpload)
+        {
+            if (fileUpload != null && fileUpload.ContentLength > 0)
+            {
+                byte[] FileByteArray = new byte[fileUpload.ContentLength];
+                fileUpload.InputStream.Read(FileByteArray, 0, fileUpload.ContentLength);
+
+                var HDImageByte = Convert.ToBase64String(FileByteArray);
+
+                var valMsgs = _cardAPPCmdBLL.ImageBase64String(HDImageByte);
+
+                return Json(valMsgs, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new
+                {
+                    statusCode = 400,
+                    status = "Bad Request! Upload Failed",
+                    file = string.Empty
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         [HttpPost]
         [ValidateUserPermission(Permissions = "can_create_cardapplication")]
         [Audit]
         public ActionResult CardApplicationCreate(CardApplicationsDTO cardApplication, string HDImageByte, string IDIssueDate, string IDExpiryDate, string DateofBirth)
         {
             TempData[Utilities.Activity_Log_Details] = "Card Application has been captured Successfully";
-            string instID = string.Empty;
+            var instID = string.Empty;
             try
             {
                 instID = User.Identity.GetInstitutionID();
                 if (string.IsNullOrEmpty(HDImageByte))
                 {
-                    ModelState.AddModelError("","Image is required");
+                    ModelState.AddModelError("", "Image is required");
                     LoadApplicationLegends(instID);
                     return View(cardApplication);
                 }
-                
+
                 if (instID == "" || instID == "0  ")
                 {
                     return RedirectToAction("Login", "Account");
@@ -140,7 +168,8 @@ namespace ZenithCardPerso.Web.Controllers
 
                     TempData["Message"] = "Success";
 
-                    BackgroundJob.Enqueue(() => Utilities.ExecuteEmail("raphkens@live.com", "Ekene Egonu", CardEnums.CardApplicationEmail));
+                    //send emails on card application
+                    //BackgroundJob.Enqueue(() => Utilities.ExecuteEmail("raphkens@live.com", "Ekene Egonu", CardEnums.CardApplicationEmail));
 
                     ModelState.Clear();
 
@@ -211,7 +240,7 @@ namespace ZenithCardPerso.Web.Controllers
             }
         }
 
-        
+
         [ValidateUserPermission(Permissions = "can_view_cardapplications")]
         [Audit]
         public ActionResult CardApplications()
@@ -270,7 +299,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
         }
 
-        
+
         [ValidateUserPermission(Permissions = "can_view_cardapplications")]
         [Audit]
         public ActionResult CheckSearch()
@@ -342,7 +371,7 @@ namespace ZenithCardPerso.Web.Controllers
             return RedirectToAction("CardApplications");
         }
 
-        
+
         [ValidateUserPermission(Permissions = "can_view_mycardapplications")]
         [Audit]
         public ActionResult MyCardApplications()
@@ -366,7 +395,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
         }
 
-        
+
         [ValidateUserPermission(Permissions = "can_edit_cardapplication")]
         [Audit]
         public ActionResult CardApplicationEdit(int ID)
@@ -490,7 +519,7 @@ namespace ZenithCardPerso.Web.Controllers
                     TempData[Utilities.Activity_Log_Details] = "Card applications approval request has been initiated";
 
 
-                    var approvers =  _permissionQueryBLL.GetApprovers("can_approve_cardrequest");
+                    var approvers = _permissionQueryBLL.GetApprovers("can_approve_cardrequest");
 
                     foreach (var approver in approvers)
                     {
@@ -515,12 +544,12 @@ namespace ZenithCardPerso.Web.Controllers
             return View("CardApplications");
         }
 
-        
+
         [ValidateUserPermission(Permissions = "can_approve_cardrequest")]
         [Audit]
-        public ActionResult  CardRequestApprovals()
+        public ActionResult CardRequestApprovals()
         {
-            List<Approval> approvals = new List<Approval>{};
+            List<Approval> approvals = new List<Approval> { };
             try
             {
                 approvals = _approvalQueryBLL.GetApprovals();
@@ -537,7 +566,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View(approvals);
         }
 
-        
+
         [ValidateUserPermission(Permissions = "can_approve_cardrequest")]
         [Audit]
         public ActionResult ViewApplicationsForApproval(int approvalID)
@@ -606,14 +635,14 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
         }
 
-        
+
         [ValidateUserPermission(Permissions = "can_approve_cardrequest")]
         [Audit]
         public ActionResult CardApplicationDecline(int approvalID)
         {
             try
             {
-                _approvalCMDBLL.UpdateApproval(approvalID, Utilities.Decline,null,false);
+                _approvalCMDBLL.UpdateApproval(approvalID, Utilities.Decline, null, false);
 
                 TempData[Utilities.Activity_Log_Details] = $"Card applications with appprovalid {approvalID} has been viewed";
 
@@ -659,7 +688,7 @@ namespace ZenithCardPerso.Web.Controllers
                 ////Verify if download is approved 
                 //ViewData["IsDownloadRequired"] = _cardAppQueryBLL.CheckProcessedStatus(cardApps);
 
-                
+
 
                 return File(filecontent, ExcelExportHelper.ExcelContentType, "CardApplication.xls");
             }
@@ -731,7 +760,7 @@ namespace ZenithCardPerso.Web.Controllers
             catch (Exception ex)
             {
                 _log.Error(ex);
-                
+
             }
 
             TempData["Message"] = "failedprocess";
@@ -779,7 +808,7 @@ namespace ZenithCardPerso.Web.Controllers
             catch (Exception ex)
             {
                 _log.Error(ex);
-               
+
             }
         }
         private string CreateIfMissing(string path)
@@ -800,5 +829,114 @@ namespace ZenithCardPerso.Web.Controllers
         //    var processedCards =_cardAppQueryBLL.GetProcessedCard();
         //    return View(processedCards);
         //}
+        public ActionResult InstitutionReport()
+        {
+
+            var instID = User.Identity.GetInstitutionID();
+
+            ViewBag.CardApplications = _cardAppQueryBLL.GetCardApplications(Convert.ToInt32(instID)).ToList();
+
+            InstReportOption(instID);
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> InstitutionReport(CardAppViewModel cardAppVM)
+        {
+            try
+            {
+                var instID = User.Identity.GetInstitutionID();
+
+                await CardSearch(cardAppVM, Convert.ToInt32(instID));
+
+                InstReportOption(instID);
+
+                return View(cardAppVM);
+            }
+            catch (Exception ex)
+            {
+                _log.Error(ex);
+
+            }
+
+            CardSearchOptions();
+            ModelState.AddModelError("", "Card applications could not be retrieved");
+            return View();
+        }
+
+        public async Task<bool> CardSearch(CardAppViewModel cardAppVM, int instID)
+        {
+            var cardApplications = await _cardAppQueryBLL.CardApplicationSearchByInst(cardAppVM, instID);
+            var cardApps = cardApplications.ToList();
+            ViewBag.CardApplications = cardApps;
+            CardSearchOptions();
+
+            //Verify if download is approved 
+            //ViewData["IsDownloadRequired"] = _cardAppQueryBLL.CheckProcessedStatus(cardApps);
+
+            TempData[Utilities.Activity_Log_Details] = "Search was carried out on Card Applications by institution ID: " + instID;
+
+            return true;
+        }
+
+        public void InstReportOption(string instID)
+        {
+
+            var depts = _orgQueryBLL.GetDepartments(instID);
+
+            ViewData["instDepartment"] = new SelectList(depts, "Code", "Name", "");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateUserPermission(Permissions = "can_download_cardapplicationreport")]
+        [Audit]
+        public async Task<ActionResult> ExportToExcelByInst(CardAppViewModel cardAppVM)
+        {
+            var instID = string.Empty;
+            try
+            {
+
+                instID = User.Identity.GetInstitutionID();
+
+                TempData[Utilities.Activity_Log_Details] = "Card Applications report has been exported";
+                var cardApplications = await _cardAppQueryBLL.CardApplicationSearchByInst(cardAppVM, Convert.ToInt32(instID));
+
+                if (cardApplications.Any())
+                {
+                    var cardApps = cardApplications.ToList();
+                    ViewBag.CardApplications = cardApps;
+
+                    string[] columns = {
+                        "FirstName", "MiddleName", "LastName","Sex","MaritalStatus", "OfficePhoneNo",
+                        "GSMNo", "EmailAddress", "OfficeAddress1", "OfficeAddress2","City","State","RequestingBranchCode","MainAccountNo",
+                        "OtherAccountNo","NameonCard","IDCardType","IDNo","IDIssueDate","IDExpiryDate","SocioProfCode","ProductCode","DateofBirth",
+                        "TitleCode","Nationality"
+                    };
+                    byte[] filecontent = ExcelExportHelper.ExportExcel(cardApps, "", true, columns);
+
+                    InstReportOption(instID);
+
+                    ////Verify if download is approved 
+                    //ViewData["IsDownloadRequired"] = _cardAppQueryBLL.CheckProcessedStatus(cardApps);
+
+
+
+                    return File(filecontent, ExcelExportHelper.ExcelContentType, "CardApplication.xls");
+                }
+            }
+            catch (Exception ex)
+            {
+                _log.Error(ex);
+            }
+
+            InstReportOption(instID);
+            ModelState.AddModelError("", "Card applications could not be downloaded");
+            return View("InstitutionReport");
+        }
+
+
+
     }
 }

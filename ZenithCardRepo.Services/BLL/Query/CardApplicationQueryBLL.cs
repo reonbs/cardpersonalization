@@ -79,6 +79,69 @@ namespace ZenithCardRepo.Services.BLL.Query
 
         }
 
+        public async Task<IEnumerable<CardApplicationsDTO>> CardApplicationSearchByInst(CardAppViewModel cardAppVM,int instID)
+        {
+            cardAppVM.FromDate = (!string.IsNullOrEmpty(cardAppVM.FromDate)) ? cardAppVM.FromDate.Replace("s", "/") : "";
+            cardAppVM.ToDate = (!string.IsNullOrEmpty(cardAppVM.ToDate)) ? cardAppVM.ToDate.Replace("s", "/") : "";
+
+            var cardApplications = await _cardAppRepo.GetAllAsync();
+            var cardApps = cardApplications.Where(x => x.IsDeleted != true && x.InstitutionID == instID);
+            int resultFound = 0;
+            if (!string.IsNullOrEmpty(cardAppVM.FromDate))
+            {
+                cardApps = cardApps.Where(x => x.DateCreated >= Convert.ToDateTime(cardAppVM.FromDate));
+                resultFound = cardApps.Count();
+            }
+            else if (!string.IsNullOrEmpty(cardAppVM?.ToDate))
+            {
+                cardApps = cardApps.Where(x => x.DateCreated <= Convert.ToDateTime(cardAppVM.ToDate));
+                resultFound = cardApps.Count();
+            }
+            else if (!string.IsNullOrEmpty(cardAppVM.Processed))
+            {
+                var isProcessed = Convert.ToBoolean(cardAppVM.Processed);
+                cardApps = cardApps.Where(x => x.isProcessed == isProcessed || x.isProcessed == null);
+                resultFound = cardApps.Count();
+            }
+            else if (!string.IsNullOrEmpty(cardAppVM.BatchNo))
+            {
+                cardApps = cardApps.Where(x => x.ProcessedBatchNo == cardAppVM.BatchNo);
+                resultFound = cardApps.Count();
+            }
+            else if (!string.IsNullOrEmpty(cardAppVM.Department))
+            {
+                cardApps = cardApps.Where(x => x.InstitutionID == instID && x.Department == cardAppVM.Department);
+                resultFound = cardApps.Count();
+            }
+            else if (!string.IsNullOrEmpty(cardAppVM.Institution))
+            {
+                cardApps = cardApps.Where(x => x.InstitutionID == Convert.ToInt32(cardAppVM.Institution));
+                resultFound = cardApps.Count();
+            }
+            else if (!string.IsNullOrEmpty(cardAppVM.IsApproved))
+            {
+                var isApproved = Convert.ToBoolean(cardAppVM.IsApproved);
+                cardApps = cardApps.Where(x => x.IsApproved == isApproved);
+                resultFound = cardApps.Count();
+            }
+
+            if (resultFound > 0)
+            {
+                return cardApps.Select(CardApplicationsDTO.GetDTOFromModelForSearch);
+            }
+            else
+            {
+                return new List<CardApplicationsDTO> { };
+            }
+
+        }
+
+        public IEnumerable<CardApplicationsDTO> GetCardApplications(int instID)
+        {
+            return _cardAppRepo.GetAll().Where(x => x.InstitutionID == instID && x.IsDeleted != true)
+                .Select(CardApplicationsDTO.GetDTOFromModel);
+        }
+
         public IEnumerable<CardApplicationsDTO> CardApplicationToExport(List<CardApplicationsDTO> cardApps)
         {
             List<CardApplicationsDTO> cardAppsDTO = new List<CardApplicationsDTO>();
@@ -139,7 +202,7 @@ namespace ZenithCardRepo.Services.BLL.Query
 
         public bool ValidatedApplication(string IDNo)
         {
-           return _cardAppRepo.GetBy(x => x.IDNo.ToUpper() == IDNo.ToUpper()).Any();
+            return _cardAppRepo.GetBy(x => x.IDNo.ToUpper() == IDNo.ToUpper()).Any();
         }
 
         //public List<ProcessedCard> GetProcessedCard()

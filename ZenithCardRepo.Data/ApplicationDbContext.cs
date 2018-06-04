@@ -15,7 +15,7 @@ namespace ZenithCardRepo.Data
     {
         public ApplicationDbContext():base("DefaultConnection")
         {
-
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Migrations.Configuration>("DefaultConnection"));
         }
 
         public DbSet<CardApplication> CardApplications { get; set; }

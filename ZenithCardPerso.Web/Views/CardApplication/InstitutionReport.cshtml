@@ -1,0 +1,100 @@
+﻿@model ZenithCardRepo.Data.ViewModel.CardAppViewModel
+@{
+    ViewBag.Title = "InstitutionReport";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="page-title-box">
+            <h4 class="page-title">Institution Report</h4>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<br />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("FromDate")
+    @Html.Hidden("ToDate")
+    <div class="row card-box">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.FromDate)
+                    <div class="input-group">
+                        @*@Html.EditorFor(m => m.FromDate, new { htmlAttributes = new { @class = "form-control" } })*@
+                        <input id="SearchFromDate" class="form-control" />
+                        <span class="input-group-addon bg-custom b-0"><i class="mdi mdi-calendar text-white"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.ToDate)
+                    <div class="input-group">
+                        @*@Html.EditorFor(m => m.ToDate, new { htmlAttributes = new { @class = "form-control" } })*@
+                        <input id="SearchToDate" class="form-control" />
+                        <span class="input-group-addon bg-custom b-0"><i class="mdi mdi-calendar text-white"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.Department)
+                    @Html.DropDownListFor(m => m.Department, ViewData["instDepartment"] as SelectList, "", new { @class = "form-control" })
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.BatchNo)
+                    @Html.EditorFor(m => m.BatchNo, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <br />
+    var cardApplications = ViewBag.CardApplications as List<ZenithCardRepo.Data.DTOs.CardApplicationsDTO>;
+
+    <div class="pull-right">
+        @if (cardApplications?.Count > 0)
+        {
+            <span><button type="submit" formaction=@Url.Action("ExportToExcelByInst","CardApplication") formmethod="post" class="btn btn-primary waves-effect w-md waves-light m-b-5">Export To Excel</button></span>
+        }
+        else
+        {
+            <button class="btn btn-primary waves-effect w-md waves-light m-b-5" disabled>Export To Excel</button>
+        }
+        @*<button type="submit" class="btn btn-primary waves-effect w-md waves-light m-b-5" ]>Search</button>*@
+        <span><button type="submit" formaction=@Url.Action("InstitutionReport","CardApplication") formmethod="post" class="btn btn-primary waves-effect w-md waves-light m-b-5">Search</button></span>
+    </div>
+
+
+    @Html.Partial("SearchResult", cardApplications)
+
+}
+
+@section Scripts{
+    <script>
+        $(function () {
+            $('#SearchFromDate, #SearchToDate').datepicker({
+                dateFormat: "dd/mm/yy"
+
+            });
+
+            $('#tblSearcResults').dataTable();
+            $('#SearchFromDate').on('change',
+                function () {
+                    var date = $(this).val();
+
+                    var newDate = date.replace(/\//g, 's');
+
+                    $('#FromDate').val(newDate);
+                });
+
+            $('#SearchToDate').on('change',
+                function () {
+                    var date = $(this).val();
+
+                    var newDate = date.replace(/\//g, 's');
+
+                    $('#ToDate').val(newDate);
+                });
+        });
+    </script>
+}

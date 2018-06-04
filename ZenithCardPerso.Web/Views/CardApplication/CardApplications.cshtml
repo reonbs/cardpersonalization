@@ -114,7 +114,7 @@
         }
         <span><button type="submit" formaction=@Url.Action("CardApplications","CardApplication") formmethod="post" class="btn btn-primary waves-effect w-md waves-light m-b-5">Search</button></span>
 
-        @if (Convert.ToBoolean(ViewData["IsDownloadRequired"]))
+        @if (false)//Convert.ToBoolean(ViewData["IsDownloadRequired"])
         {
             @*@Html.ActionLink("Request Approval", "CardDownloadApproval", "CardApplication", new { batchNo = (Model == null) ? "" : Model.BatchNo, ID = Model.}, new { @class = "btn btn-primary waves-effect w-md waves-light m-b-5" })*@
             <span>
@@ -173,6 +173,7 @@
                     
                 });
 
+                $('#tblSearcResults').dataTable();
                // $('#Department, #Institution').select2();
 
                 $('#Institution').on('change', function () {
@@ -229,21 +230,23 @@
                     }
                 });
 
-                $('#SearchFromDate').on('change', function () {
-                    var date = $(this).val();
+                $('#SearchFromDate').on('change',
+                    function() {
+                        var date = $(this).val();
 
-                    var newDate = date.replace(/\//g, 's');
+                        var newDate = date.replace(/\//g, 's');
 
-                    $('#FromDate').val(newDate);
-                })
+                        $('#FromDate').val(newDate);
+                    });
 
-                $('#SearchToDate').on('change', function () {
-                    var date = $(this).val();
+                $('#SearchToDate').on('change',
+                    function() {
+                        var date = $(this).val();
 
-                    var newDate = date.replace(/\//g, 's');
+                        var newDate = date.replace(/\//g, 's');
 
-                    $('#ToDate').val(newDate);
-                })
+                        $('#ToDate').val(newDate);
+                    });
 
                 function toggleChecked(status) {
                     $("#tblSearcResults input").each(function () {
