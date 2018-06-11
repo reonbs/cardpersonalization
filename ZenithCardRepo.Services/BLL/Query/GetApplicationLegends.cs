@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,49 +47,49 @@ namespace ZenithCardRepo.Services.BLL.Query
 
 
         }
-        public List<City> CityList(string stateCode)
+        public async Task<List<City>> CityList(string stateCode)
         {
-            return _cityRepo.GetBy(x => x.StateCode.ToLower() == stateCode.ToLower()).ToList();
+            return await _cityRepo.GetBy(x => x.StateCode.ToLower() == stateCode.ToLower()).ToListAsync();
         }
 
-        public List<IDCardType> IDCardTypeList()
+        public async Task<IEnumerable<IDCardType>> IDCardTypeList()
         {
-            return _idCardTypeRepo.GetAll().ToList();
+            return await _idCardTypeRepo.GetAllAsync();
         }
 
-        public List<MaritalStatus> MaritalStatusList()
+        public async Task<IEnumerable<MaritalStatus>> MaritalStatusList()
         {
-            return _maritalStatusRepo.GetAll().ToList();
+            return await _maritalStatusRepo.GetAllAsync();
         }
 
-        public List<NationalityCode> NationalityCodeList()
+        public async Task<IEnumerable<NationalityCode>> NationalityCodeList()
         {
-            return _nationalityCodeRepo.GetAll().ToList();
+            return await _nationalityCodeRepo.GetAllAsync();
         }
 
-        public List<ProductCode> ProductCodeList()
+        public async Task<IEnumerable<ProductCode>> ProductCodeList()
         {
-            return _productCodeRepo.GetAll().ToList();
+            return await _productCodeRepo.GetAllAsync();
         }
 
-        public List<Sex> SexList()
+        public async Task<IEnumerable<Sex>> SexList()
         {
-            return _sexRepo.GetAll().ToList();
+            return await _sexRepo.GetAllAsync();
         }
 
-        public List<SocioProfCode> SocioProfCodeList()
+        public async Task<IEnumerable<SocioProfCode>> SocioProfCodeList()
         {
-            return _socioProfCodeRepo.GetAll().ToList();
+            return await _socioProfCodeRepo.GetAllAsync();
         }
 
-        public List<State> StateList()
+        public async Task<IEnumerable<State>> StateList()
         {
-            return _stateRepo.GetAll().ToList();
+            return await _stateRepo.GetAllAsync();
         }
 
-        public List<TitleCode> TitleCodeList()
+        public async Task<IEnumerable<TitleCode>> TitleCodeList()
         {
-            return _titleRepo.GetAll().ToList();
+            return await _titleRepo.GetAllAsync();
         }
     }
 }

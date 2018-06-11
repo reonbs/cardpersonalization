@@ -61,7 +61,7 @@ namespace ZenithCardPerso.Web.Controllers
 
         [ValidateUserPermission(Permissions = "can_create_cardapplication")]
         [Audit]
-        public ActionResult CardApplicationCreate()
+        public async Task<ActionResult> CardApplicationCreate()
         {
             var institution = User.Identity.GetInstitutionID();
             if (institution == "" || institution == "0  ")
@@ -70,7 +70,7 @@ namespace ZenithCardPerso.Web.Controllers
             }
 
             _institution = institution;
-            LoadApplicationLegends(_institution);
+            await LoadApplicationLegends(_institution);
 
             TempData[Utilities.Activity_Log_Details] = "Card Application view was loaded";
             return View();
@@ -119,7 +119,7 @@ namespace ZenithCardPerso.Web.Controllers
         [HttpPost]
         [ValidateUserPermission(Permissions = "can_create_cardapplication")]
         [Audit]
-        public ActionResult CardApplicationCreate(CardApplicationsDTO cardApplication, string HDImageByte, string IDIssueDate, string IDExpiryDate, string DateofBirth)
+        public async Task<ActionResult> CardApplicationCreate(CardApplicationsDTO cardApplication, string HDImageByte, string IDIssueDate, string IDExpiryDate, string DateofBirth)
         {
             TempData[Utilities.Activity_Log_Details] = "Card Application has been captured Successfully";
             var instID = string.Empty;
@@ -129,7 +129,7 @@ namespace ZenithCardPerso.Web.Controllers
                 if (string.IsNullOrEmpty(HDImageByte))
                 {
                     ModelState.AddModelError("", "Image is required");
-                    LoadApplicationLegends(instID);
+                    await LoadApplicationLegends(instID);
                     return View(cardApplication);
                 }
 
@@ -141,7 +141,7 @@ namespace ZenithCardPerso.Web.Controllers
                 if (string.IsNullOrEmpty(HDImageByte))
                 {
                     ModelState.AddModelError("", "Image is required");
-                    LoadApplicationLegends(instID);
+                    await LoadApplicationLegends(instID);
                     return View(cardApplication);
                 }
 
@@ -149,7 +149,7 @@ namespace ZenithCardPerso.Web.Controllers
                 if (appCheck)
                 {
                     ModelState.AddModelError("", "Card application already exist for this applicant");
-                    LoadApplicationLegends(instID);
+                    await LoadApplicationLegends(instID);
                     return View(cardApplication);
                 }
                 cardApplication.InstitutionID = Convert.ToInt32(instID);
@@ -179,20 +179,20 @@ namespace ZenithCardPerso.Web.Controllers
                     }
                     var departments = _orgQueryBLL.GetDepartments(instID);
                     ViewBag.Department = new SelectList(departments, "Code", "Name", "");
-                    LoadApplicationLegends(instID);
+                    await LoadApplicationLegends(instID);
                     return View();
                 }
 
             }
             catch (Exception ex)
             {
-                LoadApplicationLegends(instID);
+                await LoadApplicationLegends(instID);
                 _log.Error(ex);
             }
 
             ModelState.AddModelError("", "Validate that all fields are entered correctly");
 
-            LoadApplicationLegends(instID);
+            await LoadApplicationLegends(instID);
             return View(cardApplication);
         }
 
@@ -210,19 +210,21 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
 
         }
-        public void LoadApplicationLegends(string institution)
+        public async Task<bool> LoadApplicationLegends(string institution)
         {
-            ViewData["MaritalStatusView"] = new SelectList(_applicationLegends.MaritalStatusList(), "Code", "Description", "");
-            ViewData["StateView"] = new SelectList(_applicationLegends.StateList(), "StateCode", "RegionName", "");
-            ViewData["SocioProfCodeView"] = new SelectList(_applicationLegends.SocioProfCodeList(), "Code", "Description", "");
-            ViewData["NationalityView"] = new SelectList(_applicationLegends.NationalityCodeList(), "CountryCode", "Wording", "");
-            ViewData["TitleCodeView"] = new SelectList(_applicationLegends.TitleCodeList(), "Code", "Wording", "");
-            ViewData["ProductCodeView"] = new SelectList(_applicationLegends.ProductCodeList(), "Code", "Description", "");
-            ViewData["IDCardTypeView"] = new SelectList(_applicationLegends.IDCardTypeList(), "DocumentCode", "ABRVWording", "");
-            ViewData["SexView"] = new SelectList(_applicationLegends.SexList(), "Code", "Description", "");
+            ViewData["MaritalStatusView"] = new SelectList(await _applicationLegends.MaritalStatusList(), "Code", "Description", "");
+            ViewData["StateView"] = new SelectList(await _applicationLegends.StateList(), "StateCode", "RegionName", "");
+            ViewData["SocioProfCodeView"] = new SelectList(await _applicationLegends.SocioProfCodeList(), "Code", "Description", "");
+            ViewData["NationalityView"] = new SelectList(await _applicationLegends.NationalityCodeList(), "CountryCode", "Wording", "");
+            ViewData["TitleCodeView"] = new SelectList(await _applicationLegends.TitleCodeList(), "Code", "Wording", "");
+            ViewData["ProductCodeView"] = new SelectList(await _applicationLegends.ProductCodeList(), "Code", "Description", "");
+            ViewData["IDCardTypeView"] = new SelectList(await _applicationLegends.IDCardTypeList(), "DocumentCode", "ABRVWording", "");
+            ViewData["SexView"] = new SelectList(await _applicationLegends.SexList(), "Code", "Description", "");
 
             var departments = _orgQueryBLL.GetDepartments(institution);
             ViewBag.DepartmentView = new SelectList(departments, "Code", "Name", "");
+
+            return true;
 
         }
 
@@ -398,7 +400,7 @@ namespace ZenithCardPerso.Web.Controllers
 
         [ValidateUserPermission(Permissions = "can_edit_cardapplication")]
         [Audit]
-        public ActionResult CardApplicationEdit(int ID)
+        public async Task<ActionResult> CardApplicationEdit(int ID)
         {
             try
             {
@@ -410,7 +412,7 @@ namespace ZenithCardPerso.Web.Controllers
 
                 _institution = institution;
                 var cardApplication = _cardAppQueryBLL.GetCardApplication(ID);
-                LoadApplicationLegends(institution);
+                await LoadApplicationLegends(institution);
 
                 TempData[Utilities.Activity_Log_Details] = "Card Application was selected to be edited with ID =" + ID + "for" + cardApplication.FullName;
                 return View("CardApplicationEdit", cardApplication);
@@ -427,7 +429,7 @@ namespace ZenithCardPerso.Web.Controllers
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_edit_cardapplication")]
         [Audit]
-        public ActionResult CardApplicationEdit(CardApplicationsDTO cardApplicationsDTO, string HDImageByte)
+        public async Task<ActionResult> CardApplicationEdit(CardApplicationsDTO cardApplicationsDTO, string HDImageByte)
         {
             try
             {
@@ -442,7 +444,7 @@ namespace ZenithCardPerso.Web.Controllers
                 if (string.IsNullOrEmpty(HDImageByte))
                 {
                     ModelState.AddModelError("", "Image is required");
-                    LoadApplicationLegends(institution);
+                    await LoadApplicationLegends(institution);
                     return View(cardApplicationsDTO);
                 }
 
@@ -470,7 +472,7 @@ namespace ZenithCardPerso.Web.Controllers
                 _log.Error(ex);
 
             }
-            LoadApplicationLegends(_institution);
+            await LoadApplicationLegends(_institution);
 
             ModelState.AddModelError("", "There was an error editing card application");
             return View(cardApplicationsDTO);
@@ -503,12 +505,12 @@ namespace ZenithCardPerso.Web.Controllers
         [ValidateAntiForgeryToken]
         [ValidateUserPermission(Permissions = "can_request_approval")]
         [Audit]
-        public async Task<ActionResult> CardDownloadApproval(List<CardApplicationsDTO> cardApps, string HDComment)
+        public ActionResult CardDownloadApproval(List<CardApplicationsDTO> cardApps, string HDComment)
         {
             try
             {
                 var selectedCardapp = cardApps.Where(x => x.IsSelected == true);
-                if (selectedCardapp.Count() > 0)
+                if (selectedCardapp.Any())
                 {
                     var requestBy = User.Identity.Name;
 

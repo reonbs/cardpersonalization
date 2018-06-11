@@ -9,15 +9,15 @@ namespace ZenithCardRepo.Services.BLL.Query
 {
     public interface IGetApplicationLegends
     {
-        List<MaritalStatus> MaritalStatusList();
-        List<City> CityList(string stateCode);
-        List<IDCardType> IDCardTypeList();
-        List<NationalityCode> NationalityCodeList();
-        List<ProductCode> ProductCodeList();
-        List<Sex> SexList();
-        List<SocioProfCode> SocioProfCodeList();
-        List<State> StateList();
-        List<TitleCode> TitleCodeList();
+        Task<IEnumerable<MaritalStatus>> MaritalStatusList();
+        Task<List<City>> CityList(string stateCode);
+        Task<IEnumerable<IDCardType>> IDCardTypeList();
+        Task<IEnumerable<NationalityCode>> NationalityCodeList();
+        Task<IEnumerable<ProductCode>> ProductCodeList();
+        Task<IEnumerable<Sex>> SexList();
+        Task<IEnumerable<SocioProfCode>> SocioProfCodeList();
+        Task<IEnumerable<State>> StateList();
+        Task<IEnumerable<TitleCode>> TitleCodeList();
 
     }
 }
