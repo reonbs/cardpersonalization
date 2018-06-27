@@ -210,7 +210,7 @@ namespace ZenithCardPerso.Web.Controllers
             return View();
 
         }
-        public async Task<bool> LoadApplicationLegends(string institution)
+        public async Task LoadApplicationLegends(string institution)
         {
             ViewData["MaritalStatusView"] = new SelectList(await _applicationLegends.MaritalStatusList(), "Code", "Description", "");
             ViewData["StateView"] = new SelectList(await _applicationLegends.StateList(), "StateCode", "RegionName", "");
@@ -223,8 +223,6 @@ namespace ZenithCardPerso.Web.Controllers
 
             var departments = _orgQueryBLL.GetDepartments(institution);
             ViewBag.DepartmentView = new SelectList(departments, "Code", "Name", "");
-
-            return true;
 
         }
 

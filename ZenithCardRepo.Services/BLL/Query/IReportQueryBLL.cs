@@ -10,8 +10,10 @@ namespace ZenithCardRepo.Services.BLL.Query
 {
     public interface IReportQueryBLL
     {
-        IEnumerable<AuditRecord> GetAuditRecords();
+        IEnumerable<AuditRecord> GetAuditRecords(string instID);
 
-        IEnumerable<AuditRecord> GetAuditRecordsSearch(AuditViewModel auditVM);
+        IEnumerable<AuditRecord> GetAuditRecordsSearch(AuditViewModel auditVM, string instID);
+
+        
     }
 }

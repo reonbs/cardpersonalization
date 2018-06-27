@@ -1,7 +1,11 @@
 ﻿@model ZenithCardRepo.Data.ViewModel.CardAppViewModel
+@using Microsoft.AspNet.Identity
+@using System.Security.Claims
+
 
 @{
     ViewBag.Title = "CardApplications";
+    var permissions = (User.Identity as ClaimsIdentity).FindFirstValue("UserPermissions");
 }
 
 <div class="row">
@@ -113,29 +117,32 @@
             <button class="btn btn-primary waves-effect w-md waves-light m-b-5" disabled>Export To Excel</button>
         }
         <span><button type="submit" formaction=@Url.Action("CardApplications","CardApplication") formmethod="post" class="btn btn-primary waves-effect w-md waves-light m-b-5">Search</button></span>
-
-        @if (false)//Convert.ToBoolean(ViewData["IsDownloadRequired"])
+        @if (User.IsInRole("CardOps"))
         {
-            @*@Html.ActionLink("Request Approval", "CardDownloadApproval", "CardApplication", new { batchNo = (Model == null) ? "" : Model.BatchNo, ID = Model.}, new { @class = "btn btn-primary waves-effect w-md waves-light m-b-5" })*@
-            <span>
-                <button id="requestApprovalBTN" type="button" class="btn btn-primary waves-effect w-md waves-light m-b-5">Request Appoval</button>
 
-            </span>
-        }
-        else
-        {
-            if (cardApplications?.Count > 0)
+            if (false)//Convert.ToBoolean(ViewData["IsDownloadRequired"])
             {
-                <button type="submit" formaction=@Url.Action("ProcessCard", "CardApplication") formmethod="post" class="btn btn-primary waves-effect w-md waves-light m-b-5">Process Card</button>
+                @*@Html.ActionLink("Request Approval", "CardDownloadApproval", "CardApplication", new { batchNo = (Model == null) ? "" : Model.BatchNo, ID = Model.}, new { @class = "btn btn-primary waves-effect w-md waves-light m-b-5" })*@
+                <span>
+                    <button id="requestApprovalBTN" type="button" class="btn btn-primary waves-effect w-md waves-light m-b-5">Request Appoval</button>
+
+                </span>
             }
             else
             {
+                if (cardApplications?.Count > 0)
+                {
+                    <button type="submit" formaction=@Url.Action("ProcessCard", "CardApplication") formmethod="post" class="btn btn-primary waves-effect w-md waves-light m-b-5">Process Card</button>
+                }
+                else
+                {
 
-                <button class="btn btn-primary waves-effect w-md waves-light m-b-5" disabled>Process Card</button>
+                    <button class="btn btn-primary waves-effect w-md waves-light m-b-5" disabled>Process Card</button>
+                }
+
             }
-
+            <span><button id="deleteCardsBTN" type="button" class="btn btn-primary waves-effect w-md waves-light m-b-5">Delete</button></span>
         }
-        <span><button id="deleteCardsBTN" type="button" class="btn btn-primary waves-effect w-md waves-light m-b-5">Delete</button></span>
 
     </div>
     <button id="requestApprovalSBT" type="submit" formaction=@Url.Action("CardDownloadApproval","CardApplication") formmethod="post" class="notToShow">Request Approval</button>
@@ -170,7 +177,7 @@
             $(function () {
                 $('#SearchFromDate, #SearchToDate').datepicker({
                     dateFormat: "dd/mm/yy"
-                    
+
                 });
 
                 $('#tblSearcResults').dataTable();

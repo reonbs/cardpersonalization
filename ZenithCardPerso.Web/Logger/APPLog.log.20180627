@@ -1,0 +1,749 @@
+﻿2018-06-27 00:01:11,770 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 00:01:11,770 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 00:06:11,785 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 00:06:11,785 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 00:11:11,789 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 00:11:11,789 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 00:16:11,792 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 00:16:11,792 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 00:21:09,155 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'AggregatedCounter' table...
+2018-06-27 00:21:09,155 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'AggregatedCounter' table.
+2018-06-27 00:21:09,155 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Job' table...
+2018-06-27 00:21:09,155 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Job' table.
+2018-06-27 00:21:09,155 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'List' table...
+2018-06-27 00:21:09,155 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'List' table.
+2018-06-27 00:21:09,155 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Set' table...
+2018-06-27 00:21:09,155 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Set' table.
+2018-06-27 00:21:09,155 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Hash' table...
+2018-06-27 00:21:09,171 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Hash' table.
+2018-06-27 00:21:11,801 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 00:21:11,801 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 00:26:11,804 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 00:26:11,805 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 00:31:11,807 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 00:31:11,812 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 00:36:11,812 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 00:36:11,818 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 00:41:11,818 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 00:41:11,849 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 00:46:11,851 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 00:46:11,854 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 00:51:09,171 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'AggregatedCounter' table...
+2018-06-27 00:51:09,174 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'AggregatedCounter' table.
+2018-06-27 00:51:09,174 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Job' table...
+2018-06-27 00:51:09,178 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Job' table.
+2018-06-27 00:51:09,179 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'List' table...
+2018-06-27 00:51:09,181 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'List' table.
+2018-06-27 00:51:09,182 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Set' table...
+2018-06-27 00:51:09,184 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Set' table.
+2018-06-27 00:51:09,184 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Hash' table...
+2018-06-27 00:51:09,186 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Hash' table.
+2018-06-27 00:51:11,854 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 00:51:11,856 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 00:56:11,857 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 00:56:11,858 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 01:01:11,859 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 01:01:11,861 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 01:06:11,862 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 01:06:11,867 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 07:46:13,760 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 07:46:13,765 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 07:51:13,769 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 07:51:13,776 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 07:56:11,082 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'AggregatedCounter' table...
+2018-06-27 07:56:11,088 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'AggregatedCounter' table.
+2018-06-27 07:56:11,088 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Job' table...
+2018-06-27 07:56:11,092 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Job' table.
+2018-06-27 07:56:11,093 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'List' table...
+2018-06-27 07:56:11,097 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'List' table.
+2018-06-27 07:56:11,097 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Set' table...
+2018-06-27 07:56:11,103 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Set' table.
+2018-06-27 07:56:11,103 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Hash' table...
+2018-06-27 07:56:11,106 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Hash' table.
+2018-06-27 07:56:13,779 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 07:56:13,783 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 08:01:13,785 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 08:01:13,794 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 08:06:13,797 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 08:06:13,803 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 08:11:13,805 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 08:11:13,811 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 08:16:13,812 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 08:16:13,812 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 08:21:13,813 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 08:21:13,820 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 08:25:32,178 DEBUG [DelayedJobScheduler] ?.CallSite.Target - Background process 'DelayedJobScheduler' stopped.
+2018-06-27 08:25:32,178 DEBUG [RecurringJobScheduler] ?.CallSite.Target - Background process 'RecurringJobScheduler' was stopped due to a shutdown request.
+2018-06-27 08:25:32,179 DEBUG [RecurringJobScheduler] ?.CallSite.Target - Background process 'RecurringJobScheduler' stopped.
+2018-06-27 08:25:32,179 DEBUG [Worker #55c8b418] ?.CallSite.Target - Background process 'Worker #55c8b418' was stopped due to a shutdown request.
+2018-06-27 08:25:32,179 DEBUG [Worker #55c8b418] ?.CallSite.Target - Background process 'Worker #55c8b418' stopped.
+2018-06-27 08:25:32,179 DEBUG [Worker #0fdb8f91] ?.CallSite.Target - Background process 'Worker #0fdb8f91' was stopped due to a shutdown request.
+2018-06-27 08:25:32,180 DEBUG [Worker #0fdb8f91] ?.CallSite.Target - Background process 'Worker #0fdb8f91' stopped.
+2018-06-27 08:25:32,180 DEBUG [Worker #a5a6a37f] ?.CallSite.Target - Background process 'Worker #a5a6a37f' was stopped due to a shutdown request.
+2018-06-27 08:25:32,180 DEBUG [Worker #15a52ff8] ?.CallSite.Target - Background process 'Worker #15a52ff8' was stopped due to a shutdown request.
+2018-06-27 08:25:32,180 DEBUG [Worker #15a52ff8] ?.CallSite.Target - Background process 'Worker #15a52ff8' stopped.
+2018-06-27 08:25:32,180 DEBUG [Worker #a5a6a37f] ?.CallSite.Target - Background process 'Worker #a5a6a37f' stopped.
+2018-06-27 08:25:32,181 DEBUG [Worker #c6b7f3cb] ?.CallSite.Target - Background process 'Worker #c6b7f3cb' was stopped due to a shutdown request.
+2018-06-27 08:25:32,181 DEBUG [Worker #c6b7f3cb] ?.CallSite.Target - Background process 'Worker #c6b7f3cb' stopped.
+2018-06-27 08:25:32,181 DEBUG [Worker #8813bb33] ?.CallSite.Target - Background process 'Worker #8813bb33' was stopped due to a shutdown request.
+2018-06-27 08:25:32,181 DEBUG [Worker #8813bb33] ?.CallSite.Target - Background process 'Worker #8813bb33' stopped.
+2018-06-27 08:25:32,181 DEBUG [Worker #e8c97e7f] ?.CallSite.Target - Background process 'Worker #e8c97e7f' was stopped due to a shutdown request.
+2018-06-27 08:25:32,182 DEBUG [Worker #e8c97e7f] ?.CallSite.Target - Background process 'Worker #e8c97e7f' stopped.
+2018-06-27 08:25:32,179 DEBUG [Worker #2070edfd] ?.CallSite.Target - Background process 'Worker #2070edfd' was stopped due to a shutdown request.
+2018-06-27 08:25:32,182 DEBUG [Worker #a0e123ae] ?.CallSite.Target - Background process 'Worker #a0e123ae' was stopped due to a shutdown request.
+2018-06-27 08:25:32,182 DEBUG [Worker #a0e123ae] ?.CallSite.Target - Background process 'Worker #a0e123ae' stopped.
+2018-06-27 08:25:32,182 DEBUG [Worker #1499bb3e] ?.CallSite.Target - Background process 'Worker #1499bb3e' was stopped due to a shutdown request.
+2018-06-27 08:25:32,181 DEBUG [Worker #8abeb7f8] ?.CallSite.Target - Background process 'Worker #8abeb7f8' was stopped due to a shutdown request.
+2018-06-27 08:25:32,187 DEBUG [Worker #8abeb7f8] ?.CallSite.Target - Background process 'Worker #8abeb7f8' stopped.
+2018-06-27 08:25:32,187 DEBUG [Worker #1499bb3e] ?.CallSite.Target - Background process 'Worker #1499bb3e' stopped.
+2018-06-27 08:25:32,188 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Background process 'Hangfire.SqlServer.CountersAggregator' stopped.
+2018-06-27 08:25:32,188 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Background process 'Hangfire.SqlServer.ExpirationManager' stopped.
+2018-06-27 08:25:32,189 DEBUG [ServerHeartbeat] ?.CallSite.Target - Background process 'ServerHeartbeat' stopped.
+2018-06-27 08:25:32,189 DEBUG [Worker #f005ff41] ?.CallSite.Target - Background process 'Worker #f005ff41' was stopped due to a shutdown request.
+2018-06-27 08:25:32,189 DEBUG [Worker #f005ff41] ?.CallSite.Target - Background process 'Worker #f005ff41' stopped.
+2018-06-27 08:25:32,190 DEBUG [Worker #d15d0691] ?.CallSite.Target - Background process 'Worker #d15d0691' was stopped due to a shutdown request.
+2018-06-27 08:25:32,190 DEBUG [Worker #d15d0691] ?.CallSite.Target - Background process 'Worker #d15d0691' stopped.
+2018-06-27 08:25:32,190 DEBUG [Worker #121e654d] ?.CallSite.Target - Background process 'Worker #121e654d' was stopped due to a shutdown request.
+2018-06-27 08:25:32,190 DEBUG [Worker #121e654d] ?.CallSite.Target - Background process 'Worker #121e654d' stopped.
+2018-06-27 08:25:32,190 DEBUG [Worker #59bae544] ?.CallSite.Target - Background process 'Worker #59bae544' was stopped due to a shutdown request.
+2018-06-27 08:25:32,190 DEBUG [Worker #59bae544] ?.CallSite.Target - Background process 'Worker #59bae544' stopped.
+2018-06-27 08:25:32,191 DEBUG [Worker #6f702a78] ?.CallSite.Target - Background process 'Worker #6f702a78' was stopped due to a shutdown request.
+2018-06-27 08:25:32,191 DEBUG [Worker #6f702a78] ?.CallSite.Target - Background process 'Worker #6f702a78' stopped.
+2018-06-27 08:25:32,188 DEBUG [ServerWatchdog] ?.CallSite.Target - Background process 'ServerWatchdog' stopped.
+2018-06-27 08:25:32,191 DEBUG [Worker #6300fb61] ?.CallSite.Target - Background process 'Worker #6300fb61' was stopped due to a shutdown request.
+2018-06-27 08:25:32,191 DEBUG [Worker #6300fb61] ?.CallSite.Target - Background process 'Worker #6300fb61' stopped.
+2018-06-27 08:25:32,191 DEBUG [Worker #845bf389] ?.CallSite.Target - Background process 'Worker #845bf389' was stopped due to a shutdown request.
+2018-06-27 08:25:32,192 DEBUG [Worker #845bf389] ?.CallSite.Target - Background process 'Worker #845bf389' stopped.
+2018-06-27 08:25:32,192 DEBUG [Worker #e90ae143] ?.CallSite.Target - Background process 'Worker #e90ae143' was stopped due to a shutdown request.
+2018-06-27 08:25:32,192 DEBUG [Worker #e90ae143] ?.CallSite.Target - Background process 'Worker #e90ae143' stopped.
+2018-06-27 08:25:32,182 DEBUG [Worker #2070edfd] ?.CallSite.Target - Background process 'Worker #2070edfd' stopped.
+2018-06-27 08:25:32,191 DEBUG [Worker #d0f4f635] ?.CallSite.Target - Background process 'Worker #d0f4f635' was stopped due to a shutdown request.
+2018-06-27 08:25:32,194 DEBUG [Worker #d0f4f635] ?.CallSite.Target - Background process 'Worker #d0f4f635' stopped.
+2018-06-27 08:25:32,221 DEBUG [BackgroundProcessingServer] ?.CallSite.Target - Background process 'BackgroundProcessingServer' stopped.
+2018-06-27 08:25:32,221 INFO [21] ?.CallSite.Target - Hangfire Server stopped.
+2018-06-27 08:26:03,714 INFO [1] ZenithCardPerso.Web.MvcApplication.Application_Start -  <<<< Staring ::: Zentih Card APP checking Startup Config Setting @ : 06/27/2018 08:26:03 >>>>>>
+2018-06-27 08:26:05,773 INFO [1] ZenithCardPerso.Web.MvcApplication.Application_Start -  <<<< Ending ::: Zentih Card APP Startup Config Setting ok @ : 06/27/2018 08:26:05 >>>>>>
+2018-06-27 08:26:05,997 INFO [1] ?.CallSite.Target - Start installing Hangfire SQL objects...
+2018-06-27 08:26:06,127 INFO [1] ?.CallSite.Target - Hangfire SQL objects installed.
+2018-06-27 08:26:06,149 INFO [1] ?.CallSite.Target - Starting Hangfire Server
+2018-06-27 08:26:06,153 INFO [1] ?.CallSite.Target - Using job storage: 'SQL Server: CYB310-SOFT-01\SQLSERVER2012@ZenithCardPersoDB'
+2018-06-27 08:26:06,154 INFO [1] ?.CallSite.Target - Using the following options for SQL Server job storage:
+2018-06-27 08:26:06,154 INFO [1] ?.CallSite.Target -     Queue poll interval: 00:00:15.
+2018-06-27 08:26:06,154 INFO [1] ?.CallSite.Target - Using the following options for Hangfire Server:
+2018-06-27 08:26:06,154 INFO [1] ?.CallSite.Target -     Worker count: 20
+2018-06-27 08:26:06,155 INFO [1] ?.CallSite.Target -     Listening queues: 'default'
+2018-06-27 08:26:06,155 INFO [1] ?.CallSite.Target -     Shutdown timeout: 00:00:15
+2018-06-27 08:26:06,155 INFO [1] ?.CallSite.Target -     Schedule polling interval: 00:00:15
+2018-06-27 08:26:06,176 DEBUG [BackgroundProcessingServer] ?.CallSite.Target - Background process 'BackgroundProcessingServer' started.
+2018-06-27 08:26:06,374 DEBUG [ServerHeartbeat] ?.CallSite.Target - Background process 'ServerHeartbeat' started.
+2018-06-27 08:26:06,377 DEBUG [ServerWatchdog] ?.CallSite.Target - Background process 'ServerWatchdog' started.
+2018-06-27 08:26:06,388 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Background process 'Hangfire.SqlServer.ExpirationManager' started.
+2018-06-27 08:26:06,418 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'AggregatedCounter' table...
+2018-06-27 08:26:06,423 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Background process 'Hangfire.SqlServer.CountersAggregator' started.
+2018-06-27 08:26:06,447 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 08:26:06,460 DEBUG [Worker #4063f205] ?.CallSite.Target - Background process 'Worker #4063f205' started.
+2018-06-27 08:26:06,494 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 08:26:06,559 DEBUG [Worker #bc225460] ?.CallSite.Target - Background process 'Worker #bc225460' started.
+2018-06-27 08:26:06,582 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'AggregatedCounter' table.
+2018-06-27 08:26:06,583 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Job' table...
+2018-06-27 08:26:06,609 DEBUG [Worker #152a6a04] ?.CallSite.Target - Background process 'Worker #152a6a04' started.
+2018-06-27 08:26:06,682 DEBUG [Worker #daf2a04c] ?.CallSite.Target - Background process 'Worker #daf2a04c' started.
+2018-06-27 08:26:06,683 DEBUG [Worker #7e7a9f39] ?.CallSite.Target - Background process 'Worker #7e7a9f39' started.
+2018-06-27 08:26:06,700 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Job' table.
+2018-06-27 08:26:06,700 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'List' table...
+2018-06-27 08:26:06,722 DEBUG [Worker #7dfaabac] ?.CallSite.Target - Background process 'Worker #7dfaabac' started.
+2018-06-27 08:26:06,758 DEBUG [Worker #dc9f85d5] ?.CallSite.Target - Background process 'Worker #dc9f85d5' started.
+2018-06-27 08:26:06,797 DEBUG [Worker #732dbf67] ?.CallSite.Target - Background process 'Worker #732dbf67' started.
+2018-06-27 08:26:06,838 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'List' table.
+2018-06-27 08:26:06,839 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Set' table...
+2018-06-27 08:26:06,875 DEBUG [Worker #92d75b3c] ?.CallSite.Target - Background process 'Worker #92d75b3c' started.
+2018-06-27 08:26:06,878 DEBUG [Worker #822e65d5] ?.CallSite.Target - Background process 'Worker #822e65d5' started.
+2018-06-27 08:26:06,912 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Set' table.
+2018-06-27 08:26:06,912 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Hash' table...
+2018-06-27 08:26:06,912 DEBUG [Worker #1e20d718] ?.CallSite.Target - Background process 'Worker #1e20d718' started.
+2018-06-27 08:26:06,956 DEBUG [Worker #09964119] ?.CallSite.Target - Background process 'Worker #09964119' started.
+2018-06-27 08:26:07,002 DEBUG [Worker #1388b243] ?.CallSite.Target - Background process 'Worker #1388b243' started.
+2018-06-27 08:26:07,043 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Hash' table.
+2018-06-27 08:26:07,045 DEBUG [Worker #61e8c44d] ?.CallSite.Target - Background process 'Worker #61e8c44d' started.
+2018-06-27 08:26:07,083 DEBUG [Worker #5e4795e6] ?.CallSite.Target - Background process 'Worker #5e4795e6' started.
+2018-06-27 08:26:07,112 DEBUG [Worker #a3fe8d6b] ?.CallSite.Target - Background process 'Worker #a3fe8d6b' started.
+2018-06-27 08:26:07,125 DEBUG [Worker #cd6d48b6] ?.CallSite.Target - Background process 'Worker #cd6d48b6' started.
+2018-06-27 08:26:07,139 DEBUG [Worker #5a477d16] ?.CallSite.Target - Background process 'Worker #5a477d16' started.
+2018-06-27 08:26:07,154 DEBUG [Worker #9f8e13bc] ?.CallSite.Target - Background process 'Worker #9f8e13bc' started.
+2018-06-27 08:26:07,168 DEBUG [Worker #6c6996bf] ?.CallSite.Target - Background process 'Worker #6c6996bf' started.
+2018-06-27 08:26:07,179 DEBUG [DelayedJobScheduler] ?.CallSite.Target - Background process 'DelayedJobScheduler' started.
+2018-06-27 08:26:07,197 DEBUG [RecurringJobScheduler] ?.CallSite.Target - Background process 'RecurringJobScheduler' started.
+2018-06-27 08:31:06,497 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 08:31:06,513 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 08:37:31,165 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 08:37:32,383 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 08:40:52,879 DEBUG [Worker #5a477d16] ?.CallSite.Target - Error occurred during execution of 'Worker #5a477d16' process. Execution will be retried (attempt #1) in 00:00:00 seconds.
+System.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: Shared Memory Provider, error: 0 - The handle is invalid.) ---> System.ComponentModel.Win32Exception (0x80004005): The handle is invalid
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.TdsParser.TdsExecuteTransactionManagerRequest(Byte[] buffer, TransactionManagerRequestType request, String transactionName, TransactionManagerIsolationLevel isoLevel, Int32 timeout, SqlInternalTransaction transaction, TdsParserStateObject stateObj, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransactionYukon(TransactionRequest transactionRequest, String transactionName, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransaction(TransactionRequest transactionRequest, String name, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnection.BeginSqlTransaction(IsolationLevel iso, String transactionName, Boolean shouldReconnect)
+   at System.Data.SqlClient.SqlConnection.BeginTransaction(IsolationLevel iso, String transactionName)
+   at System.Data.SqlClient.SqlConnection.BeginDbTransaction(IsolationLevel isolationLevel)
+   at System.Data.Common.DbConnection.BeginTransaction(IsolationLevel isolationLevel)
+   at Hangfire.SqlServer.SqlServerJobQueue.DequeueUsingTransaction(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.SqlServer.SqlServerJobQueue.Dequeue(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.SqlServer.SqlServerConnection.FetchNextJob(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.Server.Worker.Execute(BackgroundProcessContext context)
+   at Hangfire.Server.ServerProcessExtensions.Execute(IServerProcess process, BackgroundProcessContext context)
+   at Hangfire.Server.AutomaticRetryProcess.Execute(BackgroundProcessContext context)
+ClientConnectionId:7854d767-7a9a-4998-bfc6-ee36e6878ed4
+Error Number:6,State:0,Class:20
+2018-06-27 08:40:52,879 DEBUG [Worker #daf2a04c] ?.CallSite.Target - Error occurred during execution of 'Worker #daf2a04c' process. Execution will be retried (attempt #1) in 00:00:01 seconds.
+System.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: Shared Memory Provider, error: 0 - The handle is invalid.) ---> System.ComponentModel.Win32Exception (0x80004005): The handle is invalid
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.TdsParser.TdsExecuteTransactionManagerRequest(Byte[] buffer, TransactionManagerRequestType request, String transactionName, TransactionManagerIsolationLevel isoLevel, Int32 timeout, SqlInternalTransaction transaction, TdsParserStateObject stateObj, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransactionYukon(TransactionRequest transactionRequest, String transactionName, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransaction(TransactionRequest transactionRequest, String name, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnection.BeginSqlTransaction(IsolationLevel iso, String transactionName, Boolean shouldReconnect)
+   at System.Data.SqlClient.SqlConnection.BeginTransaction(IsolationLevel iso, String transactionName)
+   at System.Data.SqlClient.SqlConnection.BeginDbTransaction(IsolationLevel isolationLevel)
+   at System.Data.Common.DbConnection.BeginTransaction(IsolationLevel isolationLevel)
+   at Hangfire.SqlServer.SqlServerJobQueue.DequeueUsingTransaction(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.SqlServer.SqlServerJobQueue.Dequeue(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.SqlServer.SqlServerConnection.FetchNextJob(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.Server.Worker.Execute(BackgroundProcessContext context)
+   at Hangfire.Server.ServerProcessExtensions.Execute(IServerProcess process, BackgroundProcessContext context)
+   at Hangfire.Server.AutomaticRetryProcess.Execute(BackgroundProcessContext context)
+ClientConnectionId:192d28b1-fe7b-4fd0-be77-7283039068e6
+Error Number:6,State:0,Class:20
+2018-06-27 08:40:52,879 DEBUG [Worker #dc9f85d5] ?.CallSite.Target - Error occurred during execution of 'Worker #dc9f85d5' process. Execution will be retried (attempt #1) in 00:00:00 seconds.
+System.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: Shared Memory Provider, error: 0 - The handle is invalid.) ---> System.ComponentModel.Win32Exception (0x80004005): The handle is invalid
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.TdsParser.TdsExecuteTransactionManagerRequest(Byte[] buffer, TransactionManagerRequestType request, String transactionName, TransactionManagerIsolationLevel isoLevel, Int32 timeout, SqlInternalTransaction transaction, TdsParserStateObject stateObj, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransactionYukon(TransactionRequest transactionRequest, String transactionName, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransaction(TransactionRequest transactionRequest, String name, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnection.BeginSqlTransaction(IsolationLevel iso, String transactionName, Boolean shouldReconnect)
+   at System.Data.SqlClient.SqlConnection.BeginTransaction(IsolationLevel iso, String transactionName)
+   at System.Data.SqlClient.SqlConnection.BeginDbTransaction(IsolationLevel isolationLevel)
+   at System.Data.Common.DbConnection.BeginTransaction(IsolationLevel isolationLevel)
+   at Hangfire.SqlServer.SqlServerJobQueue.DequeueUsingTransaction(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.SqlServer.SqlServerJobQueue.Dequeue(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.SqlServer.SqlServerConnection.FetchNextJob(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.Server.Worker.Execute(BackgroundProcessContext context)
+   at Hangfire.Server.ServerProcessExtensions.Execute(IServerProcess process, BackgroundProcessContext context)
+   at Hangfire.Server.AutomaticRetryProcess.Execute(BackgroundProcessContext context)
+ClientConnectionId:05b24d02-f653-4ba0-b7f6-9f042ad423c5
+Error Number:6,State:0,Class:20
+2018-06-27 08:40:52,879 DEBUG [Worker #bc225460] ?.CallSite.Target - Error occurred during execution of 'Worker #bc225460' process. Execution will be retried (attempt #1) in 00:00:01 seconds.
+System.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: Shared Memory Provider, error: 0 - The handle is invalid.) ---> System.ComponentModel.Win32Exception (0x80004005): The handle is invalid
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.TdsParser.TdsExecuteTransactionManagerRequest(Byte[] buffer, TransactionManagerRequestType request, String transactionName, TransactionManagerIsolationLevel isoLevel, Int32 timeout, SqlInternalTransaction transaction, TdsParserStateObject stateObj, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransactionYukon(TransactionRequest transactionRequest, String transactionName, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransaction(TransactionRequest transactionRequest, String name, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnection.BeginSqlTransaction(IsolationLevel iso, String transactionName, Boolean shouldReconnect)
+   at System.Data.SqlClient.SqlConnection.BeginTransaction(IsolationLevel iso, String transactionName)
+   at System.Data.SqlClient.SqlConnection.BeginDbTransaction(IsolationLevel isolationLevel)
+   at System.Data.Common.DbConnection.BeginTransaction(IsolationLevel isolationLevel)
+   at Hangfire.SqlServer.SqlServerJobQueue.DequeueUsingTransaction(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.SqlServer.SqlServerJobQueue.Dequeue(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.SqlServer.SqlServerConnection.FetchNextJob(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.Server.Worker.Execute(BackgroundProcessContext context)
+   at Hangfire.Server.ServerProcessExtensions.Execute(IServerProcess process, BackgroundProcessContext context)
+   at Hangfire.Server.AutomaticRetryProcess.Execute(BackgroundProcessContext context)
+ClientConnectionId:f5a96322-4c72-460e-83e0-81217b64db63
+Error Number:6,State:0,Class:20
+2018-06-27 08:40:52,895 DEBUG [Worker #a3fe8d6b] ?.CallSite.Target - Error occurred during execution of 'Worker #a3fe8d6b' process. Execution will be retried (attempt #1) in 00:00:01 seconds.
+System.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: Shared Memory Provider, error: 0 - The handle is invalid.) ---> System.ComponentModel.Win32Exception (0x80004005): The handle is invalid
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.TdsParser.TdsExecuteTransactionManagerRequest(Byte[] buffer, TransactionManagerRequestType request, String transactionName, TransactionManagerIsolationLevel isoLevel, Int32 timeout, SqlInternalTransaction transaction, TdsParserStateObject stateObj, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransactionYukon(TransactionRequest transactionRequest, String transactionName, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransaction(TransactionRequest transactionRequest, String name, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnection.BeginSqlTransaction(IsolationLevel iso, String transactionName, Boolean shouldReconnect)
+   at System.Data.SqlClient.SqlConnection.BeginTransaction(IsolationLevel iso, String transactionName)
+   at System.Data.SqlClient.SqlConnection.BeginDbTransaction(IsolationLevel isolationLevel)
+   at System.Data.Common.DbConnection.BeginTransaction(IsolationLevel isolationLevel)
+   at Hangfire.SqlServer.SqlServerJobQueue.DequeueUsingTransaction(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.SqlServer.SqlServerJobQueue.Dequeue(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.SqlServer.SqlServerConnection.FetchNextJob(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.Server.Worker.Execute(BackgroundProcessContext context)
+   at Hangfire.Server.ServerProcessExtensions.Execute(IServerProcess process, BackgroundProcessContext context)
+   at Hangfire.Server.AutomaticRetryProcess.Execute(BackgroundProcessContext context)
+ClientConnectionId:86f0b45a-c6b4-4d97-9194-95e66d19330a
+Error Number:6,State:0,Class:20
+2018-06-27 08:40:52,895 DEBUG [Worker #7e7a9f39] ?.CallSite.Target - Error occurred during execution of 'Worker #7e7a9f39' process. Execution will be retried (attempt #1) in 00:00:01 seconds.
+System.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: Shared Memory Provider, error: 0 - The handle is invalid.) ---> System.ComponentModel.Win32Exception (0x80004005): The handle is invalid
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.TdsParser.TdsExecuteTransactionManagerRequest(Byte[] buffer, TransactionManagerRequestType request, String transactionName, TransactionManagerIsolationLevel isoLevel, Int32 timeout, SqlInternalTransaction transaction, TdsParserStateObject stateObj, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransactionYukon(TransactionRequest transactionRequest, String transactionName, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransaction(TransactionRequest transactionRequest, String name, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnection.BeginSqlTransaction(IsolationLevel iso, String transactionName, Boolean shouldReconnect)
+   at System.Data.SqlClient.SqlConnection.BeginTransaction(IsolationLevel iso, String transactionName)
+   at System.Data.SqlClient.SqlConnection.BeginDbTransaction(IsolationLevel isolationLevel)
+   at System.Data.Common.DbConnection.BeginTransaction(IsolationLevel isolationLevel)
+   at Hangfire.SqlServer.SqlServerJobQueue.DequeueUsingTransaction(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.SqlServer.SqlServerJobQueue.Dequeue(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.SqlServer.SqlServerConnection.FetchNextJob(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.Server.Worker.Execute(BackgroundProcessContext context)
+   at Hangfire.Server.ServerProcessExtensions.Execute(IServerProcess process, BackgroundProcessContext context)
+   at Hangfire.Server.AutomaticRetryProcess.Execute(BackgroundProcessContext context)
+ClientConnectionId:8ebba717-0142-49d0-a572-1678b7219956
+Error Number:6,State:0,Class:20
+2018-06-27 08:40:52,895 DEBUG [Worker #5e4795e6] ?.CallSite.Target - Error occurred during execution of 'Worker #5e4795e6' process. Execution will be retried (attempt #1) in 00:00:01 seconds.
+System.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: Shared Memory Provider, error: 0 - The handle is invalid.) ---> System.ComponentModel.Win32Exception (0x80004005): The handle is invalid
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.TdsParser.TdsExecuteTransactionManagerRequest(Byte[] buffer, TransactionManagerRequestType request, String transactionName, TransactionManagerIsolationLevel isoLevel, Int32 timeout, SqlInternalTransaction transaction, TdsParserStateObject stateObj, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransactionYukon(TransactionRequest transactionRequest, String transactionName, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransaction(TransactionRequest transactionRequest, String name, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnection.BeginSqlTransaction(IsolationLevel iso, String transactionName, Boolean shouldReconnect)
+   at System.Data.SqlClient.SqlConnection.BeginTransaction(IsolationLevel iso, String transactionName)
+   at System.Data.SqlClient.SqlConnection.BeginDbTransaction(IsolationLevel isolationLevel)
+   at System.Data.Common.DbConnection.BeginTransaction(IsolationLevel isolationLevel)
+   at Hangfire.SqlServer.SqlServerJobQueue.DequeueUsingTransaction(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.SqlServer.SqlServerJobQueue.Dequeue(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.SqlServer.SqlServerConnection.FetchNextJob(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.Server.Worker.Execute(BackgroundProcessContext context)
+   at Hangfire.Server.ServerProcessExtensions.Execute(IServerProcess process, BackgroundProcessContext context)
+   at Hangfire.Server.AutomaticRetryProcess.Execute(BackgroundProcessContext context)
+ClientConnectionId:caf5da2e-b1c3-49e6-86d7-a9034a7c83ca
+Error Number:6,State:0,Class:20
+2018-06-27 08:40:52,895 DEBUG [Worker #92d75b3c] ?.CallSite.Target - Error occurred during execution of 'Worker #92d75b3c' process. Execution will be retried (attempt #1) in 00:00:00 seconds.
+System.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: Shared Memory Provider, error: 0 - The handle is invalid.) ---> System.ComponentModel.Win32Exception (0x80004005): The handle is invalid
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.TdsParser.TdsExecuteTransactionManagerRequest(Byte[] buffer, TransactionManagerRequestType request, String transactionName, TransactionManagerIsolationLevel isoLevel, Int32 timeout, SqlInternalTransaction transaction, TdsParserStateObject stateObj, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransactionYukon(TransactionRequest transactionRequest, String transactionName, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransaction(TransactionRequest transactionRequest, String name, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnection.BeginSqlTransaction(IsolationLevel iso, String transactionName, Boolean shouldReconnect)
+   at System.Data.SqlClient.SqlConnection.BeginTransaction(IsolationLevel iso, String transactionName)
+   at System.Data.SqlClient.SqlConnection.BeginDbTransaction(IsolationLevel isolationLevel)
+   at System.Data.Common.DbConnection.BeginTransaction(IsolationLevel isolationLevel)
+   at Hangfire.SqlServer.SqlServerJobQueue.DequeueUsingTransaction(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.SqlServer.SqlServerJobQueue.Dequeue(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.SqlServer.SqlServerConnection.FetchNextJob(String[] queues, CancellationToken cancellationToken)
+   at Hangfire.Server.Worker.Execute(BackgroundProcessContext context)
+   at Hangfire.Server.ServerProcessExtensions.Execute(IServerProcess process, BackgroundProcessContext context)
+   at Hangfire.Server.AutomaticRetryProcess.Execute(BackgroundProcessContext context)
+ClientConnectionId:295a14c6-38ae-494a-a7fd-53c0b21891fb
+Error Number:6,State:0,Class:20
+2018-06-27 08:41:28,345 DEBUG [Worker #a3fe8d6b] ?.CallSite.Target - Background process 'Worker #a3fe8d6b' was stopped due to a shutdown request.
+2018-06-27 08:41:28,345 DEBUG [Worker #a3fe8d6b] ?.CallSite.Target - Background process 'Worker #a3fe8d6b' stopped.
+2018-06-27 08:41:28,345 DEBUG [Worker #5e4795e6] ?.CallSite.Target - Background process 'Worker #5e4795e6' was stopped due to a shutdown request.
+2018-06-27 08:41:28,346 DEBUG [Worker #5e4795e6] ?.CallSite.Target - Background process 'Worker #5e4795e6' stopped.
+2018-06-27 08:41:28,346 DEBUG [Worker #bc225460] ?.CallSite.Target - Background process 'Worker #bc225460' was stopped due to a shutdown request.
+2018-06-27 08:41:28,346 DEBUG [Worker #bc225460] ?.CallSite.Target - Background process 'Worker #bc225460' stopped.
+2018-06-27 08:41:28,346 DEBUG [Worker #daf2a04c] ?.CallSite.Target - Background process 'Worker #daf2a04c' was stopped due to a shutdown request.
+2018-06-27 08:41:28,347 DEBUG [Worker #daf2a04c] ?.CallSite.Target - Background process 'Worker #daf2a04c' stopped.
+2018-06-27 08:41:28,346 DEBUG [Worker #1e20d718] ?.CallSite.Target - Background process 'Worker #1e20d718' was stopped due to a shutdown request.
+2018-06-27 08:41:28,347 DEBUG [Worker #1e20d718] ?.CallSite.Target - Background process 'Worker #1e20d718' stopped.
+2018-06-27 08:41:28,345 DEBUG [Worker #7e7a9f39] ?.CallSite.Target - Background process 'Worker #7e7a9f39' was stopped due to a shutdown request.
+2018-06-27 08:41:28,347 DEBUG [Worker #7e7a9f39] ?.CallSite.Target - Background process 'Worker #7e7a9f39' stopped.
+2018-06-27 08:41:28,347 DEBUG [Worker #dc9f85d5] ?.CallSite.Target - Background process 'Worker #dc9f85d5' was stopped due to a shutdown request.
+2018-06-27 08:41:28,348 DEBUG [Worker #dc9f85d5] ?.CallSite.Target - Background process 'Worker #dc9f85d5' stopped.
+2018-06-27 08:41:28,348 DEBUG [Worker #5a477d16] ?.CallSite.Target - Background process 'Worker #5a477d16' was stopped due to a shutdown request.
+2018-06-27 08:41:28,348 DEBUG [Worker #5a477d16] ?.CallSite.Target - Background process 'Worker #5a477d16' stopped.
+2018-06-27 08:41:28,348 DEBUG [Worker #92d75b3c] ?.CallSite.Target - Background process 'Worker #92d75b3c' was stopped due to a shutdown request.
+2018-06-27 08:41:28,348 DEBUG [Worker #92d75b3c] ?.CallSite.Target - Background process 'Worker #92d75b3c' stopped.
+2018-06-27 08:41:28,348 DEBUG [Worker #4063f205] ?.CallSite.Target - Background process 'Worker #4063f205' was stopped due to a shutdown request.
+2018-06-27 08:41:28,348 DEBUG [Worker #4063f205] ?.CallSite.Target - Background process 'Worker #4063f205' stopped.
+2018-06-27 08:41:28,349 DEBUG [Worker #732dbf67] ?.CallSite.Target - Background process 'Worker #732dbf67' was stopped due to a shutdown request.
+2018-06-27 08:41:28,349 DEBUG [Worker #732dbf67] ?.CallSite.Target - Background process 'Worker #732dbf67' stopped.
+2018-06-27 08:41:28,349 DEBUG [DelayedJobScheduler] ?.CallSite.Target - Background process 'DelayedJobScheduler' stopped.
+2018-06-27 08:41:28,349 DEBUG [Worker #822e65d5] ?.CallSite.Target - Background process 'Worker #822e65d5' was stopped due to a shutdown request.
+2018-06-27 08:41:28,349 DEBUG [Worker #822e65d5] ?.CallSite.Target - Background process 'Worker #822e65d5' stopped.
+2018-06-27 08:41:28,347 DEBUG [Worker #09964119] ?.CallSite.Target - Background process 'Worker #09964119' was stopped due to a shutdown request.
+2018-06-27 08:41:28,350 DEBUG [Worker #09964119] ?.CallSite.Target - Background process 'Worker #09964119' stopped.
+2018-06-27 08:41:28,350 DEBUG [Worker #152a6a04] ?.CallSite.Target - Background process 'Worker #152a6a04' was stopped due to a shutdown request.
+2018-06-27 08:41:28,350 DEBUG [Worker #152a6a04] ?.CallSite.Target - Background process 'Worker #152a6a04' stopped.
+2018-06-27 08:41:28,350 DEBUG [Worker #1388b243] ?.CallSite.Target - Background process 'Worker #1388b243' was stopped due to a shutdown request.
+2018-06-27 08:41:28,350 DEBUG [Worker #9f8e13bc] ?.CallSite.Target - Background process 'Worker #9f8e13bc' was stopped due to a shutdown request.
+2018-06-27 08:41:28,351 DEBUG [Worker #9f8e13bc] ?.CallSite.Target - Background process 'Worker #9f8e13bc' stopped.
+2018-06-27 08:41:28,351 DEBUG [Worker #cd6d48b6] ?.CallSite.Target - Background process 'Worker #cd6d48b6' was stopped due to a shutdown request.
+2018-06-27 08:41:28,351 DEBUG [Worker #cd6d48b6] ?.CallSite.Target - Background process 'Worker #cd6d48b6' stopped.
+2018-06-27 08:41:28,352 DEBUG [Worker #7dfaabac] ?.CallSite.Target - Background process 'Worker #7dfaabac' was stopped due to a shutdown request.
+2018-06-27 08:41:28,352 DEBUG [Worker #7dfaabac] ?.CallSite.Target - Background process 'Worker #7dfaabac' stopped.
+2018-06-27 08:41:28,349 DEBUG [Worker #6c6996bf] ?.CallSite.Target - Background process 'Worker #6c6996bf' was stopped due to a shutdown request.
+2018-06-27 08:41:28,352 DEBUG [Worker #6c6996bf] ?.CallSite.Target - Background process 'Worker #6c6996bf' stopped.
+2018-06-27 08:41:28,352 DEBUG [ServerHeartbeat] ?.CallSite.Target - Background process 'ServerHeartbeat' stopped.
+2018-06-27 08:41:28,352 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Background process 'Hangfire.SqlServer.CountersAggregator' stopped.
+2018-06-27 08:41:28,353 DEBUG [ServerWatchdog] ?.CallSite.Target - Background process 'ServerWatchdog' stopped.
+2018-06-27 08:41:28,351 DEBUG [Worker #1388b243] ?.CallSite.Target - Background process 'Worker #1388b243' stopped.
+2018-06-27 08:41:28,351 DEBUG [Worker #61e8c44d] ?.CallSite.Target - Background process 'Worker #61e8c44d' was stopped due to a shutdown request.
+2018-06-27 08:41:28,345 DEBUG [RecurringJobScheduler] ?.CallSite.Target - Background process 'RecurringJobScheduler' was stopped due to a shutdown request.
+2018-06-27 08:41:28,354 DEBUG [RecurringJobScheduler] ?.CallSite.Target - Background process 'RecurringJobScheduler' stopped.
+2018-06-27 08:41:28,353 DEBUG [Worker #61e8c44d] ?.CallSite.Target - Background process 'Worker #61e8c44d' stopped.
+2018-06-27 08:41:28,352 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Background process 'Hangfire.SqlServer.ExpirationManager' stopped.
+2018-06-27 08:41:28,364 DEBUG [BackgroundProcessingServer] ?.CallSite.Target - Background process 'BackgroundProcessingServer' stopped.
+2018-06-27 08:41:28,364 INFO [130] ?.CallSite.Target - Hangfire Server stopped.
+2018-06-27 08:41:38,329 INFO [109] ZenithCardPerso.Web.MvcApplication.Application_Start -  <<<< Staring ::: Zentih Card APP checking Startup Config Setting @ : 06/27/2018 08:41:38 >>>>>>
+2018-06-27 08:41:38,796 INFO [109] ZenithCardPerso.Web.MvcApplication.Application_Start -  <<<< Ending ::: Zentih Card APP Startup Config Setting ok @ : 06/27/2018 08:41:38 >>>>>>
+2018-06-27 08:41:39,416 INFO [109] ?.CallSite.Target - Start installing Hangfire SQL objects...
+2018-06-27 08:41:39,550 INFO [109] ?.CallSite.Target - Hangfire SQL objects installed.
+2018-06-27 08:41:39,595 INFO [109] ?.CallSite.Target - Starting Hangfire Server
+2018-06-27 08:41:39,595 INFO [109] ?.CallSite.Target - Using job storage: 'SQL Server: CYB310-SOFT-01\SQLSERVER2012@ZenithCardPersoDB'
+2018-06-27 08:41:39,599 INFO [109] ?.CallSite.Target - Using the following options for SQL Server job storage:
+2018-06-27 08:41:39,599 INFO [109] ?.CallSite.Target -     Queue poll interval: 00:00:15.
+2018-06-27 08:41:39,600 INFO [109] ?.CallSite.Target - Using the following options for Hangfire Server:
+2018-06-27 08:41:39,600 INFO [109] ?.CallSite.Target -     Worker count: 20
+2018-06-27 08:41:39,600 INFO [109] ?.CallSite.Target -     Listening queues: 'default'
+2018-06-27 08:41:39,600 INFO [109] ?.CallSite.Target -     Shutdown timeout: 00:00:15
+2018-06-27 08:41:39,600 INFO [109] ?.CallSite.Target -     Schedule polling interval: 00:00:15
+2018-06-27 08:41:39,617 DEBUG [BackgroundProcessingServer] ?.CallSite.Target - Background process 'BackgroundProcessingServer' started.
+2018-06-27 08:41:39,965 DEBUG [ServerHeartbeat] ?.CallSite.Target - Background process 'ServerHeartbeat' started.
+2018-06-27 08:41:39,982 DEBUG [ServerWatchdog] ?.CallSite.Target - Background process 'ServerWatchdog' started.
+2018-06-27 08:41:40,020 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Background process 'Hangfire.SqlServer.ExpirationManager' started.
+2018-06-27 08:41:40,027 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'AggregatedCounter' table...
+2018-06-27 08:41:40,032 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Background process 'Hangfire.SqlServer.CountersAggregator' started.
+2018-06-27 08:41:40,037 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 08:41:40,069 DEBUG [Worker #def9782a] ?.CallSite.Target - Background process 'Worker #def9782a' started.
+2018-06-27 08:41:40,075 DEBUG [Worker #30880d1c] ?.CallSite.Target - Background process 'Worker #30880d1c' started.
+2018-06-27 08:41:40,113 DEBUG [Worker #85ee88a9] ?.CallSite.Target - Background process 'Worker #85ee88a9' started.
+2018-06-27 08:41:40,151 DEBUG [Worker #e9dc0f62] ?.CallSite.Target - Background process 'Worker #e9dc0f62' started.
+2018-06-27 08:41:40,163 DEBUG [Worker #bd5c2813] ?.CallSite.Target - Background process 'Worker #bd5c2813' started.
+2018-06-27 08:41:40,263 DEBUG [Worker #bb04874b] ?.CallSite.Target - Background process 'Worker #bb04874b' started.
+2018-06-27 08:41:40,302 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'AggregatedCounter' table.
+2018-06-27 08:41:40,302 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Job' table...
+2018-06-27 08:41:40,307 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 08:41:40,313 DEBUG [Worker #c61d0afa] ?.CallSite.Target - Background process 'Worker #c61d0afa' started.
+2018-06-27 08:41:40,376 DEBUG [Worker #259c9dee] ?.CallSite.Target - Background process 'Worker #259c9dee' started.
+2018-06-27 08:41:40,409 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Job' table.
+2018-06-27 08:41:40,433 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'List' table...
+2018-06-27 08:41:40,446 DEBUG [Worker #e4f69426] ?.CallSite.Target - Background process 'Worker #e4f69426' started.
+2018-06-27 08:41:40,524 DEBUG [Worker #79448fcb] ?.CallSite.Target - Background process 'Worker #79448fcb' started.
+2018-06-27 08:41:40,550 DEBUG [Worker #992dc13d] ?.CallSite.Target - Background process 'Worker #992dc13d' started.
+2018-06-27 08:41:40,591 DEBUG [Worker #2eafe7e3] ?.CallSite.Target - Background process 'Worker #2eafe7e3' started.
+2018-06-27 08:41:40,629 DEBUG [Worker #dd0ce6e2] ?.CallSite.Target - Background process 'Worker #dd0ce6e2' started.
+2018-06-27 08:41:40,629 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'List' table.
+2018-06-27 08:41:40,660 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Set' table...
+2018-06-27 08:41:40,714 DEBUG [Worker #167e110b] ?.CallSite.Target - Background process 'Worker #167e110b' started.
+2018-06-27 08:41:40,776 DEBUG [Worker #2c04b0c2] ?.CallSite.Target - Background process 'Worker #2c04b0c2' started.
+2018-06-27 08:41:40,777 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Set' table.
+2018-06-27 08:41:40,780 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Hash' table...
+2018-06-27 08:41:40,815 DEBUG [Worker #e01050b6] ?.CallSite.Target - Background process 'Worker #e01050b6' started.
+2018-06-27 08:41:40,843 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Hash' table.
+2018-06-27 08:41:40,849 DEBUG [Worker #32926903] ?.CallSite.Target - Background process 'Worker #32926903' started.
+2018-06-27 08:41:40,862 DEBUG [Worker #e6c7c76e] ?.CallSite.Target - Background process 'Worker #e6c7c76e' started.
+2018-06-27 08:41:40,943 DEBUG [Worker #d7f801ca] ?.CallSite.Target - Background process 'Worker #d7f801ca' started.
+2018-06-27 08:41:40,991 DEBUG [Worker #5c517e06] ?.CallSite.Target - Background process 'Worker #5c517e06' started.
+2018-06-27 08:41:41,000 DEBUG [DelayedJobScheduler] ?.CallSite.Target - Background process 'DelayedJobScheduler' started.
+2018-06-27 08:41:41,031 DEBUG [RecurringJobScheduler] ?.CallSite.Target - Background process 'RecurringJobScheduler' started.
+2018-06-27 08:46:40,317 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 08:46:40,344 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 08:51:20,350 DEBUG [DelayedJobScheduler] ?.CallSite.Target - Background process 'DelayedJobScheduler' stopped.
+2018-06-27 08:51:20,350 DEBUG [Worker #32926903] ?.CallSite.Target - Background process 'Worker #32926903' was stopped due to a shutdown request.
+2018-06-27 08:51:20,351 DEBUG [Worker #32926903] ?.CallSite.Target - Background process 'Worker #32926903' stopped.
+2018-06-27 08:51:20,351 DEBUG [Worker #bb04874b] ?.CallSite.Target - Background process 'Worker #bb04874b' was stopped due to a shutdown request.
+2018-06-27 08:51:20,351 DEBUG [Worker #bb04874b] ?.CallSite.Target - Background process 'Worker #bb04874b' stopped.
+2018-06-27 08:51:20,352 DEBUG [Worker #30880d1c] ?.CallSite.Target - Background process 'Worker #30880d1c' was stopped due to a shutdown request.
+2018-06-27 08:51:20,352 DEBUG [Worker #30880d1c] ?.CallSite.Target - Background process 'Worker #30880d1c' stopped.
+2018-06-27 08:51:20,352 DEBUG [Worker #def9782a] ?.CallSite.Target - Background process 'Worker #def9782a' was stopped due to a shutdown request.
+2018-06-27 08:51:20,352 DEBUG [Worker #def9782a] ?.CallSite.Target - Background process 'Worker #def9782a' stopped.
+2018-06-27 08:51:20,352 DEBUG [Worker #85ee88a9] ?.CallSite.Target - Background process 'Worker #85ee88a9' was stopped due to a shutdown request.
+2018-06-27 08:51:20,353 DEBUG [Worker #85ee88a9] ?.CallSite.Target - Background process 'Worker #85ee88a9' stopped.
+2018-06-27 08:51:20,350 DEBUG [RecurringJobScheduler] ?.CallSite.Target - Background process 'RecurringJobScheduler' was stopped due to a shutdown request.
+2018-06-27 08:51:20,351 DEBUG [Worker #79448fcb] ?.CallSite.Target - Background process 'Worker #79448fcb' was stopped due to a shutdown request.
+2018-06-27 08:51:20,369 DEBUG [RecurringJobScheduler] ?.CallSite.Target - Background process 'RecurringJobScheduler' stopped.
+2018-06-27 08:51:20,371 DEBUG [Worker #79448fcb] ?.CallSite.Target - Background process 'Worker #79448fcb' stopped.
+2018-06-27 08:51:20,353 DEBUG [Worker #bd5c2813] ?.CallSite.Target - Background process 'Worker #bd5c2813' was stopped due to a shutdown request.
+2018-06-27 08:51:20,375 DEBUG [Worker #bd5c2813] ?.CallSite.Target - Background process 'Worker #bd5c2813' stopped.
+2018-06-27 08:51:20,368 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Background process 'Hangfire.SqlServer.ExpirationManager' stopped.
+2018-06-27 08:51:20,353 DEBUG [Worker #e9dc0f62] ?.CallSite.Target - Background process 'Worker #e9dc0f62' was stopped due to a shutdown request.
+2018-06-27 08:51:20,376 DEBUG [Worker #e9dc0f62] ?.CallSite.Target - Background process 'Worker #e9dc0f62' stopped.
+2018-06-27 08:51:20,353 DEBUG [Worker #c61d0afa] ?.CallSite.Target - Background process 'Worker #c61d0afa' was stopped due to a shutdown request.
+2018-06-27 08:51:20,376 DEBUG [Worker #c61d0afa] ?.CallSite.Target - Background process 'Worker #c61d0afa' stopped.
+2018-06-27 08:51:20,356 DEBUG [Worker #259c9dee] ?.CallSite.Target - Background process 'Worker #259c9dee' was stopped due to a shutdown request.
+2018-06-27 08:51:20,356 DEBUG [Worker #5c517e06] ?.CallSite.Target - Background process 'Worker #5c517e06' was stopped due to a shutdown request.
+2018-06-27 08:51:20,377 DEBUG [Worker #5c517e06] ?.CallSite.Target - Background process 'Worker #5c517e06' stopped.
+2018-06-27 08:51:20,356 DEBUG [Worker #dd0ce6e2] ?.CallSite.Target - Background process 'Worker #dd0ce6e2' was stopped due to a shutdown request.
+2018-06-27 08:51:20,377 DEBUG [Worker #dd0ce6e2] ?.CallSite.Target - Background process 'Worker #dd0ce6e2' stopped.
+2018-06-27 08:51:20,356 DEBUG [Worker #992dc13d] ?.CallSite.Target - Background process 'Worker #992dc13d' was stopped due to a shutdown request.
+2018-06-27 08:51:20,378 DEBUG [Worker #992dc13d] ?.CallSite.Target - Background process 'Worker #992dc13d' stopped.
+2018-06-27 08:51:20,360 DEBUG [Worker #2eafe7e3] ?.CallSite.Target - Background process 'Worker #2eafe7e3' was stopped due to a shutdown request.
+2018-06-27 08:51:20,360 DEBUG [Worker #2c04b0c2] ?.CallSite.Target - Background process 'Worker #2c04b0c2' was stopped due to a shutdown request.
+2018-06-27 08:51:20,378 DEBUG [Worker #2c04b0c2] ?.CallSite.Target - Background process 'Worker #2c04b0c2' stopped.
+2018-06-27 08:51:20,361 DEBUG [Worker #167e110b] ?.CallSite.Target - Background process 'Worker #167e110b' was stopped due to a shutdown request.
+2018-06-27 08:51:20,379 DEBUG [Worker #167e110b] ?.CallSite.Target - Background process 'Worker #167e110b' stopped.
+2018-06-27 08:51:20,362 DEBUG [Worker #d7f801ca] ?.CallSite.Target - Background process 'Worker #d7f801ca' was stopped due to a shutdown request.
+2018-06-27 08:51:20,379 DEBUG [Worker #d7f801ca] ?.CallSite.Target - Background process 'Worker #d7f801ca' stopped.
+2018-06-27 08:51:20,377 DEBUG [Worker #259c9dee] ?.CallSite.Target - Background process 'Worker #259c9dee' stopped.
+2018-06-27 08:51:20,364 DEBUG [Worker #e6c7c76e] ?.CallSite.Target - Background process 'Worker #e6c7c76e' was stopped due to a shutdown request.
+2018-06-27 08:51:20,380 DEBUG [Worker #e6c7c76e] ?.CallSite.Target - Background process 'Worker #e6c7c76e' stopped.
+2018-06-27 08:51:20,364 DEBUG [ServerHeartbeat] ?.CallSite.Target - Background process 'ServerHeartbeat' stopped.
+2018-06-27 08:51:20,378 DEBUG [Worker #2eafe7e3] ?.CallSite.Target - Background process 'Worker #2eafe7e3' stopped.
+2018-06-27 08:51:20,368 DEBUG [ServerWatchdog] ?.CallSite.Target - Background process 'ServerWatchdog' stopped.
+2018-06-27 08:51:20,353 DEBUG [Worker #e4f69426] ?.CallSite.Target - Background process 'Worker #e4f69426' was stopped due to a shutdown request.
+2018-06-27 08:51:20,381 DEBUG [Worker #e4f69426] ?.CallSite.Target - Background process 'Worker #e4f69426' stopped.
+2018-06-27 08:51:20,364 DEBUG [Worker #e01050b6] ?.CallSite.Target - Background process 'Worker #e01050b6' was stopped due to a shutdown request.
+2018-06-27 08:51:20,382 DEBUG [Worker #e01050b6] ?.CallSite.Target - Background process 'Worker #e01050b6' stopped.
+2018-06-27 08:51:20,366 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Background process 'Hangfire.SqlServer.CountersAggregator' stopped.
+2018-06-27 08:51:20,423 DEBUG [BackgroundProcessingServer] ?.CallSite.Target - Background process 'BackgroundProcessingServer' stopped.
+2018-06-27 08:51:20,423 INFO [180] ?.CallSite.Target - Hangfire Server stopped.
+2018-06-27 08:51:29,896 INFO [109] ZenithCardPerso.Web.MvcApplication.Application_Start -  <<<< Staring ::: Zentih Card APP checking Startup Config Setting @ : 06/27/2018 08:51:29 >>>>>>
+2018-06-27 08:51:30,507 INFO [109] ZenithCardPerso.Web.MvcApplication.Application_Start -  <<<< Ending ::: Zentih Card APP Startup Config Setting ok @ : 06/27/2018 08:51:30 >>>>>>
+2018-06-27 08:51:30,628 INFO [109] ?.CallSite.Target - Start installing Hangfire SQL objects...
+2018-06-27 08:51:30,689 INFO [109] ?.CallSite.Target - Hangfire SQL objects installed.
+2018-06-27 08:51:30,712 INFO [109] ?.CallSite.Target - Starting Hangfire Server
+2018-06-27 08:51:30,716 INFO [109] ?.CallSite.Target - Using job storage: 'SQL Server: CYB310-SOFT-01\SQLSERVER2012@ZenithCardPersoDB'
+2018-06-27 08:51:30,716 INFO [109] ?.CallSite.Target - Using the following options for SQL Server job storage:
+2018-06-27 08:51:30,716 INFO [109] ?.CallSite.Target -     Queue poll interval: 00:00:15.
+2018-06-27 08:51:30,716 INFO [109] ?.CallSite.Target - Using the following options for Hangfire Server:
+2018-06-27 08:51:30,716 INFO [109] ?.CallSite.Target -     Worker count: 20
+2018-06-27 08:51:30,716 INFO [109] ?.CallSite.Target -     Listening queues: 'default'
+2018-06-27 08:51:30,716 INFO [109] ?.CallSite.Target -     Shutdown timeout: 00:00:15
+2018-06-27 08:51:30,716 INFO [109] ?.CallSite.Target -     Schedule polling interval: 00:00:15
+2018-06-27 08:51:30,730 DEBUG [BackgroundProcessingServer] ?.CallSite.Target - Background process 'BackgroundProcessingServer' started.
+2018-06-27 08:51:30,943 DEBUG [ServerHeartbeat] ?.CallSite.Target - Background process 'ServerHeartbeat' started.
+2018-06-27 08:51:30,959 DEBUG [ServerWatchdog] ?.CallSite.Target - Background process 'ServerWatchdog' started.
+2018-06-27 08:51:31,023 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Background process 'Hangfire.SqlServer.ExpirationManager' started.
+2018-06-27 08:51:31,029 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'AggregatedCounter' table...
+2018-06-27 08:51:31,036 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Background process 'Hangfire.SqlServer.CountersAggregator' started.
+2018-06-27 08:51:31,041 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 08:51:31,134 DEBUG [Worker #31a81fa8] ?.CallSite.Target - Background process 'Worker #31a81fa8' started.
+2018-06-27 08:51:31,135 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 08:51:31,153 DEBUG [Worker #be102ea5] ?.CallSite.Target - Background process 'Worker #be102ea5' started.
+2018-06-27 08:51:31,223 DEBUG [Worker #de79652c] ?.CallSite.Target - Background process 'Worker #de79652c' started.
+2018-06-27 08:51:31,231 DEBUG [Worker #b0070bb0] ?.CallSite.Target - Background process 'Worker #b0070bb0' started.
+2018-06-27 08:51:31,282 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'AggregatedCounter' table.
+2018-06-27 08:51:31,282 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Job' table...
+2018-06-27 08:51:31,353 DEBUG [Worker #d914f1ab] ?.CallSite.Target - Background process 'Worker #d914f1ab' started.
+2018-06-27 08:51:31,354 DEBUG [Worker #12196ce5] ?.CallSite.Target - Background process 'Worker #12196ce5' started.
+2018-06-27 08:51:31,441 DEBUG [Worker #8073c2eb] ?.CallSite.Target - Background process 'Worker #8073c2eb' started.
+2018-06-27 08:51:31,514 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Job' table.
+2018-06-27 08:51:31,515 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'List' table...
+2018-06-27 08:51:31,542 DEBUG [Worker #7383f267] ?.CallSite.Target - Background process 'Worker #7383f267' started.
+2018-06-27 08:51:31,559 DEBUG [Worker #3280e38d] ?.CallSite.Target - Background process 'Worker #3280e38d' started.
+2018-06-27 08:51:31,586 DEBUG [Worker #7b61c556] ?.CallSite.Target - Background process 'Worker #7b61c556' started.
+2018-06-27 08:51:31,624 DEBUG [Worker #8f5a8697] ?.CallSite.Target - Background process 'Worker #8f5a8697' started.
+2018-06-27 08:51:31,631 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'List' table.
+2018-06-27 08:51:31,631 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Set' table...
+2018-06-27 08:51:31,662 DEBUG [Worker #f28d2c10] ?.CallSite.Target - Background process 'Worker #f28d2c10' started.
+2018-06-27 08:51:31,684 DEBUG [Worker #87b31416] ?.CallSite.Target - Background process 'Worker #87b31416' started.
+2018-06-27 08:51:31,686 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Set' table.
+2018-06-27 08:51:31,688 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Hash' table...
+2018-06-27 08:51:31,701 DEBUG [Worker #b671ced8] ?.CallSite.Target - Background process 'Worker #b671ced8' started.
+2018-06-27 08:51:31,755 DEBUG [Worker #d44d7631] ?.CallSite.Target - Background process 'Worker #d44d7631' started.
+2018-06-27 08:51:31,756 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Hash' table.
+2018-06-27 08:51:31,769 DEBUG [Worker #009a834c] ?.CallSite.Target - Background process 'Worker #009a834c' started.
+2018-06-27 08:51:31,781 DEBUG [Worker #0ad523c2] ?.CallSite.Target - Background process 'Worker #0ad523c2' started.
+2018-06-27 08:51:31,787 DEBUG [Worker #89c52a07] ?.CallSite.Target - Background process 'Worker #89c52a07' started.
+2018-06-27 08:51:31,827 DEBUG [Worker #f012970b] ?.CallSite.Target - Background process 'Worker #f012970b' started.
+2018-06-27 08:51:31,865 DEBUG [Worker #e5583984] ?.CallSite.Target - Background process 'Worker #e5583984' started.
+2018-06-27 08:51:31,886 DEBUG [DelayedJobScheduler] ?.CallSite.Target - Background process 'DelayedJobScheduler' started.
+2018-06-27 08:51:31,897 DEBUG [RecurringJobScheduler] ?.CallSite.Target - Background process 'RecurringJobScheduler' started.
+2018-06-27 08:53:09,872 DEBUG [Worker #12196ce5] ?.CallSite.Target - Background process 'Worker #12196ce5' was stopped due to a shutdown request.
+2018-06-27 08:53:09,873 DEBUG [Worker #12196ce5] ?.CallSite.Target - Background process 'Worker #12196ce5' stopped.
+2018-06-27 08:53:09,872 DEBUG [RecurringJobScheduler] ?.CallSite.Target - Background process 'RecurringJobScheduler' was stopped due to a shutdown request.
+2018-06-27 08:53:09,874 DEBUG [Worker #be102ea5] ?.CallSite.Target - Background process 'Worker #be102ea5' was stopped due to a shutdown request.
+2018-06-27 08:53:09,874 DEBUG [Worker #be102ea5] ?.CallSite.Target - Background process 'Worker #be102ea5' stopped.
+2018-06-27 08:53:09,874 DEBUG [Worker #8073c2eb] ?.CallSite.Target - Background process 'Worker #8073c2eb' was stopped due to a shutdown request.
+2018-06-27 08:53:09,874 DEBUG [Worker #8073c2eb] ?.CallSite.Target - Background process 'Worker #8073c2eb' stopped.
+2018-06-27 08:53:09,875 DEBUG [Worker #87b31416] ?.CallSite.Target - Background process 'Worker #87b31416' was stopped due to a shutdown request.
+2018-06-27 08:53:09,875 DEBUG [Worker #87b31416] ?.CallSite.Target - Background process 'Worker #87b31416' stopped.
+2018-06-27 08:53:09,873 DEBUG [Worker #d914f1ab] ?.CallSite.Target - Background process 'Worker #d914f1ab' was stopped due to a shutdown request.
+2018-06-27 08:53:09,875 DEBUG [Worker #d914f1ab] ?.CallSite.Target - Background process 'Worker #d914f1ab' stopped.
+2018-06-27 08:53:09,875 DEBUG [Worker #3280e38d] ?.CallSite.Target - Background process 'Worker #3280e38d' was stopped due to a shutdown request.
+2018-06-27 08:53:09,873 DEBUG [Worker #7383f267] ?.CallSite.Target - Background process 'Worker #7383f267' was stopped due to a shutdown request.
+2018-06-27 08:53:09,874 DEBUG [RecurringJobScheduler] ?.CallSite.Target - Background process 'RecurringJobScheduler' stopped.
+2018-06-27 08:53:09,893 DEBUG [Worker #b0070bb0] ?.CallSite.Target - Background process 'Worker #b0070bb0' was stopped due to a shutdown request.
+2018-06-27 08:53:09,896 DEBUG [Worker #b0070bb0] ?.CallSite.Target - Background process 'Worker #b0070bb0' stopped.
+2018-06-27 08:53:09,894 DEBUG [Worker #7383f267] ?.CallSite.Target - Background process 'Worker #7383f267' stopped.
+2018-06-27 08:53:09,876 DEBUG [Worker #f28d2c10] ?.CallSite.Target - Background process 'Worker #f28d2c10' was stopped due to a shutdown request.
+2018-06-27 08:53:09,900 DEBUG [Worker #f28d2c10] ?.CallSite.Target - Background process 'Worker #f28d2c10' stopped.
+2018-06-27 08:53:09,876 DEBUG [Worker #7b61c556] ?.CallSite.Target - Background process 'Worker #7b61c556' was stopped due to a shutdown request.
+2018-06-27 08:53:09,901 DEBUG [Worker #7b61c556] ?.CallSite.Target - Background process 'Worker #7b61c556' stopped.
+2018-06-27 08:53:09,892 DEBUG [ServerWatchdog] ?.CallSite.Target - Background process 'ServerWatchdog' stopped.
+2018-06-27 08:53:09,876 DEBUG [Worker #3280e38d] ?.CallSite.Target - Background process 'Worker #3280e38d' stopped.
+2018-06-27 08:53:09,880 DEBUG [Worker #f012970b] ?.CallSite.Target - Background process 'Worker #f012970b' was stopped due to a shutdown request.
+2018-06-27 08:53:09,902 DEBUG [Worker #f012970b] ?.CallSite.Target - Background process 'Worker #f012970b' stopped.
+2018-06-27 08:53:09,880 DEBUG [Worker #0ad523c2] ?.CallSite.Target - Background process 'Worker #0ad523c2' was stopped due to a shutdown request.
+2018-06-27 08:53:09,902 DEBUG [Worker #0ad523c2] ?.CallSite.Target - Background process 'Worker #0ad523c2' stopped.
+2018-06-27 08:53:09,882 DEBUG [Worker #e5583984] ?.CallSite.Target - Background process 'Worker #e5583984' was stopped due to a shutdown request.
+2018-06-27 08:53:09,903 DEBUG [Worker #e5583984] ?.CallSite.Target - Background process 'Worker #e5583984' stopped.
+2018-06-27 08:53:09,884 DEBUG [Worker #d44d7631] ?.CallSite.Target - Background process 'Worker #d44d7631' was stopped due to a shutdown request.
+2018-06-27 08:53:09,903 DEBUG [Worker #d44d7631] ?.CallSite.Target - Background process 'Worker #d44d7631' stopped.
+2018-06-27 08:53:09,884 DEBUG [Worker #b671ced8] ?.CallSite.Target - Background process 'Worker #b671ced8' was stopped due to a shutdown request.
+2018-06-27 08:53:09,903 DEBUG [Worker #b671ced8] ?.CallSite.Target - Background process 'Worker #b671ced8' stopped.
+2018-06-27 08:53:09,884 DEBUG [Worker #009a834c] ?.CallSite.Target - Background process 'Worker #009a834c' was stopped due to a shutdown request.
+2018-06-27 08:53:09,904 DEBUG [Worker #009a834c] ?.CallSite.Target - Background process 'Worker #009a834c' stopped.
+2018-06-27 08:53:09,888 DEBUG [Worker #31a81fa8] ?.CallSite.Target - Background process 'Worker #31a81fa8' was stopped due to a shutdown request.
+2018-06-27 08:53:09,904 DEBUG [Worker #31a81fa8] ?.CallSite.Target - Background process 'Worker #31a81fa8' stopped.
+2018-06-27 08:53:09,888 DEBUG [DelayedJobScheduler] ?.CallSite.Target - Background process 'DelayedJobScheduler' stopped.
+2018-06-27 08:53:09,886 DEBUG [ServerHeartbeat] ?.CallSite.Target - Background process 'ServerHeartbeat' stopped.
+2018-06-27 08:53:09,888 DEBUG [Worker #de79652c] ?.CallSite.Target - Background process 'Worker #de79652c' was stopped due to a shutdown request.
+2018-06-27 08:53:09,905 DEBUG [Worker #de79652c] ?.CallSite.Target - Background process 'Worker #de79652c' stopped.
+2018-06-27 08:53:09,878 DEBUG [Worker #89c52a07] ?.CallSite.Target - Background process 'Worker #89c52a07' was stopped due to a shutdown request.
+2018-06-27 08:53:09,892 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Background process 'Hangfire.SqlServer.ExpirationManager' stopped.
+2018-06-27 08:53:09,880 DEBUG [Worker #8f5a8697] ?.CallSite.Target - Background process 'Worker #8f5a8697' was stopped due to a shutdown request.
+2018-06-27 08:53:09,906 DEBUG [Worker #8f5a8697] ?.CallSite.Target - Background process 'Worker #8f5a8697' stopped.
+2018-06-27 08:53:09,906 DEBUG [Worker #89c52a07] ?.CallSite.Target - Background process 'Worker #89c52a07' stopped.
+2018-06-27 08:53:09,890 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Background process 'Hangfire.SqlServer.CountersAggregator' stopped.
+2018-06-27 08:53:09,913 DEBUG [BackgroundProcessingServer] ?.CallSite.Target - Background process 'BackgroundProcessingServer' stopped.
+2018-06-27 08:53:09,913 INFO [128] ?.CallSite.Target - Hangfire Server stopped.
+2018-06-27 08:53:18,370 INFO [109] ZenithCardPerso.Web.MvcApplication.Application_Start -  <<<< Staring ::: Zentih Card APP checking Startup Config Setting @ : 06/27/2018 08:53:18 >>>>>>
+2018-06-27 08:53:18,827 INFO [109] ZenithCardPerso.Web.MvcApplication.Application_Start -  <<<< Ending ::: Zentih Card APP Startup Config Setting ok @ : 06/27/2018 08:53:18 >>>>>>
+2018-06-27 08:53:18,953 INFO [109] ?.CallSite.Target - Start installing Hangfire SQL objects...
+2018-06-27 08:53:19,072 INFO [109] ?.CallSite.Target - Hangfire SQL objects installed.
+2018-06-27 08:53:19,133 INFO [109] ?.CallSite.Target - Starting Hangfire Server
+2018-06-27 08:53:19,137 INFO [109] ?.CallSite.Target - Using job storage: 'SQL Server: CYB310-SOFT-01\SQLSERVER2012@ZenithCardPersoDB'
+2018-06-27 08:53:19,137 INFO [109] ?.CallSite.Target - Using the following options for SQL Server job storage:
+2018-06-27 08:53:19,137 INFO [109] ?.CallSite.Target -     Queue poll interval: 00:00:15.
+2018-06-27 08:53:19,137 INFO [109] ?.CallSite.Target - Using the following options for Hangfire Server:
+2018-06-27 08:53:19,137 INFO [109] ?.CallSite.Target -     Worker count: 20
+2018-06-27 08:53:19,137 INFO [109] ?.CallSite.Target -     Listening queues: 'default'
+2018-06-27 08:53:19,137 INFO [109] ?.CallSite.Target -     Shutdown timeout: 00:00:15
+2018-06-27 08:53:19,137 INFO [109] ?.CallSite.Target -     Schedule polling interval: 00:00:15
+2018-06-27 08:53:19,155 DEBUG [BackgroundProcessingServer] ?.CallSite.Target - Background process 'BackgroundProcessingServer' started.
+2018-06-27 08:53:19,333 DEBUG [ServerHeartbeat] ?.CallSite.Target - Background process 'ServerHeartbeat' started.
+2018-06-27 08:53:19,344 DEBUG [ServerWatchdog] ?.CallSite.Target - Background process 'ServerWatchdog' started.
+2018-06-27 08:53:19,385 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Background process 'Hangfire.SqlServer.ExpirationManager' started.
+2018-06-27 08:53:19,415 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'AggregatedCounter' table...
+2018-06-27 08:53:19,416 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Background process 'Hangfire.SqlServer.CountersAggregator' started.
+2018-06-27 08:53:19,418 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Aggregating records in 'Counter' table...
+2018-06-27 08:53:19,445 DEBUG [Worker #f89865c0] ?.CallSite.Target - Background process 'Worker #f89865c0' started.
+2018-06-27 08:53:19,452 DEBUG [Worker #55d6ea44] ?.CallSite.Target - Background process 'Worker #55d6ea44' started.
+2018-06-27 08:53:19,484 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Records from the 'Counter' table aggregated.
+2018-06-27 08:53:19,538 DEBUG [Worker #5efc793c] ?.CallSite.Target - Background process 'Worker #5efc793c' started.
+2018-06-27 08:53:19,596 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'AggregatedCounter' table.
+2018-06-27 08:53:19,600 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Job' table...
+2018-06-27 08:53:19,637 DEBUG [Worker #11986ae8] ?.CallSite.Target - Background process 'Worker #11986ae8' started.
+2018-06-27 08:53:19,667 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Job' table.
+2018-06-27 08:53:19,690 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'List' table...
+2018-06-27 08:53:19,698 DEBUG [Worker #fc858d02] ?.CallSite.Target - Background process 'Worker #fc858d02' started.
+2018-06-27 08:53:19,739 DEBUG [Worker #fd457085] ?.CallSite.Target - Background process 'Worker #fd457085' started.
+2018-06-27 08:53:19,801 DEBUG [Worker #da617543] ?.CallSite.Target - Background process 'Worker #da617543' started.
+2018-06-27 08:53:19,835 DEBUG [Worker #f8040d6d] ?.CallSite.Target - Background process 'Worker #f8040d6d' started.
+2018-06-27 08:53:19,850 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'List' table.
+2018-06-27 08:53:19,851 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Set' table...
+2018-06-27 08:53:19,863 DEBUG [Worker #d21e7406] ?.CallSite.Target - Background process 'Worker #d21e7406' started.
+2018-06-27 08:53:19,896 DEBUG [Worker #7d16ca3e] ?.CallSite.Target - Background process 'Worker #7d16ca3e' started.
+2018-06-27 08:53:19,940 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Set' table.
+2018-06-27 08:53:19,941 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Removing outdated records from the 'Hash' table...
+2018-06-27 08:53:19,940 DEBUG [Worker #4cb3d9d7] ?.CallSite.Target - Background process 'Worker #4cb3d9d7' started.
+2018-06-27 08:53:20,025 DEBUG [Worker #0468f2d6] ?.CallSite.Target - Background process 'Worker #0468f2d6' started.
+2018-06-27 08:53:20,084 DEBUG [Worker #6138b37e] ?.CallSite.Target - Background process 'Worker #6138b37e' started.
+2018-06-27 08:53:20,109 DEBUG [Worker #7fd7e764] ?.CallSite.Target - Background process 'Worker #7fd7e764' started.
+2018-06-27 08:53:20,109 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Outdated records removed from the 'Hash' table.
+2018-06-27 08:53:20,121 DEBUG [Worker #21b7cd54] ?.CallSite.Target - Background process 'Worker #21b7cd54' started.
+2018-06-27 08:53:20,149 DEBUG [Worker #1d3fbda0] ?.CallSite.Target - Background process 'Worker #1d3fbda0' started.
+2018-06-27 08:53:20,174 DEBUG [Worker #4c586768] ?.CallSite.Target - Background process 'Worker #4c586768' started.
+2018-06-27 08:53:20,192 DEBUG [Worker #cc8141bb] ?.CallSite.Target - Background process 'Worker #cc8141bb' started.
+2018-06-27 08:53:20,205 DEBUG [Worker #8b08f955] ?.CallSite.Target - Background process 'Worker #8b08f955' started.
+2018-06-27 08:53:20,224 DEBUG [Worker #dcb60361] ?.CallSite.Target - Background process 'Worker #dcb60361' started.
+2018-06-27 08:53:20,249 DEBUG [DelayedJobScheduler] ?.CallSite.Target - Background process 'DelayedJobScheduler' started.
+2018-06-27 08:53:20,284 DEBUG [RecurringJobScheduler] ?.CallSite.Target - Background process 'RecurringJobScheduler' started.
+2018-06-27 08:54:39,372 DEBUG [DelayedJobScheduler] ?.CallSite.Target - Background process 'DelayedJobScheduler' stopped.
+2018-06-27 08:54:39,372 DEBUG [Worker #8b08f955] ?.CallSite.Target - Background process 'Worker #8b08f955' was stopped due to a shutdown request.
+2018-06-27 08:54:39,373 DEBUG [Worker #8b08f955] ?.CallSite.Target - Background process 'Worker #8b08f955' stopped.
+2018-06-27 08:54:39,372 DEBUG [RecurringJobScheduler] ?.CallSite.Target - Background process 'RecurringJobScheduler' was stopped due to a shutdown request.
+2018-06-27 08:54:39,373 DEBUG [Worker #21b7cd54] ?.CallSite.Target - Background process 'Worker #21b7cd54' was stopped due to a shutdown request.
+2018-06-27 08:54:39,373 DEBUG [Worker #21b7cd54] ?.CallSite.Target - Background process 'Worker #21b7cd54' stopped.
+2018-06-27 08:54:39,373 DEBUG [Worker #1d3fbda0] ?.CallSite.Target - Background process 'Worker #1d3fbda0' was stopped due to a shutdown request.
+2018-06-27 08:54:39,374 DEBUG [Worker #cc8141bb] ?.CallSite.Target - Background process 'Worker #cc8141bb' was stopped due to a shutdown request.
+2018-06-27 08:54:39,374 DEBUG [Worker #cc8141bb] ?.CallSite.Target - Background process 'Worker #cc8141bb' stopped.
+2018-06-27 08:54:39,374 DEBUG [Worker #4c586768] ?.CallSite.Target - Background process 'Worker #4c586768' was stopped due to a shutdown request.
+2018-06-27 08:54:39,374 DEBUG [Worker #4c586768] ?.CallSite.Target - Background process 'Worker #4c586768' stopped.
+2018-06-27 08:54:39,372 DEBUG [Worker #dcb60361] ?.CallSite.Target - Background process 'Worker #dcb60361' was stopped due to a shutdown request.
+2018-06-27 08:54:39,375 DEBUG [Worker #7fd7e764] ?.CallSite.Target - Background process 'Worker #7fd7e764' was stopped due to a shutdown request.
+2018-06-27 08:54:39,375 DEBUG [Worker #7fd7e764] ?.CallSite.Target - Background process 'Worker #7fd7e764' stopped.
+2018-06-27 08:54:39,375 DEBUG [Worker #4cb3d9d7] ?.CallSite.Target - Background process 'Worker #4cb3d9d7' was stopped due to a shutdown request.
+2018-06-27 08:54:39,376 DEBUG [Worker #4cb3d9d7] ?.CallSite.Target - Background process 'Worker #4cb3d9d7' stopped.
+2018-06-27 08:54:39,373 DEBUG [RecurringJobScheduler] ?.CallSite.Target - Background process 'RecurringJobScheduler' stopped.
+2018-06-27 08:54:39,374 DEBUG [Worker #1d3fbda0] ?.CallSite.Target - Background process 'Worker #1d3fbda0' stopped.
+2018-06-27 08:54:39,393 DEBUG [ServerWatchdog] ?.CallSite.Target - Background process 'ServerWatchdog' stopped.
+2018-06-27 08:54:39,375 DEBUG [Worker #dcb60361] ?.CallSite.Target - Background process 'Worker #dcb60361' stopped.
+2018-06-27 08:54:39,376 DEBUG [Worker #0468f2d6] ?.CallSite.Target - Background process 'Worker #0468f2d6' was stopped due to a shutdown request.
+2018-06-27 08:54:39,376 DEBUG [Worker #6138b37e] ?.CallSite.Target - Background process 'Worker #6138b37e' was stopped due to a shutdown request.
+2018-06-27 08:54:39,398 DEBUG [Worker #6138b37e] ?.CallSite.Target - Background process 'Worker #6138b37e' stopped.
+2018-06-27 08:54:39,398 DEBUG [Worker #0468f2d6] ?.CallSite.Target - Background process 'Worker #0468f2d6' stopped.
+2018-06-27 08:54:39,381 DEBUG [Worker #da617543] ?.CallSite.Target - Background process 'Worker #da617543' was stopped due to a shutdown request.
+2018-06-27 08:54:39,381 DEBUG [Worker #7d16ca3e] ?.CallSite.Target - Background process 'Worker #7d16ca3e' was stopped due to a shutdown request.
+2018-06-27 08:54:39,399 DEBUG [Worker #7d16ca3e] ?.CallSite.Target - Background process 'Worker #7d16ca3e' stopped.
+2018-06-27 08:54:39,381 DEBUG [Worker #f8040d6d] ?.CallSite.Target - Background process 'Worker #f8040d6d' was stopped due to a shutdown request.
+2018-06-27 08:54:39,400 DEBUG [Worker #f8040d6d] ?.CallSite.Target - Background process 'Worker #f8040d6d' stopped.
+2018-06-27 08:54:39,381 DEBUG [Worker #fd457085] ?.CallSite.Target - Background process 'Worker #fd457085' was stopped due to a shutdown request.
+2018-06-27 08:54:39,400 DEBUG [Worker #fd457085] ?.CallSite.Target - Background process 'Worker #fd457085' stopped.
+2018-06-27 08:54:39,385 DEBUG [Worker #fc858d02] ?.CallSite.Target - Background process 'Worker #fc858d02' was stopped due to a shutdown request.
+2018-06-27 08:54:39,401 DEBUG [Worker #fc858d02] ?.CallSite.Target - Background process 'Worker #fc858d02' stopped.
+2018-06-27 08:54:39,399 DEBUG [Worker #da617543] ?.CallSite.Target - Background process 'Worker #da617543' stopped.
+2018-06-27 08:54:39,385 DEBUG [Worker #11986ae8] ?.CallSite.Target - Background process 'Worker #11986ae8' was stopped due to a shutdown request.
+2018-06-27 08:54:39,402 DEBUG [Worker #11986ae8] ?.CallSite.Target - Background process 'Worker #11986ae8' stopped.
+2018-06-27 08:54:39,385 DEBUG [Worker #f89865c0] ?.CallSite.Target - Background process 'Worker #f89865c0' was stopped due to a shutdown request.
+2018-06-27 08:54:39,402 DEBUG [Worker #f89865c0] ?.CallSite.Target - Background process 'Worker #f89865c0' stopped.
+2018-06-27 08:54:39,389 DEBUG [ServerHeartbeat] ?.CallSite.Target - Background process 'ServerHeartbeat' stopped.
+2018-06-27 08:54:39,389 DEBUG [Worker #55d6ea44] ?.CallSite.Target - Background process 'Worker #55d6ea44' was stopped due to a shutdown request.
+2018-06-27 08:54:39,404 DEBUG [Worker #55d6ea44] ?.CallSite.Target - Background process 'Worker #55d6ea44' stopped.
+2018-06-27 08:54:39,389 DEBUG [Hangfire.SqlServer.CountersAggregator] ?.CallSite.Target - Background process 'Hangfire.SqlServer.CountersAggregator' stopped.
+2018-06-27 08:54:39,376 DEBUG [Worker #d21e7406] ?.CallSite.Target - Background process 'Worker #d21e7406' was stopped due to a shutdown request.
+2018-06-27 08:54:39,405 DEBUG [Worker #d21e7406] ?.CallSite.Target - Background process 'Worker #d21e7406' stopped.
+2018-06-27 08:54:39,389 DEBUG [Hangfire.SqlServer.ExpirationManager] ?.CallSite.Target - Background process 'Hangfire.SqlServer.ExpirationManager' stopped.
+2018-06-27 08:54:39,385 DEBUG [Worker #5efc793c] ?.CallSite.Target - Background process 'Worker #5efc793c' was stopped due to a shutdown request.
+2018-06-27 08:54:39,407 DEBUG [Worker #5efc793c] ?.CallSite.Target - Background process 'Worker #5efc793c' stopped.
+2018-06-27 08:54:39,449 DEBUG [BackgroundProcessingServer] ?.CallSite.Target - Background process 'BackgroundProcessingServer' stopped.
+2018-06-27 08:54:39,449 INFO [180] ?.CallSite.Target - Hangfire Server stopped.

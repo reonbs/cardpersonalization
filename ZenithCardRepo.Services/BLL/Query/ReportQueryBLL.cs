@@ -17,15 +17,30 @@ namespace ZenithCardRepo.Services.BLL.Query
         {
             _auditRecQueryBLL = auditRecQueryBLL;
         }
-        public IEnumerable<AuditRecord> GetAuditRecords()
+        public IEnumerable<AuditRecord> GetAuditRecords(string instID)
         {
-            return _auditRecQueryBLL.GetAllIncluding(x => x.Institution).ToList();//.GetAll();
+            var auditRecord = _auditRecQueryBLL.GetAllIncluding(x => x.Institution).ToList();
+            if (!string.IsNullOrEmpty(instID))
+            {
+                int institutionID = Convert.ToInt32(instID);
+
+                auditRecord = auditRecord.Where(x => x.InstitutionID == institutionID).ToList();
+            }
+            return auditRecord;
         }
 
-        public IEnumerable<AuditRecord> GetAuditRecordsSearch(AuditViewModel auditVM)
+        public IEnumerable<AuditRecord> GetAuditRecordsSearch(AuditViewModel auditVM,string instID)
         {
             var auditRecords = _auditRecQueryBLL.GetAllIncluding(x => x.Institution);
+
+            if (!string.IsNullOrEmpty(instID))
+            {
+                int institutionID = Convert.ToInt32(instID);
+                auditRecords = auditRecords.Where(x => x.InstitutionID == institutionID);
+            }
+
             int resultFound = 0;
+
             if (!string.IsNullOrEmpty(auditVM.StartDate) && !string.IsNullOrEmpty(auditVM.EndDate))
             {
                 var startDate = DateTime.ParseExact(auditVM.StartDate, "dd/MM/yyyy", CultureInfo.InvariantCulture); //Convert.ToDateTime(auditVM.StartDate);

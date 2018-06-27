@@ -49,7 +49,7 @@
                 </ul>
             </li>
         }
-        @if (User.IsInRole("CardOps"))
+        @if (User.IsInRole("CardOps") || User.IsInRole("Audit"))
         {
             <li class="has_sub">
                 <a href="javascript:void(0);" class="waves-effect">
@@ -72,7 +72,8 @@
                 </ul>
             </li>
         }
-        @if (User.IsInRole("SuperAdmin") || permissions.Contains("can_create_institutionusers"))
+        @if (User.IsInRole("SuperAdmin") || permissions.Contains("can_create_institutionusers")
+            || permissions.Contains("can_view_audittrail"))
         {
             <li class="has_sub">
                 <a href="javascript:void(0);" class="waves-effect">
@@ -87,7 +88,12 @@
                             <a href="@Url.Action("CreateUser","Account")">Create User</a>
                         </li>
                     }
-
+                    @if ( permissions.Contains("can_view_audittrail"))
+                    {
+                        <li>
+                            <a href="@Url.Action("AuditTrail","Report")">Audit Trail</a>
+                        </li>
+                    }
                     @if (User.IsInRole("SuperAdmin"))
                     {
 
@@ -103,9 +109,7 @@
                         <li>
                             <a href="@Url.Action("ImageSettingEdit","Image")">Edit Image Settings</a>
                         </li>
-                        <li>
-                            <a href="@Url.Action("AuditTrail","Report")">Audit Trail</a>
-                        </li>
+
                         <li>
                             <a href="@Url.Action("Permissions","Permission")">Permissions</a>
                         </li>
@@ -148,6 +152,8 @@
                 </ul>
             </li>
         }
+
+       
 
     </ul>
 </div>

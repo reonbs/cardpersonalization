@@ -312,23 +312,16 @@ namespace ZenithCardPerso.Web.Controllers
         [ValidateUserPermission(Permissions = "can_create_user,can_create_institutionusers")]
         public ActionResult CreateUser()
         {
-
-            var roles = RoleManager.Roles.ToList();
-            List<UserRoleViewModel> userRoleVM = new List<UserRoleViewModel>();
-            foreach (var item in roles)
-            {
-                userRoleVM.Add(new UserRoleViewModel { Role = item.Name });
-            }
-
             var institutionID = ((ClaimsIdentity)User.Identity).FindFirst(Utilities.InstitutionID).Value;
 
-            //RegisterViewModel userVM = new RegisterViewModel { UserRole = userRoleVM };
-            ViewBag.UserRoles = userRoleVM;
+            LoadApplicationRoles();
 
             var institutions = _orgQueryBLL.GetInstitutions();
             ViewData["Institution"] = new SelectList(institutions, "ID", "Name", institutionID);
             return View();
         }
+
+        
 
         [ValidateUserPermission(Permissions = "can_create_user,can_create_institutionusers")]
         [HttpPost]
@@ -394,16 +387,39 @@ namespace ZenithCardPerso.Web.Controllers
 
                     return RedirectToAction("CreateUser");
                 }
+                else
+                {
+                    
+                    AddErrors(result);
+                    LoadApplicationRoles();
+                    LoadInstitution();
+                    return View();
+                }
 
 
-                AddErrors(result);
+                
             }
+            
 
             LoadInstitution();
             // If we got this far, something failed, redisplay form
             return View(model);
         }
 
+        public void LoadApplicationRoles()
+        {
+            var roles = RoleManager.Roles.ToList();
+            List<UserRoleViewModel> userRoleVM = new List<UserRoleViewModel>();
+            foreach (var item in roles)
+            {
+                userRoleVM.Add(new UserRoleViewModel { Role = item.Name });
+            }
+
+
+
+            //RegisterViewModel userVM = new RegisterViewModel { UserRole = userRoleVM };
+            ViewBag.UserRoles = userRoleVM;
+        }
         public ActionResult CreateInstitutionUser()
         {
 

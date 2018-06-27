@@ -1,4 +1,5 @@
 ﻿@model ZenithCardRepo.Data.ViewModel.AuditViewModel
+
 @{
     ViewBag.Title = "Search Result";
 }
@@ -39,16 +40,25 @@
                 </div>
                 <div class="col-md-4">
                     @Html.LabelFor(m => m.Institution)
-                    @Html.DropDownListFor(m => m.Institution, ViewData["Institution"] as SelectList, "----Select----", new { @class = "form-control select2" })
+                    @Html.DropDownListFor(m => m.Institution, ViewData["Institution"] as SelectList, "Select", new { @class = "form-control" })
                 </div>
                 <div class="col-md-4">
                     <br />
-                    <button type="submit" class="btn btn-primary">Search</button>
+                    @*<button type="submit" class="btn btn-primary">Search</button>*@
+                    @if (User.IsInRole("InstitutionAdmin"))
+                    {
+                        <button formaction="AuditTrailSearchInst" class="btn btn-primary" formmethod="post">Search</button>
+                    }
+                    else
+                    {
+                        <button formaction="AuditTrailSearch" class="btn btn-primary" formmethod="post">Search</button>
+                    }
+
                 </div>
             </div>
         </div>
-        
-        
+
+
     </div>
     <div class="row">
         <div class="col-sm-12">
@@ -122,6 +132,15 @@
             $('#StartDate,#EndDate').datepicker({
                 dateFormat: 'dd/mm/yy'
             });
+
+            $('#InstitutionID').on("change", function () {
+                if ($('#InstitutionID').prop("disabled")) {
+                    alert("You can only view audit trail for your institution, contact the administrator");
+                    location.href = "/Report/AuditTrail"
+                    return;
+                }
+            })
+
         });
     </script>
 }
